@@ -1,11 +1,12 @@
-import path from "node:path";
-
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.GITHUB_ACTIONS === "true";
+
 const nextConfig: NextConfig = {
-  output: "standalone",
-  outputFileTracingRoot: path.join(__dirname),
+  output: isGithubPages ? "export" : "standalone",
+
   images: {
+    unoptimized: isGithubPages,
     remotePatterns: [
       {
         protocol: "http",
@@ -31,6 +32,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  basePath: isGithubPages ? "/suw" : "",
+  assetPrefix: isGithubPages ? "/suw/" : "",
+  trailingSlash: isGithubPages,
 };
 
 export default nextConfig;
