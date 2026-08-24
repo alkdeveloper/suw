@@ -113,7 +113,6 @@ export default async function ContactPage({
                 email={page.email}
         formTitle={page.form_title}
         infoDescription={page.info_description}
-        infoImageSrc={page.info_image ?? undefined}
         infoTitle={page.info_title}
         kvkkHref={withLocalePath(
           locale,
