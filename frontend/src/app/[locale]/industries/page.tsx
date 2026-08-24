@@ -5,7 +5,12 @@ import { SuwIndustriesGridSection } from "@/src/components/organisms/suw-industr
 import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import { createLocalizedPageMetadata } from "@/src/lib/metadata";
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 type IndustriesPageProps = {
   params: Promise<{
     locale: SupportedLocale;

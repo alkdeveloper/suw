@@ -6,7 +6,12 @@ import { SuwProductsTechnicalSection } from "@/src/components/organisms/suw-prod
 import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import { createLocalizedPageMetadata } from "@/src/lib/metadata";
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 type ProductsPageProps = {
   params: Promise<{
     locale: SupportedLocale;

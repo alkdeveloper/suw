@@ -11,7 +11,12 @@ import {
   type SupportedLocale,
 } from "@/src/lib/locale";
 import { getOfflineSiteSettings } from "@/src/lib/site-settings-fallback";
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 
 
 type LocaleParams = Promise<{

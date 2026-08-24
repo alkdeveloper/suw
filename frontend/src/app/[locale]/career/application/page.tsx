@@ -13,6 +13,12 @@ import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import { createPageMetadata } from "@/src/lib/metadata";
 
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 const careerApplicationGlow = "/images/figma-assets/career-application-glow.svg";
 const generalApplicationTitleByLocale: Record<SupportedLocale, string> = {
   tr: "Genel Başvuru",

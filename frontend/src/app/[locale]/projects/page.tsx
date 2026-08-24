@@ -5,7 +5,12 @@ import { createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { SuwProjectsShowcaseSection } from "@/src/components/organisms/suw-projects-showcase-section";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { withLocalePath } from "@/src/lib/locale";
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 type ProjectsPageProps = {
   params: Promise<{
     locale: SupportedLocale;

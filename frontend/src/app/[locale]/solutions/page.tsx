@@ -7,7 +7,12 @@ import { SuwBrandingCustomizationSection } from "@/src/components/organisms/suw-
 import { SuwSolutionsProcessSection } from "@/src/components/organisms/suw-solutions-process-section";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { withLocalePath } from "@/src/lib/locale";
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 
 type SolutionsPageProps = {
   params: Promise<{

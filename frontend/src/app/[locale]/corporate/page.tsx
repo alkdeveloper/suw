@@ -13,6 +13,12 @@ import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import { createLocalizedPageMetadata, resolveMetadataValue } from "@/src/lib/metadata";
 
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 const corporateHeroGlow = "/images/figma-assets/corporate-hero-glow.svg";
 
 type CorporatePageProps = {

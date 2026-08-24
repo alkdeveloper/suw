@@ -7,7 +7,12 @@ import { createAPI } from "@/src/lib/api";
 import { getLegalPageSlug, LEGAL_PAGE_PATHS, type LegalPageKey } from "@/src/lib/legal";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { createLocalizedPageMetadata, resolveMetadataValue } from "@/src/lib/metadata";
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 export async function getLegalPage(locale: SupportedLocale, key: LegalPageKey) {
   const response = await createAPI(locale).get<LegalPageResponse>(`legal/${getLegalPageSlug(key)}/`);
 

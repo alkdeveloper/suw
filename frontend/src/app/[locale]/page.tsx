@@ -16,7 +16,12 @@ import { SuwProjectsSection } from "@/src/components/organisms/suw-projects-sect
 import { SuwProductionSection } from "@/src/components/organisms/suw-production-section";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 
-
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 type HomePageProps = {
   params: Promise<{
     locale: SupportedLocale;

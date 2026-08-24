@@ -12,6 +12,12 @@ import {
   resolveMetadataValue,
 } from "@/src/lib/metadata";
 
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
 type ContactPageProps = {
   params: Promise<{
     locale: SupportedLocale;
