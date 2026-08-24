@@ -12,6 +12,13 @@ import { withLocalePath } from "@/src/lib/locale";
 import { createLocalizedPageMetadata, resolveMetadataValue } from "@/src/lib/metadata";
 import { getStaticBrandDetail } from "@/src/lib/static-brand-details";
 
+export function generateStaticParams() {
+  return [
+    { locale: "tr" },
+    { locale: "en" },
+  ];
+}
+
 const akalHeroMask = "/images/figma-assets/brands-hero-mask.svg";
 const akalHeroGlow = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' viewBox='0 0 1 1' fill='none'%3E%3C/svg%3E";
 const WEB_MERCATOR_MAX_LATITUDE = 85.05112878;
