@@ -1,0 +1,49 @@
+.brands-story {
+  @apply bg-white text-center;
+  padding: 56px 20px 64px;
+
+  @screen lg {
+    padding: 67px 20px 92px;
+  }
+}
+
+.brands-story__eyebrow {
+  margin: 0 0 26px;
+  color: #33a6ff;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.97;
+  letter-spacing: 0.68em;
+  text-transform: uppercase;
+
+  @screen md {
+    font-size: 16px;
+  }
+
+  @screen lg {
+    margin-bottom: 35px;
+    font-size: 24px;
+  }
+}
+
+.brands-story__text {
+  width: min(100%, 1154px);
+  margin: 0 auto;
+  color: #223035;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+
+  @screen md {
+    font-size: 24px;
+    line-height: 1.55;
+  }
+
+  @screen lg {
+    font-size: 32px;
+    line-height: 50px;
+  }
+}

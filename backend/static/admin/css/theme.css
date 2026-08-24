@@ -1,0 +1,634 @@
+/* ALK Group Admin Theme */
+
+/* ═══════════════════════════════════════════════════════════════
+   SIDEBAR — Dark mod: arka plan #080A14
+   CSS değişkeni kullanmıyoruz (body'ye sızabilir), doğrudan selector.
+═══════════════════════════════════════════════════════════════ */
+
+.dark #nav-sidebar,
+.dark #nav-sidebar-inner {
+    background-color: #080A14 !important;
+}
+
+.dark #nav-sidebar {
+    border-right-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ── Logo ────────────────────────────────────────────────────── */
+#nav-sidebar-inner a > img {
+    height: 64px !important;
+    width: auto;
+}
+
+.dark #nav-sidebar-inner a > img {
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+}
+
+:root:not(.dark) #nav-sidebar-inner a > img {
+    filter: brightness(0);
+    opacity: 0.80;
+}
+
+/* ── Separator <hr> ──────────────────────────────────────────── */
+.dark #nav-sidebar-inner hr {
+    border-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* ── Section grup başlıkları (h2) ────────────────────────────── */
+.dark #nav-sidebar-inner h2 {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+#nav-sidebar-inner h2 {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.08em !important;
+}
+
+/* ── Nav item linkleri ───────────────────────────────────────── */
+.dark #nav-sidebar-inner ol a {
+    color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.dark #nav-sidebar-inner ol a:hover {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.dark #nav-sidebar-inner ol a.active {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
+}
+
+/* ── Material Icons ──────────────────────────────────────────── */
+.dark #nav-sidebar-inner .material-symbols-outlined {
+    color: rgba(255, 255, 255, 0.50) !important;
+}
+
+.dark #nav-sidebar-inner ol a:hover .material-symbols-outlined,
+.dark #nav-sidebar-inner ol a.active .material-symbols-outlined {
+    color: rgba(255, 255, 255, 0.90) !important;
+}
+
+/* ── Alt kullanıcı bölümü (navigation_user) ─────────────────── */
+.dark #nav-sidebar-inner > div:last-child {
+    border-top-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Kullanıcı adı */
+.dark #nav-sidebar-inner > div:last-child .tracking-tight {
+    color: rgba(255, 255, 255, 0.90) !important;
+}
+
+/* E-posta */
+.dark #nav-sidebar-inner > div:last-child .text-xs {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Hover alanı */
+#nav-sidebar-inner > div:last-child > div {
+    transition: background 0.15s ease;
+}
+
+.dark #nav-sidebar-inner > div:last-child > div:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* unfold_more icon (alt ok) */
+.dark #nav-sidebar-inner > div:last-child .material-symbols-outlined {
+    color: rgba(255, 255, 255, 0.40) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM ALANI — genişlik düzeltmeleri
+═══════════════════════════════════════════════════════════════ */
+
+/* Unfold, input/textarea'ya max-w-2xl (672px) koyuyor.
+   Bunu kaldırarak form alanları mevcut alanı tam doldurur. */
+.form-rows input[type="text"],
+.form-rows input[type="url"],
+.form-rows input[type="email"],
+.form-rows input[type="number"],
+.form-rows input[type="date"],
+.form-rows input[type="time"],
+.form-rows textarea,
+.form-rows select {
+    max-width: 100% !important;
+}
+
+/* ── Submit satırı: container kısıtlamasını kaldır, tam genişlik ─ */
+#submit-row > div > div {
+    max-width: none !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   İÇERİK ALANI — genel iyileştirmeler (renk değiştirmez)
+═══════════════════════════════════════════════════════════════ */
+
+#content h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+}
+
+/* Liste tablosu */
+#result_list thead th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 12px 16px !important;
+}
+
+#result_list tbody tr td {
+    padding: 12px 16px !important;
+    vertical-align: middle;
+    font-size: 0.875rem;
+}
+
+#result_list tbody tr:hover td {
+    background-color: rgba(55, 70, 165, 0.04) !important;
+    transition: background 0.15s ease;
+}
+
+#result_list tbody td img {
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* OrderedModel siralama kontrolleri */
+#result_list .field-move_up_down_links,
+.form-row .field-move_up_down_links {
+    min-width: 142px;
+    white-space: nowrap;
+}
+
+.ordered-model-controls {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.ordered-model-controls__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(148, 163, 184, 0.32);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.86);
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.ordered-model-controls__button:hover {
+    border-color: rgba(38, 50, 130, 0.42);
+    background: rgba(237, 240, 255, 0.98);
+    transform: translateY(-1px);
+}
+
+.ordered-model-controls__button img {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 0 !important;
+    object-fit: contain !important;
+}
+
+.dark .ordered-model-controls__button {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dark .ordered-model-controls__button:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   EKLE BUTONU — görünürlük
+═══════════════════════════════════════════════════════════════ */
+
+a.addlink {
+    background-color: #263282 !important;
+    border-radius: 9999px !important;
+    width: auto !important;
+    height: 38px !important;
+    padding: 0 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(38, 50, 130, 0.4) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+a.addlink:hover {
+    background-color: #1a2470 !important;
+}
+
+a.addlink .material-symbols-outlined {
+    color: #fff !important;
+    font-size: 18px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   LOGO ÖNİZLEME — light/dark mod uyumlu arka plan
+═══════════════════════════════════════════════════════════════ */
+
+.admin-logo-preview {
+    padding: 4px 8px;
+    border-radius: 6px !important;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.dark .admin-logo-preview {
+    background-color: transparent;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SIDEBAR — Light mod uyumu
+   Dark modda sidebar #080A14 kalır, light modda temiz beyaz/gri.
+═══════════════════════════════════════════════════════════════ */
+
+/* Light modda sidebar arka planını temizle */
+:root:not(.dark) #nav-sidebar,
+:root:not(.dark) #nav-sidebar-inner {
+    background-color: #f8f9fc !important;
+}
+
+:root:not(.dark) #nav-sidebar {
+    border-right-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Light mod — Logo: filter ile karanlık yapılıyor (base CSS'te) */
+
+/* Light mod — Separator */
+:root:not(.dark) #nav-sidebar-inner hr {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Light mod — Section grup başlıkları */
+:root:not(.dark) #nav-sidebar-inner h2 {
+    color: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Light mod — Nav item linkleri */
+:root:not(.dark) #nav-sidebar-inner ol a {
+    color: rgba(0, 0, 0, 0.70) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner ol a:hover {
+    color: #1a2470 !important;
+    background-color: rgba(55, 70, 165, 0.06) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner ol a.active {
+    background-color: rgba(55, 70, 165, 0.10) !important;
+    color: #1a2470 !important;
+}
+
+/* Light mod — Material Icons */
+:root:not(.dark) #nav-sidebar-inner .material-symbols-outlined {
+    color: rgba(0, 0, 0, 0.40) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner ol a:hover .material-symbols-outlined,
+:root:not(.dark) #nav-sidebar-inner ol a.active .material-symbols-outlined {
+    color: #1a2470 !important;
+}
+
+/* Light mod — Alt kullanıcı bölümü */
+:root:not(.dark) #nav-sidebar-inner > div:last-child {
+    border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner > div:last-child .tracking-tight {
+    color: rgba(0, 0, 0, 0.85) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner > div:last-child .text-xs {
+    color: rgba(0, 0, 0, 0.50) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner > div:last-child > div:hover {
+    background-color: rgba(55, 70, 165, 0.04) !important;
+}
+
+:root:not(.dark) #nav-sidebar-inner > div:last-child .material-symbols-outlined {
+    color: rgba(0, 0, 0, 0.35) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DASHBOARD KARTLARI
+═══════════════════════════════════════════════════════════════ */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dashboard-card {
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-decoration: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dark .dashboard-card {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .dashboard-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-card .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dashboard-card .card-icon .material-symbols-outlined {
+    font-size: 22px;
+    color: #fff;
+}
+
+.dashboard-card .card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.dashboard-card .card-count {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a1a2e;
+}
+
+.dark .dashboard-card .card-count {
+    color: #f0f0f5;
+}
+
+.dashboard-card .card-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.55);
+    margin-top: 2px;
+}
+
+.dark .dashboard-card .card-label {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* Card renkleri */
+.card-blue   { background: #eef0ff; }
+.card-green  { background: #edfcf2; }
+.card-orange { background: #fff4ed; }
+.card-purple { background: #f3edff; }
+.card-rose   { background: #fff0f3; }
+.card-teal   { background: #edfaf8; }
+.card-amber  { background: #fef9ec; }
+.card-sky    { background: #eef8ff; }
+
+.dark .card-blue   { background: rgba(55, 70, 165, 0.15); }
+.dark .card-green  { background: rgba(34, 197, 94, 0.12); }
+.dark .card-orange { background: rgba(249, 115, 22, 0.12); }
+.dark .card-purple { background: rgba(139, 92, 246, 0.12); }
+.dark .card-rose   { background: rgba(244, 63, 94, 0.12); }
+.dark .card-teal   { background: rgba(20, 184, 166, 0.12); }
+.dark .card-amber  { background: rgba(245, 158, 11, 0.12); }
+.dark .card-sky    { background: rgba(14, 165, 233, 0.12); }
+
+.icon-blue   { background-color: #3746a5; }
+.icon-green  { background-color: #16a34a; }
+.icon-orange { background-color: #ea580c; }
+.icon-purple { background-color: #7c3aed; }
+.icon-rose   { background-color: #e11d48; }
+.icon-teal   { background-color: #0d9488; }
+.icon-amber  { background-color: #d97706; }
+.icon-sky    { background-color: #0284c7; }
+
+/* Hızlı erişim kartları */
+.quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-decoration: none !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.70) !important;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.15s ease;
+}
+
+.quick-link:hover {
+    border-color: #3746a5;
+    color: #3746a5 !important;
+    background: rgba(55, 70, 165, 0.04);
+}
+
+.quick-link .material-symbols-outlined {
+    font-size: 20px;
+    color: #3746a5;
+}
+
+.dark .quick-link {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.70) !important;
+}
+
+.dark .quick-link:hover {
+    border-color: rgba(55, 70, 165, 0.5);
+    background: rgba(55, 70, 165, 0.12);
+    color: #a8b4ff !important;
+}
+
+.dark .quick-link .material-symbols-outlined {
+    color: #a8b4ff;
+}
+
+/* Bildirim paneli */
+.notification-panel {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.dark .notification-panel {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.notification-panel .panel-header {
+    padding: 14px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    color: #1a1a2e;
+}
+
+.dark .notification-panel .panel-header {
+    color: #f0f0f5;
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.notification-panel .panel-header .badge {
+    background: #e11d48;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    line-height: 1.4;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    text-decoration: none !important;
+    transition: background 0.12s ease;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background: rgba(55, 70, 165, 0.04);
+}
+
+.dark .notification-item {
+    border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+.dark .notification-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.notification-item .notif-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notification-item .notif-icon .material-symbols-outlined {
+    font-size: 18px;
+    color: #fff;
+}
+
+.notification-item .notif-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-item .notif-title {
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: #1a1a2e;
+}
+
+.dark .notification-item .notif-title {
+    color: #f0f0f5;
+}
+
+.notification-item .notif-meta {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 1px;
+}
+
+.dark .notification-item .notif-meta {
+    color: rgba(255, 255, 255, 0.40);
+}
+
+.notification-empty {
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 0.825rem;
+    color: rgba(0, 0, 0, 0.40);
+}
+
+.dark .notification-empty {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* Dashboard section başlıkları */
+.dashboard-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dark .dashboard-section-title {
+    color: #f0f0f5;
+}
+
+.dashboard-section-title .material-symbols-outlined {
+    font-size: 18px;
+    color: #3746a5;
+}
+
+.dark .dashboard-section-title .material-symbols-outlined {
+    color: #a8b4ff;
+}

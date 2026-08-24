@@ -1,0 +1,169 @@
+.brands-roadmap {
+  @apply bg-white;
+  padding: 56px 0 72px;
+
+  @screen lg {
+    padding: 52px 0 98px;
+  }
+}
+
+.brands-roadmap__list {
+  @apply flex flex-col;
+  gap: 18px;
+
+  @screen lg {
+    gap: 0;
+  }
+}
+
+.brands-roadmap__row {
+  @apply grid items-start;
+  gap: 18px;
+
+  @screen md {
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 34px;
+    align-items: stretch;
+  }
+
+  @screen lg {
+    grid-template-columns: 182px minmax(0, 1fr);
+    gap: 79px;
+    padding-bottom: 42px;
+  }
+}
+
+.brands-roadmap__year-column {
+  @apply flex flex-col items-start;
+
+  @screen md {
+    height: 100%;
+  }
+}
+
+.brands-roadmap__year-wrap {
+  @apply text-center;
+  width: 100%;
+
+  @screen md {
+    width: 123px;
+  }
+
+  @screen lg {
+    width: 123px;
+  }
+}
+
+.brands-roadmap__year {
+  margin: 0;
+  color: #33a6ff;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+
+  @screen md {
+    font-size: 40px;
+  }
+
+  @screen lg {
+    font-size: 48px;
+  }
+}
+
+.brands-roadmap__year-suffix {
+  margin: 0;
+  color: #33a6ff;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+
+  @screen md {
+    font-size: 24px;
+  }
+
+  @screen lg {
+    font-size: 29px;
+  }
+}
+
+.brands-roadmap__line {
+  @apply hidden bg-black/55;
+  width: 1px;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 10px 0 10px 61px;
+
+  @screen md {
+    display: block;
+  }
+
+  @screen lg {
+    margin-top: 10px;
+    margin-bottom: -22px;
+  }
+}
+
+.brands-roadmap__description {
+  margin: 0;
+  max-width: 889px;
+  color: #000;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-align: left;
+
+  @screen md {
+    font-size: 22px;
+    line-height: 1.55;
+  }
+
+  @screen lg {
+    font-size: 28px;
+    line-height: 48px;
+    padding-top: 7px;
+  }
+}
+
+.brands-roadmap__footer {
+  @apply flex justify-center;
+  margin-top: 40px;
+
+  @screen lg {
+    margin-top: 56px;
+  }
+}
+
+.brands-roadmap__button {
+  @apply inline-flex items-center justify-center border transition-transform duration-300;
+  gap: 10px;
+  min-height: 48px;
+  padding: 13px 20px;
+  border-radius: 24px;
+  border-color: #33a6ff;
+  color: #223035;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  background: linear-gradient(136.8deg, rgba(51, 166, 255, 0.12) 8.697%, rgba(51, 166, 255, 0.54) 88.31%);
+
+  @screen md {
+    min-height: 54px;
+    padding: 15px 25px;
+    font-size: 16px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.brands-roadmap__button-icon {
+  @apply block shrink-0;
+  width: 12px;
+  height: 24px;
+}

@@ -1,0 +1,1 @@
+export { SuwAboutIntroSection } from "./suw-about-intro-section";

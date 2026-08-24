@@ -1,0 +1,133 @@
+.home-brand-strip {
+  @apply bg-white;
+  padding: 40px 0 35px;
+
+  @screen md {
+    padding: 50px 0 45px;
+  }
+
+  @screen lg {
+    padding: 56px 0 48px;
+  }
+}
+
+.home-brand-strip__heading {
+  @apply flex flex-col items-center text-center;
+  gap: 12px;
+  margin-bottom: 28px;
+
+  @screen md {
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  @screen lg {
+    gap: 16px;
+    margin-bottom: 42px;
+  }
+}
+
+.home-brand-strip__eyebrow {
+  color: #33a6ff;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  line-height: 1;
+  text-transform: uppercase;
+
+  @screen md {
+    font-size: 13px;
+    letter-spacing: 0.48em;
+  }
+
+  @screen lg {
+    font-size: 24px;
+    letter-spacing: 0.68em;
+    line-height: 47px;
+  }
+}
+
+.home-brand-strip__title {
+  color: #1e1e1e;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+
+  @screen md {
+    font-size: 40px;
+  }
+
+  @screen lg {
+    font-size: 48px;
+    line-height: 1.1;
+  }
+}
+
+.home-brand-strip__viewport {
+  @apply relative overflow-hidden;
+  width: 100%;
+}
+
+.home-brand-strip__track {
+  @apply flex w-max items-center;
+  gap: 24px;
+  animation: home-brand-strip-scroll 24s linear infinite;
+  will-change: transform;
+
+  @screen md {
+    gap: 48px;
+  }
+
+  @screen lg {
+    gap: 56px;
+  }
+}
+
+.home-brand-strip__item {
+  @apply flex shrink-0 items-center justify-center;
+  opacity: 0.34;
+  flex: 0 0 auto;
+}
+
+/* Uniform cell so mixed aspect-ratio SVGs read at similar visual weight */
+.home-brand-strip__logo-box {
+  position: relative;
+  width: 112px;
+  height: 40px;
+
+  @screen md {
+    width: 136px;
+    height: 50px;
+  }
+
+  @screen lg {
+    width: 152px;
+    height: 54px;
+  }
+}
+
+.home-brand-strip__image {
+  object-fit: contain;
+  object-position: center;
+}
+
+@keyframes home-brand-strip-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-brand-strip__track {
+    animation: none;
+  }
+}

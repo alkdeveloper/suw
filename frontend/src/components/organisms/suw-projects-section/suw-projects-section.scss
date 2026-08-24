@@ -1,0 +1,235 @@
+.suw-projects {
+  background: #111;
+  color: #fff;
+  padding: 120px 0 130px;
+}
+
+.suw-projects__inner {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4.5vw, 76px);
+}
+
+.suw-projects__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  align-items: end;
+  gap: 60px;
+  margin-bottom: 58px;
+}
+
+.suw-projects__eyebrow {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-active), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    margin-right: 18px;
+    vertical-align: middle;
+    background: currentColor;
+  }
+}
+
+.suw-projects__title {
+  margin: 0;
+  font-family: var(--font-active), sans-serif;
+  font-size: clamp(54px, 5.2vw, 96px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.suw-projects__intro {
+  max-width: 500px;
+  margin: 0 0 8px auto;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-active), sans-serif;
+  font-size: clamp(16px, 1.1vw, 19px);
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.suw-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 520px 460px;
+  gap: 14px;
+}
+
+.suw-projects__card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  background: #1a1a1a;
+}
+
+.suw-projects__card--1 {
+  grid-column: span 8;
+}
+
+.suw-projects__card--2 {
+  grid-column: span 4;
+}
+
+.suw-projects__card--3 {
+  grid-column: span 12;
+}
+
+.suw-projects__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.suw-projects__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.06) 20%,
+      rgba(0, 0, 0, 0.74) 100%
+    );
+}
+
+.suw-projects__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px 28px 30px;
+}
+
+.suw-projects__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: rgba(255, 255, 255, 0.66);
+  font-family: var(--font-active), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.suw-projects__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.suw-projects__type {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.56);
+  font-family: var(--font-active), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.suw-projects__bottom h3 {
+  max-width: 760px;
+  margin: 0;
+  font-family: var(--font-active), sans-serif;
+  font-size: clamp(32px, 3.2vw, 58px);
+  font-weight: 650;
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.suw-projects__arrow {
+  display: flex;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  font-size: 20px;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.suw-projects__card:hover {
+  .suw-projects__image {
+    transform: scale(1.04);
+  }
+
+  .suw-projects__arrow {
+    background: #fff;
+    color: #111;
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .suw-projects__heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .suw-projects__intro {
+    margin-left: 0;
+  }
+
+  .suw-projects__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .suw-projects__card--1,
+  .suw-projects__card--2,
+  .suw-projects__card--3 {
+    grid-column: auto;
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 767px) {
+  .suw-projects {
+    padding: 76px 0 84px;
+  }
+
+  .suw-projects__inner {
+    padding: 0 20px;
+  }
+
+  .suw-projects__title {
+  font-size: clamp(42px, 13vw, 64px);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+}
+
+  .suw-projects__card--1,
+  .suw-projects__card--2,
+  .suw-projects__card--3 {
+    min-height: 420px;
+  }
+
+  .suw-projects__content {
+    padding: 22px 20px;
+  }
+
+  .suw-projects__arrow {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+}

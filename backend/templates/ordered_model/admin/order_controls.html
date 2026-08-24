@@ -1,0 +1,15 @@
+{% load static %}
+<div class="ordered-model-controls" aria-label="Siralama kontrolleri">
+    <a class="ordered-model-controls__button" href="{{ urls.top }}{{ query_string }}" title="En uste tasi">
+        <img alt="En uste tasi" src="{% static 'ordered_model/arrow-top.gif' %}">
+    </a>
+    <a class="ordered-model-controls__button" href="{{ urls.up }}{{ query_string }}" title="Yukari tasi">
+        <img alt="Yukari tasi" src="{% static 'ordered_model/arrow-up.gif' %}">
+    </a>
+    <a class="ordered-model-controls__button" href="{{ urls.down }}{{ query_string }}" title="Asagi tasi">
+        <img alt="Asagi tasi" src="{% static 'ordered_model/arrow-down.gif' %}">
+    </a>
+    <a class="ordered-model-controls__button" href="{{ urls.bottom }}{{ query_string }}" title="En alta tasi">
+        <img alt="En alta tasi" src="{% static 'ordered_model/arrow-bottom.gif' %}">
+    </a>
+</div>

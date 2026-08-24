@@ -1,0 +1,113 @@
+.brands-growth-slider {
+  @apply bg-[#080a14];
+  padding: 32px 16px;
+
+  @screen md {
+    padding: 40px 20px;
+  }
+
+  @screen lg {
+    padding: 47px 28px;
+  }
+}
+
+.brands-growth-slider__inner {
+  @apply relative mx-auto flex items-center justify-center;
+  gap: 12px;
+  max-width: 1512px;
+
+  @screen md {
+    justify-content: space-between;
+    gap: 18px;
+  }
+}
+
+.brands-growth-slider__viewport {
+  @apply relative mx-auto overflow-hidden text-center;
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 1240px;
+  min-width: 0;
+  transition: height 420ms ease;
+}
+
+.brands-growth-slider__text {
+  @apply absolute left-0 top-0;
+  width: 100%;
+  margin: 0;
+  color: transparent;
+  opacity: 0;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(160.68deg, #f5f5f5 34.689%, #33a6ff 71.764%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  transform: translateY(18px);
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease;
+
+  @screen sm {
+    font-size: 24px;
+  }
+
+  @screen md {
+    font-size: 34px;
+  }
+
+  @screen lg {
+    font-size: 45px;
+    line-height: 1.2;
+  }
+}
+
+.brands-growth-slider__text--active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.brands-growth-slider__nav {
+  @apply hidden shrink-0 items-center justify-center border-0 bg-transparent p-0;
+  cursor: pointer;
+
+  @screen md {
+    display: inline-flex;
+    width: 28px;
+    height: 44px;
+  }
+
+  @screen lg {
+    width: 32px;
+    height: 48px;
+  }
+}
+
+.brands-growth-slider__nav:focus-visible {
+  outline: 2px solid rgba(51, 166, 255, 0.9);
+  outline-offset: 4px;
+}
+
+.brands-growth-slider__arrow {
+  @apply block shrink-0;
+  width: 18px;
+  height: 36px;
+
+  @screen lg {
+    width: 20px;
+    height: 40px;
+  }
+}
+
+.brands-growth-slider__nav--left {
+  margin-right: 12px;
+}
+
+.brands-growth-slider__nav--right {
+  margin-left: 12px;
+}

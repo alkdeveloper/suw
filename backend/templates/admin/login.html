@@ -1,0 +1,50 @@
+{% extends 'admin/login.html' %}
+
+{% load i18n static unfold %}
+
+{% block login_before %}
+    <div class="flex justify-center mb-6">
+        <img src="{% static 'admin/img/alk-logo.png' %}" alt="ALK Group"
+             class="h-12 w-auto dark:invert dark:opacity-90" />
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="border-b border-base-200 mb-8 pb-6 dark:border-base-800">
+        <h1 class="font-semibold">
+            <span class="block text-font-important-light dark:text-font-important-dark">Hoş geldiniz</span>
+            <span class="block font-semibold text-primary-600 tracking-tight text-xl dark:text-primary-500">ALK Group Yönetim Paneli</span>
+        </h1>
+    </div>
+
+    {% include "unfold/helpers/messages.html" %}
+
+    {% if form.errors or form.non_field_errors %}
+        <div class="flex flex-col gap-4 mb-8 *:mb-0">
+            {% include "unfold/helpers/messages/errornote.html" with errors=form.errors %}
+            {% include "unfold/helpers/messages/error.html" with errors=form.non_field_errors %}
+
+            {% if user.is_authenticated %}
+                {% blocktranslate trimmed asvar message %}
+                    You are authenticated as {{ username }}, but are not authorized to
+                    access this page. Would you like to login to a different account?
+                {% endblocktranslate %}
+                {% include "unfold/helpers/messages/error.html" with error=message %}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <form action="{{ app_path }}" method="post" id="login-form">
+        {% csrf_token %}
+
+        {% include "unfold/helpers/field.html" with field=form.username %}
+        {% include "unfold/helpers/field.html" with field=form.password %}
+
+        <div class="flex flex-col gap-3 mt-6">
+            {% component "unfold/components/button.html" with submit=1 variant="primary" class="submit-row w-full" %}
+                Giriş Yap
+                <span class="material-symbols-outlined relative right-0 transition-all group-hover:-right-1 text-sm">arrow_forward</span>
+            {% endcomponent %}
+        </div>
+    </form>
+{% endblock %}

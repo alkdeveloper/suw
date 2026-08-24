@@ -1,0 +1,1 @@
+export { SuwCustomWorkwearSection } from "./suw-custom-workwear-section";

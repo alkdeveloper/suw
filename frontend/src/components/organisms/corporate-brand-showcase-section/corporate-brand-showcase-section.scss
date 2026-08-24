@@ -1,0 +1,103 @@
+.corporate-brand-showcase {
+  @apply bg-white;
+  padding: 20px 0 52px;
+
+  @screen lg {
+    padding: 28px 0 74px;
+  }
+}
+
+.corporate-brand-showcase__title {
+  margin: 0;
+  color: #1e1e1e;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+
+  @screen lg {
+    width: min(100%, 1089px);
+    margin-inline: auto;
+    font-size: 48px;
+    line-height: 52.8px;
+  }
+}
+
+.corporate-brand-showcase__slider-row {
+  @apply mt-6 grid items-center;
+  grid-template-columns: 24px minmax(0, 1fr) 24px;
+  column-gap: 12px;
+
+  @screen lg {
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    column-gap: 45px;
+    margin-top: 45px;
+    min-height: 86px;
+  }
+}
+
+.corporate-brand-showcase__arrow {
+  @apply z-[2] flex items-center justify-center border-0 bg-transparent p-0;
+  width: 24px;
+  height: 24px;
+
+  @screen lg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.corporate-brand-showcase__arrow-icon {
+  @apply h-full w-full;
+}
+
+.corporate-brand-showcase__logos {
+  @apply min-w-0 flex-1;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  .swiper-wrapper {
+    align-items: center;
+  }
+
+  @screen lg {
+    padding: 0;
+  }
+}
+
+.corporate-brand-showcase__logo-slide {
+  @apply flex h-auto items-center justify-center;
+  width: 100% !important;
+  min-height: 54px;
+  flex-shrink: 0;
+
+  @screen lg {
+    width: auto !important;
+    min-height: 64px;
+  }
+}
+
+.corporate-brand-showcase__logo-wrap {
+  @apply flex items-center justify-center;
+  width: 100%;
+}
+
+.corporate-brand-showcase__logo-box {
+  position: relative;
+  width: 152px;
+  height: 54px;
+
+  @screen lg {
+    width: 180px;
+    height: 64px;
+  }
+}
+
+.corporate-brand-showcase__logo {
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.42;
+}

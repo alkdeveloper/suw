@@ -1,0 +1,1 @@
+export { SuwIndustriesSection } from "./suw-industries-section";

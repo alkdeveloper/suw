@@ -1,0 +1,145 @@
+.image-lightbox {
+  @apply fixed inset-0 z-[120];
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  height: 100vh;
+}
+
+.image-lightbox__shell {
+  @apply flex items-center justify-center;
+  min-height: 100vh;
+  height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  @screen sm {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  @screen lg {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.image-lightbox__panel {
+  @apply relative z-[1] mx-auto inline-flex overflow-hidden;
+  max-width: min(100%, 1200px);
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(10, 15, 28, 0.96));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+  animation: image-lightbox-in 220ms ease-out;
+}
+
+.image-lightbox__image-wrap {
+  @apply relative flex items-center justify-center;
+}
+
+.image-lightbox__image {
+  @apply block;
+  width: auto;
+  height: auto;
+  // Viewport-based limits keep the image at its natural aspect ratio while the
+  // panel shrinks to wrap it (no fixed box, no letterboxing).
+  max-width: min(92vw, 1200px);
+  max-height: calc(100vh - 80px);
+  object-fit: contain;
+}
+
+.image-lightbox__image--contain {
+  object-fit: contain;
+}
+
+.image-lightbox__close {
+  @apply absolute z-[2] flex items-center justify-center border-0 p-0;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+
+  @screen sm {
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+  }
+
+  color: rgba(255, 255, 255, 0.92);
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.04);
+    color: #33a6ff;
+  }
+}
+
+.image-lightbox__close-icon {
+  width: auto;
+  height: 35px;
+}
+
+.image-lightbox__nav {
+  @apply absolute z-[2] flex items-center justify-center border-0 p-0;
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-50%);
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+  cursor: pointer;
+
+  @screen lg {
+    width: 54px;
+    height: 54px;
+  }
+
+  &:hover {
+    transform: translateY(-50%) scale(1.05);
+    color: #33a6ff;
+  }
+}
+
+.image-lightbox__nav--left {
+  left: 18px;
+
+  @screen lg {
+    left: 22px;
+  }
+}
+
+.image-lightbox__nav--right {
+  right: 18px;
+
+  @screen lg {
+    right: 22px;
+  }
+}
+
+.image-lightbox__arrow-icon {
+  @apply block;
+  width: auto;
+  height: 35px;
+}
+
+.image-lightbox__arrow-icon--left {
+  transform: rotate(180deg);
+}
+
+@keyframes image-lightbox-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

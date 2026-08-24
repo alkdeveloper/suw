@@ -1,0 +1,89 @@
+.brand-detail-gallery {
+  @apply bg-white;
+  padding: 26px 0 42px;
+
+  @screen md {
+    padding: 30px 0 54px;
+  }
+
+  @screen lg {
+    padding: 36px 0 64px;
+  }
+}
+
+.brand-detail-gallery__container {
+  @apply flex flex-col;
+}
+
+.brand-detail-gallery__grid {
+  @apply grid;
+  gap: 14px;
+
+  @screen sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @screen lg {
+    width: min(100%, 1078px);
+    margin: 0 auto;
+    gap: 26px;
+  }
+}
+
+.brand-detail-gallery__item {
+  @apply relative overflow-hidden;
+  aspect-ratio: 526 / 732;
+
+  @screen lg {
+    height: 732px;
+    aspect-ratio: auto;
+  }
+}
+
+.brand-detail-gallery__image {
+  @apply block h-full w-full;
+  object-fit: cover;
+  object-position: var(--brand-detail-gallery-object-position, center center);
+}
+
+.brand-detail-gallery__button-wrap {
+  @apply flex justify-center;
+  margin-top: 26px;
+
+  @screen md {
+    margin-top: 28px;
+  }
+
+  @screen lg {
+    margin-top: 32px;
+  }
+}
+
+.brand-detail-gallery__button {
+  @apply inline-flex items-center justify-center rounded-full no-underline;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 24px;
+  border: 1px solid #33a6ff;
+  background: linear-gradient(128.58deg, rgba(51, 166, 255, 0.12) 8.697%, rgba(51, 166, 255, 0.54) 88.31%);
+  color: #223035;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+
+  svg {
+    width: 12px;
+    height: 24px;
+  }
+
+  @screen md {
+    min-height: 54px;
+    padding: 0 26px;
+    font-size: 15px;
+  }
+
+  @screen lg {
+    font-size: 16px;
+  }
+}

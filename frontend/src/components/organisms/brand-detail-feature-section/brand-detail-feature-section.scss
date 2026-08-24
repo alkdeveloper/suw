@@ -1,0 +1,194 @@
+.brand-detail-feature {
+  @apply bg-white;
+  padding: 24px 0 42px;
+
+  @screen md {
+    padding: 30px 0 54px;
+  }
+
+  @screen lg {
+    padding: 34px 0 72px;
+  }
+}
+
+.brand-detail-feature__container {
+  @apply flex flex-col;
+}
+
+.brand-detail-feature__description {
+  margin: 0;
+  color: #223035;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  text-align: left;
+
+  @screen lg {
+    width: min(100%, 1134px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @screen md {
+    font-size: 24px;
+  }
+
+  @screen lg {
+    font-size: 32px;
+    line-height: 50px;
+  }
+}
+
+.brand-detail-feature__image-wrap {
+  margin-top: 26px;
+
+  @screen lg {
+    width: min(100%, 1166px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @screen md {
+    margin-top: 34px;
+  }
+
+  @screen lg {
+    margin-top: 54px;
+  }
+}
+
+.brand-detail-feature__image {
+  @apply block h-auto w-full;
+  max-height: 527px;
+  object-fit: cover;
+}
+
+.brand-detail-feature__button-wrap {
+  @apply flex justify-center;
+  margin-top: 18px;
+
+  @screen md {
+    margin-top: 26px;
+  }
+
+  @screen lg {
+    margin-top: 35px;
+  }
+}
+
+.brand-detail-feature__button {
+  @apply inline-flex items-center justify-center rounded-full no-underline;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 24px;
+  border: 1px solid #33a6ff;
+  background: linear-gradient(128.58deg, rgba(51, 166, 255, 0.12) 8.697%, rgba(51, 166, 255, 0.54) 88.31%);
+  color: #223035;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+
+  svg {
+    width: 12px;
+    height: 24px;
+  }
+
+  @screen md {
+    min-height: 54px;
+    padding: 0 26px;
+    font-size: 15px;
+  }
+
+  @screen lg {
+    min-height: 54px;
+    padding: 0 25px;
+    font-size: 16px;
+  }
+}
+
+.brand-detail-feature__description--bottom {
+  margin-top: 28px;
+
+  @screen md {
+    margin-top: 38px;
+  }
+
+  @screen lg {
+    width: min(100%, 1166px);
+    margin-top: 71px;
+  }
+}
+
+.brand-detail-feature__contacts {
+  @apply grid;
+  margin-top: 22px;
+  gap: 14px;
+
+  @screen md {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: center;
+  }
+
+  @screen lg {
+    width: min(100%, 1166px);
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 24px;
+  }
+}
+
+.brand-detail-feature__contact {
+  @apply inline-flex items-center no-underline;
+  gap: 12px;
+  color: #000;
+  min-width: 0;
+
+  @screen lg {
+    gap: 14px;
+  }
+}
+
+.brand-detail-feature__contact-icon {
+  @apply shrink-0;
+  width: 28px;
+  height: 28px;
+
+  svg {
+    @apply block h-full w-full;
+  }
+
+  @screen md {
+    width: 34px;
+    height: 34px;
+  }
+
+  @screen lg {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.brand-detail-feature__contact-label {
+  @apply block min-w-0;
+  color: #000;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+
+  @screen md {
+    font-size: 22px;
+  }
+
+  @screen lg {
+    font-size: 32px;
+    line-height: 50px;
+  }
+}

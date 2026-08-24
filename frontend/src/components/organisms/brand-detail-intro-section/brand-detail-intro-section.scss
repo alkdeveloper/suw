@@ -1,0 +1,99 @@
+.brand-detail-intro {
+  @apply bg-white;
+  padding: 36px 0 32px;
+
+  @screen md {
+    padding: 54px 0 42px;
+  }
+
+  @screen lg {
+    padding: 75px 0 56px;
+  }
+}
+
+.brand-detail-intro__container {
+  @apply flex flex-col items-center text-center;
+}
+
+.brand-detail-intro__logos {
+  @apply flex items-center justify-center;
+  width: 100%;
+}
+
+.brand-detail-intro__logos--multiple {
+  gap: 22px;
+
+  @screen md {
+    gap: 42px;
+  }
+
+  @screen lg {
+    gap: 64px;
+  }
+}
+
+.brand-detail-intro__logo-frame {
+  width: min(100%, calc(var(--brand-detail-intro-logo-width) * 0.56));
+
+  @screen md {
+    width: min(100%, calc(var(--brand-detail-intro-logo-width) * 0.76));
+  }
+
+  @screen lg {
+    width: min(100%, var(--brand-detail-intro-logo-width));
+  }
+}
+
+.brand-detail-intro__logo {
+  @apply h-auto w-full;
+}
+
+.brand-detail-intro__tagline {
+  margin: 28px 0 0;
+  color: #33a6ff;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.34em;
+  text-align: center;
+  text-transform: uppercase;
+
+  @screen md {
+    margin-top: 34px;
+    font-size: 18px;
+    letter-spacing: 0.46em;
+  }
+
+  @screen lg {
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 1.97;
+    letter-spacing: 0.68em;
+  }
+}
+
+.brand-detail-intro__description {
+  margin: 20px 0 0;
+  max-width: 1100px;
+  color: #223035;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  text-align: center;
+
+  @screen md {
+    margin-top: 24px;
+    font-size: 24px;
+    line-height: 1.42;
+  }
+
+  @screen lg {
+    margin-top: 19px;
+    font-size: 32px;
+    line-height: 50px;
+    letter-spacing: -0.01em;
+  }
+}

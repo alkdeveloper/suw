@@ -1,0 +1,148 @@
+.suw-about-intro {
+  background: #f3f3ef;
+  color: #111;
+  padding: 110px 0 130px;
+}
+
+.suw-about-intro__inner {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4.5vw, 76px);
+}
+
+.suw-about-intro__heading {
+  margin-bottom: 70px;
+}
+
+.suw-about-intro__eyebrow {
+  margin: 0 0 24px;
+  color: #666;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    margin-right: 14px;
+    vertical-align: middle;
+    background: currentColor;
+  }
+}
+
+.suw-about-intro__heading-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  align-items: end;
+  gap: 60px;
+}
+
+.suw-about-intro__title {
+  margin: 0;
+  font-size: clamp(56px, 5.7vw, 100px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.suw-about-intro__copy {
+  max-width: 520px;
+  margin-left: auto;
+}
+
+.suw-about-intro__copy p {
+  margin: 0;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.65;
+
+  & + p {
+    margin-top: 18px;
+  }
+}
+
+.suw-about-intro__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(17, 17, 17, 0.2);
+  border-left: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.suw-about-intro__card {
+  min-height: 330px;
+  padding: 28px;
+  border-right: 1px solid rgba(17, 17, 17, 0.2);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.suw-about-intro__number {
+  color: #777;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.suw-about-intro__card-content {
+  margin-top: 120px;
+}
+
+.suw-about-intro__card-content h3 {
+  margin: 0;
+  font-size: clamp(28px, 2.2vw, 40px);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.suw-about-intro__card-content p {
+  max-width: 420px;
+  margin: 18px 0 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.suw-about-intro__card:hover {
+  background: #111;
+  color: #fff;
+
+  .suw-about-intro__number,
+  .suw-about-intro__card-content p {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+@media (max-width: 900px) {
+  .suw-about-intro__heading-grid,
+  .suw-about-intro__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .suw-about-intro__copy {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .suw-about-intro {
+    padding: 72px 0 84px;
+  }
+
+  .suw-about-intro__inner {
+    padding: 0 20px;
+  }
+
+  .suw-about-intro__card {
+    min-height: 270px;
+  }
+
+  .suw-about-intro__card-content {
+    margin-top: 72px;
+  }
+}

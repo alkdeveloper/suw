@@ -1,0 +1,149 @@
+.legal-content {
+  @apply bg-[#f5f5f5];
+  padding: 38px 0 70px;
+
+  @screen md {
+    padding: 52px 0 86px;
+  }
+
+  @screen lg {
+    padding: 64px 0 108px;
+  }
+}
+
+.legal-content__shell {
+  @apply mx-auto;
+  max-width: 1040px;
+}
+
+.legal-content__header {
+  @apply flex flex-col;
+  gap: 6px;
+  margin-bottom: 22px;
+
+  @screen md {
+    @apply flex-row items-center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+}
+
+.legal-content__label {
+  margin: 0;
+  color: #33a6ff;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.legal-content__updated-at {
+  margin: 0;
+  color: #808080;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.legal-content__body {
+  @apply rounded-[28px] bg-white;
+  padding: 26px 20px;
+  box-shadow: 0 20px 60px rgba(8, 10, 20, 0.05);
+
+  @screen md {
+    padding: 34px 28px;
+    border-radius: 32px;
+  }
+
+  @screen lg {
+    padding: 44px 48px 52px;
+    border-radius: 36px;
+  }
+}
+
+.legal-content__title {
+  margin: 0;
+  color: #1e1e1e;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+
+  @screen md {
+    font-size: 40px;
+  }
+
+  @screen lg {
+    font-size: 52px;
+  }
+}
+
+.legal-content__intro {
+  margin: 18px 0 0;
+  color: #4f5565;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+
+  @screen md {
+    font-size: 16px;
+  }
+
+  @screen lg {
+    max-width: 820px;
+    font-size: 17px;
+  }
+}
+
+.legal-content__sections {
+  @apply flex flex-col;
+  gap: 26px;
+  margin-top: 28px;
+
+  @screen lg {
+    gap: 32px;
+    margin-top: 34px;
+  }
+}
+
+.legal-content__section {
+  padding-top: 22px;
+  border-top: 1px solid rgba(30, 30, 30, 0.1);
+}
+
+.legal-content__section-title {
+  margin: 0;
+  color: #1e1e1e;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  @screen lg {
+    font-size: 26px;
+  }
+}
+
+.legal-content__section-copy {
+  @apply flex flex-col;
+  gap: 14px;
+  margin-top: 14px;
+
+  p {
+    margin: 0;
+    color: #4f5565;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+
+    @screen lg {
+      font-size: 16px;
+    }
+  }
+}

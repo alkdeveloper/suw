@@ -1,0 +1,228 @@
+.suw-solutions-models {
+  background: #f3f3ef;
+  color: #111;
+  padding: 100px 0 130px;
+}
+
+.suw-solutions-models__inner {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4.5vw, 76px);
+}
+
+.suw-solutions-models__heading {
+  margin-bottom: 64px;
+}
+
+.suw-solutions-models__eyebrow {
+  margin: 0 0 24px;
+  color: #666;
+  font-family: var(--font-active), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    margin-right: 14px;
+    vertical-align: middle;
+    background: currentColor;
+  }
+}
+
+.suw-solutions-models__heading-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  align-items: end;
+  gap: 60px;
+}
+
+.suw-solutions-models__title {
+  margin: 0;
+  font-family: var(--font-active), sans-serif;
+  font-size: clamp(56px, 5.7vw, 100px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.suw-solutions-models__intro {
+  max-width: 520px;
+  margin: 0 0 6px auto;
+  color: #555;
+  font-family: var(--font-active), sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.suw-solutions-models__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(17, 17, 17, 0.2);
+  border-left: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.suw-solutions-models__card {
+  position: relative;
+  min-height: 580px;
+  padding: 30px;
+  border-right: 1px solid rgba(17, 17, 17, 0.2);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.suw-solutions-models__card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.suw-solutions-models__number,
+.suw-solutions-models__subtitle {
+  color: #777;
+  font-family: var(--font-active), sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.suw-solutions-models__card-main {
+  margin-top: 110px;
+}
+
+.suw-solutions-models__card-main h3 {
+  margin: 0;
+  font-family: var(--font-active), sans-serif;
+  font-size: clamp(46px, 4vw, 72px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.suw-solutions-models__card-main p {
+  max-width: 420px;
+  margin: 24px 0 0;
+  color: #666;
+  font-family: var(--font-active), sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.suw-solutions-models__list {
+  display: grid;
+  gap: 12px;
+  margin: 44px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suw-solutions-models__list li {
+  position: relative;
+  padding-left: 18px;
+  color: #555;
+  font-family: var(--font-active), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.suw-solutions-models__list li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: currentColor;
+}
+
+.suw-solutions-models__arrow {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  display: flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.suw-solutions-models__card:hover {
+  background: #111;
+  color: #fff;
+
+  .suw-solutions-models__number,
+  .suw-solutions-models__subtitle,
+  .suw-solutions-models__card-main p,
+  .suw-solutions-models__list li {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .suw-solutions-models__arrow {
+    border-color: #fff;
+    background: #fff;
+    color: #111;
+  }
+}
+
+@media (max-width: 1050px) {
+  .suw-solutions-models__heading-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .suw-solutions-models__intro {
+    margin-left: 0;
+  }
+
+  .suw-solutions-models__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .suw-solutions-models__card {
+    min-height: 470px;
+  }
+
+  .suw-solutions-models__card-main {
+    margin-top: 72px;
+  }
+}
+
+@media (max-width: 767px) {
+  .suw-solutions-models {
+    padding: 72px 0 84px;
+  }
+
+  .suw-solutions-models__inner {
+    padding: 0 20px;
+  }
+
+  .suw-solutions-models__title {
+    font-size: clamp(48px, 13vw, 72px);
+  }
+
+  .suw-solutions-models__card {
+    min-height: 430px;
+    padding: 24px;
+  }
+
+  .suw-solutions-models__card-main {
+    margin-top: 58px;
+  }
+
+  .suw-solutions-models__arrow {
+    right: 22px;
+    bottom: 22px;
+  }
+}

@@ -1,0 +1,122 @@
+.news-article-list {
+  @apply bg-[#f5f5f5];
+  padding: 0 0 56px;
+
+  @screen md {
+    padding-bottom: 70px;
+  }
+
+  @screen lg {
+    padding-bottom: 82px;
+  }
+}
+
+.news-article-list__grid {
+  @apply grid;
+  gap: 0 10px;
+
+  @screen sm {
+    gap: 0 14px;
+  }
+
+  @screen md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @screen lg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+}
+
+.news-article-list__card {
+  border-top: 1px solid rgba(0, 17, 17, 0.28);
+  padding: 16px 0 18px;
+
+  @screen sm {
+    padding: 18px 0 22px;
+  }
+}
+
+.news-article-list__meta {
+  @apply flex items-center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: rgba(34, 48, 53, 0.42);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.2;
+
+  @screen sm {
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+}
+
+.news-article-list__title {
+  @apply block transition-colors duration-300;
+  max-width: 100%;
+  color: #1e1e1e;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.24px;
+
+  @screen sm {
+    max-width: 322px;
+    font-size: 20px;
+  }
+
+  @screen md {
+    font-size: 24px;
+  }
+
+  &:hover {
+    color: #33a6ff;
+  }
+}
+
+.news-article-list__footer {
+  @apply flex justify-center;
+  margin-top: 24px;
+
+  @screen sm {
+    margin-top: 36px;
+  }
+}
+
+.news-article-list__button {
+  @apply inline-flex items-center justify-center border transition-transform duration-300;
+  gap: 10px;
+  min-height: 48px;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 24px;
+  border-color: #33a6ff;
+  color: #223035;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  background: linear-gradient(128.73deg, rgba(51, 166, 255, 0.12) 8.697%, rgba(51, 166, 255, 0.54) 88.31%);
+
+  @screen sm {
+    min-height: 54px;
+    width: auto;
+    padding: 15px 26px;
+    font-size: 16px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.news-article-list__button-icon {
+  @apply block shrink-0;
+  width: 12px;
+  height: 24px;
+}

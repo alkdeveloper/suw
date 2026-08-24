@@ -1,0 +1,1 @@
+export { SuwFeaturedProductsSection } from "./suw-featured-products-section";

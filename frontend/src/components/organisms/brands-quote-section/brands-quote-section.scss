@@ -1,0 +1,29 @@
+.brands-quote {
+  @apply bg-white text-center;
+  padding: 62px 20px 70px;
+
+  @screen lg {
+    padding: 83px 20px 96px;
+  }
+}
+
+.brands-quote__text {
+  width: min(100%, 1112px);
+  margin: 0 auto;
+  color: #000;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+
+  @screen md {
+    font-size: 25px;
+  }
+
+  @screen lg {
+    font-size: 30px;
+    line-height: 51px;
+  }
+}

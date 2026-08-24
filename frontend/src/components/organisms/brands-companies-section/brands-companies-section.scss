@@ -1,0 +1,119 @@
+.brands-companies {
+  @apply bg-white;
+}
+
+.brands-companies__list {
+  @apply flex flex-col;
+}
+
+.brands-companies__row {
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.brands-companies__row:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.brands-companies__row-inner {
+  @apply grid items-center;
+  gap: 22px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+
+  @screen md {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 34px;
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+
+  @screen lg {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 90px;
+    padding-top: 27px;
+    padding-bottom: 29px;
+  }
+}
+
+.brands-companies__row-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+
+    .brands-companies__logo {
+      opacity: 0.7;
+    }
+  }
+}
+
+.brands-companies__logo-wrap {
+  @apply flex items-center justify-center;
+  width: 100%;
+}
+
+.brands-companies__logo {
+  display: block;
+  width: 160px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.34;
+  transition: opacity 0.2s ease;
+
+  @screen md {
+    width: 200px;
+    height: 72px;
+  }
+
+  @screen lg {
+    width: 240px;
+    height: 88px;
+  }
+}
+
+.brands-companies__title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.34);
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-align: center;
+
+  @screen md {
+    font-size: 24px;
+  }
+
+  @screen lg {
+    font-size: 28px;
+  }
+}
+
+.brands-companies__description {
+  margin: 0;
+  color: #000;
+  font-family: var(--font-red-hat-display), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  text-align: left;
+
+  @screen md {
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  @screen lg {
+    max-width: 938px;
+    font-size: 28px;
+    line-height: 48px;
+    letter-spacing: -0.01em;
+  }
+}

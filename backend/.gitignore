@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Django
+*.log
+*.pot
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# Ortam
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+.coverage
+htmlcov/
+
+# Migrations (opsiyonel — takımda tutmak tercih edilir)
+# */migrations/*.py
+# !*/migrations/__init__.py

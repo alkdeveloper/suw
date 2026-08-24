@@ -1,0 +1,217 @@
+.suw-products-grid {
+  background: #f3f3ef;
+  color: #111;
+  padding: 80px 0 120px;
+}
+
+.suw-products-grid__inner {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4.5vw, 76px);
+}
+
+.suw-products-grid__toolbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.suw-products-grid__label,
+.suw-products-grid__count {
+  margin: 0;
+  color: #6b6b66;
+  font-family: var(--font-active), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.suw-products-grid__filters {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.suw-products-grid__filter {
+  appearance: none;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: transparent;
+  color: #666;
+  min-height: 40px;
+  padding: 0 16px;
+  font-family: var(--font-active), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.suw-products-grid__filter:hover {
+  border-color: #111;
+  color: #111;
+}
+
+.suw-products-grid__filter--active {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.suw-products-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 46px 16px;
+  padding-top: 34px;
+}
+
+.suw-products-grid__card {
+  min-width: 0;
+}
+
+.suw-products-grid__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 0.82;
+  background: #e2e2dd;
+}
+
+.suw-products-grid__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.suw-products-grid__product-number {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-active), sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.suw-products-grid__view {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 12px 14px;
+  background: #111;
+  color: #fff;
+  font-family: var(--font-active), sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.suw-products-grid__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 16px;
+}
+
+.suw-products-grid__meta h2 {
+  margin: 0;
+  font-family: var(--font-active), sans-serif;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.suw-products-grid__meta p {
+  margin: 6px 0 0;
+  color: #777;
+  font-family: var(--font-active), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.suw-products-grid__colors {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding-top: 3px;
+}
+
+.suw-products-grid__color {
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(17, 17, 17, 0.24);
+  border-radius: 50%;
+}
+
+.suw-products-grid__card:hover {
+  .suw-products-grid__image {
+    transform: scale(1.035);
+  }
+
+  .suw-products-grid__view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .suw-products-grid__toolbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .suw-products-grid__filters {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+
+  .suw-products-grid__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .suw-products-grid {
+    padding: 58px 0 80px;
+  }
+
+  .suw-products-grid__inner {
+    padding: 0 20px;
+  }
+
+  .suw-products-grid__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .suw-products-grid__toolbar {
+    gap: 18px;
+  }
+
+  .suw-products-grid__filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .suw-products-grid__filter {
+    flex: 0 0 auto;
+  }
+}

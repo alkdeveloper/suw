@@ -1,0 +1,11 @@
+.career-positions-and-application__form {
+  margin-top: 48px;
+
+  @screen md {
+    margin-top: 56px;
+  }
+
+  @screen lg {
+    margin-top: 64px;
+  }
+}
