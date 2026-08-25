@@ -28,10 +28,52 @@ type HomePageProps = {
   }>;
 };
 
-async function getHomePage(locale: SupportedLocale) {
-  const response = await createAPI(locale).get<HomePageResponse>("home/");
+async function getHomePage(
+  locale: SupportedLocale,
+): Promise<HomePageResponse> {
+  try {
+    const response =
+      await createAPI(locale).get<HomePageResponse>("home/");
 
-  return response.data;
+    return response.data;
+  } catch {
+    return {
+      meta_title: locale === "tr" ? "Anasayfa" : "Home",
+      meta_description:
+        locale === "tr"
+          ? "SUW profesyonel iş giyimi çözümleri."
+          : "SUW professional workwear solutions.",
+
+      hero_title:
+        locale === "tr"
+          ? "İŞ İÇİN TASARLANDI."
+          : "BUILT FOR WORK.",
+
+      hero_subtitle:
+        locale === "tr"
+          ? "PROFESYONEL İŞ GİYİMİ"
+          : "PROFESSIONAL WORKWEAR",
+
+      hero_description:
+        locale === "tr"
+          ? "Performans, dayanıklılık ve işlevsellik için geliştirilen profesyonel iş giyimi çözümleri."
+          : "Professional workwear solutions developed for performance, durability and functionality.",
+
+      hero_image: null,
+
+      activities_label:
+        locale === "tr"
+          ? "ÜRÜN KATEGORİLERİ"
+          : "PRODUCT CATEGORIES",
+
+      activities_title:
+        locale === "tr"
+          ? "HER İŞ İÇİN TASARLANDI."
+          : "BUILT FOR EVERY JOB.",
+
+      activities: [],
+    } as unknown as HomePageResponse;
+  }
 }
 
 export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
