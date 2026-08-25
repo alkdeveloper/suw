@@ -19,31 +19,11 @@ const companyDetailHeroMask = "/images/figma-assets/brands-hero-mask.svg";
 const companyDetailHeroGlow = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' viewBox='0 0 1 1' fill='none'%3E%3C/svg%3E";
 const WEB_MERCATOR_MAX_LATITUDE = 85.05112878;
 
-export async function generateStaticParams() {
-  const locales = ["tr", "en"];
-
-  const params = [];
-
-  for (const locale of locales) {
-    try {
-      const { data } = await createAPI(locale).get("companies/");
-
-      const companies = Array.isArray(data)
-        ? data
-        : data.results ?? [];
-
-      for (const company of companies) {
-        params.push({
-          locale,
-          slug: company.slug,
-        });
-      }
-    } catch {
-      console.log(`companies api unavailable for ${locale}`);
-    }
-  }
-
-  return params;
+export function generateStaticParams() {
+  return [
+    { locale: "tr", slug: "preview" },
+    { locale: "en", slug: "preview" },
+  ];
 }
 
 type CompanyDetailPageProps = {
