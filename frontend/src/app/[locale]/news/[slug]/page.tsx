@@ -15,7 +15,10 @@ import { createLocalizedPageMetadata, resolveMetadataValue } from "@/src/lib/met
 const newsDetailHeroGlow = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1' viewBox='0 0 1 1' fill='none'%3E%3C/svg%3E";
 
 export function generateStaticParams() {
-  return [];
+  return [
+    { locale: "tr", slug: "preview" },
+    { locale: "en", slug: "preview" },
+  ];
 }
 type NewsDetailPageProps = {
   params: Promise<{
