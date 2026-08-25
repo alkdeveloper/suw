@@ -1,13 +1,15 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
-import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/src/lib/locale";
-
-export const revalidate = 0;
-
-export default async function RootPage() {
-  const cookieStore = await cookies();
-  const locale = normalizeLocale(cookieStore.get(LOCALE_COOKIE_NAME)?.value);
-
-  redirect(`/${locale}`);
+export default function RootPage() {
+  return (
+    <html lang="tr">
+      <head>
+        <meta httpEquiv="refresh" content="0; url=/suw/tr/" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.location.replace("/suw/tr/");`,
+          }}
+        />
+      </head>
+      <body />
+    </html>
+  );
 }
