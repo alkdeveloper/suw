@@ -13,10 +13,48 @@ export function generateStaticParams() {
     { locale: "en" },
   ];
 }
-export async function getLegalPage(locale: SupportedLocale, key: LegalPageKey) {
-  const response = await createAPI(locale).get<LegalPageResponse>(`legal/${getLegalPageSlug(key)}/`);
+export async function getLegalPage(
+  locale: SupportedLocale,
+  key: LegalPageKey,
+): Promise<LegalPageResponse> {
+  try {
+    const response = await createAPI(locale).get<LegalPageResponse>(
+      `legal/${getLegalPageSlug(key)}/`,
+    );
 
-  return response.data;
+    return response.data;
+  } catch {
+    const titles = {
+      privacyAndCookiePolicy: {
+        tr: "Gizlilik ve Çerez Politikası",
+        en: "Privacy and Cookie Policy",
+      },
+      candidatePrivacyNotice: {
+        tr: "Aday Aydınlatma Metni",
+        en: "Candidate Privacy Notice",
+      },
+      disclosureAndConsent: {
+        tr: "Aydınlatma ve Açık Rıza",
+        en: "Disclosure and Consent",
+      },
+    };
+
+    const title = titles[key][locale];
+
+    return {
+      meta_title: title,
+      meta_description: title,
+      title,
+      subtitle: "",
+      hero_image: null,
+      hero_glow_image: null,
+      intro: "",
+      sections: [],
+      last_updated: "",
+      last_updated_label:
+        locale === "tr" ? "Son Güncelleme" : "Last Updated",
+    } as unknown as LegalPageResponse;
+  }
 }
 
 export async function generateLegalPageMetadata(locale: SupportedLocale, key: LegalPageKey): Promise<Metadata> {
