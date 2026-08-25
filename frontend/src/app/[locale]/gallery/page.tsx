@@ -25,16 +25,69 @@ type GalleryPageProps = {
   }>;
 };
 
-async function getGalleryPage(locale: SupportedLocale) {
-  const response = await createAPI(locale).get<GalleryPageResponse>("gallery/");
+async function getGalleryPage(
+  locale: SupportedLocale,
+): Promise<GalleryPageResponse> {
+  try {
+    const response =
+      await createAPI(locale).get<GalleryPageResponse>("gallery/");
 
-  return response.data;
+    return response.data;
+  } catch {
+    return {
+      meta_title: locale === "tr" ? "Galeri" : "Gallery",
+      meta_description:
+        locale === "tr"
+          ? "SUW ürün, proje ve üretim görsellerini keşfedin."
+          : "Explore SUW product, project and production visuals.",
+
+      hero_title:
+        locale === "tr"
+          ? "GALERİ"
+          : "GALLERY",
+
+      hero_image: null,
+      intro_text: "",
+      lightbox_close_aria_label: "Close",
+      lightbox_next_aria_label: "Next",
+      lightbox_previous_aria_label: "Previous",
+      show_more_text:
+        locale === "tr" ? "DAHA FAZLA" : "SHOW MORE",
+
+      brands: [],
+
+      video_title: "",
+      video_description: "",
+      video_image: null,
+      video_file: null,
+      video_url: "",
+
+      join_label: "",
+      join_title: "",
+      join_description: "",
+      join_button_text: "",
+      join_button_url: "",
+    } as unknown as GalleryPageResponse;
+  }
 }
+async function getGalleryImages(
+  locale: SupportedLocale,
+): Promise<PaginatedResponse<GalleryImageResponse>> {
+  try {
+    const response =
+      await createAPI(locale).get<
+        PaginatedResponse<GalleryImageResponse>
+      >("gallery/images/");
 
-async function getGalleryImages(locale: SupportedLocale) {
-  const response = await createAPI(locale).get<PaginatedResponse<GalleryImageResponse>>("gallery/images/");
-
-  return response.data;
+    return response.data;
+  } catch {
+    return {
+      count: 0,
+      next: null,
+      previous: null,
+      results: [],
+    } as PaginatedResponse<GalleryImageResponse>;
+  }
 }
 
 const showcaseClasses = [
