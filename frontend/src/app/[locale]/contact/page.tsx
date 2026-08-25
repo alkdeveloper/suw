@@ -24,11 +24,45 @@ type ContactPageProps = {
   }>;
 };
 
-async function getContactPage(locale: SupportedLocale) {
-  const response =
-    await createAPI(locale).get<ContactPageResponse>("contact/");
+async function getContactPage(
+  locale: SupportedLocale,
+): Promise<ContactPageResponse> {
+  try {
+    const response =
+      await createAPI(locale).get<ContactPageResponse>("contact/");
 
-  return response.data;
+    return response.data;
+  } catch {
+    return {
+      meta_title: locale === "tr" ? "İletişim" : "Contact",
+      meta_description:
+        locale === "tr"
+          ? "SUW profesyonel iş giyimi projeleri için bizimle iletişime geçin."
+          : "Contact SUW for professional workwear projects.",
+
+      address: "",
+      email: "",
+      phone: "",
+
+      form_title:
+        locale === "tr"
+          ? "Bir proje başlatalım."
+          : "Start a project.",
+
+      info_title:
+        locale === "tr"
+          ? "İletişim"
+          : "Contact",
+
+      info_description: "",
+      kvkk_text: "",
+
+      map_embed_url: "",
+
+      form_copy: null,
+      info_image: null,
+    } as unknown as ContactPageResponse;
+  }
 }
 
 export async function generateMetadata({
