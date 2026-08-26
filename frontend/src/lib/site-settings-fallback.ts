@@ -4,7 +4,9 @@ import type { SiteSettingsResponse } from "@/src/lib/api-types";
  * API (core/settings/) erişilemediğinde layout’un çökmemesi için minimal cevap.
  * Boş nav ile sayfa açılır; backend ayağa kalkınca gerçek ayarlar gelir.
  */
-export function getOfflineSiteSettings(): SiteSettingsResponse {
+export function getOfflineSiteSettings(
+  locale: "tr" | "en" = "tr",
+): SiteSettingsResponse {
   return {
     font_family: "dm_sans",
     logo: null,
