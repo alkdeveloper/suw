@@ -110,11 +110,10 @@ export default async function SolutionsPage({
               lineHeight: 0.88,
               letterSpacing: "-0.045em",
               textTransform: "uppercase",
+              whiteSpace: "nowrap",
             }}
           >
-            {content.titleLine1}
-            <br />
-            {content.titleLine2}
+            {content.titleLine1} {content.titleLine2}
           </h1>
         </div>
       </section>
