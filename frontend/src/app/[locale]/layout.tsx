@@ -65,7 +65,7 @@ async function loadSiteSettings(
       );
     }
 
-    return getOfflineSiteSettings();
+    return getOfflineSiteSettings(locale);
   }
 }
 

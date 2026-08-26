@@ -30,57 +30,26 @@ export function getOfflineSiteSettings(
     twitter: "",
     youtube: "",
     whatsapp: "",
-    header_nav: [
-  {
-    id: 1,
-    location: "header",
-    label: "HOME",
-    url: "/",
-    is_external: false,
-  },
-  {
-    id: 2,
-    location: "header",
-    label: "PRODUCTS",
-    url: "/products",
-    is_external: false,
-  },
-  {
-    id: 3,
-    location: "header",
-    label: "INDUSTRIES",
-    url: "/industries",
-    is_external: false,
-  },
-  {
-    id: 4,
-    location: "header",
-    label: "SOLUTIONS",
-    url: "/solutions",
-    is_external: false,
-  },
-  {
-    id: 5,
-    location: "header",
-    label: "PROJECTS",
-    url: "/projects",
-    is_external: false,
-  },
-  {
-    id: 6,
-    location: "header",
-    label: "ABOUT",
-    url: "/about",
-    is_external: false,
-  },
-  {
-    id: 7,
-    location: "header",
-    label: "CONTACT",
-    url: "/contact",
-    is_external: false,
-  },
-],
+    header_nav:
+  locale === "tr"
+    ? [
+        { id: 1, location: "header", label: "ANA SAYFA", url: "/", is_external: false },
+        { id: 2, location: "header", label: "ÜRÜNLER", url: "/products", is_external: false },
+        { id: 3, location: "header", label: "SEKTÖRLER", url: "/industries", is_external: false },
+        { id: 4, location: "header", label: "ÇÖZÜMLER", url: "/solutions", is_external: false },
+        { id: 5, location: "header", label: "PROJELER", url: "/projects", is_external: false },
+        { id: 6, location: "header", label: "HAKKIMIZDA", url: "/about", is_external: false },
+        { id: 7, location: "header", label: "İLETİŞİM", url: "/contact", is_external: false },
+      ]
+    : [
+        { id: 1, location: "header", label: "HOME", url: "/", is_external: false },
+        { id: 2, location: "header", label: "PRODUCTS", url: "/products", is_external: false },
+        { id: 3, location: "header", label: "INDUSTRIES", url: "/industries", is_external: false },
+        { id: 4, location: "header", label: "SOLUTIONS", url: "/solutions", is_external: false },
+        { id: 5, location: "header", label: "PROJECTS", url: "/projects", is_external: false },
+        { id: 6, location: "header", label: "ABOUT", url: "/about", is_external: false },
+        { id: 7, location: "header", label: "CONTACT", url: "/contact", is_external: false },
+      ],
 footer_nav: [],
     header_copy: {
       home_aria_label: "",
