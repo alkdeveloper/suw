@@ -101,6 +101,7 @@ export default async function HomePage({ params }: HomePageProps) {
         description={page.hero_description}
         eyebrow={page.hero_subtitle}
         imageSrc={page.hero_image ?? undefined}
+        locale={locale}
         title={page.hero_title}
       />
       

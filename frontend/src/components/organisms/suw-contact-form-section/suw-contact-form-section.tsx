@@ -22,6 +22,44 @@ export function SuwContactFormSection({
   kvkkText,
   kvkkHref = LEGAL_PAGE_PATHS.candidatePrivacyNotice,
 }: ContactFormSectionProps) {
+  const fallbackCopy = locale === "tr"
+    ? {
+        eyebrow: "İLETİŞİM",
+        title: "BİR PROJE BAŞLATALIM.",
+        projectInquiryLabel: "PROJE TALEBİ",
+        projectTitle: "İHTİYACINIZI BİZE ANLATIN.",
+        phone: "TELEFON",
+        email: "E-POSTA",
+        address: "ADRES",
+        firstName: "AD",
+        lastName: "SOYAD",
+        subject: "KONU",
+        message: "MESAJ",
+        privacyNotice: "Gizlilik Bildirimi",
+        submit: "MESAJI GÖNDER",
+        submitting: "GÖNDERİLİYOR...",
+        success: "Mesajınız alınmıştır.",
+        error: "Bir sorun oluştu. Lütfen tekrar deneyin.",
+      }
+    : {
+        eyebrow: "GET IN TOUCH",
+        title: "START A PROJECT.",
+        projectInquiryLabel: "PROJECT INQUIRY",
+        projectTitle: "TELL US WHAT YOU NEED.",
+        phone: "PHONE",
+        email: "EMAIL",
+        address: "ADDRESS",
+        firstName: "FIRST NAME",
+        lastName: "LAST NAME",
+        subject: "SUBJECT",
+        message: "MESSAGE",
+        privacyNotice: "Privacy Notice",
+        submit: "SEND MESSAGE",
+        submitting: "SENDING...",
+        success: "Your message has been received.",
+        error: "Something went wrong. Please try again.",
+      };
+
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -61,7 +99,7 @@ export function SuwContactFormSection({
 
       setFeedbackMessage(
         copy?.feedbackSuccessMessage ??
-          "Your message has been received.",
+          fallbackCopy.success,
       );
 
       setFormState({
@@ -80,7 +118,7 @@ export function SuwContactFormSection({
         getApiErrorMessage(
           error,
           copy?.feedbackErrorMessage ??
-            "Something went wrong. Please try again.",
+            fallbackCopy.error,
         ),
       );
     }
@@ -94,11 +132,11 @@ export function SuwContactFormSection({
         <div className="suw-contact-form__layout">
           <aside className="suw-contact-form__information">
                   <p className="suw-contact-form__eyebrow">
-                        {copy?.eyebrow || "GET IN TOUCH"}
+                        {copy?.eyebrow || fallbackCopy.eyebrow}
                       </p>
 
                       <h2 className="suw-contact-form__title">
-                        {copy?.title || "START A PROJECT."}
+                        {copy?.title || fallbackCopy.title}
                       </h2>
 
                   {infoDescription || copy?.description ? (
@@ -110,21 +148,21 @@ export function SuwContactFormSection({
             <div className="suw-contact-form__details">
               {phone ? (
                 <div className="suw-contact-form__detail">
-                  <span>PHONE</span>
+                  <span>{fallbackCopy.phone}</span>
                   <p>{phone}</p>
                 </div>
               ) : null}
 
               {email ? (
                 <div className="suw-contact-form__detail">
-                  <span>EMAIL</span>
+                  <span>{fallbackCopy.email}</span>
                   <p>{email}</p>
                 </div>
               ) : null}
 
               {address ? (
                 <div className="suw-contact-form__detail">
-                  <span>ADDRESS</span>
+                  <span>{fallbackCopy.address}</span>
                   <p>{address}</p>
                 </div>
               ) : null}
@@ -134,11 +172,11 @@ export function SuwContactFormSection({
           <div className="suw-contact-form__content">
             <div className="suw-contact-form__form-heading">
              <span>
-                {copy?.projectInquiryLabel || "PROJECT INQUIRY"}
+                {copy?.projectInquiryLabel || fallbackCopy.projectInquiryLabel}
               </span>
 
               <h3>
-                {copy?.projectTitle || "TELL US WHAT YOU NEED."}
+                {copy?.projectTitle || fallbackCopy.projectTitle}
               </h3>
             </div>
 
@@ -148,7 +186,7 @@ export function SuwContactFormSection({
             >
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.first_name || "FIRST NAME"}
+                  {copy?.fields?.first_name || fallbackCopy.firstName}
                 </span>
 
                 <input
@@ -169,7 +207,7 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.last_name || "LAST NAME"}
+                  {copy?.fields?.last_name || fallbackCopy.lastName}
                 </span>
 
                 <input
@@ -190,7 +228,7 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.email || "EMAIL"}
+                  {copy?.fields?.email || fallbackCopy.email}
                 </span>
 
                 <input
@@ -211,7 +249,7 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.phone || "PHONE"}
+                  {copy?.fields?.phone || fallbackCopy.phone}
                 </span>
 
                 <input
@@ -231,7 +269,7 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field suw-contact-form__field--full">
                 <span>
-                  {copy?.fields?.subject || "SUBJECT"}
+                  {copy?.fields?.subject || fallbackCopy.subject}
                 </span>
 
                 <input
@@ -252,7 +290,7 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field suw-contact-form__field--full">
                 <span>
-                  {copy?.fields?.message || "MESSAGE"}
+                  {copy?.fields?.message || fallbackCopy.message}
                 </span>
 
                 <textarea
@@ -289,7 +327,7 @@ export function SuwContactFormSection({
                   <span>
                     <Link href={kvkkHref}>
                       {copy?.privacyLinkLabel ||
-                        "Privacy Notice"}
+                        fallbackCopy.privacyNotice}
                     </Link>
 
                     {kvkkText ? ` ${kvkkText}` : ""}
@@ -304,9 +342,9 @@ export function SuwContactFormSection({
                   <span>
                     {status === "submitting"
                       ? copy?.submittingLabel ||
-                        "SENDING..."
+                        fallbackCopy.submitting
                       : copy?.submitLabel ||
-                        "SEND MESSAGE"}
+                        fallbackCopy.submit}
                   </span>
 
                   <span aria-hidden="true">↗</span>

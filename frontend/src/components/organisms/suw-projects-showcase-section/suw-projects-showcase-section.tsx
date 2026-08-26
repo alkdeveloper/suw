@@ -1,4 +1,58 @@
-const projects = [
+import type { SupportedLocale } from "@/src/lib/locale";
+
+const sectionContent = {
+  tr: {
+    eyebrow: "SEÇİLİ PROJELER",
+    titleLine1: "GERÇEK EKİPLER",
+    titleLine2: "İÇİN GELİŞTİRİLDİ.",
+    intro:
+      "Kurumsal üniformalardan teknik saha programlarına kadar her proje, ekibin kimliği, çalışma ortamı ve operasyonel ihtiyaçları doğrultusunda geliştirilir.",
+    projects: [
+      {
+        id: "01",
+        category: "KURUMSAL ÜNİFORMA PROGRAMI",
+        title: "KURUMSAL İŞ GİYİMİ",
+        description:
+          "Ekip kimliği, günlük kullanım ve tutarlı marka görünümü odağında geliştirilen koordineli iş giyimi programı.",
+        imageSrc: "/images/mock/project-1.jpg",
+        size: "large",
+      },
+      {
+        id: "02",
+        category: "SAHA OPERASYONLARI",
+        title: "SAHA İŞ GİYİMİ",
+        description:
+          "Hareket, koruma ve zorlu operasyonel ortamlar için geliştirilen işlevsel ürünler.",
+        imageSrc: "/images/mock/project-2.jpg",
+        size: "small",
+      },
+      {
+        id: "03",
+        category: "ENDÜSTRİYEL EKİP GİYİMİ",
+        title: "ENDÜSTRİYEL PROGRAM",
+        description:
+          "Üretim ekipleri ve yoğun günlük kullanım için geliştirilen dayanıklı iş giyimi.",
+        imageSrc: "/images/mock/project-3.jpg",
+        size: "small",
+      },
+      {
+        id: "04",
+        category: "ÖZEL TASARIM VE ÜRETİM",
+        title: "ÖZEL KOLEKSİYON",
+        description:
+          "Ürün, markalama ve operasyonel gereksinimlere göre baştan sona geliştirilen özel koleksiyon.",
+        imageSrc: "/images/mock/project-4.jpg",
+        size: "large",
+      },
+    ],
+  },
+  en: {
+    eyebrow: "SELECTED PROJECTS",
+    titleLine1: "BUILT FOR",
+    titleLine2: "REAL TEAMS.",
+    intro:
+      "From corporate uniforms to technical field programs, every project is developed around the identity, environment and operational needs of the team.",
+    projects: [
   {
     id: "01",
     category: "CORPORATE UNIFORM PROGRAM",
@@ -35,34 +89,36 @@ const projects = [
     imageSrc: "/images/mock/project-4.jpg",
     size: "large",
   },
-];
+    ],
+  },
+};
 
-export function SuwProjectsShowcaseSection() {
+export function SuwProjectsShowcaseSection({ locale }: { locale: SupportedLocale }) {
+  const content = sectionContent[locale];
+
   return (
     <section className="suw-projects-showcase">
       <div className="suw-projects-showcase__inner">
         <header className="suw-projects-showcase__heading">
           <p className="suw-projects-showcase__eyebrow">
-            SELECTED PROJECTS
+            {content.eyebrow}
           </p>
 
           <div className="suw-projects-showcase__heading-grid">
             <h2 className="suw-projects-showcase__title">
-              BUILT FOR
+              {content.titleLine1}
               <br />
-              REAL TEAMS.
+              {content.titleLine2}
             </h2>
 
             <p className="suw-projects-showcase__intro">
-              From corporate uniforms to technical field programs, every
-              project is developed around the identity, environment and
-              operational needs of the team.
+              {content.intro}
             </p>
           </div>
         </header>
 
         <div className="suw-projects-showcase__grid">
-          {projects.map((project) => (
+          {content.projects.map((project) => (
             <article
               className={`suw-projects-showcase__card suw-projects-showcase__card--${project.size}`}
               key={project.id}

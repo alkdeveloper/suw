@@ -17,15 +17,34 @@ type ProjectsPageProps = {
   }>;
 };
 
+const pageContent = {
+  tr: {
+    metaTitle: "Projeler",
+    metaDescription:
+      "Kurumsal ekipler, saha operasyonları ve özel ihtiyaçlar için geliştirilen seçili SUW iş giyimi projelerini keşfedin.",
+    eyebrow: "PROJELER",
+    titleLine1: "İŞ GİYİMİ",
+    titleLine2: "SAHADA.",
+  },
+  en: {
+    metaTitle: "Projects",
+    metaDescription:
+      "Explore selected SUW workwear projects developed for corporate teams, field operations and custom requirements.",
+    eyebrow: "PROJECTS",
+    titleLine1: "WORKWEAR",
+    titleLine2: "IN PRACTICE.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: ProjectsPageProps): Promise<Metadata> {
   const { locale } = await params;
+  const content = pageContent[locale];
 
   return createLocalizedPageMetadata(locale, {
-    title: "Projects",
-    description:
-      "Explore selected SUW workwear projects developed for corporate teams, field operations and custom requirements.",
+    title: content.metaTitle,
+    description: content.metaDescription,
     path: "/projects",
   });
 }
@@ -34,6 +53,7 @@ export default async function ProjectsPage({
   params,
 }: ProjectsPageProps) {
   const { locale } = await params;
+  const content = pageContent[locale];
 
   return (
     <main>
@@ -48,7 +68,7 @@ export default async function ProjectsPage({
         }}
       >
         <div>
-          <p>PROJECTS</p>
+          <p>{content.eyebrow}</p>
 
           <h1
             style={{
@@ -58,13 +78,13 @@ export default async function ProjectsPage({
               letterSpacing: "-0.07em",
             }}
           >
-            WORKWEAR
+            {content.titleLine1}
             <br />
-            IN PRACTICE.
+            {content.titleLine2}
           </h1>
         </div>
       </section>
-        <SuwProjectsShowcaseSection />
+        <SuwProjectsShowcaseSection locale={locale} />
 
         <SuwFinalCtaSection
         href={withLocalePath(locale, "/contact")}

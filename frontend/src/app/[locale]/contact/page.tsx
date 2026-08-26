@@ -24,6 +24,19 @@ type ContactPageProps = {
   }>;
 };
 
+const heroContent = {
+  tr: {
+    eyebrow: "İLETİŞİM",
+    titleLine1: "İŞ GİYİMİNİ",
+    titleLine2: "KONUŞALIM.",
+  },
+  en: {
+    eyebrow: "CONTACT",
+    titleLine1: "LET'S TALK",
+    titleLine2: "WORKWEAR.",
+  },
+};
+
 async function getContactPage(
   locale: SupportedLocale,
 ): Promise<ContactPageResponse> {
@@ -87,6 +100,7 @@ export default async function ContactPage({
 }: ContactPageProps) {
   const { locale } = await params;
   const page = await getContactPage(locale);
+  const hero = heroContent[locale];
 
   return (
     <main>
@@ -101,7 +115,7 @@ export default async function ContactPage({
         }}
       >
         <div>
-          <p>CONTACT</p>
+          <p>{hero.eyebrow}</p>
 
           <h1
             style={{
@@ -111,9 +125,9 @@ export default async function ContactPage({
               letterSpacing: "-0.07em",
             }}
           >
-            LET&apos;S TALK
+            {hero.titleLine1}
             <br />
-            WORKWEAR.
+            {hero.titleLine2}
           </h1>
         </div>
       </section>

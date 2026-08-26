@@ -15,15 +15,34 @@ type AboutPageProps = {
   }>;
 };
 
+const pageContent = {
+  tr: {
+    metaTitle: "Hakkımızda",
+    metaDescription:
+      "SUW'un profesyonel iş giyimi, üretim, kalite ve uzun vadeli proje geliştirme yaklaşımını keşfedin.",
+    eyebrow: "SUW HAKKINDA",
+    titleLine1: "DENEYİM ÜZERİNE",
+    titleLine2: "KURULU.",
+  },
+  en: {
+    metaTitle: "About",
+    metaDescription:
+      "Discover SUW's approach to professional workwear, production, quality and long-term project development.",
+    eyebrow: "ABOUT SUW",
+    titleLine1: "BUILT ON",
+    titleLine2: "EXPERIENCE.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: AboutPageProps): Promise<Metadata> {
   const { locale } = await params;
+  const content = pageContent[locale];
 
   return createLocalizedPageMetadata(locale, {
-    title: "About",
-    description:
-      "Discover SUW's approach to professional workwear, production, quality and long-term project development.",
+    title: content.metaTitle,
+    description: content.metaDescription,
     path: "/about",
   });
 }
@@ -32,6 +51,7 @@ export default async function AboutPage({
   params,
 }: AboutPageProps) {
   const { locale } = await params;
+  const content = pageContent[locale];
 
   return (
     <main>
@@ -46,7 +66,7 @@ export default async function AboutPage({
         }}
       >
         <div>
-          <p>ABOUT SUW</p>
+          <p>{content.eyebrow}</p>
 
           <h1
             style={{
@@ -56,17 +76,17 @@ export default async function AboutPage({
               letterSpacing: "-0.07em",
             }}
           >
-            BUILT ON
+            {content.titleLine1}
             <br />
-            EXPERIENCE.
+            {content.titleLine2}
           </h1>
         </div>
       </section>
-      <SuwAboutIntroSection />
+      <SuwAboutIntroSection locale={locale} />
 
-<SuwAboutProductionSection />
+<SuwAboutProductionSection locale={locale} />
 
-<SuwAboutQualitySection />
+<SuwAboutQualitySection locale={locale} />
 
 <SuwFinalCtaSection
   href={withLocalePath(locale, "/contact")}

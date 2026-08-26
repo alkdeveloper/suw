@@ -5,10 +5,12 @@ import type { CSSProperties } from "react";
 
 import { cn } from "@/src/lib/cn";
 
-function ScrollIndicator() {
+function ScrollIndicator({ locale }: { locale: "tr" | "en" }) {
+  const label = locale === "tr" ? "KAYDIR" : "SCROLL";
+
   return (
     <button
-      aria-label="Go to next section"
+      aria-label={locale === "tr" ? "Sonraki bölüme git" : "Go to next section"}
       className="home-hero__scroll-indicator"
       type="button"
       onClick={(event) => {
@@ -23,7 +25,7 @@ function ScrollIndicator() {
         }
       }}
     >
-      <span>SCROLL</span>
+      <span>{label}</span>
 
       <svg
         fill="none"
@@ -55,6 +57,7 @@ type HomeHeroSectionProps = {
   primaryCtaHref?: string;
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
+  locale?: "tr" | "en";
 };
 
 export function HomeHeroSection({
@@ -67,6 +70,7 @@ export function HomeHeroSection({
   primaryCtaHref,
   secondaryCtaLabel,
   secondaryCtaHref,
+  locale = "en",
 }: HomeHeroSectionProps) {
   const resolvedEyebrow =
     eyebrow || "PROFESSIONAL WORKWEAR";
@@ -161,7 +165,7 @@ export function HomeHeroSection({
         </div>
       </div>
 
-      <ScrollIndicator />
+      <ScrollIndicator locale={locale} />
     </section>
   );
 }
