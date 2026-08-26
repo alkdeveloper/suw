@@ -82,7 +82,7 @@ export function SuwBrandingCustomizationSection({ locale }: { locale: SupportedL
   const content = sectionContent[locale];
 
   return (
-    <section className="suw-branding-customization">
+    <section className="suw-branding-customization" data-locale={locale}>
       <div className="suw-branding-customization__inner">
         <header className="suw-branding-customization__heading">
           <p className="suw-branding-customization__eyebrow">

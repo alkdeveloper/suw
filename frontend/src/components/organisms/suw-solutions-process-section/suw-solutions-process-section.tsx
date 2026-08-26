@@ -60,7 +60,7 @@ export function SuwSolutionsProcessSection({ locale }: { locale: SupportedLocale
   const content = sectionContent[locale];
 
   return (
-    <section className="suw-solutions-process">
+    <section className="suw-solutions-process" data-locale={locale}>
       <div className="suw-solutions-process__inner">
         <header className="suw-solutions-process__heading">
           <p className="suw-solutions-process__eyebrow">

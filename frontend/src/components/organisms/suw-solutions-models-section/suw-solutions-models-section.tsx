@@ -107,7 +107,7 @@ export function SuwSolutionsModelsSection({
   const content = sectionContent[locale];
 
   return (
-    <section className="suw-solutions-models">
+    <section className="suw-solutions-models" data-locale={locale}>
       <div className="suw-solutions-models__inner">
         <header className="suw-solutions-models__heading">
           <p className="suw-solutions-models__eyebrow">

@@ -52,6 +52,10 @@
   text-transform: uppercase;
 }
 
+.suw-solutions-process[data-locale="tr"] .suw-solutions-process__title {
+  line-height: 1.02;
+}
+
 .suw-solutions-process__intro {
   max-width: 500px;
   margin: 0 0 6px auto;
@@ -125,6 +129,10 @@
 }
 
 @media (max-width: 900px) {
+  .suw-solutions-process[data-locale="tr"] .suw-solutions-process__title {
+    line-height: 1.04;
+  }
+
   .suw-solutions-process__heading-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -150,6 +158,10 @@
 
   .suw-solutions-process__title {
     font-size: clamp(48px, 13vw, 72px);
+  }
+
+  .suw-solutions-process[data-locale="tr"] .suw-solutions-process__title {
+    line-height: 1.08;
   }
 
   .suw-solutions-process__grid {
