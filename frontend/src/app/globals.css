@@ -30,6 +30,30 @@ body {
   overflow-x: hidden;
 }
 
+.suw-page-hero__title {
+  max-width: 100%;
+  font-size: clamp(70px, 7vw, 122px);
+  line-height: 0.92;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+
+@media (max-width: 1024px) {
+  .suw-page-hero__title {
+    max-width: 12ch;
+    font-size: clamp(62px, 7vw, 72px);
+    line-height: 0.96;
+  }
+}
+
+@media (max-width: 640px) {
+  .suw-page-hero__title {
+    max-width: 100%;
+    font-size: clamp(42px, 12.3vw, 56px);
+    line-height: 1;
+  }
+}
+
 body,
 body * {
   font-family: var(--font-active, var(--font-dm-sans)), sans-serif !important;

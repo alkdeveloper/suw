@@ -102,15 +102,13 @@ export default async function SolutionsPage({
           </div>
 
           <h1
+            className="suw-page-hero__title"
             style={{
               margin: 0,
               fontFamily: "var(--font-active), sans-serif",
-              fontSize: "clamp(70px, 7vw, 122px)",
               fontWeight: 700,
-              lineHeight: 0.88,
               letterSpacing: "-0.045em",
               textTransform: "uppercase",
-              whiteSpace: "nowrap",
             }}
           >
             {content.titleLine1} {content.titleLine2}

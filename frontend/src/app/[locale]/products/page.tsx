@@ -99,14 +99,12 @@ export default async function ProductsPage({
   </div>
 
   <h1
+    className="suw-page-hero__title"
     style={{
       margin: 0,
       fontFamily: "var(--font-active), sans-serif",
-      fontSize: "clamp(70px, 7vw, 122px)",
       fontWeight: 700,
-      lineHeight: 0.88,
       letterSpacing: "-0.045em",
-      whiteSpace: "nowrap",
     }}
   >
     {content.titleLine1} {content.titleLine2}
