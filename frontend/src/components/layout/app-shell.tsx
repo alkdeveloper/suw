@@ -7,7 +7,11 @@ import { SiteFooter } from "@/src/components/organisms/site-footer";
 import { SiteHeader } from "@/src/components/organisms/site-header";
 import type { SiteSettingsResponse } from "@/src/lib/api-types";
 import type { SupportedLocale } from "@/src/lib/locale";
-import { getAlternateLocale, withLocalePath } from "@/src/lib/locale";
+import {
+  getAlternateLocale,
+  normalizeInternalPath,
+  withLocalePath,
+} from "@/src/lib/locale";
 
 const LOCALE_PREFIXES = new Set(["tr", "en"]);
 
@@ -23,31 +27,48 @@ function stripLocalePrefix(pathname: string): string {
   return pathname.startsWith("/") ? pathname : `/${pathname}`;
 }
 
-function getActiveNavHref(normalizedPath: string): string | null {
-  if (normalizedPath === "/") {
-    return "/";
-  }
-  const segments = normalizedPath.split("/").filter(Boolean);
-  const root = segments[0];
-  if (!root) {
-    return null;
-  }
-  const firstSegmentHref = `/${root}`;
-  const navRoots = ["/corporate", "/brands", "/gallery", "/career", "/contact"];
-  if (navRoots.includes(firstSegmentHref)) {
-    return firstSegmentHref;
-  }
-  return null;
-}
-
-function resolveAppHref(locale: SupportedLocale, href: string, isExternal?: boolean) {
-  if (
+function isExternalHref(href: string, isExternal?: boolean) {
+  return (
     isExternal ||
     href.startsWith("http://") ||
     href.startsWith("https://") ||
+    href.startsWith("//") ||
     href.startsWith("mailto:") ||
-    href.startsWith("tel:")
-  ) {
+    href.startsWith("tel:") ||
+    href.startsWith("#")
+  );
+}
+
+function normalizeNavPath(href: string) {
+  const pathname = normalizeInternalPath(href).split(/[?#]/, 1)[0];
+  return pathname === "/" ? pathname : pathname.replace(/\/+$/, "");
+}
+
+function getActiveNavHref(
+  normalizedPath: string,
+  headerNav: SiteSettingsResponse["header_nav"],
+): string | null {
+  const internalNavPaths = headerNav
+    .filter((item) => !isExternalHref(item.url, item.is_external))
+    .map((item) => normalizeNavPath(item.url));
+
+  if (normalizedPath === "/") {
+    return internalNavPaths.includes("/") ? "/" : null;
+  }
+
+  return (
+    internalNavPaths
+      .filter(
+        (href) =>
+          href !== "/" &&
+          (normalizedPath === href || normalizedPath.startsWith(`${href}/`)),
+      )
+      .sort((first, second) => second.length - first.length)[0] ?? null
+  );
+}
+
+function resolveAppHref(locale: SupportedLocale, href: string, isExternal?: boolean) {
+  if (isExternalHref(href, isExternal)) {
     return href;
   }
 
@@ -90,7 +111,7 @@ export function AppShell({
 }) {
   const pathname = usePathname() ?? "/";
   const normalized = stripLocalePrefix(pathname);
-  const activeHref = getActiveNavHref(normalized);
+  const activeHref = getActiveNavHref(normalized, siteSettings.header_nav);
   const headerSource = siteSettings.header_nav.map((item) => ({
     href: item.url,
     isExternal: item.is_external,
@@ -99,7 +120,10 @@ export function AppShell({
   const items = headerSource.map((item) => ({
     ...item,
     href: resolveAppHref(locale, item.href, item.isExternal),
-    isActive: activeHref !== null && item.href === activeHref,
+    isActive:
+      !isExternalHref(item.href, item.isExternal) &&
+      activeHref !== null &&
+      normalizeNavPath(item.href) === activeHref,
   }));
   const alternateLocale = getAlternateLocale(locale);
   const localeHref = withLocalePath(alternateLocale, normalized);
