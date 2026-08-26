@@ -1,10 +1,43 @@
+import type { SupportedLocale } from "@/src/lib/locale";
+
 type CustomizationItem = {
   id: string;
   title: string;
   description: string;
 };
 
-const customizationItems: CustomizationItem[] = [
+const sectionContent: Record<
+  SupportedLocale,
+  {
+    eyebrow: string;
+    titleLine1: string;
+    titleLine2: string;
+    intro: string;
+    items: CustomizationItem[];
+  }
+> = {
+  tr: {
+    eyebrow: "MARKALAMA VE ÖZELLEŞTİRME",
+    titleLine1: "SİZE ÖZEL",
+    titleLine2: "HALE GETİRİN.",
+    intro:
+      "Özenle seçilmiş markalama, renk ve bitiş uygulamalarıyla tutarlı bir iş giyimi kimliği oluşturun.",
+    items: [
+      { id: "01", title: "NAKIŞ", description: "Dayanıklı günlük kullanım için geliştirilen logo ve kurumsal kimlik uygulamaları." },
+      { id: "02", title: "BASKI", description: "Ürün tipine, uygulama alanına ve görsel kimliğe uyarlanan baskı çözümleri." },
+      { id: "03", title: "ARMALAR", description: "Seçili ürün grupları için özel armalar ve markalı uygulamalar." },
+      { id: "04", title: "ETİKETLER", description: "Özel dokuma etiketler, bakım etiketleri ve iç markalama detayları." },
+      { id: "05", title: "RENK ÖZELLEŞTİRME", description: "Kurumsal kimlik gereksinimlerine göre uyarlanan ürün renkleri ve detayları." },
+      { id: "06", title: "PAKETLEME", description: "Sunum, dağıtım ve teslimat için geliştirilen özel paketleme çözümleri." },
+    ],
+  },
+  en: {
+    eyebrow: "BRANDING & CUSTOMIZATION",
+    titleLine1: "MAKE IT",
+    titleLine2: "YOURS.",
+    intro:
+      "Build a consistent workwear identity through carefully selected branding, color and finishing applications.",
+    items: [
   {
     id: "01",
     title: "EMBROIDERY",
@@ -41,33 +74,36 @@ const customizationItems: CustomizationItem[] = [
     description:
       "Custom packaging solutions developed for presentation, distribution and delivery.",
   },
-];
+    ],
+  },
+};
 
-export function SuwBrandingCustomizationSection() {
+export function SuwBrandingCustomizationSection({ locale }: { locale: SupportedLocale }) {
+  const content = sectionContent[locale];
+
   return (
     <section className="suw-branding-customization">
       <div className="suw-branding-customization__inner">
         <header className="suw-branding-customization__heading">
           <p className="suw-branding-customization__eyebrow">
-            BRANDING & CUSTOMIZATION
+            {content.eyebrow}
           </p>
 
           <div className="suw-branding-customization__heading-grid">
             <h2 className="suw-branding-customization__title">
-              MAKE IT
+              {content.titleLine1}
               <br />
-              YOURS.
+              {content.titleLine2}
             </h2>
 
             <p className="suw-branding-customization__intro">
-              Build a consistent workwear identity through carefully selected
-              branding, color and finishing applications.
+              {content.intro}
             </p>
           </div>
         </header>
 
         <div className="suw-branding-customization__grid">
-          {customizationItems.map((item) => (
+          {content.items.map((item) => (
             <article
               className="suw-branding-customization__card"
               key={item.id}

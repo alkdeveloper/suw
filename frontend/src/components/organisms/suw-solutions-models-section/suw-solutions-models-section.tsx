@@ -1,4 +1,61 @@
-const solutions = [
+import type { SupportedLocale } from "@/src/lib/locale";
+
+const sectionContent = {
+  tr: {
+    eyebrow: "İŞ GİYİMİ ÇÖZÜMLERİ",
+    titleLine1: "TEK EKİP.",
+    titleLine2: "ÜÇ FARKLI ÇÖZÜM.",
+    intro:
+      "Projenize uygun geliştirme seviyesini seçin. Hazır ürünlerden tamamen özel koleksiyonlara kadar SUW, süreci ihtiyaçlarınıza göre şekillendirir.",
+    solutions: [
+      {
+        id: "01",
+        title: "HAZIR",
+        subtitle: "HAZIR KOLEKSİYON",
+        description:
+          "Mevcut SUW koleksiyonundan seçim yaparak ekibinizin günlük ihtiyaçlarına uygun, pratik bir iş giyimi programı oluşturun.",
+        points: [
+          "Mevcut SUW ürün yelpazesi",
+          "Hızlı ürün seçimi",
+          "Esnek adet seçenekleri",
+          "Tutarlı ürün standartları",
+        ],
+      },
+      {
+        id: "02",
+        title: "ÖZELLEŞTİRİLMİŞ",
+        subtitle: "MARKA ÖZELLEŞTİRMESİ",
+        description:
+          "Seçtiğiniz ürünleri markalama, renk, etiket ve görsel uygulamalarla kurumsal kimliğinize uyarlayın.",
+        points: [
+          "Logo uygulamaları",
+          "Nakış ve baskı",
+          "Özel etiketler ve armalar",
+          "Renk ve detay uyarlaması",
+        ],
+      },
+      {
+        id: "03",
+        title: "PROJEYE ÖZEL",
+        subtitle: "ÖZEL ÜRÜN GELİŞTİRME",
+        description:
+          "Çalışma ortamınız, marka kimliğiniz ve operasyonel gereksinimleriniz doğrultusunda ürünleri sıfırdan geliştirin.",
+        points: [
+          "Ürün geliştirme",
+          "Özel malzeme ve detaylar",
+          "Numune ve onay süreci",
+          "Projeye özel üretim programı",
+        ],
+      },
+    ],
+  },
+  en: {
+    eyebrow: "WORKWEAR SOLUTIONS",
+    titleLine1: "ONE TEAM.",
+    titleLine2: "THREE WAYS TO BUILD.",
+    intro:
+      "Choose the level of development that fits your project. From ready-made products to fully custom collections, SUW adapts the process around your needs.",
+    solutions: [
   {
     id: "01",
     title: "READY",
@@ -38,34 +95,40 @@ const solutions = [
       "Dedicated production program",
     ],
   },
-];
+    ],
+  },
+};
 
-export function SuwSolutionsModelsSection() {
+export function SuwSolutionsModelsSection({
+  locale,
+}: {
+  locale: SupportedLocale;
+}) {
+  const content = sectionContent[locale];
+
   return (
     <section className="suw-solutions-models">
       <div className="suw-solutions-models__inner">
         <header className="suw-solutions-models__heading">
           <p className="suw-solutions-models__eyebrow">
-            WORKWEAR SOLUTIONS
+            {content.eyebrow}
           </p>
 
           <div className="suw-solutions-models__heading-grid">
             <h2 className="suw-solutions-models__title">
-              ONE TEAM.
+              {content.titleLine1}
               <br />
-              THREE WAYS TO BUILD.
+              {content.titleLine2}
             </h2>
 
             <p className="suw-solutions-models__intro">
-              Choose the level of development that fits your project. From
-              ready-made products to fully custom collections, SUW adapts the
-              process around your needs.
+              {content.intro}
             </p>
           </div>
         </header>
 
         <div className="suw-solutions-models__grid">
-          {solutions.map((solution) => (
+          {content.solutions.map((solution) => (
             <article
               className="suw-solutions-models__card"
               key={solution.id}

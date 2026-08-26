@@ -118,9 +118,9 @@ export default async function SolutionsPage({
         </div>
       </section>
 
-      <SuwSolutionsModelsSection />
-      <SuwBrandingCustomizationSection />
-      <SuwSolutionsProcessSection />
+      <SuwSolutionsModelsSection locale={locale} />
+      <SuwBrandingCustomizationSection locale={locale} />
+      <SuwSolutionsProcessSection locale={locale} />
 
       <SuwFinalCtaSection
         href={withLocalePath(locale, "/contact")}
