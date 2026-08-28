@@ -4,6 +4,10 @@
 
 :root {
   color-scheme: dark;
+  --color-brand-primary: #1e2d3b;
+  --color-brand-accent: #f9b60a;
+  --color-dark-surface: var(--color-brand-accent);
+  --color-dark-surface-elevated: var(--color-brand-primary);
   --scrollbar-size: 7px;
   --scrollbar-track: #e3e3e3;
   --scrollbar-thumb: #33a6ff;

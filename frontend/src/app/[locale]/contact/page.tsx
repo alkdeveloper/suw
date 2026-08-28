@@ -12,6 +12,8 @@ import {
   resolveMetadataValue,
 } from "@/src/lib/metadata";
 
+import styles from "./contact.module.scss";
+
 export function generateStaticParams() {
   return [
     { locale: "tr" },
@@ -104,30 +106,13 @@ export default async function ContactPage({
 
   return (
     <main>
-      <section
-        style={{
-          minHeight: "64vh",
-          background: "#111",
-          color: "#fff",
-          display: "flex",
-          alignItems: "center",
-          padding: "150px 5vw 70px",
-        }}
-      >
-        <div>
-          <p>{hero.eyebrow}</p>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <p className={styles.eyebrow}>{hero.eyebrow}</p>
 
-          <h1
-            style={{
-              margin: 0,
-              fontSize: "clamp(64px, 8vw, 138px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.07em",
-            }}
-          >
-            {hero.titleLine1}
-            <br />
-            {hero.titleLine2}
+          <h1 className={styles.title}>
+            <span>{hero.titleLine1}</span>
+            <span>{hero.titleLine2}</span>
           </h1>
         </div>
       </section>

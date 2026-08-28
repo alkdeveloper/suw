@@ -97,7 +97,7 @@ export function SuwProjectsShowcaseSection({ locale }: { locale: SupportedLocale
   const content = sectionContent[locale];
 
   return (
-    <section className="suw-projects-showcase">
+    <section className="suw-projects-showcase" data-locale={locale}>
       <div className="suw-projects-showcase__inner">
         <header className="suw-projects-showcase__heading">
           <p className="suw-projects-showcase__eyebrow">

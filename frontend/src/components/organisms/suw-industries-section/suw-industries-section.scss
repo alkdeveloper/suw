@@ -36,7 +36,7 @@
     height: 1px;
     margin-right: 18px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-accent);
   }
 }
 
@@ -70,7 +70,7 @@
   position: relative;
   overflow: hidden;
   min-height: 460px;
-  background: #1b1b1b;
+  background: var(--color-dark-surface-elevated);
 }
 
 .suw-industries__image {
@@ -101,6 +101,7 @@
 }
 
 .suw-industries__number {
+  color: var(--color-brand-accent);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -145,8 +146,9 @@
   }
 
   .suw-industries__arrow {
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-accent);
+    background: var(--color-brand-accent);
+    color: var(--color-dark-surface);
     transform: translate(2px, -2px);
   }
 }

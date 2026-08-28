@@ -1,6 +1,6 @@
 .suw-custom-workwear {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
   padding: 120px 0;
 }
 
@@ -21,7 +21,7 @@
 
 .suw-custom-workwear__eyebrow {
    margin: 0 0 22px;
-  color: #6c6c67;
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -36,7 +36,7 @@
     height: 1px;
     margin-right: 18px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-primary);
   }
 }
 
@@ -53,7 +53,7 @@
 .suw-custom-workwear__description {
   max-width: 520px;
   margin: 28px 0 0;
-  color: rgba(255, 255, 255, 0.62);
+  color: color-mix(in srgb, var(--color-brand-primary) 76%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: clamp(16px, 1.1vw, 19px);
   font-weight: 400;
@@ -64,7 +64,7 @@
   position: relative;
   overflow: hidden;
   min-height: 640px;
-  background: #1a1a1a;
+  background: var(--color-dark-surface-elevated);
 }
 
 .suw-custom-workwear__image {
@@ -96,7 +96,7 @@
 
 .suw-custom-workwear__solutions {
   grid-column: 1 / -1;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
 }
 
 .suw-custom-workwear__solution {
@@ -105,12 +105,12 @@
   align-items: start;
   gap: 26px;
   padding: 34px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
 }
 
 .suw-custom-workwear__number {
   padding-top: 5px;
-  color: rgba(255, 255, 255, 0.38);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -127,7 +127,7 @@
 .suw-custom-workwear__solution p {
   max-width: 760px;
   margin: 12px 0 0;
-  color: rgba(255, 255, 255, 0.58);
+  color: color-mix(in srgb, var(--color-brand-primary) 72%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 15px;
   line-height: 1.6;
@@ -139,7 +139,8 @@
   height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--color-brand-primary);
+  color: var(--color-brand-primary);
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
@@ -147,9 +148,18 @@
 }
 
 .suw-custom-workwear__solution:hover {
+  background: var(--color-brand-primary);
+  color: var(--color-brand-accent);
+
+  .suw-custom-workwear__number,
+  p {
+    color: var(--color-brand-accent);
+  }
+
   .suw-custom-workwear__arrow {
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-primary);
+    background: var(--color-brand-primary);
+    color: var(--color-brand-accent);
     transform: translate(2px, -2px);
   }
 }

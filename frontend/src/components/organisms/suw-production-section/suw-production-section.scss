@@ -1,6 +1,6 @@
 .suw-production {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
 }
 
 .suw-production__visual {
@@ -42,8 +42,8 @@
 }
 
 .suw-production {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
 }
 
 .suw-production__visual {
@@ -86,7 +86,7 @@
 
 .suw-production__eyebrow {
   margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -101,7 +101,7 @@
     height: 1px;
     margin-right: 18px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-primary);
   }
 }
 
@@ -126,8 +126,8 @@
 }
 
 .suw-production__process {
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  background: #111;
+  border-top: 1px solid color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
+  background: var(--color-dark-surface);
 }
 
 .suw-production__process-inner {
@@ -145,7 +145,7 @@
   min-height: 110px;
   align-items: center;
   gap: 14px;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid color-mix(in srgb, var(--color-brand-primary) 16%, transparent);
   padding: 0 22px;
 }
 
@@ -154,7 +154,7 @@
 }
 
 .suw-production__number {
-  color: rgba(255, 255, 255, 0.36);
+  color: color-mix(in srgb, var(--color-brand-primary) 58%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -162,7 +162,7 @@
 }
 
 .suw-production__step-title {
-  color: #fff;
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 12px;
   font-weight: 700;
@@ -172,7 +172,7 @@
 
 .suw-production__connector {
   margin-left: auto;
-  color: rgba(255, 255, 255, 0.35);
+  color: color-mix(in srgb, var(--color-brand-primary) 55%, transparent);
 }
 
 @media (max-width: 900px) {
@@ -218,8 +218,8 @@
 }
 
 .suw-production__process {
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  background: #111;
+  border-top: 1px solid color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
+  background: var(--color-dark-surface);
 }
 
 .suw-production__process-inner {
@@ -237,7 +237,7 @@
   min-height: 110px;
   align-items: center;
   gap: 14px;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid color-mix(in srgb, var(--color-brand-primary) 16%, transparent);
   padding: 0 22px;
 }
 
@@ -246,7 +246,7 @@
 }
 
 .suw-production__number {
-  color: rgba(255, 255, 255, 0.36);
+  color: color-mix(in srgb, var(--color-brand-primary) 58%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -254,7 +254,7 @@
 }
 
 .suw-production__step-title {
-  color: #fff;
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 12px;
   font-weight: 700;
@@ -264,7 +264,7 @@
 
 .suw-production__connector {
   margin-left: auto;
-  color: rgba(255, 255, 255, 0.35);
+  color: color-mix(in srgb, var(--color-brand-primary) 55%, transparent);
 }
 
 @media (max-width: 900px) {

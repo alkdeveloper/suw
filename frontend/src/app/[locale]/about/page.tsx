@@ -8,6 +8,7 @@ import { SuwAboutQualitySection } from "@/src/components/organisms/suw-about-qua
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { withLocalePath } from "@/src/lib/locale";
 
+import styles from "./about.module.scss";
 
 type AboutPageProps = {
   params: Promise<{
@@ -55,30 +56,13 @@ export default async function AboutPage({
 
   return (
     <main>
-      <section
-        style={{
-          minHeight: "64vh",
-          background: "#111",
-          color: "#fff",
-          display: "flex",
-          alignItems: "center",
-          padding: "150px 5vw 70px",
-        }}
-      >
-        <div>
-          <p>{content.eyebrow}</p>
+      <section className={styles.hero} data-locale={locale}>
+        <div className={styles.heroInner}>
+          <p className={styles.eyebrow}>{content.eyebrow}</p>
 
-          <h1
-            style={{
-              margin: 0,
-              fontSize: "clamp(64px, 8vw, 138px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.07em",
-            }}
-          >
-            {content.titleLine1}
-            <br />
-            {content.titleLine2}
+          <h1 className={styles.title}>
+            <span>{content.titleLine1}</span>
+            <span>{content.titleLine2}</span>
           </h1>
         </div>
       </section>

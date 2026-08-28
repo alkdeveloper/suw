@@ -7,17 +7,19 @@ export function ContactMapHero({
   src,
   title,
 }: ContactMapHeroProps) {
+  if (!src) {
+    return null;
+  }
+
   return (
     <section className={cn("contact-map-hero", className)}>
-      {src ? (
-        <iframe
-          className="contact-map-hero__map"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          src={src}
-          title={title}
-        />
-      ) : null}
+      <iframe
+        className="contact-map-hero__map"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        src={src}
+        title={title}
+      />
       <div aria-hidden="true" className="contact-map-hero__overlay" />
     </section>
   );

@@ -64,8 +64,8 @@ export default async function SolutionsPage({
       <section
         style={{
           minHeight: "64vh",
-          background: "#111",
-          color: "#fff",
+          background: "var(--color-dark-surface)",
+          color: "var(--color-brand-primary)",
           display: "flex",
           alignItems: "center",
           padding: "150px 5vw 70px",
@@ -78,7 +78,7 @@ export default async function SolutionsPage({
               alignItems: "center",
               gap: "18px",
               marginBottom: "22px",
-              color: "rgba(255,255,255,0.72)",
+              color: "var(--color-brand-primary)",
               fontFamily: "var(--font-active), sans-serif",
               fontSize: "13px",
               fontWeight: 700,
@@ -94,7 +94,7 @@ export default async function SolutionsPage({
                 width: "40px",
                 height: "1px",
                 flex: "0 0 auto",
-                background: "currentColor",
+                background: "var(--color-brand-primary)",
               }}
             />
 

@@ -1,6 +1,6 @@
 .suw-products-technical {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
   padding: 120px 0 130px;
 }
 
@@ -17,7 +17,7 @@
 
 .suw-products-technical__eyebrow {
   margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -32,7 +32,7 @@
     height: 1px;
     margin-right: 18px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-primary);
   }
 }
 
@@ -49,7 +49,7 @@
 .suw-products-technical__intro {
   max-width: 500px;
   margin: 0 0 8px auto;
-  color: rgba(255, 255, 255, 0.62);
+  color: color-mix(in srgb, var(--color-brand-primary) 76%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: clamp(16px, 1.1vw, 19px);
   font-weight: 400;
@@ -74,7 +74,7 @@
 }
 
 .suw-products-technical__number {
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -90,7 +90,7 @@
 
 .suw-products-technical__feature p {
   margin: 8px 0 0;
-  color: rgba(255, 255, 255, 0.52);
+  color: color-mix(in srgb, var(--color-brand-primary) 68%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 14px;
   line-height: 1.55;
@@ -102,17 +102,25 @@
   height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-brand-primary);
+  color: var(--color-brand-primary);
 }
 
 .suw-products-technical__feature:hover {
   padding-right: 18px;
   padding-left: 18px;
-  background: #1a1a1a;
+  background: var(--color-dark-surface-elevated);
+  color: var(--color-brand-accent);
+
+  .suw-products-technical__number,
+  p {
+    color: var(--color-brand-accent);
+  }
 
   .suw-products-technical__arrow {
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-primary);
+    background: var(--color-brand-primary);
+    color: var(--color-brand-accent);
   }
 }
 

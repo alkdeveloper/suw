@@ -55,7 +55,7 @@ export function SuwAboutProductionSection({ locale }: { locale: SupportedLocale 
   const content = sectionContent[locale];
 
   return (
-    <section className="suw-about-production">
+    <section className="suw-about-production" data-locale={locale}>
       <div className="suw-about-production__inner">
         <header className="suw-about-production__heading">
           <p className="suw-about-production__eyebrow">

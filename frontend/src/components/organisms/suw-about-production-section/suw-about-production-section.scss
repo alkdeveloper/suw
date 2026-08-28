@@ -1,6 +1,6 @@
 .suw-about-production {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
   padding: 110px 0 130px;
 }
 
@@ -17,7 +17,7 @@
 
 .suw-about-production__eyebrow {
   margin: 0 0 24px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-brand-primary);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -29,7 +29,7 @@
     height: 1px;
     margin-right: 14px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-primary);
   }
 }
 
@@ -48,10 +48,15 @@
   letter-spacing: -0.06em;
 }
 
+.suw-about-production[data-locale="tr"] .suw-about-production__title {
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
 .suw-about-production__intro {
   max-width: 520px;
   margin: 0 0 6px auto;
-  color: rgba(255, 255, 255, 0.62);
+  color: color-mix(in srgb, var(--color-brand-primary) 76%, transparent);
   font-size: 16px;
   line-height: 1.65;
 }
@@ -67,8 +72,8 @@
 .suw-about-production__visual {
   position: relative;
   min-height: 720px;
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
   background:
     linear-gradient(
       180deg,
@@ -119,7 +124,7 @@
 }
 
 .suw-about-production__number {
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-brand-primary);
   font-size: 10px;
   font-weight: 700;
 }
@@ -135,7 +140,7 @@
 .suw-about-production__item p {
   max-width: 500px;
   margin: 12px 0 0;
-  color: rgba(255, 255, 255, 0.52);
+  color: color-mix(in srgb, var(--color-brand-primary) 68%, transparent);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -146,19 +151,31 @@
   height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-brand-primary);
+  color: var(--color-brand-primary);
 }
 
 .suw-about-production__item:hover {
-  background: #1a1a1a;
+  background: var(--color-dark-surface-elevated);
+  color: var(--color-brand-accent);
+
+  .suw-about-production__number,
+  p {
+    color: var(--color-brand-accent);
+  }
 
   .suw-about-production__arrow {
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-primary);
+    background: var(--color-brand-primary);
+    color: var(--color-brand-accent);
   }
 }
 
 @media (max-width: 1000px) {
+  .suw-about-production[data-locale="tr"] .suw-about-production__title {
+    line-height: 1.04;
+  }
+
   .suw-about-production__heading-grid,
   .suw-about-production__layout {
     grid-template-columns: 1fr;
@@ -180,6 +197,10 @@
 
   .suw-about-production__inner {
     padding: 0 20px;
+  }
+
+  .suw-about-production[data-locale="tr"] .suw-about-production__title {
+    line-height: 1.08;
   }
 
   .suw-about-production__visual {

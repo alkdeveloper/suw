@@ -30,7 +30,7 @@
     height: 1px;
     margin-right: 14px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-accent);
   }
 }
 
@@ -47,6 +47,11 @@
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.06em;
+}
+
+.suw-about-intro[data-locale="tr"] .suw-about-intro__title {
+  line-height: 1.02;
+  letter-spacing: -0.045em;
 }
 
 .suw-about-intro__copy {
@@ -109,16 +114,20 @@
 }
 
 .suw-about-intro__card:hover {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface-elevated);
+  color: var(--color-brand-accent);
 
   .suw-about-intro__number,
   .suw-about-intro__card-content p {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-brand-accent);
   }
 }
 
 @media (max-width: 900px) {
+  .suw-about-intro[data-locale="tr"] .suw-about-intro__title {
+    line-height: 1.04;
+  }
+
   .suw-about-intro__heading-grid,
   .suw-about-intro__grid {
     grid-template-columns: 1fr;
@@ -136,6 +145,10 @@
 
   .suw-about-intro__inner {
     padding: 0 20px;
+  }
+
+  .suw-about-intro[data-locale="tr"] .suw-about-intro__title {
+    line-height: 1.08;
   }
 
   .suw-about-intro__card {

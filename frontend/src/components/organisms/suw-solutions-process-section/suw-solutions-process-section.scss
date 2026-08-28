@@ -31,7 +31,7 @@
     height: 1px;
     margin-right: 14px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-accent);
   }
 }
 
@@ -113,12 +113,12 @@
 }
 
 .suw-solutions-process__card:hover {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface-elevated);
+  color: var(--color-brand-accent);
 
   .suw-solutions-process__card-top,
   .suw-solutions-process__card-content p {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-brand-accent);
   }
 }
 

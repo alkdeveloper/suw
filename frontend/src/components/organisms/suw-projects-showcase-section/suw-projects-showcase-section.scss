@@ -29,7 +29,7 @@
     height: 1px;
     margin-right: 14px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-accent);
   }
 }
 
@@ -46,6 +46,11 @@
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.06em;
+}
+
+.suw-projects-showcase[data-locale="tr"] .suw-projects-showcase__title {
+  line-height: 1.02;
+  letter-spacing: -0.045em;
 }
 
 .suw-projects-showcase__intro {
@@ -153,6 +158,10 @@
 }
 
 @media (max-width: 900px) {
+  .suw-projects-showcase[data-locale="tr"] .suw-projects-showcase__title {
+    line-height: 1.04;
+  }
+
   .suw-projects-showcase__heading-grid,
   .suw-projects-showcase__grid {
     grid-template-columns: 1fr;
@@ -170,5 +179,9 @@
 
   .suw-projects-showcase__inner {
     padding: 0 20px;
+  }
+
+  .suw-projects-showcase[data-locale="tr"] .suw-projects-showcase__title {
+    line-height: 1.08;
   }
 }

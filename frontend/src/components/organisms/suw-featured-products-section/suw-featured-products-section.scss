@@ -1,6 +1,6 @@
 .suw-featured-products {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
   padding: 110px 0 120px;
 }
 
@@ -21,7 +21,7 @@
 
 .suw-featured-products__eyebrow {
   margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -36,7 +36,7 @@
     height: 1px;
     margin-right: 18px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-primary);
   }
 }
 
@@ -54,7 +54,7 @@
 .suw-featured-products__intro {
   max-width: 480px;
   margin: 0 0 8px auto;
-  color: rgba(255, 255, 255, 0.62);
+  color: color-mix(in srgb, var(--color-brand-primary) 76%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: clamp(16px, 1.1vw, 19px);
   font-weight: 400;
@@ -75,7 +75,7 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 0.82;
-  background: #1c1c1c;
+  background: var(--color-dark-surface-elevated);
 }
 
 .suw-featured-products__image {
@@ -120,7 +120,7 @@
 
 .suw-featured-products__code {
   margin: 6px 0 0;
-  color: rgba(255, 255, 255, 0.45);
+  color: color-mix(in srgb, var(--color-brand-primary) 62%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 11px;
   letter-spacing: 0.08em;

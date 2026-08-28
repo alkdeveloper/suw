@@ -36,7 +36,7 @@
     height: 1px;
     margin-right: 18px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-accent);
   }
 }
 
@@ -119,11 +119,11 @@
 }
 
 .suw-process__step:hover {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface-elevated);
+  color: var(--color-brand-accent);
 
   p {
-    color: rgba(255, 255, 255, 0.62);
+    color: var(--color-brand-accent);
   }
 }
 

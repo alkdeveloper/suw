@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/src/components/atoms/container";
@@ -100,7 +101,13 @@ export function SiteFooter({
               className="site-footer__brand-logo"
               href={withLocale("/")}
             >
-              SUW
+              <Image
+                alt="SUW"
+                className="site-footer__brand-logo-image"
+                height={1168}
+                src="/images/suw-logo-hero.png"
+                width={2481}
+              />
             </Link>
 
             <p className="site-footer__tagline">

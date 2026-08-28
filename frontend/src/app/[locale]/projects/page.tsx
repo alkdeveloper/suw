@@ -5,6 +5,8 @@ import { createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { SuwProjectsShowcaseSection } from "@/src/components/organisms/suw-projects-showcase-section";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { withLocalePath } from "@/src/lib/locale";
+
+import styles from "./projects.module.scss";
 export function generateStaticParams() {
   return [
     { locale: "tr" },
@@ -57,30 +59,13 @@ export default async function ProjectsPage({
 
   return (
     <main>
-      <section
-        style={{
-          minHeight: "64vh",
-          background: "#111",
-          color: "#fff",
-          display: "flex",
-          alignItems: "center",
-          padding: "150px 5vw 70px",
-        }}
-      >
-        <div>
-          <p>{content.eyebrow}</p>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <p className={styles.eyebrow}>{content.eyebrow}</p>
 
-          <h1
-            style={{
-              margin: 0,
-              fontSize: "clamp(64px, 8vw, 138px)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.07em",
-            }}
-          >
-            {content.titleLine1}
-            <br />
-            {content.titleLine2}
+          <h1 className={styles.title}>
+            <span className={styles.titleLine}>{content.titleLine1}{" "}</span>
+            <span className={styles.titleLine}>{content.titleLine2}</span>
           </h1>
         </div>
       </section>

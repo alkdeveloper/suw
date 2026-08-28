@@ -62,9 +62,9 @@
 }
 
 .suw-products-grid__filter--active {
-  background: #111;
-  border-color: #111;
-  color: #fff;
+  background: var(--color-brand-accent);
+  border-color: var(--color-brand-accent);
+  color: var(--color-brand-primary);
 }
 
 .suw-products-grid__grid {
@@ -108,8 +108,8 @@
   right: 14px;
   bottom: 14px;
   padding: 12px 14px;
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 9px;
   font-weight: 700;

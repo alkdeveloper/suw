@@ -31,7 +31,7 @@
     height: 1px;
     margin-right: 14px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-accent);
   }
 }
 
@@ -163,20 +163,20 @@
 }
 
 .suw-solutions-models__card:hover {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface-elevated);
+  color: var(--color-brand-accent);
 
   .suw-solutions-models__number,
   .suw-solutions-models__subtitle,
   .suw-solutions-models__card-main p,
   .suw-solutions-models__list li {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-brand-accent);
   }
 
   .suw-solutions-models__arrow {
-    border-color: #fff;
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-accent);
+    background: var(--color-brand-accent);
+    color: var(--color-dark-surface);
   }
 }
 

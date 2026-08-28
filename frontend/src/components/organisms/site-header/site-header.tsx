@@ -14,6 +14,8 @@ import type {
   SiteHeaderProps,
 } from "./site-header.types";
 
+const HEADER_LOGO_SRC = "/images/suw-logo-hero.png";
+
 function HeaderLocale({
   localeLabel,
   localeHref,
@@ -75,7 +77,6 @@ export function SiteHeader({
   homeHref = "/",
   localeLabel = "EN",
   localeHref,
-  logoSrc,
   homeAriaLabel,
   desktopNavAriaLabel,
   mobileNavAriaLabel,
@@ -88,11 +89,7 @@ export function SiteHeader({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [resolvedLogoSrc, setResolvedLogoSrc] = useState<
     string | undefined
-  >(logoSrc);
-
-  useEffect(() => {
-    setResolvedLogoSrc(logoSrc);
-  }, [logoSrc]);
+  >(HEADER_LOGO_SRC);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -151,10 +148,10 @@ export function SiteHeader({
                 <Image
                   alt="SUW"
                   className="site-header__logo-image-desktop"
-                  height={60}
+                  height={1168}
                   priority
                   src={resolvedLogoSrc}
-                  width={140}
+                  width={2481}
                   onError={() => setResolvedLogoSrc(undefined)}
                 />
               ) : (
@@ -197,10 +194,10 @@ export function SiteHeader({
               <Image
                 alt="SUW"
                 className="site-header__mobile-logo-image"
-                height={48}
+                height={1168}
                 priority
                 src={resolvedLogoSrc}
-                width={110}
+                width={2481}
                 onError={() => setResolvedLogoSrc(undefined)}
               />
             ) : (

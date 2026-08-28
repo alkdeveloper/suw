@@ -84,12 +84,16 @@ export function HomeHeroSection({
 
   return (
     <section
-      className={cn("home-hero", className)}
+      className={cn(
+        "home-hero",
+        locale === "tr" && "home-hero--tr",
+        className,
+      )}
       style={
         {
           "--home-hero-bg": imageSrc
             ? `url("${imageSrc}")`
-            : "none",
+            : 'url("/images/home-hero-production.png")',
         } as CSSProperties
       }
     >

@@ -1,6 +1,6 @@
 .site-footer {
-  background: #111;
-  color: #fff;
+  background: #4a4a4a;
+  color: var(--color-brand-accent);
   padding: 90px 0 0;
 }
 
@@ -20,17 +20,17 @@
 
 .site-footer__brand-logo {
   display: inline-block;
-  color: #fff;
-  font-family: var(--font-active), sans-serif;
-  font-size: clamp(42px, 4vw, 66px);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
+}
+
+.site-footer__brand-logo-image {
+  display: block;
+  width: 150px;
+  height: auto;
 }
 
 .site-footer__tagline {
   margin: 40px 0 0;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--color-brand-accent);
   font-family: var(--font-active), sans-serif;
   font-size: 12px;
   font-weight: 700;
@@ -42,7 +42,7 @@
 .site-footer__description {
   max-width: 500px;
   margin: 22px 0 0;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(249, 182, 10, 0.72);
   font-family: var(--font-active), sans-serif;
   font-size: clamp(16px, 1.1vw, 19px);
   font-weight: 400;
@@ -51,7 +51,7 @@
 
 .site-footer__column-title {
   margin: 0;
-  color: #fff;
+  color: var(--color-brand-accent);
   font-family: var(--font-active), sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -70,7 +70,7 @@
 
 .site-footer__link {
   position: relative;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--color-brand-accent);
   font-family: var(--font-active), sans-serif;
   font-size: 15px;
   font-weight: 500;
@@ -80,7 +80,7 @@
     transform 0.25s ease;
 
   &:hover {
-    color: #fff;
+    color: var(--color-brand-accent);
     transform: translateX(4px);
   }
 }
@@ -88,7 +88,7 @@
 .site-footer__contact-text {
   max-width: 380px;
   margin: 30px 0 0;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(249, 182, 10, 0.72);
   font-family: var(--font-active), sans-serif;
   font-size: 15px;
   font-weight: 400;
@@ -104,8 +104,9 @@
   justify-content: space-between;
   margin-top: 30px;
   padding: 0 20px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: #fff;
+  border: 1px solid var(--color-brand-accent);
+  background: transparent;
+  color: var(--color-brand-accent);
   font-family: var(--font-active), sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -117,9 +118,9 @@
     border-color 0.25s ease;
 
   &:hover {
-    border-color: #fff;
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-accent);
+    background: var(--color-brand-accent);
+    color: var(--color-brand-primary);
   }
 }
 
@@ -131,7 +132,7 @@
 }
 
 .site-footer__social-link {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--color-brand-accent);
   font-family: var(--font-active), sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -140,7 +141,7 @@
   transition: color 0.2s ease;
 
   &:hover {
-    color: #fff;
+    color: var(--color-brand-accent);
   }
 }
 
@@ -150,13 +151,13 @@
   align-items: center;
   gap: 30px;
   min-height: 86px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 1px solid rgba(249, 182, 10, 0.25);
 }
 
 .site-footer__copyright,
 .site-footer__bottom-label {
   margin: 0;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(249, 182, 10, 0.68);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -172,10 +173,10 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(249, 182, 10, 0.5);
   padding: 0;
   background: transparent;
-  color: #fff;
+  color: var(--color-brand-accent);
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
@@ -187,9 +188,9 @@
   }
 
   &:hover {
-    border-color: #fff;
-    background: #fff;
-    color: #111;
+    border-color: var(--color-brand-accent);
+    background: var(--color-brand-accent);
+    color: var(--color-brand-primary);
   }
 }
 
@@ -218,8 +219,8 @@
     grid-column: auto;
   }
 
-  .site-footer__brand-logo {
-    font-size: 48px;
+  .site-footer__brand-logo-image {
+    width: 132px;
   }
 
   .site-footer__tagline {

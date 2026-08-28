@@ -1,7 +1,7 @@
 
 .suw-branding-customization {
-  background: #111;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-brand-primary);
   padding: 110px 0 130px;
 }
 
@@ -18,7 +18,7 @@
 
 .suw-branding-customization__eyebrow {
   margin: 0 0 24px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-brand-primary);
   font-family: var(--font-active), sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -32,7 +32,7 @@
     height: 1px;
     margin-right: 14px;
     vertical-align: middle;
-    background: currentColor;
+    background: var(--color-brand-primary);
   }
 }
 
@@ -60,7 +60,7 @@
 .suw-branding-customization__intro {
   max-width: 500px;
   margin: 0 0 6px auto;
-  color: rgba(255, 255, 255, 0.62);
+  color: color-mix(in srgb, var(--color-brand-primary) 76%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 16px;
   line-height: 1.65;
@@ -87,7 +87,7 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: rgba(255, 255, 255, 0.38);
+  color: color-mix(in srgb, var(--color-brand-primary) 58%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -109,7 +109,7 @@
 .suw-branding-customization__card-content p {
   max-width: 390px;
   margin: 18px 0 0;
-  color: rgba(255, 255, 255, 0.52);
+  color: color-mix(in srgb, var(--color-brand-primary) 68%, transparent);
   font-family: var(--font-active), sans-serif;
   font-size: 14px;
   line-height: 1.6;
