@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { resolveAssetUrl } from "@/src/lib/assets";
+
 type ProjectItem = {
   id: string;
   client: string;
@@ -109,7 +111,7 @@ export function SuwProjectsSection() {
               <img
                 alt={project.title}
                 className="suw-projects__image"
-                src={project.imageSrc}
+                src={resolveAssetUrl(project.imageSrc)}
               />
 
               <div

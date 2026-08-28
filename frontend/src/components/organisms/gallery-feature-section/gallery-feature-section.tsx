@@ -5,8 +5,8 @@ import { cn } from "@/src/lib/cn";
 
 import type { GalleryFeatureSectionProps } from "./gallery-feature-section.types";
 
-const ellipseGlowSrc = "/images/figma-assets/gallery-feature-ellipse-glow.svg";
-const bottomGlowSrc = "/images/figma-assets/gallery-feature-bottom-glow.svg";
+const ellipseGlowSrc = resolvePublicAssetPath("/images/figma-assets/gallery-feature-ellipse-glow.svg");
+const bottomGlowSrc = resolvePublicAssetPath("/images/figma-assets/gallery-feature-bottom-glow.svg");
 
 export function GalleryFeatureSection({
   className,
@@ -73,3 +73,4 @@ export function GalleryFeatureSection({
     </section>
   );
 }
+import { resolvePublicAssetPath } from "@/src/lib/assets";

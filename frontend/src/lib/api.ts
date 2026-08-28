@@ -1,7 +1,12 @@
 import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from "axios";
 import { notFound } from "next/navigation";
 
-const clientApiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/";
+import { resolveCmsMediaUrls } from "@/src/lib/assets";
+
+const forceLocalFallback = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true";
+const clientApiBaseUrl =
+  process.env.NEXT_PUBLIC_API_URL ??
+  (forceLocalFallback ? "/api/" : "http://localhost:8000/api/");
 
 /** Per-call check — do not cache at module load (Next server/client bundles). */
 function isServerSide() {
@@ -50,6 +55,10 @@ export function getApiBaseUrl() {
 }
 
 export function createAPI(locale = "en", config?: AxiosRequestConfig): AxiosInstance {
+  if (forceLocalFallback) {
+    throw new Error("Remote API is disabled for this static fallback build.");
+  }
+
   const baseURL = getApiBaseUrl();
 
   serverLog("createAPI: creating axios instance", {
@@ -93,6 +102,8 @@ export function createAPI(locale = "en", config?: AxiosRequestConfig): AxiosInst
 
   instance.interceptors.response.use(
     (response) => {
+      response.data = resolveCmsMediaUrls(response.data);
+
       if (isServerSide()) {
         const reqConfig = response.config;
         serverLog("response: success", {

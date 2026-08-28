@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Container } from "@/src/components/atoms/container";
 import { cn } from "@/src/lib/cn";
 import { LOCALE_COOKIE_NAME } from "@/src/lib/locale";
+import { resolvePublicAssetPath } from "@/src/lib/assets";
 
 import type {
   HeaderLinkProps,
@@ -14,7 +15,7 @@ import type {
   SiteHeaderProps,
 } from "./site-header.types";
 
-const HEADER_LOGO_SRC = "/images/suw-logo-hero.png";
+const HEADER_LOGO_FALLBACK = resolvePublicAssetPath("/images/suw-logo-hero.png");
 
 function HeaderLocale({
   localeLabel,
@@ -77,6 +78,7 @@ export function SiteHeader({
   homeHref = "/",
   localeLabel = "EN",
   localeHref,
+  logoSrc,
   homeAriaLabel,
   desktopNavAriaLabel,
   mobileNavAriaLabel,
@@ -87,9 +89,13 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [resolvedLogoSrc, setResolvedLogoSrc] = useState<
-    string | undefined
-  >(HEADER_LOGO_SRC);
+  const [resolvedLogoSrc, setResolvedLogoSrc] = useState(
+    logoSrc || HEADER_LOGO_FALLBACK,
+  );
+
+  useEffect(() => {
+    setResolvedLogoSrc(logoSrc || HEADER_LOGO_FALLBACK);
+  }, [logoSrc]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -144,19 +150,15 @@ export function SiteHeader({
               className="site-header__logo-link-desktop"
               href={homeHref}
             >
-              {resolvedLogoSrc ? (
-                <Image
-                  alt="SUW"
-                  className="site-header__logo-image-desktop"
-                  height={1168}
-                  priority
-                  src={resolvedLogoSrc}
-                  width={2481}
-                  onError={() => setResolvedLogoSrc(undefined)}
-                />
-              ) : (
-                <span className="site-header__wordmark">SUW</span>
-              )}
+              <Image
+                alt="SUW"
+                className="site-header__logo-image-desktop"
+                height={1168}
+                priority
+                src={resolvedLogoSrc}
+                width={2481}
+                onError={() => setResolvedLogoSrc(HEADER_LOGO_FALLBACK)}
+              />
             </Link>
           </div>
 
@@ -190,19 +192,15 @@ export function SiteHeader({
             className="site-header__mobile-logo-link"
             href={homeHref}
           >
-            {resolvedLogoSrc ? (
-              <Image
-                alt="SUW"
-                className="site-header__mobile-logo-image"
-                height={1168}
-                priority
-                src={resolvedLogoSrc}
-                width={2481}
-                onError={() => setResolvedLogoSrc(undefined)}
-              />
-            ) : (
-              <span className="site-header__wordmark">SUW</span>
-            )}
+            <Image
+              alt="SUW"
+              className="site-header__mobile-logo-image"
+              height={1168}
+              priority
+              src={resolvedLogoSrc}
+              width={2481}
+              onError={() => setResolvedLogoSrc(HEADER_LOGO_FALLBACK)}
+            />
           </Link>
         </div>
 

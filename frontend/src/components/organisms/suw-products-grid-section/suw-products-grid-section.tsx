@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 
+import { resolveAssetUrl } from "@/src/lib/assets";
+
 type ProductCategory =
   | "all"
   | "workwear"
@@ -184,7 +186,7 @@ export function SuwProductsGridSection() {
                 <img
                   alt={product.name}
                   className="suw-products-grid__image"
-                  src={product.imageSrc}
+                  src={resolveAssetUrl(product.imageSrc)}
                 />
 
                 <span className="suw-products-grid__product-number">

@@ -85,7 +85,7 @@ function DetailPanel({ item, ctaHref, ctaLabel, applicationHref, responsibilitie
         <div className="job-listing__cta-wrap">
           <Link className="job-listing__cta" href={applicationUrl}>
             <span>{ctaLabel}</span>
-            <Image alt="" className="job-listing__cta-icon" height={24} src="/images/job-listing/arrow-right.svg" width={12} />
+            <Image alt="" className="job-listing__cta-icon" height={24} src={resolvePublicAssetPath("/images/job-listing/arrow-right.svg")} width={12} />
           </Link>
         </div>
       ) : null}
@@ -222,3 +222,4 @@ export function JobListingSection({
     </section>
   );
 }
+import { resolvePublicAssetPath } from "@/src/lib/assets";

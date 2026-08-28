@@ -1,4 +1,5 @@
 import type { SiteSettingsResponse } from "@/src/lib/api-types";
+import { resolvePublicAssetPath } from "@/src/lib/assets";
 
 /**
  * API (core/settings/) erişilemediğinde layout’un çökmemesi için minimal cevap.
@@ -9,7 +10,7 @@ export function getOfflineSiteSettings(
 ): SiteSettingsResponse {
   return {
     font_family: "dm_sans",
-    logo: null,
+    logo: resolvePublicAssetPath("/images/suw-logo-hero.png"),
     phone: "",
     fax: "",
     email: "",

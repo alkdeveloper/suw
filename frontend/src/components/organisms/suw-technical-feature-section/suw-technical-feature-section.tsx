@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { resolvePublicAssetPath } from "@/src/lib/assets";
+
 type TechnicalFeature = {
   id: string;
   label: string;
@@ -83,7 +85,7 @@ export function SuwTechnicalFeatureSection() {
           <img
             alt={content.imageAlt}
             className="suw-technical-feature__image"
-            src="/images/mock/technical-feature.jpg"
+            src={resolvePublicAssetPath("/images/mock/technical-feature.jpg")}
           />
 
           <div className="suw-technical-feature__marker suw-technical-feature__marker--one">

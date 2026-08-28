@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { resolvePublicAssetPath } from "@/src/lib/assets";
+
 type SolutionItem = {
   id: string;
   title: string;
@@ -98,7 +100,7 @@ export function SuwCustomWorkwearSection() {
           <img
             alt={content.imageAlt}
             className="suw-custom-workwear__image"
-            src="/images/mock/custom-workwear.jpg"
+            src={resolvePublicAssetPath("/images/mock/custom-workwear.jpg")}
           />
 
           <div className="suw-custom-workwear__visual-label">

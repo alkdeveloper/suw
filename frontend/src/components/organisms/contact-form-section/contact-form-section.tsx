@@ -11,9 +11,9 @@ import { LEGAL_PAGE_PATHS } from "@/src/lib/legal";
 import { DEFAULT_LOCALE } from "@/src/lib/locale";
 
 import type { ContactFormSectionProps } from "./contact-form-section.types";
-const phoneIconSrc = "/images/figma-assets/contact-phone-icon.svg";
-const mailIconSrc = "/images/figma-assets/contact-mail-icon.svg";
-const locationIconSrc = "/images/figma-assets/contact-location-icon.svg";
+const phoneIconSrc = resolvePublicAssetPath("/images/figma-assets/contact-phone-icon.svg");
+const mailIconSrc = resolvePublicAssetPath("/images/figma-assets/contact-mail-icon.svg");
+const locationIconSrc = resolvePublicAssetPath("/images/figma-assets/contact-location-icon.svg");
 
 function ArrowIcon() {
   return (
@@ -231,3 +231,4 @@ export function ContactFormSection({
     </section>
   );
 }
+import { resolvePublicAssetPath } from "@/src/lib/assets";

@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { Container } from "@/src/components/atoms/container";
 import { cn } from "@/src/lib/cn";
+import { resolvePublicAssetPath } from "@/src/lib/assets";
 import { DEFAULT_LOCALE } from "@/src/lib/locale";
 
 import type { SiteFooterProps } from "./site-footer.types";
@@ -77,11 +78,13 @@ export function SiteFooter({
   className,
   locale = DEFAULT_LOCALE,
   localePrefix = "",
+  logoSrc,
   backToTopAriaLabel,
   socialLinks = [],
 }: SiteFooterProps) {
   const activeLocale = locale === "en" ? "en" : "tr";
   const content = footerContent[activeLocale];
+  const resolvedLogoSrc = logoSrc || resolvePublicAssetPath("/images/suw-logo-hero.png");
 
   const withLocale = (path: string) => {
     if (path === "/") {
@@ -105,7 +108,7 @@ export function SiteFooter({
                 alt="SUW"
                 className="site-footer__brand-logo-image"
                 height={1168}
-                src="/images/suw-logo-hero.png"
+                src={resolvedLogoSrc}
                 width={2481}
               />
             </Link>

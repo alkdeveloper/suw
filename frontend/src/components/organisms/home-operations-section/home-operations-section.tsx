@@ -1,4 +1,6 @@
-const arrowIcon = "/images/figma-assets/home-operations-arrow.svg";
+import { resolvePublicAssetPath } from "@/src/lib/assets";
+
+const arrowIcon = resolvePublicAssetPath("/images/figma-assets/home-operations-arrow.svg");
 
 type HomeOperationsItem = {
   id: string;

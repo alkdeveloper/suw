@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/src/components/organisms/site-footer";
 import { SiteHeader } from "@/src/components/organisms/site-header";
 import type { SiteSettingsResponse } from "@/src/lib/api-types";
+import { resolveCmsMediaUrl, resolvePublicAssetPath } from "@/src/lib/assets";
 import type { SupportedLocale } from "@/src/lib/locale";
 import {
   getAlternateLocale,
@@ -167,6 +168,9 @@ export function AppShell({
     { href: siteSettings.twitter, label: siteSettings.footer_copy?.social_labels.x },
     { href: siteSettings.youtube, label: siteSettings.footer_copy?.social_labels.youtube },
   ].filter((item): item is { href: string; label: string } => Boolean(item.href && item.label));
+  const logoSrc =
+    resolveCmsMediaUrl(siteSettings.logo) ??
+    resolvePublicAssetPath("/images/suw-logo-hero.png");
 
   const galleryHeaderChrome =
     normalized === "/gallery" ||
@@ -184,7 +188,7 @@ export function AppShell({
         localeButtonAriaLabelPrefix={siteSettings.header_copy?.locale_button_aria_label_prefix || undefined}
         localeHref={localeHref}
         localeLabel={alternateLocale.toUpperCase()}
-        logoSrc={siteSettings.logo || undefined}
+        logoSrc={logoSrc}
         mobileMenuAriaLabel={siteSettings.header_copy?.mobile_menu_aria_label || undefined}
         mobileNavAriaLabel={siteSettings.header_copy?.mobile_nav_aria_label || undefined}
         scrollThreshold={100}
@@ -205,7 +209,7 @@ export function AppShell({
         linksTitle={siteSettings.footer_navigation_title || undefined}
         locale={locale}
         localePrefix={`/${locale}`}
-        logoSrc={siteSettings.logo || undefined}
+        logoSrc={logoSrc}
         newsletterConsentLinkLabel={siteSettings.footer_newsletter_consent_link_text || undefined}
         newsletterConsentText={siteSettings.footer_newsletter_consent_text || undefined}
         newsletterErrorMessage={siteSettings.footer_copy?.newsletter_error_message || undefined}

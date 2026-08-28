@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import { cn } from "@/src/lib/cn";
+import { resolveCmsMediaUrl, resolvePublicAssetPath } from "@/src/lib/assets";
 
 function ScrollIndicator({ locale }: { locale: "tr" | "en" }) {
   const label = locale === "tr" ? "KAYDIR" : "SCROLL";
@@ -72,6 +73,9 @@ export function HomeHeroSection({
   secondaryCtaHref,
   locale = "en",
 }: HomeHeroSectionProps) {
+  const resolvedImageSrc =
+    resolveCmsMediaUrl(imageSrc) ??
+    resolvePublicAssetPath("/images/home-hero-production.png");
   const resolvedEyebrow =
     eyebrow || "PROFESSIONAL WORKWEAR";
 
@@ -91,9 +95,7 @@ export function HomeHeroSection({
       )}
       style={
         {
-          "--home-hero-bg": imageSrc
-            ? `url("${imageSrc}")`
-            : 'url("/images/home-hero-production.png")',
+          "--home-hero-bg": `url("${resolvedImageSrc}")`,
         } as CSSProperties
       }
     >

@@ -1,4 +1,5 @@
 import type { SupportedLocale } from "@/src/lib/locale";
+import { resolveAssetUrl } from "@/src/lib/assets";
 
 const sectionContent = {
   tr: {
@@ -127,7 +128,7 @@ export function SuwProjectsShowcaseSection({ locale }: { locale: SupportedLocale
                 <img
                   alt={project.title}
                   className="suw-projects-showcase__image"
-                  src={project.imageSrc}
+                  src={resolveAssetUrl(project.imageSrc)}
                 />
 
                 <div className="suw-projects-showcase__overlay" />

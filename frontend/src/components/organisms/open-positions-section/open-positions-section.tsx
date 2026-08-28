@@ -162,7 +162,7 @@ export function OpenPositionsSection({
           <div className="open-positions__cta-wrap">
             <Link className="open-positions__cta-button" href={ctaHref}>
               <span>{ctaLabel}</span>
-              <Image alt="" className="open-positions__cta-icon" height={13} src="/images/open-positions/cta-arrow-dark.svg" width={8} />
+              <Image alt="" className="open-positions__cta-icon" height={13} src={resolvePublicAssetPath("/images/open-positions/cta-arrow-dark.svg")} width={8} />
             </Link>
           </div>
         ) : null}
@@ -170,3 +170,4 @@ export function OpenPositionsSection({
     </section>
   );
 }
+import { resolvePublicAssetPath } from "@/src/lib/assets";

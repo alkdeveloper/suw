@@ -8,6 +8,7 @@ import {
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 
+import { resolvePublicAssetPath } from "@/src/lib/assets";
 import {
   DEFAULT_OG_IMAGE,
   SITE_NAME,
@@ -130,9 +131,9 @@ export const metadata: Metadata = {
   ],
 
   icons: {
-    icon: "/suw_favicon.png",
-    shortcut: "/suw_favicon.png",
-    apple: "/suw_favicon.png",
+    icon: resolvePublicAssetPath("/suw_favicon.png"),
+    shortcut: resolvePublicAssetPath("/suw_favicon.png"),
+    apple: resolvePublicAssetPath("/suw_favicon.png"),
   },
 
   openGraph: {

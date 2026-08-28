@@ -1,3 +1,5 @@
+import { resolveAssetUrl } from "@/src/lib/assets";
+
 type HomeActivityItem = {
   id: string;
   imageSrc?: string;
@@ -123,7 +125,7 @@ export function HomeActivitySliderSection({
               <img
                 alt={item.imageAlt}
                 className="home-activity-slider__image"
-                src={item.imageSrc}
+                src={resolveAssetUrl(item.imageSrc)}
               />
 
               <div

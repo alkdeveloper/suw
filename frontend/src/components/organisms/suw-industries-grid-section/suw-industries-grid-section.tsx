@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { resolveAssetUrl } from "@/src/lib/assets";
+
 type IndustryItem = {
   id: string;
   title: string;
@@ -151,7 +153,7 @@ export function SuwIndustriesGridSection() {
                 <img
                   alt={industry.title}
                   className="suw-industries-grid__image"
-                  src={industry.imageSrc}
+                  src={resolveAssetUrl(industry.imageSrc)}
                 />
 
                 <div

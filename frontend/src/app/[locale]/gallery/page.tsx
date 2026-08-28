@@ -17,7 +17,7 @@ export function generateStaticParams() {
     { locale: "en" },
   ];
 }
-const galleryHeroGlow = "/images/figma-assets/soft-glow.svg";
+const galleryHeroGlow = resolvePublicAssetPath("/images/figma-assets/soft-glow.svg");
 
 type GalleryPageProps = {
   params: Promise<{
@@ -166,3 +166,4 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
     </main>
   );
 }
+import { resolvePublicAssetPath } from "@/src/lib/assets";

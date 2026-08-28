@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { resolvePublicAssetPath } from "@/src/lib/assets";
+
 const sectionContent = {
   tr: {
     eyebrow: "ÜRETİM",
@@ -51,7 +53,7 @@ export function SuwProductionSection() {
         <img
           alt={content.imageAlt}
           className="suw-production__image"
-          src="/images/mock/production.jpg"
+          src={resolvePublicAssetPath("/images/mock/production.jpg")}
         />
 
         <div

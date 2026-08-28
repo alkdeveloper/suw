@@ -2,6 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { resolveAssetUrl } from "@/src/lib/assets";
+
 type FeaturedProduct = {
   id: string;
   name: string;
@@ -95,7 +97,7 @@ export function SuwFeaturedProductsSection() {
                 <img
                   alt={product.name}
                   className="suw-featured-products__image"
-                  src={product.imageSrc}
+                  src={resolveAssetUrl(product.imageSrc)}
                 />
 
                 <span className="suw-featured-products__view">

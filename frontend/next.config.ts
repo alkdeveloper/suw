@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_ACTIONS === "true";
+const basePath = isGithubPages ? "/suw" : "";
 
 const nextConfig: NextConfig = {
   output: isGithubPages ? "export" : "standalone",
@@ -33,8 +34,11 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  basePath: isGithubPages ? "/suw" : "",
-  assetPrefix: isGithubPages ? "/suw/" : "",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   trailingSlash: isGithubPages,
 };
 

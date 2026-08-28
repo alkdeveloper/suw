@@ -41,7 +41,7 @@ export function CareerJoinSection({
             {ctaHref && ctaLabel ? (
               <Link className="career-join__cta" href={ctaHref}>
                 <span>{ctaLabel}</span>
-                <Image alt="" className="career-join__cta-icon" height={24} src="/images/career-join/arrow-right.svg" width={12} />
+                <Image alt="" className="career-join__cta-icon" height={24} src={resolvePublicAssetPath("/images/career-join/arrow-right.svg")} width={12} />
               </Link>
             ) : null}
           </div>
@@ -50,3 +50,4 @@ export function CareerJoinSection({
     </section>
   );
 }
+import { resolvePublicAssetPath } from "@/src/lib/assets";

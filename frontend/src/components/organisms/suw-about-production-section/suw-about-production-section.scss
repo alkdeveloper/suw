@@ -80,7 +80,7 @@
       rgba(0, 0, 0, 0.05),
       rgba(0, 0, 0, 0.65)
     ),
-    url("/images/mock/production.jpg") center / cover no-repeat;
+    var(--suw-about-production-image) center / cover no-repeat;
 }
 
 .suw-about-production__visual-copy {

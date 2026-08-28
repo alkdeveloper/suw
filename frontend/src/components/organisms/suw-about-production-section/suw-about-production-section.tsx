@@ -1,3 +1,6 @@
+import type { CSSProperties } from "react";
+
+import { resolvePublicAssetPath } from "@/src/lib/assets";
 import type { SupportedLocale } from "@/src/lib/locale";
 
 const sectionContent = {
@@ -76,7 +79,12 @@ export function SuwAboutProductionSection({ locale }: { locale: SupportedLocale 
         </header>
 
         <div className="suw-about-production__layout">
-          <div className="suw-about-production__visual">
+          <div
+            className="suw-about-production__visual"
+            style={{
+              "--suw-about-production-image": `url("${resolvePublicAssetPath("/images/mock/production.jpg")}")`,
+            } as CSSProperties}
+          >
             <div className="suw-about-production__visual-copy">
               <span>{content.visualLabel}</span>
 
