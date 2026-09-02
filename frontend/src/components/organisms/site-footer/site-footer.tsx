@@ -40,10 +40,14 @@ const footerContent = {
     contactLink: "BİZE ULAŞIN",
     copyright: "© SUW. Tüm hakları saklıdır.",
     backToTop: "Yukarı dön",
+    infoLabels: {
+      address: "ADRES",
+      email: "E-POSTA",
+      phone: "TELEFON",
+    },
     navigation: [
       { label: "ANA SAYFA", href: "/" },
       { label: "ÜRÜNLER", href: "/products" },
-      { label: "SEKTÖRLER", href: "/industries" },
       { label: "ÇÖZÜMLER", href: "/solutions" },
       { label: "PROJELER", href: "/projects" },
       { label: "HAKKIMIZDA", href: "/about" },
@@ -62,10 +66,14 @@ const footerContent = {
     contactLink: "GET IN TOUCH",
     copyright: "© SUW. All rights reserved.",
     backToTop: "Back to top",
+    infoLabels: {
+      address: "ADDRESS",
+      email: "EMAIL",
+      phone: "PHONE",
+    },
     navigation: [
       { label: "HOME", href: "/" },
       { label: "PRODUCTS", href: "/products" },
-      { label: "INDUSTRIES", href: "/industries" },
       { label: "SOLUTIONS", href: "/solutions" },
       { label: "PROJECTS", href: "/projects" },
       { label: "ABOUT", href: "/about" },
@@ -80,11 +88,45 @@ export function SiteFooter({
   localePrefix = "",
   logoSrc,
   backToTopAriaLabel,
+  compactContact,
   socialLinks = [],
 }: SiteFooterProps) {
   const activeLocale = locale === "en" ? "en" : "tr";
   const content = footerContent[activeLocale];
   const resolvedLogoSrc = logoSrc || resolvePublicAssetPath("/images/suw-logo-hero.png");
+  const encodedAddress = compactContact?.address
+    ? encodeURIComponent(compactContact.address)
+    : "";
+  const coordinates = compactContact?.latitude && compactContact?.longitude
+    ? `${compactContact.latitude},${compactContact.longitude}`
+    : "";
+  const desktopMapUrl = compactContact?.address
+    ? `https://www.google.com/maps/search/?api=1&query=${coordinates || encodedAddress}`
+    : undefined;
+
+  const handleAddressClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!compactContact?.address) {
+      return;
+    }
+
+    const userAgent = navigator.userAgent;
+    let nativeUrl: string | undefined;
+
+    if (/Android/i.test(userAgent)) {
+      nativeUrl = coordinates
+        ? `geo:${coordinates}?q=${coordinates}(${encodedAddress})`
+        : `geo:0,0?q=${encodedAddress}`;
+    } else if (/iPad|iPhone|iPod/i.test(userAgent)) {
+      nativeUrl = coordinates
+        ? `maps://?q=${encodedAddress}&ll=${coordinates}`
+        : `maps://?q=${encodedAddress}`;
+    }
+
+    if (nativeUrl) {
+      event.preventDefault();
+      window.location.href = nativeUrl;
+    }
+  };
 
   const withLocale = (path: string) => {
     if (path === "/") {
@@ -173,6 +215,46 @@ export function SiteFooter({
               </div>
             ) : null}
           </div>
+        </div>
+
+        <div className="site-footer__info-row">
+          {compactContact?.address ? (
+            <div className="site-footer__info-item">
+              <p className="site-footer__info-label">{content.infoLabels.address}</p>
+              <p className="site-footer__info-value">
+                {desktopMapUrl ? (
+                  <a
+                    className="site-footer__info-value-link"
+                    href={desktopMapUrl}
+                    onClick={handleAddressClick}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {compactContact.address}
+                  </a>
+                ) : compactContact.address}
+              </p>
+            </div>
+          ) : null}
+
+          {compactContact?.phone ? (
+            <div className="site-footer__info-item">
+              <p className="site-footer__info-label">{content.infoLabels.phone}</p>
+              <a className="site-footer__info-value" href={`tel:${compactContact.phone.replace(/[^+\d]/g, "")}`}>
+                {compactContact.phone}
+              </a>
+            </div>
+          ) : null}
+
+          {compactContact?.email ? (
+            <div className="site-footer__info-item">
+              <p className="site-footer__info-label">{content.infoLabels.email}</p>
+              <a className="site-footer__info-value" href={`mailto:${compactContact.email}`}>
+                {compactContact.email}
+              </a>
+            </div>
+          ) : null}
+
         </div>
 
         <div className="site-footer__bottom">

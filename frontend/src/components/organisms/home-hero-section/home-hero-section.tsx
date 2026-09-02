@@ -54,6 +54,7 @@ type HomeHeroSectionProps = {
   title?: string;
   description?: string;
   imageSrc?: string;
+  mobileImageSrc?: string;
   primaryCtaLabel?: string;
   primaryCtaHref?: string;
   secondaryCtaLabel?: string;
@@ -67,6 +68,7 @@ export function HomeHeroSection({
   title,
   description,
   imageSrc,
+  mobileImageSrc,
   primaryCtaLabel,
   primaryCtaHref,
   secondaryCtaLabel,
@@ -76,6 +78,7 @@ export function HomeHeroSection({
   const resolvedImageSrc =
     resolveCmsMediaUrl(imageSrc) ??
     resolvePublicAssetPath("/images/home-hero-production.png");
+  const resolvedMobileImageSrc = resolveCmsMediaUrl(mobileImageSrc) ?? resolvedImageSrc;
   const resolvedEyebrow =
     eyebrow || "PROFESSIONAL WORKWEAR";
 
@@ -96,6 +99,7 @@ export function HomeHeroSection({
       style={
         {
           "--home-hero-bg": `url("${resolvedImageSrc}")`,
+          "--home-hero-bg-mobile": `url("${resolvedMobileImageSrc}")`,
         } as CSSProperties
       }
     >

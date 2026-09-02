@@ -11,7 +11,11 @@ from modeltranslation.admin import TranslationTabularInline
 from unfold.decorators import display
 from unfold.forms import AdminPasswordChangeForm, UserCreationForm
 from solo.admin import SingletonModelAdmin
-from .models import SiteSettings, NavigationItem, NewsletterSubscriber
+from .models import SiteSettings, SiteContactSettings, NavigationItem, NewsletterSubscriber
+
+admin.site.site_header = "SUW Yönetim Paneli"
+admin.site.site_title = "SUW Admin"
+admin.site.index_title = "SUW Web Sitesi Yönetimi"
 
 # ── Kullanıcı & Grup — unfold temalı ─────────────────────────────────────────
 
@@ -276,6 +280,20 @@ class SiteSettingsAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin)
             },
         ),
     )
+
+
+@admin.register(SiteContactSettings)
+class SiteContactSettingsAdmin(SingletonModelAdmin, ModelAdmin):
+    change_form_show_cancel_button = True
+    fieldsets = (
+        ("İletişim Bilgileri", {"fields": ("address", "phone", "email", "latitude", "longitude")}),
+    )
+
+    def change_view(self, request, object_id, form_url="", extra_context=None):
+        extra_context = extra_context or {}
+        extra_context["title"] = "İletişim ve Haritalar"
+        extra_context["subtitle"] = None
+        return super().change_view(request, object_id, form_url, extra_context)
 
 
 @admin.register(NewsletterSubscriber)

@@ -12,6 +12,60 @@ export type HomePageResponse = {
   hero_subtitle: string;
   hero_description: string;
   hero_image: ApiImage;
+  hero_image_mobile: ApiImage;
+  product_categories_eyebrow: string;
+  product_categories_title: string;
+  product_categories_description: string;
+  work_essentials_eyebrow: string;
+  work_essentials_title: string;
+  work_essentials_description: string;
+  work_essentials_cta_text: string;
+  work_essentials_cta_link: string;
+  work_essentials_items: Array<{
+    id: number;
+    image: string | null;
+    alt: string;
+    link: string;
+    sort_order: number;
+  }>;
+  technical_performance_eyebrow: string;
+  technical_performance_title: string;
+  technical_performance_description: string;
+  technical_performance_image: ApiImage;
+  technical_performance_cta_text: string;
+  technical_performance_cta_link: string;
+  technical_performance_items: Array<{
+    id: number;
+    title: string;
+    description: string;
+    sort_order: number;
+  }>;
+  corporate_workwear_eyebrow: string;
+  corporate_workwear_title: string;
+  corporate_workwear_description: string;
+  corporate_workwear_personnel_title: string;
+  corporate_workwear_personnel_description: string;
+  corporate_workwear_personnel_image: ApiImage;
+  corporate_workwear_promo_title: string;
+  corporate_workwear_promo_description: string;
+  corporate_workwear_promo_image: ApiImage;
+  corporate_workwear_cta_text: string;
+  corporate_workwear_cta_link: string;
+  process_eyebrow: string;
+  process_title: string;
+  process_description: string;
+  process_steps: Array<{ id: number; title: string; description: string; sort_order: number }>;
+  production_insights_eyebrow: string;
+  production_insights_title: string;
+  production_insights_description: string;
+  production_insight_items: Array<{
+    id: number;
+    image: string | null;
+    title: string;
+    short_description: string;
+    detail_text: string;
+    sort_order: number;
+  }>;
   ticker_words: Array<{ text: string }>;
   brands_title: string;
   brands_description: string;
@@ -84,6 +138,17 @@ export type CorporatePageResponse = {
   join_button_url: string;
   meta_title: string;
   meta_description: string;
+  page: AboutPageContent;
+};
+
+export type AboutContentItem = { id: number; title: string; description: string };
+export type AboutPageContent = {
+  hero: { eyebrow: string; title: string; description: string };
+  group: { eyebrow: string; title: string; description: string; supporting_label: string; image: ApiImage; image_mobile: ApiImage };
+  why: { eyebrow: string; title: string; description: string; items: AboutContentItem[] };
+  experience: { eyebrow: string; title: string; description: string; items: AboutContentItem[] };
+  timeline: { eyebrow: string; title: string; items: Array<{ id: number; year_or_period: string; title: string; description: string }> };
+  cta: { eyebrow: string; title: string; description: string; text: string; link: string };
 };
 
 export type NavigationItemResponse = {
@@ -137,6 +202,14 @@ export type SiteSettingsResponse = {
   fax: string;
   email: string;
   address: string;
+  latitude: string | null;
+  longitude: string | null;
+  contact_section_eyebrow: string;
+  contact_section_title: string;
+  contact_section_description: string;
+  google_maps_url: string;
+  apple_maps_url: string;
+  yandex_maps_url: string;
   footer_title: string;
   footer_newsletter_title: string;
   footer_newsletter_placeholder: string;
@@ -158,6 +231,27 @@ export type SiteSettingsResponse = {
   header_copy: SiteHeaderCopyResponse;
   footer_copy: SiteFooterCopyResponse;
   not_found_copy: SiteNotFoundCopyResponse;
+};
+
+export type ProjectSectorResponse = {
+  id: number;
+  title: string;
+  headline: string;
+  description: string;
+  product_groups: string[];
+  image: ApiImage;
+  image_mobile: ApiImage;
+};
+
+export type ProjectsPageResponse = {
+  hero_eyebrow: string;
+  hero_title: string;
+  hero_description: string;
+  cta_eyebrow: string;
+  cta_title: string;
+  cta_description: string;
+  cta_text: string;
+  sectors: ProjectSectorResponse[];
 };
 
 export type BrandSummaryResponse = {

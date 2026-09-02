@@ -206,3 +206,22 @@
     display: none;
   }
 }
+
+/* Corporate Workwear two-card composition */
+.suw-custom-workwear__inner { display: block; }
+.suw-custom-workwear__intro { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr); column-gap: clamp(50px, 6vw, 110px); align-items: end; }
+.suw-custom-workwear__eyebrow { grid-column: 1 / -1; }
+.suw-custom-workwear__title { max-width: 980px; }
+.suw-custom-workwear__intro .suw-custom-workwear__description { margin: 0; }
+.suw-custom-workwear__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); margin-top: 72px; }
+.suw-custom-workwear__card { min-width: 0; }
+.suw-custom-workwear__card-visual { overflow: hidden; aspect-ratio: 4 / 3; background: var(--color-dark-surface-elevated); }
+.suw-custom-workwear__card .suw-custom-workwear__image { transition: transform .55s cubic-bezier(.22,.61,.36,1); }
+.suw-custom-workwear__card:hover .suw-custom-workwear__image { transform: scale(1.025); }
+.suw-custom-workwear__card-content { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; padding-top: 28px; }
+.suw-custom-workwear__card h3 { margin: 0; font-family: var(--font-active), sans-serif; font-size: clamp(28px, 2.4vw, 42px); font-weight: 650; letter-spacing: -.04em; }
+.suw-custom-workwear__card p { max-width: 680px; margin: 14px 0 0; color: color-mix(in srgb, var(--color-brand-primary) 72%, transparent); font-family: var(--font-active), sans-serif; font-size: 15px; line-height: 1.6; }
+.suw-custom-workwear__cta { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 18px; margin-top: 48px; padding: 0 22px; border: 1px solid var(--color-brand-primary); color: var(--color-brand-primary); font-family: var(--font-active), sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.suw-custom-workwear__cta:hover { background: var(--color-brand-primary); color: var(--color-brand-accent); }
+@media (max-width: 1000px) { .suw-custom-workwear__intro { grid-template-columns: 1fr; row-gap: 28px; } }
+@media (max-width: 767px) { .suw-custom-workwear__cards { grid-template-columns: 1fr; gap: 48px; margin-top: 48px; } .suw-custom-workwear__card-content { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; } }

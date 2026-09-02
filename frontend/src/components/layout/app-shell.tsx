@@ -45,6 +45,10 @@ function normalizeNavPath(href: string) {
   return pathname === "/" ? pathname : pathname.replace(/\/+$/, "");
 }
 
+function isVisibleSiteNavItem(href: string, isExternal?: boolean) {
+  return isExternalHref(href, isExternal) || normalizeNavPath(href) !== "/industries";
+}
+
 function getActiveNavHref(
   normalizedPath: string,
   headerNav: SiteSettingsResponse["header_nav"],
@@ -112,8 +116,11 @@ export function AppShell({
 }) {
   const pathname = usePathname() ?? "/";
   const normalized = stripLocalePrefix(pathname);
-  const activeHref = getActiveNavHref(normalized, siteSettings.header_nav);
-  const headerSource = siteSettings.header_nav.map((item) => ({
+  const visibleHeaderNav = siteSettings.header_nav.filter((item) =>
+    isVisibleSiteNavItem(item.url, item.is_external),
+  );
+  const activeHref = getActiveNavHref(normalized, visibleHeaderNav);
+  const headerSource = visibleHeaderNav.map((item) => ({
     href: item.url,
     isExternal: item.is_external,
     label: item.label,
@@ -128,11 +135,13 @@ export function AppShell({
   }));
   const alternateLocale = getAlternateLocale(locale);
   const localeHref = withLocalePath(alternateLocale, normalized);
-  const footerLinks = siteSettings.footer_nav.map((item) => ({
-    href: resolveAppHref(locale, item.url, item.is_external),
-    isExternal: item.is_external,
-    label: item.label,
-  }));
+  const footerLinks = siteSettings.footer_nav
+    .filter((item) => isVisibleSiteNavItem(item.url, item.is_external))
+    .map((item) => ({
+      href: resolveAppHref(locale, item.url, item.is_external),
+      isExternal: item.is_external,
+      label: item.label,
+    }));
   const footerContactItems = [
     {
       href: createPhoneHref(siteSettings.phone),
@@ -171,7 +180,6 @@ export function AppShell({
   const logoSrc =
     resolveCmsMediaUrl(siteSettings.logo) ??
     resolvePublicAssetPath("/images/suw-logo-hero.png");
-
   const galleryHeaderChrome =
     normalized === "/gallery" ||
     normalized.startsWith("/gallery/") ||
@@ -210,6 +218,13 @@ export function AppShell({
         locale={locale}
         localePrefix={`/${locale}`}
         logoSrc={logoSrc}
+        compactContact={{
+          address: siteSettings.address,
+          email: siteSettings.email,
+          latitude: siteSettings.latitude,
+          longitude: siteSettings.longitude,
+          phone: siteSettings.phone,
+        }}
         newsletterConsentLinkLabel={siteSettings.footer_newsletter_consent_link_text || undefined}
         newsletterConsentText={siteSettings.footer_newsletter_consent_text || undefined}
         newsletterErrorMessage={siteSettings.footer_copy?.newsletter_error_message || undefined}

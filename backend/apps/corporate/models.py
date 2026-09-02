@@ -7,6 +7,52 @@ from common.models import SEOModel, SortableModel
 
 
 class CorporatePage(SingletonModel, SEOModel):
+    hero_eyebrow_tr = models.CharField(max_length=120, blank=True)
+    hero_eyebrow_en = models.CharField(max_length=120, blank=True)
+    hero_title_tr = models.CharField(max_length=220, blank=True)
+    hero_title_en = models.CharField(max_length=220, blank=True)
+    hero_description_tr = models.TextField(blank=True)
+    hero_description_en = models.TextField(blank=True)
+
+    group_eyebrow_tr = models.CharField(max_length=120, blank=True)
+    group_eyebrow_en = models.CharField(max_length=120, blank=True)
+    group_title_tr = models.CharField(max_length=220, blank=True)
+    group_title_en = models.CharField(max_length=220, blank=True)
+    group_description_tr = models.TextField(blank=True)
+    group_description_en = models.TextField(blank=True)
+    group_supporting_label_tr = models.CharField(max_length=160, blank=True)
+    group_supporting_label_en = models.CharField(max_length=160, blank=True)
+    group_image = models.ImageField(upload_to=UniqueUploadTo("corporate/group/"), blank=True)
+    group_image_mobile = models.ImageField(upload_to=UniqueUploadTo("corporate/group/mobile/"), blank=True)
+
+    why_eyebrow_tr = models.CharField(max_length=120, blank=True)
+    why_eyebrow_en = models.CharField(max_length=120, blank=True)
+    why_title_tr = models.CharField(max_length=240, blank=True)
+    why_title_en = models.CharField(max_length=240, blank=True)
+    why_description_tr = models.TextField(blank=True)
+    why_description_en = models.TextField(blank=True)
+
+    experience_eyebrow_tr = models.CharField(max_length=120, blank=True)
+    experience_eyebrow_en = models.CharField(max_length=120, blank=True)
+    experience_title_tr = models.CharField(max_length=240, blank=True)
+    experience_title_en = models.CharField(max_length=240, blank=True)
+    experience_description_tr = models.TextField(blank=True)
+    experience_description_en = models.TextField(blank=True)
+
+    timeline_eyebrow_tr = models.CharField(max_length=120, blank=True)
+    timeline_eyebrow_en = models.CharField(max_length=120, blank=True)
+    timeline_title_tr = models.CharField(max_length=220, blank=True)
+    timeline_title_en = models.CharField(max_length=220, blank=True)
+
+    final_cta_eyebrow_tr = models.CharField(max_length=120, blank=True)
+    final_cta_eyebrow_en = models.CharField(max_length=120, blank=True)
+    final_cta_title_tr = models.CharField(max_length=220, blank=True)
+    final_cta_title_en = models.CharField(max_length=220, blank=True)
+    final_cta_description_tr = models.TextField(blank=True)
+    final_cta_description_en = models.TextField(blank=True)
+    final_cta_text_tr = models.CharField(max_length=100, blank=True)
+    final_cta_text_en = models.CharField(max_length=100, blank=True)
+    final_cta_link = models.CharField(max_length=200, blank=True, default="/projects")
     # Hero bölümü
     hero_image = models.ImageField(
         upload_to=UniqueUploadTo("corporate/hero/"),
@@ -57,7 +103,13 @@ class CorporatePage(SingletonModel, SEOModel):
 
 class CorporateHistoryItem(SortableModel):
     year = models.CharField(max_length=10, verbose_name=_("Yıl"))
+    year_tr = models.CharField(max_length=40, blank=True)
+    year_en = models.CharField(max_length=40, blank=True)
     description = models.TextField(verbose_name=_("Açıklama"))
+    title_tr = models.CharField(max_length=180, blank=True)
+    title_en = models.CharField(max_length=180, blank=True)
+    sort_order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
 
     class Meta(SortableModel.Meta):
         verbose_name = _("Tarihçe Öğesi")
@@ -65,3 +117,35 @@ class CorporateHistoryItem(SortableModel):
 
     def __str__(self):
         return self.year
+
+
+class WhySuwItem(models.Model):
+    title_tr = models.CharField(max_length=180)
+    title_en = models.CharField(max_length=180)
+    description_tr = models.TextField()
+    description_en = models.TextField()
+    sort_order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["sort_order", "id"]
+        verbose_name = "Neden SUW Öğesi"
+        verbose_name_plural = "Neden SUW"
+
+    def __str__(self): return self.title_tr
+
+
+class GroupExperienceItem(models.Model):
+    title_tr = models.CharField(max_length=180)
+    title_en = models.CharField(max_length=180)
+    description_tr = models.TextField()
+    description_en = models.TextField()
+    sort_order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["sort_order", "id"]
+        verbose_name = "ALK Group Deneyimi Öğesi"
+        verbose_name_plural = "ALK Group Deneyimi"
+
+    def __str__(self): return self.title_tr

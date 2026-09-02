@@ -1,0 +1,38 @@
+.page { background: #f3f3ef; color: #111; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(360px, .9fr); min-height: calc(100vh - 80px); padding: 130px clamp(24px, 4.5vw, 76px) 80px; gap: clamp(44px, 6vw, 108px); }
+.media { min-width: 0; }
+.mainImage { display: grid; width: 100%; aspect-ratio: 1 / .88; place-items: center; overflow: hidden; background: #e5e5e0; }
+.mainImage img { width: 100%; height: 100%; object-fit: contain; }
+.placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, transparent 49.8%, rgba(30,45,59,.08) 50%, transparent 50.2%), #e5e5e0; }
+.thumbs { display: flex; gap: 10px; overflow-x: auto; margin-top: 12px; padding-bottom: 4px; }
+.thumb { width: 82px; aspect-ratio: 1; flex: 0 0 auto; padding: 0; border: 1px solid transparent; background: #e5e5e0; cursor: pointer; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; }
+.thumbActive { border-color: var(--color-brand-primary); }
+.info { align-self: center; max-width: 600px; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; font: 700 10px/1.2 var(--font-active), sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.breadcrumb > * { color: #656560; text-decoration: none; }
+.breadcrumb > * + *::before { content: "/"; margin-right: 8px; color: rgba(17,17,17,.35); }
+.name { margin: 0; font: 700 clamp(48px, 6vw, 92px)/.98 var(--font-active), sans-serif; letter-spacing: -.05em; }
+.code { display: grid; gap: 7px; margin: 20px 0 0; font-family: var(--font-active), sans-serif; }
+.code span { color: #6b6b66; font-size: 9px; font-weight: 700; line-height: 1; letter-spacing: .12em; }
+.code strong { font-size: 13px; font-weight: 700; line-height: 1.2; letter-spacing: .08em; }
+.short { max-width: 54ch; margin: 28px 0 0; color: #565652; font: 500 16px/1.6 var(--font-active), sans-serif; }
+.facts { display: grid; gap: 18px; margin: 34px 0 0; padding: 26px 0; border-block: 1px solid rgba(17,17,17,.18); }
+.fact dt { margin-bottom: 7px; font: 700 10px/1 var(--font-active), sans-serif; letter-spacing: .12em; }
+.fact dd { margin: 0; color: #555550; font: 500 14px/1.55 var(--font-active), sans-serif; white-space: pre-line; }
+.sizeChips { display: flex; flex-wrap: wrap; gap: 7px; }
+.sizeChip { display: inline-grid; min-width: 36px; min-height: 32px; place-items: center; padding: 6px 9px; border: 1px solid rgba(17,17,17,.2); color: #333330; font-size: 11px; font-weight: 700; line-height: 1; }
+.featureList { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.featureList li { position: relative; padding-left: 14px; }
+.featureList li::before { position: absolute; top: 0; left: 0; content: "•"; color: var(--color-brand-primary); }
+.cta { display: inline-flex; align-items: center; gap: 18px; margin-top: 30px; padding: 18px 22px; background: var(--color-brand-accent); color: var(--color-brand-primary); font: 700 11px/1 var(--font-active), sans-serif; letter-spacing: .08em; text-decoration: none; }
+.cta:hover { background: var(--color-brand-primary); color: var(--color-brand-accent); }
+.details { padding: 90px clamp(24px, 4.5vw, 76px) 110px; background: #fff; }
+.detailsInner { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); max-width: 1440px; margin: 0 auto; gap: 64px 8vw; }
+.detailBlock h2, .gallery h2 { margin: 0 0 20px; font: 700 12px/1 var(--font-active), sans-serif; letter-spacing: .12em; }
+.detailBlock p { margin: 0; color: #555550; font: 500 15px/1.7 var(--font-active), sans-serif; white-space: pre-line; }
+.gallery { grid-column: 1 / -1; }
+.galleryGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.galleryGrid img { width: 100%; aspect-ratio: 1; object-fit: contain; background: #e5e5e0; }
+@media (max-width: 1024px) { .hero { grid-template-columns: minmax(0,1.1fr) minmax(320px,.9fr); gap: 44px; } .name { font-size: clamp(44px,7vw,70px); } }
+@media (max-width: 767px) { .hero { grid-template-columns: 1fr; min-height: auto; padding: 112px 20px 68px; gap: 40px; } .mainImage { aspect-ratio: 1; } .info { max-width: none; } .name { font-size: clamp(44px,14vw,64px); } .details { padding: 64px 20px 78px; } .detailsInner { grid-template-columns: 1fr; gap: 42px; } .gallery { grid-column: auto; } .galleryGrid { display: flex; overflow-x: auto; } .galleryGrid img { width: 78vw; flex: 0 0 auto; } }

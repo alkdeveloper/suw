@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import type { SupportedLocale } from "@/src/lib/locale";
 
 type ProcessStep = {
   id: string;
@@ -102,10 +103,20 @@ const sectionContent = {
   },
 };
 
-export function SuwProcessSection() {
+type SuwProcessSectionProps = {
+  eyebrow?: string;
+  intro?: string;
+  locale?: SupportedLocale;
+  steps?: ProcessStep[];
+  title?: string;
+};
+
+export function SuwProcessSection({ eyebrow, intro, locale: localeProp, steps, title }: SuwProcessSectionProps = {}) {
   const params = useParams();
-  const locale = params?.locale === "en" ? "en" : "tr";
+  const locale = localeProp || (params?.locale === "en" ? "en" : "tr");
   const content = sectionContent[locale];
+  const resolvedSteps = steps?.length ? steps : content.steps;
+  const resolvedTitle = title || `${content.titleLine1}\n${content.titleLine2}`;
 
   return (
     <section className="suw-process">
@@ -113,23 +124,21 @@ export function SuwProcessSection() {
         <header className="suw-process__heading">
           <div>
             <p className="suw-process__eyebrow">
-              {content.eyebrow}
+              {eyebrow || content.eyebrow}
             </p>
 
             <h2 className="suw-process__title">
-              {content.titleLine1}
-              <br />
-              {content.titleLine2}
+              {resolvedTitle.split(/\r?\n/).map((line, index) => <span key={`${line}-${index}`}>{index ? <br /> : null}{line}</span>)}
             </h2>
           </div>
 
           <p className="suw-process__intro">
-            {content.intro}
+            {intro || content.intro}
           </p>
         </header>
 
         <div className="suw-process__steps">
-          {content.steps.map((step) => (
+          {resolvedSteps.map((step) => (
             <article className="suw-process__step" key={step.id}>
               <div className="suw-process__step-top">
                 <span className="suw-process__number">

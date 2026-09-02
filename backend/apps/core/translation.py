@@ -1,5 +1,5 @@
 from modeltranslation.translator import TranslationOptions, register
-from .models import NavigationItem, SiteSettings
+from .models import NavigationItem, SiteContactSettings, SiteSettings
 
 
 @register(SiteSettings)
@@ -17,6 +17,9 @@ class SiteSettingsTranslationOptions(TranslationOptions):
         "footer_address_label",
         "copyright_text",
         "address",
+        "contact_section_eyebrow",
+        "contact_section_title",
+        "contact_section_description",
         # Header copy
         "header_home_aria_label",
         "header_desktop_nav_aria_label",
@@ -47,6 +50,11 @@ class SiteSettingsTranslationOptions(TranslationOptions):
         "meta_title",
         "meta_description",
     )
+
+
+@register(SiteContactSettings)
+class SiteContactSettingsTranslationOptions(TranslationOptions):
+    fields = ("contact_section_eyebrow", "contact_section_title", "contact_section_description")
 
 
 @register(NavigationItem)

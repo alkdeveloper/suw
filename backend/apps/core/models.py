@@ -28,6 +28,28 @@ class SiteSettings(SingletonModel, SEOModel):
     fax = models.CharField(max_length=30, blank=True, verbose_name=_("Faks"))
     email = models.EmailField(blank=True, verbose_name=_("E-posta"))
     address = models.TextField(blank=True, verbose_name=_("Adres"))
+    latitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        blank=True,
+        null=True,
+        verbose_name=_("Enlem"),
+    )
+    longitude = models.DecimalField(
+        max_digits=10,
+        decimal_places=6,
+        blank=True,
+        null=True,
+        verbose_name=_("Boylam"),
+    )
+
+    # Global footer üstü iletişim / konum bölümü
+    contact_section_eyebrow = models.CharField(max_length=100, blank=True, verbose_name=_("İletişim Bölümü Eyebrow"))
+    contact_section_title = models.CharField(max_length=200, blank=True, verbose_name=_("İletişim Bölümü Başlık"))
+    contact_section_description = models.TextField(blank=True, verbose_name=_("İletişim Bölümü Açıklama"))
+    google_maps_url = models.URLField(blank=True, verbose_name=_("Google Maps URL"))
+    apple_maps_url = models.URLField(blank=True, verbose_name=_("Apple Maps URL"))
+    yandex_maps_url = models.URLField(blank=True, verbose_name=_("Yandex Maps URL"))
 
     # Footer
     footer_title = models.CharField(max_length=200, blank=True, verbose_name=_("Footer Başlık"))
@@ -83,6 +105,13 @@ class SiteSettings(SingletonModel, SEOModel):
 
     def __str__(self):
         return "Site Ayarları"
+
+
+class SiteContactSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = _("İletişim ve Haritalar")
+        verbose_name_plural = _("İletişim ve Haritalar")
 
 
 class NavigationItem(SortableModel):

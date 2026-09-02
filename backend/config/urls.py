@@ -12,7 +12,7 @@ def health_check(request):
 
 def api_root(request):
     return JsonResponse({
-        "message": "ALK Group API",
+        "message": "SUW API",
         "endpoints": {
             "admin": "/admin/",
             "core": {
@@ -21,6 +21,7 @@ def api_root(request):
                 "metadata": "/api/core/metadata/?path=/",
             },
             "home": "/api/home/",
+            "products": "/api/products/",
             "corporate": "/api/corporate/",
             "brands": "/api/brands/",
             "gallery": "/api/gallery/",
@@ -43,6 +44,8 @@ urlpatterns = [
     # API
     path("api/core/", include("apps.core.urls")),
     path("api/home/", include("apps.home.urls")),
+    path("api/products/", include("apps.products.urls")),
+    path("api/projects/", include("apps.projects.urls")),
     path("api/corporate/", include("apps.corporate.urls")),
     path("api/brands/", include("apps.brands.urls")),
     path("api/companies/", include("apps.brands.companies_urls")),

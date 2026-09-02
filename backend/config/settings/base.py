@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     # Yerel app'ler
     "apps.core",
     "apps.home",
+    "apps.products",
+    "apps.projects",
     "apps.corporate",
     "apps.brands",
     "apps.gallery",
@@ -161,10 +163,10 @@ from django.urls import reverse_lazy
 from django.templatetags.static import static
 
 UNFOLD = {
-    "SITE_TITLE": "ALK Group",
-    "SITE_HEADER": "ALK Group",
+    "SITE_TITLE": "SUW Admin",
+    "SITE_HEADER": "SUW Yönetim Paneli",
     "SITE_URL": "/",
-    "SITE_LOGO": lambda request: static("admin/img/alk-logo.png"),
+    "SITE_LOGO": None,
     # Favicon — frontend ile aynı (frontend/public/alk_favicon.png kopyası)
     "SITE_FAVICONS": [
         {
@@ -319,9 +321,79 @@ UNFOLD = {
     },
 }
 
+# SUW yönetiminde yalnız aktif site alanlarını göster. Legacy app/model tabloları
+# korunur; sadece admin navigasyonundan çıkarılır.
+UNFOLD["SIDEBAR"]["navigation"] = [
+    {
+        "title": "Ana Sayfa",
+        "separator": False,
+        "items": [
+            {"title": "Hero ve SEO", "icon": "home", "link": reverse_lazy("admin:home_homepage_changelist"), "permission": is_superuser},
+            {"title": "Ürün Kategorileri Bölümü", "icon": "category", "link": reverse_lazy("admin:home_homeproductcategoriessettings_changelist"), "permission": is_superuser},
+            {"title": "Katalog Vitrini", "icon": "view_carousel", "link": reverse_lazy("admin:home_homeworkessentialssettings_changelist"), "permission": is_superuser},
+            {"title": "Teknik Performans", "icon": "engineering", "link": reverse_lazy("admin:home_hometechnicalperformancesettings_changelist"), "permission": is_superuser},
+            {"title": "Üretim Bilgileri", "icon": "precision_manufacturing", "link": reverse_lazy("admin:home_homeproductioninsightssettings_changelist"), "permission": is_superuser},
+            {"title": "Kurumsal İş Giyimi", "icon": "checkroom", "link": reverse_lazy("admin:home_homecorporateworkwearsettings_changelist"), "permission": is_superuser},
+            {"title": "Fikirden Teslimata", "icon": "account_tree", "link": reverse_lazy("admin:home_homeprocesssettings_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
+        "title": "Ürün Yönetimi",
+        "separator": True,
+          "items": [
+              {"title": "Ürünler Sayfa Ayarları", "icon": "web", "link": reverse_lazy("admin:products_productpagesettings_changelist"), "permission": is_superuser},
+              {"title": "Ürün Grupları", "icon": "dashboard", "link": reverse_lazy("admin:products_productgroup_changelist"), "permission": is_superuser},
+            {"title": "Kategoriler", "icon": "category", "link": reverse_lazy("admin:products_productcategory_changelist"), "permission": is_superuser},
+            {"title": "Ürünler", "icon": "inventory_2", "link": reverse_lazy("admin:products_product_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
+        "title": "İletişim",
+        "separator": True,
+        "items": [
+            {"title": "Sayfa Ayarları", "icon": "contact_mail", "link": reverse_lazy("admin:contact_contactpage_changelist"), "permission": is_superuser},
+            {"title": "Mesajlar", "icon": "inbox", "link": reverse_lazy("admin:contact_contactmessage_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
+        "title": "Projeler",
+        "separator": True,
+        "items": [
+            {"title": "Sayfa Ayarları", "icon": "web", "link": reverse_lazy("admin:projects_projectspagesettings_changelist"), "permission": is_superuser},
+            {"title": "Sektör Projeleri", "icon": "business_center", "link": reverse_lazy("admin:projects_projectsector_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
+        "title": "Hakkımızda",
+        "separator": True,
+        "items": [
+            {"title": "Sayfa Ayarları", "icon": "info", "link": reverse_lazy("admin:corporate_corporatepage_changelist"), "permission": is_superuser},
+            {"title": "Neden SUW", "icon": "verified", "link": reverse_lazy("admin:corporate_whysuwitem_changelist"), "permission": is_superuser},
+            {"title": "ALK Group Deneyimi", "icon": "factory", "link": reverse_lazy("admin:corporate_groupexperienceitem_changelist"), "permission": is_superuser},
+            {"title": "Tarihçe", "icon": "timeline", "link": reverse_lazy("admin:corporate_corporatehistoryitem_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
+        "title": "Site Ayarları",
+        "separator": True,
+        "items": [
+            {"title": "Logo, Menü ve Footer", "icon": "tune", "link": reverse_lazy("admin:core_sitesettings_changelist"), "permission": is_superuser},
+            {"title": "İletişim ve Haritalar", "icon": "location_on", "link": reverse_lazy("admin:core_sitecontactsettings_changelist"), "permission": is_superuser},
+            {"title": "Bülten Aboneleri", "icon": "mail", "link": reverse_lazy("admin:core_newslettersubscriber_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
+        "title": "Yönetim",
+        "separator": True,
+        "items": [
+            {"title": "Kullanıcılar", "icon": "people", "link": reverse_lazy("admin:auth_user_changelist"), "permission": is_superuser},
+        ],
+    },
+]
+
 # drf-spectacular
 SPECTACULAR_SETTINGS = {
-    "TITLE": "ALK API",
+    "TITLE": "SUW API",
     "VERSION": "v1",
     "SERVE_INCLUDE_SCHEMA": False,
 }

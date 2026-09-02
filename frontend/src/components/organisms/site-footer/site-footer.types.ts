@@ -18,11 +18,20 @@ export type FooterSocialLink = {
   label: string;
 };
 
+export type FooterCompactContact = {
+  address?: string;
+  email?: string;
+  latitude?: string | null;
+  longitude?: string | null;
+  phone?: string;
+};
+
 export type SiteFooterProps = {
   address?: string;
   addressLabel?: string;
   backToTopAriaLabel?: string;
   className?: string;
+  compactContact?: FooterCompactContact;
   contactItems?: FooterContactItem[];
   contactTitle?: string;
   copyrightText?: string;

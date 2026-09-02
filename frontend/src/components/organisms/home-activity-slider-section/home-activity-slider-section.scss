@@ -257,3 +257,15 @@
     flex-basis: 44px;
   }
 }
+.home-activity-slider__card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.home-activity-slider__card-description {
+  max-width: 28ch;
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+}

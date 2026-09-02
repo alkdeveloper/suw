@@ -1,0 +1,37 @@
+from django.db import migrations, models
+
+
+def seed(apps, schema_editor):
+    Page = apps.get_model("corporate", "CorporatePage")
+    Why = apps.get_model("corporate", "WhySuwItem")
+    Experience = apps.get_model("corporate", "GroupExperienceItem")
+    History = apps.get_model("corporate", "CorporateHistoryItem")
+    page, _ = Page.objects.get_or_create(id=1)
+    values = {
+        "hero_eyebrow_tr":"SUW HAKKINDA","hero_eyebrow_en":"ABOUT SUW","hero_title_tr":"DENEYİM ÜZERİNE\nKURULU.","hero_title_en":"BUILT ON\nEXPERIENCE.",
+        "hero_description_tr":"SUW, ALK Group'un tekstil ve üretim alanındaki köklü deneyimi üzerine kurulan profesyonel iş giyimi markasıdır. Kurumsal kimlik, çalışan konforu ve kullanım koşullarını bir araya getiren çözümler geliştirir.","hero_description_en":"SUW is a professional workwear brand built on ALK Group's established expertise in textiles and manufacturing, creating solutions that unite corporate identity, employee comfort and working conditions.",
+        "group_eyebrow_tr":"ALK GROUP BÜNYESİNDE","group_eyebrow_en":"PART OF ALK GROUP","group_title_tr":"1978'DEN GELEN\nÜRETİM DENEYİMİ.","group_title_en":"MANUFACTURING EXPERIENCE\nSINCE 1978.","group_description_tr":"SUW'ın arkasında, temelleri 1978 yılında İstanbul'da atılan ALK Group'un tekstil üretimi, ürün geliştirme ve uluslararası operasyon deneyimi bulunuyor. Yıllar içinde gelişen üretim altyapısı ve farklı pazarlardaki tecrübe, bugün SUW'ın kurumsal iş giyimi çözümlerinin temelini oluşturuyor.","group_description_en":"Behind SUW stands ALK Group's experience in textile manufacturing, product development and international operations, founded in Istanbul in 1978. Its evolving production infrastructure and market expertise form the foundation of SUW's corporate workwear solutions today.","group_supporting_label_tr":"ALK GROUP BÜNYESİNDE BİR MARKA","group_supporting_label_en":"A BRAND WITHIN ALK GROUP",
+        "why_eyebrow_tr":"NEDEN SUW?","why_eyebrow_en":"WHY SUW?","why_title_tr":"İŞ GİYİMİNİ\nSADECE ÜRÜN OLARAK GÖRMÜYORUZ.","why_title_en":"WE SEE WORKWEAR AS\nMORE THAN A PRODUCT.","why_description_tr":"Kurumsal kimlikten çalışma koşullarına kadar tüm ihtiyaçları birlikte değerlendirerek uzun süreli kullanım için iş giyimi çözümleri geliştiriyoruz.","why_description_en":"We develop workwear for long-term use by considering every need, from corporate identity to working conditions.",
+        "experience_eyebrow_tr":"ALK GROUP DENEYİMİ","experience_eyebrow_en":"ALK GROUP EXPERIENCE","experience_title_tr":"BİR MARKADAN\nDAHA FAZLASI.","experience_title_en":"MORE THAN\nA BRAND.","experience_description_tr":"SUW, ürün geliştirmeden üretime, özel uygulamalardan operasyon yönetimine kadar ALK Group'un tekstil alanındaki deneyiminden güç alır.","experience_description_en":"From product development and manufacturing to custom applications and operations management, SUW draws strength from ALK Group's textile expertise.",
+        "timeline_eyebrow_tr":"KISA TARİHÇE","timeline_eyebrow_en":"A BRIEF HISTORY","timeline_title_tr":"DENEYİMDEN\nUZMANLIĞA.","timeline_title_en":"FROM EXPERIENCE\nTO EXPERTISE.",
+        "final_cta_eyebrow_tr":"SUW","final_cta_eyebrow_en":"SUW","final_cta_title_tr":"DENEYİMİ\nSAHAYA TAŞIYORUZ.","final_cta_title_en":"BRINGING EXPERIENCE\nTO THE FIELD.","final_cta_description_tr":"Üretim bilgisini, kurumsal kimliği ve günlük kullanım ihtiyaçlarını aynı ürün üzerinde buluşturuyoruz. Amacımız yalnızca iş kıyafeti sunmak değil, ekiplerinizi temsil eden sürdürülebilir bir giyim sistemi geliştirmek.","final_cta_description_en":"We bring manufacturing knowledge, corporate identity and everyday needs together in each product. Our aim is not simply to supply workwear, but to build a sustainable clothing system that represents your teams.","final_cta_text_tr":"PROJELERİ İNCELE","final_cta_text_en":"VIEW PROJECTS","final_cta_link":"/projects",
+    }
+    for key, value in values.items():
+        if not getattr(page, key): setattr(page, key, value)
+    page.save()
+    why = [("KURUMSAL KİMLİK","CORPORATE IDENTITY","Markanın renklerini, uygulamalarını ve görsel dilini ekiplerin kullandığı ürünlere taşırız.","We carry the brand's colours, applications and visual language into the products used by its teams."),("KULLANIM ODAKLI TASARIM","USE-FOCUSED DESIGN","Çalışma ortamı, hareket ihtiyacı ve günlük kullanım koşulları ürün seçiminde belirleyicidir.","The working environment, movement requirements and daily conditions guide product selection."),("ÜRETİM & KALİTE","MANUFACTURING & QUALITY","Ürün seçimi, uygulama, üretim ve kalite kontrol süreçlerini bütüncül şekilde ele alırız.","We approach product selection, application, manufacturing and quality control as one integrated process."),("SÜREKLİ DESTEK","CONTINUOUS SUPPORT","Tek seferlik ürün tedariği yerine, kurumların devam eden ihtiyaçlarına cevap verebilecek iş birlikleri hedefleriz.","Rather than one-off supply, we build partnerships that respond to organisations' ongoing needs.")]
+    exp = [("ÜRETİM & ÜRÜN GELİŞTİRME","MANUFACTURING & PRODUCT DEVELOPMENT","Tekstil üretim deneyimi ve farklı ürün gruplarındaki teknik bilgi.","Textile manufacturing experience and technical knowledge across diverse product groups."),("ÖZEL ÜRETİM","CUSTOM MANUFACTURING","Kuruma, projeye ve kullanım alanına göre özelleştirilebilir çözümler.","Solutions tailored to the organisation, project and intended use."),("TEDARİK & OPERASYON","SUPPLY & OPERATIONS","Farklı ürün ihtiyaçlarını yönetebilen tedarik ve operasyon yapısı.","A supply and operations structure capable of managing varied product requirements."),("ULUSLARARASI DENEYİM","INTERNATIONAL EXPERIENCE","Farklı pazarlarda edinilen üretim, satış ve lojistik tecrübesi.","Manufacturing, sales and logistics expertise gained across different markets.")]
+    for Model, rows in ((Why, why), (Experience, exp)):
+        for i, row in enumerate(rows, 1): Model.objects.update_or_create(sort_order=i, defaults={"title_tr":row[0],"title_en":row[1],"description_tr":row[2],"description_en":row[3],"is_active":True})
+    history = [("1978","1978","","","Tekstil üretim yolculuğunun başlangıcı.","The beginning of the textile manufacturing journey."),("2000'LER","2000s","","","Promosyon tekstili ve özel üretim alanında genişleme.","Expansion into promotional textiles and custom manufacturing."),("2010'LAR","2010s","","","Uluslararası tedarik ve operasyon yapısının güçlenmesi.","Strengthening of international supply and operations."),("SUW","SUW","","","Kurumsal iş giyimi alanındaki deneyimin ayrı bir marka altında yapılandırılması.","Corporate workwear expertise structured under a dedicated brand.")]
+    if not History.objects.exists():
+        for i, row in enumerate(history, 1): History.objects.create(year=row[0],year_tr=row[0],year_en=row[1],title_tr=row[2],title_en=row[3],description=row[4],description_tr=row[4],description_en=row[5],sort_order=i,is_active=True,order=i-1)
+
+
+class Migration(migrations.Migration):
+    dependencies = [("corporate", "0006_groupexperienceitem_whysuwitem_and_more")]
+    operations = [
+        migrations.AddField(model_name="corporatehistoryitem", name="year_tr", field=models.CharField(blank=True, max_length=40)),
+        migrations.AddField(model_name="corporatehistoryitem", name="year_en", field=models.CharField(blank=True, max_length=40)),
+        migrations.RunPython(seed, migrations.RunPython.noop),
+    ]

@@ -1,8 +1,11 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 import { resolvePublicAssetPath } from "@/src/lib/assets";
+import type { SupportedLocale } from "@/src/lib/locale";
+import { withLocalePath } from "@/src/lib/locale";
 
 type SolutionItem = {
   id: string;
@@ -72,7 +75,45 @@ const sectionContent = {
   },
 };
 
-export function SuwCustomWorkwearSection() {
+type CorporateWorkwearCard = SolutionItem & { imageSrc?: string };
+
+type SuwCustomWorkwearSectionProps = {
+  ctaHref?: string;
+  ctaLabel?: string;
+  description: string;
+  eyebrow: string;
+  items: CorporateWorkwearCard[];
+  locale: SupportedLocale;
+  title: string;
+};
+
+const fallbackImages = ["/images/mock/custom-workwear.jpg", "/images/mock/workwear.jpg"];
+
+export function SuwCustomWorkwearSection({ ctaHref, ctaLabel, description, eyebrow, items, locale, title }: SuwCustomWorkwearSectionProps) {
+  const resolvedCtaHref = ctaHref ? (/^(?:https?:)?\/\//.test(ctaHref) ? ctaHref : withLocalePath(locale, ctaHref)) : "";
+  return (
+    <section className="suw-custom-workwear">
+      <div className="suw-custom-workwear__inner">
+        <header className="suw-custom-workwear__intro">
+          <p className="suw-custom-workwear__eyebrow">{eyebrow}</p>
+          <h2 className="suw-custom-workwear__title">{title}</h2>
+          <p className="suw-custom-workwear__description">{description}</p>
+        </header>
+        <div className="suw-custom-workwear__cards">
+          {items.map((item, index) => (
+            <article className="suw-custom-workwear__card" key={item.id}>
+              <div className="suw-custom-workwear__card-visual"><img alt={item.title} className="suw-custom-workwear__image" src={item.imageSrc || resolvePublicAssetPath(fallbackImages[index] || fallbackImages[0])} /></div>
+              <div className="suw-custom-workwear__card-content"><span className="suw-custom-workwear__number">{item.id}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></div>
+            </article>
+          ))}
+        </div>
+        {ctaLabel && resolvedCtaHref ? <Link className="suw-custom-workwear__cta" href={resolvedCtaHref}><span>{ctaLabel}</span><span aria-hidden="true">↗</span></Link> : null}
+      </div>
+    </section>
+  );
+}
+
+function LegacySuwCustomWorkwearSection() {
   const params = useParams();
   const locale = params?.locale === "en" ? "en" : "tr";
   const content = sectionContent[locale];

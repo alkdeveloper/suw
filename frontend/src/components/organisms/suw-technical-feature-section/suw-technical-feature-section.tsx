@@ -1,8 +1,10 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import Link from "next/link";
 
 import { resolvePublicAssetPath } from "@/src/lib/assets";
+import type { SupportedLocale } from "@/src/lib/locale";
+import { withLocalePath } from "@/src/lib/locale";
 
 type TechnicalFeature = {
   id: string;
@@ -73,19 +75,34 @@ const sectionContent = {
   },
 };
 
-export function SuwTechnicalFeatureSection() {
-  const params = useParams();
-  const locale = params?.locale === "en" ? "en" : "tr";
+type SuwTechnicalFeatureSectionProps = {
+  ctaHref?: string;
+  ctaLabel?: string;
+  description?: string;
+  eyebrow?: string;
+  features?: TechnicalFeature[];
+  imageSrc?: string;
+  locale: SupportedLocale;
+  title?: string;
+};
+
+export function SuwTechnicalFeatureSection({ ctaHref, ctaLabel, description, eyebrow, features, imageSrc, locale, title }: SuwTechnicalFeatureSectionProps) {
   const content = sectionContent[locale];
+  const resolvedFeatures = features?.length ? features : content.features;
+  const resolvedTitle = title || `${content.titleLine1}\n${content.titleLine2}`;
+  const titleLines = resolvedTitle.split(/\r?\n/).filter(Boolean);
+  const resolvedCtaHref = ctaHref
+    ? (/^(?:https?:)?\/\//.test(ctaHref) ? ctaHref : withLocalePath(locale, ctaHref))
+    : "";
 
   return (
     <section className="suw-technical-feature">
       <div className="suw-technical-feature__inner">
         <div className="suw-technical-feature__visual">
           <img
-            alt={content.imageAlt}
+            alt={title || content.imageAlt}
             className="suw-technical-feature__image"
-            src={resolvePublicAssetPath("/images/mock/technical-feature.jpg")}
+            src={imageSrc || resolvePublicAssetPath("/images/mock/technical-feature.jpg")}
           />
 
           <div className="suw-technical-feature__marker suw-technical-feature__marker--one">
@@ -99,21 +116,19 @@ export function SuwTechnicalFeatureSection() {
 
         <div className="suw-technical-feature__content">
           <p className="suw-technical-feature__eyebrow">
-            {content.eyebrow}
+            {eyebrow || content.eyebrow}
           </p>
 
           <h2 className="suw-technical-feature__title">
-            {content.titleLine1}
-            <br />
-            {content.titleLine2}
+            {titleLines.map((line, index) => <span key={`${line}-${index}`}>{index ? <br /> : null}{line}</span>)}
           </h2>
 
           <p className="suw-technical-feature__description">
-            {content.description}
+            {description || content.description}
           </p>
 
           <div className="suw-technical-feature__features">
-            {content.features.map((feature) => (
+            {resolvedFeatures.map((feature) => (
               <div
                 className="suw-technical-feature__feature"
                 key={feature.id}
@@ -135,6 +150,13 @@ export function SuwTechnicalFeatureSection() {
                 </span>
               </div>
             ))}
+            {ctaLabel && resolvedCtaHref ? (
+              <Link className="suw-technical-feature__feature" href={resolvedCtaHref}>
+                <span className="suw-technical-feature__number" />
+                <div><h3>{ctaLabel}</h3></div>
+                <span aria-hidden="true" className="suw-technical-feature__arrow">↗</span>
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>

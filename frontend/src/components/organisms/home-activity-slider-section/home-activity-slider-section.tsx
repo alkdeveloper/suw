@@ -1,15 +1,19 @@
 import { resolveAssetUrl } from "@/src/lib/assets";
+import Link from "next/link";
 
 type HomeActivityItem = {
   id: string;
   imageSrc?: string;
   label: string;
   imageAlt: string;
+  description?: string;
+  href?: string;
 };
 
 type HomeActivitySliderSectionProps = {
   eyebrow?: string;
   title?: string;
+  description?: string;
   locale?: "tr" | "en";
   items?: HomeActivityItem[];
 };
@@ -17,6 +21,7 @@ type HomeActivitySliderSectionProps = {
 export function HomeActivitySliderSection({
   eyebrow,
   title,
+  description,
   locale = "tr",
   items = [],
 }: HomeActivitySliderSectionProps) {
@@ -112,7 +117,7 @@ export function HomeActivitySliderSection({
           </div>
 
           <p className="home-activity-slider__intro">
-            {content.intro}
+            {description || content.intro}
           </p>
         </header>
 
@@ -139,9 +144,10 @@ export function HomeActivitySliderSection({
                 </span>
 
                 <div className="home-activity-slider__card-bottom">
-                  <h3 className="home-activity-slider__label">
-                    {item.label.replace(/\n/g, "\n")}
-                  </h3>
+                  <div>
+                    <h3 className="home-activity-slider__label">{item.label}</h3>
+                    {item.description ? <p className="home-activity-slider__card-description">{item.description}</p> : null}
+                  </div>
 
                   <span
                     aria-hidden="true"
@@ -151,6 +157,7 @@ export function HomeActivitySliderSection({
                   </span>
                 </div>
               </div>
+              {item.href ? <Link aria-label={item.label} className="home-activity-slider__card-link" href={item.href} /> : null}
             </article>
           ))}
         </div>

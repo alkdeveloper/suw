@@ -52,6 +52,13 @@
   display: block;
 }
 
+.description {
+  max-width: 660px;
+  margin: 34px 0 0;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+}
+
 @media (max-width: 1024px) {
   .hero {
     padding-top: 150px;

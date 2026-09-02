@@ -231,6 +231,7 @@
   }
 
   .home-hero__background {
+    background-image: var(--home-hero-bg-mobile, var(--home-hero-bg));
     background-position: 66% center;
   }
 
