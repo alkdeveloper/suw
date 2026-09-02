@@ -217,7 +217,12 @@
 .suw-contact-form__feedback {
   grid-column: 1 / -1;
   margin: 24px 0 0;
+  padding: 14px 16px;
+  border-left: 3px solid currentColor;
+  background: rgba(255, 255, 255, 0.52);
   font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .suw-contact-form__feedback--error {

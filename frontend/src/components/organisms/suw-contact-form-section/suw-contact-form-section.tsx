@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { createAPI, getApiErrorMessage } from "@/src/lib/api";
+import { createAPI } from "@/src/lib/api";
 import { cn } from "@/src/lib/cn";
 import { LEGAL_PAGE_PATHS } from "@/src/lib/legal";
 import { DEFAULT_LOCALE } from "@/src/lib/locale";
@@ -38,8 +38,8 @@ export function SuwContactFormSection({
         privacyNotice: "Gizlilik Bildirimi",
         submit: "MESAJI GÖNDER",
         submitting: "GÖNDERİLİYOR...",
-        success: "Mesajınız alınmıştır.",
-        error: "Bir sorun oluştu. Lütfen tekrar deneyin.",
+        success: "Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.",
+        error: "Mesajınız gönderilemedi. Lütfen tekrar deneyin.",
       }
     : {
         eyebrow: "GET IN TOUCH",
@@ -56,8 +56,8 @@ export function SuwContactFormSection({
         privacyNotice: "Privacy Notice",
         submit: "SEND MESSAGE",
         submitting: "SENDING...",
-        success: "Your message has been received.",
-        error: "Something went wrong. Please try again.",
+        success: "Your message has been sent successfully. We will get back to you as soon as possible.",
+        error: "Your message could not be sent. Please try again.",
       };
 
   const [formState, setFormState] = useState({
@@ -81,6 +81,10 @@ export function SuwContactFormSection({
   ) {
     event.preventDefault();
 
+    if (status === "submitting") {
+      return;
+    }
+
     setStatus("submitting");
     setFeedbackMessage("");
 
@@ -97,10 +101,7 @@ export function SuwContactFormSection({
 
       setStatus("success");
 
-      setFeedbackMessage(
-        copy?.feedbackSuccessMessage ??
-          fallbackCopy.success,
-      );
+      setFeedbackMessage(fallbackCopy.success);
 
       setFormState({
         firstName: "",
@@ -112,15 +113,9 @@ export function SuwContactFormSection({
         kvkkAccepted: false,
       });
     } catch (error) {
+      console.error("Contact form submission failed", error);
       setStatus("error");
-
-      setFeedbackMessage(
-        getApiErrorMessage(
-          error,
-          copy?.feedbackErrorMessage ??
-            fallbackCopy.error,
-        ),
-      );
+      setFeedbackMessage(fallbackCopy.error);
     }
   }
 
@@ -354,6 +349,7 @@ export function SuwContactFormSection({
               {feedbackMessage ? (
                 <p
                   aria-live="polite"
+                  role={status === "error" ? "alert" : "status"}
                   className={cn(
                     "suw-contact-form__feedback",
                     status === "error" &&

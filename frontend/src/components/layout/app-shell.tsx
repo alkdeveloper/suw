@@ -15,6 +15,7 @@ import {
 } from "@/src/lib/locale";
 
 const LOCALE_PREFIXES = new Set(["tr", "en"]);
+const HIDDEN_PUBLIC_NAV_PATHS = new Set(["/industries", "/solutions"]);
 
 function stripLocalePrefix(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
@@ -46,7 +47,10 @@ function normalizeNavPath(href: string) {
 }
 
 function isVisibleSiteNavItem(href: string, isExternal?: boolean) {
-  return isExternalHref(href, isExternal) || normalizeNavPath(href) !== "/industries";
+  return (
+    isExternalHref(href, isExternal) ||
+    !HIDDEN_PUBLIC_NAV_PATHS.has(normalizeNavPath(href))
+  );
 }
 
 function getActiveNavHref(

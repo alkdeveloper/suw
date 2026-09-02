@@ -48,7 +48,6 @@ const footerContent = {
     navigation: [
       { label: "ANA SAYFA", href: "/" },
       { label: "ÜRÜNLER", href: "/products" },
-      { label: "ÇÖZÜMLER", href: "/solutions" },
       { label: "PROJELER", href: "/projects" },
       { label: "HAKKIMIZDA", href: "/about" },
       { label: "İLETİŞİM", href: "/contact" },
@@ -74,7 +73,6 @@ const footerContent = {
     navigation: [
       { label: "HOME", href: "/" },
       { label: "PRODUCTS", href: "/products" },
-      { label: "SOLUTIONS", href: "/solutions" },
       { label: "PROJECTS", href: "/projects" },
       { label: "ABOUT", href: "/about" },
       { label: "CONTACT", href: "/contact" },
