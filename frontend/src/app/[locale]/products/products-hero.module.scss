@@ -18,7 +18,11 @@
 .title { margin: 0; font-family: var(--font-active), sans-serif; font-weight: 700; letter-spacing: -0.02em; }
 .description { max-width: 620px; margin: 28px 0 0; font: 500 clamp(15px, 1.2vw, 18px)/1.55 var(--font-active), sans-serif; }
 
+@media (max-width: 1023px) {
+  .hero { min-height: 0; padding-top: 120px; padding-bottom: 48px; }
+}
+
 @media (max-width: 767px) {
-  .hero { min-height: 58vh; padding: 130px 20px 64px; background-image: var(--hero-image-mobile, var(--hero-image)); }
+  .hero { padding: 112px 20px 40px; background-image: var(--hero-image-mobile, var(--hero-image)); }
   .content { max-width: 100%; }
 }

@@ -101,8 +101,8 @@ export function SuwProductionInsightsSection({ eyebrow, title, description, item
                   aria-label={`${item.title} — ${isFlipped ? content.showFront : content.showDetail}`}
                   aria-pressed={isFlipped}
                   className="suw-production-insights__flip-button"
-                  onClick={(event) => {
-                    const hasDesktopHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+                  onClick={() => {
+                    const hasDesktopHover = window.matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)").matches;
                     if (!hasDesktopHover) toggleCard(item.id);
                   }}
                   onKeyDown={(event) => handleKeyDown(event, item.id)}

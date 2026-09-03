@@ -155,13 +155,19 @@
   }
 }
 
+@media (max-width: 1023px) {
+  .suw-technical-feature__inner { min-height: 0; }
+  .suw-technical-feature__visual { min-height: 0; height: clamp(320px, 55vw, 480px); }
+  .suw-technical-feature__content { padding-block: 56px; }
+}
+
 @media (max-width: 767px) {
   .suw-technical-feature__visual {
-    min-height: 520px;
+    min-height: 0;
   }
 
   .suw-technical-feature__content {
-    padding: 70px 20px 80px;
+    padding: 48px 20px 56px;
   }
 
   .suw-technical-feature__title {

@@ -227,7 +227,7 @@
 
 @media (max-width: 767px) {
   .home-hero {
-    min-height: 100svh;
+    min-height: min(100svh, 740px);
   }
 
   .home-hero__background {
@@ -245,12 +245,12 @@
   }
 
   .home-hero__inner {
-    min-height: 100svh;
-    padding: 128px 20px 90px;
+    min-height: min(100svh, 740px);
+    padding: 112px 20px 48px;
   }
 
   .home-hero__content {
-    min-height: calc(100svh - 240px);
+    min-height: calc(min(100svh, 740px) - 160px);
     justify-content: flex-end;
   }
 

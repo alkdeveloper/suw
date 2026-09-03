@@ -252,3 +252,31 @@
 .site-header__mobile-link--active {
   background: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
 }
+
+@media (max-width: 1023px) {
+  .site-header__container {
+    padding-top: env(safe-area-inset-top, 0px);
+    min-height: calc(78px + env(safe-area-inset-top, 0px));
+  }
+
+  .site-header__mobile-panel {
+    position: fixed;
+    inset: calc(78px + env(safe-area-inset-top, 0px)) 0 0;
+    height: calc(100dvh - 78px - env(safe-area-inset-top, 0px));
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    visibility: hidden;
+    pointer-events: none;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    opacity: 1;
+    transition: none;
+  }
+
+  .site-header__mobile-panel--open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .site-header__mobile-link { font-weight: 600; }
+}

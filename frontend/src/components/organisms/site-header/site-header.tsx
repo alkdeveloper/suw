@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { Container } from "@/src/components/atoms/container";
 import { cn } from "@/src/lib/cn";
@@ -89,6 +90,10 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelId = useId();
+  const pathname = usePathname();
   const [resolvedLogoSrc, setResolvedLogoSrc] = useState(
     logoSrc || HEADER_LOGO_FALLBACK,
   );
@@ -96,6 +101,10 @@ export function SiteHeader({
   useEffect(() => {
     setResolvedLogoSrc(logoSrc || HEADER_LOGO_FALLBACK);
   }, [logoSrc]);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,23 +127,64 @@ export function SiteHeader({
       return;
     }
 
+    const body = document.body;
+    const root = document.documentElement;
+    const previousRootOverflow = root.style.overflowY;
+    const scrollY = window.scrollY;
+    const previous = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+    };
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
       }
+      if (event.key === "Tab") {
+        const links = Array.from(headerRef.current?.querySelectorAll<HTMLElement>("a[href], button") ?? [])
+          .filter((element) => element.getClientRects().length > 0);
+        const first = links[0];
+        const last = links[links.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setIsMobileMenuOpen(false);
     };
 
-    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) root.style.overflowY = "scroll";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
     window.addEventListener("keydown", handleEscape);
+    desktop.addEventListener("change", closeOnDesktop);
 
     return () => {
-      document.body.style.overflow = "";
+      Object.assign(body.style, previous);
+      root.style.overflowY = previousRootOverflow;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, scrollY);
+      root.style.scrollBehavior = previousScrollBehavior;
+      menuButtonRef.current?.focus({ preventScroll: true });
       window.removeEventListener("keydown", handleEscape);
+      desktop.removeEventListener("change", closeOnDesktop);
     };
   }, [isMobileMenuOpen]);
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "site-header",
         isScrolled && "site-header--scrolled-border",
@@ -212,6 +262,8 @@ export function SiteHeader({
           />
 
           <button
+            ref={menuButtonRef}
+            aria-controls={mobilePanelId}
             aria-expanded={isMobileMenuOpen}
             aria-label={mobileMenuAriaLabel}
             className="site-header__menu-button"
@@ -248,6 +300,8 @@ export function SiteHeader({
       </Container>
 
       <div
+        id={mobilePanelId}
+        inert={!isMobileMenuOpen}
         className={cn(
           "site-header__mobile-panel",
           isMobileMenuOpen && "site-header__mobile-panel--open",
