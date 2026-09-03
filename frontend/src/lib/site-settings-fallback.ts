@@ -9,7 +9,7 @@ export function getOfflineSiteSettings(
   locale: "tr" | "en" = "tr",
 ): SiteSettingsResponse {
   return {
-    font_family: "dm_sans",
+    font_family: "krub",
     logo: resolvePublicAssetPath("/images/suw-logo-hero.png"),
     phone: "",
     fax: "",

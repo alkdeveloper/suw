@@ -30,7 +30,8 @@ body {
   min-width: 320px;
   background: #ffffff;
   color: #0b1220;
-  font-family: var(--font-active, var(--font-dm-sans)), sans-serif;
+  font-family: var(--font-active, var(--font-krub)), sans-serif;
+  font-synthesis: none;
   overflow-x: hidden;
 }
 
@@ -60,7 +61,7 @@ body {
 
 body,
 body * {
-  font-family: var(--font-active, var(--font-dm-sans)), sans-serif !important;
+  font-family: var(--font-active, var(--font-krub)), sans-serif !important;
 }
 
 a {

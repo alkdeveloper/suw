@@ -69,14 +69,6 @@ async function loadSiteSettings(
   }
 }
 
-const FONT_VAR_MAP: Record<string, string> = {
-  dm_sans: "--font-dm-sans",
-  inter: "--font-inter",
-  manrope: "--font-manrope",
-  red_hat_display: "--font-red-hat-display",
-  krub: "--font-krub",
-};
-
 const ALL_FONT_VARS = [
   "--font-dm-sans",
   "--font-inter",
@@ -102,9 +94,7 @@ export default async function LocaleLayout({
   const gaId =
     process.env.NEXT_PUBLIC_GA_ID?.trim();
 
-  const fontVar =
-    FONT_VAR_MAP[siteSettings.font_family] ??
-    "--font-dm-sans";
+  const fontVar = "--font-krub";
 
   const overrideRules = ALL_FONT_VARS
     .filter((variable) => variable !== fontVar)

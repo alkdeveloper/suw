@@ -1,10 +1,4 @@
 import type { Metadata } from "next";
-import {
-  DM_Sans,
-  Inter,
-  Manrope,
-  Red_Hat_Display,
-} from "next/font/google";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 
@@ -18,37 +12,16 @@ import {
 import "./components.scss";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-dm-sans",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-});
-
-const redHatDisplay = Red_Hat_Display({
-  subsets: ["latin"],
-  style: ["italic", "normal"],
-  variable: "--font-red-hat-display",
-});
-
 const krub = localFont({
   src: [
     {
       path: "../../public/fonts/krub/Krub-ExtraLight.ttf",
-      weight: "200",
+      weight: "275",
       style: "normal",
     },
     {
       path: "../../public/fonts/krub/Krub-ExtraLightItalic.ttf",
-      weight: "200",
+      weight: "275",
       style: "italic",
     },
     {
@@ -170,7 +143,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body
-        className={`${dmSans.variable} ${inter.variable} ${manrope.variable} ${redHatDisplay.variable} ${krub.variable}`}
+        className={krub.variable}
         suppressHydrationWarning
       >
         {children}
