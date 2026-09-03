@@ -15,7 +15,7 @@
 .content { position: relative; z-index: 1; max-width: min(980px, 88vw); }
 .eyebrow { display: flex; align-items: center; gap: 18px; margin: 0 0 22px; font: 700 13px/1 var(--font-active), sans-serif; letter-spacing: .16em; text-transform: uppercase; }
 .line { width: 40px; height: 1px; flex: 0 0 auto; background: currentColor; }
-.title { margin: 0; font-family: var(--font-active), sans-serif; font-weight: 700; letter-spacing: -.045em; }
+.title { margin: 0; font-family: var(--font-active), sans-serif; font-weight: 700; letter-spacing: -0.02em; }
 .description { max-width: 620px; margin: 28px 0 0; font: 500 clamp(15px, 1.2vw, 18px)/1.55 var(--font-active), sans-serif; }
 
 @media (max-width: 767px) {
