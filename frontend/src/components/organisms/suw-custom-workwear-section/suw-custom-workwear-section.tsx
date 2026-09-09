@@ -89,15 +89,14 @@ type SuwCustomWorkwearSectionProps = {
 
 const fallbackImages = ["/images/mock/custom-workwear.jpg", "/images/mock/workwear.jpg"];
 
-export function SuwCustomWorkwearSection({ ctaHref, ctaLabel, description, eyebrow, items, locale, title }: SuwCustomWorkwearSectionProps) {
+export function SuwCustomWorkwearSection({ ctaHref, ctaLabel, description, items, locale, title }: SuwCustomWorkwearSectionProps) {
   const resolvedCtaHref = ctaHref ? (/^(?:https?:)?\/\//.test(ctaHref) ? ctaHref : withLocalePath(locale, ctaHref)) : "";
   return (
     <section className="suw-custom-workwear">
       <div className="suw-custom-workwear__inner">
         <header className="suw-custom-workwear__intro">
-          <p className="suw-custom-workwear__eyebrow">{eyebrow}</p>
           <h2 className="suw-custom-workwear__title">{title}</h2>
-          <p className="suw-custom-workwear__description">{description}</p>
+          {description ? <p className="suw-custom-workwear__description">{description}</p> : null}
         </header>
         <div className="suw-custom-workwear__cards">
           {items.map((item, index) => (
@@ -122,10 +121,6 @@ function LegacySuwCustomWorkwearSection() {
     <section className="suw-custom-workwear">
       <div className="suw-custom-workwear__inner">
         <div className="suw-custom-workwear__intro">
-          <p className="suw-custom-workwear__eyebrow">
-            {content.eyebrow}
-          </p>
-
           <h2 className="suw-custom-workwear__title">
             {content.titleLine1}
             <br />

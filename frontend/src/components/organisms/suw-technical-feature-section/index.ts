@@ -1,1 +1,0 @@
-export { SuwTechnicalFeatureSection } from "./suw-technical-feature-section";

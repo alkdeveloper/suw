@@ -9,6 +9,10 @@ image_validators = [FileExtensionValidator(["jpg", "jpeg", "png", "webp"])]
 
 
 class ProjectsPageSettings(SingletonModel):
+    seo_title_tr = models.CharField(max_length=200, blank=True)
+    seo_title_en = models.CharField(max_length=200, blank=True)
+    seo_description_tr = models.TextField(blank=True)
+    seo_description_en = models.TextField(blank=True)
     hero_eyebrow_tr = models.CharField(max_length=120, blank=True)
     hero_eyebrow_en = models.CharField(max_length=120, blank=True)
     hero_title_tr = models.CharField(max_length=220, blank=True)

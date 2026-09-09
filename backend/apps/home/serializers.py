@@ -9,8 +9,6 @@ from .models import (
     HomeOperationalItem,
     WorkEssentialItem,
     ProductionInsightItem,
-    TechnicalPerformanceItem,
-    HomeProcessStep,
 )
 
 
@@ -54,42 +52,6 @@ class ProductionInsightItemSerializer(serializers.ModelSerializer):
 
     def get_detail_text(self, obj):
         return obj.detail_text_en if self._is_en() else obj.detail_text_tr
-
-
-class TechnicalPerformanceItemSerializer(serializers.ModelSerializer):
-    title = serializers.SerializerMethodField()
-    description = serializers.SerializerMethodField()
-
-    class Meta:
-        model = TechnicalPerformanceItem
-        fields = ("id", "title", "description", "sort_order")
-
-    def _is_en(self):
-        return getattr(self.context.get("request"), "LANGUAGE_CODE", "tr") == "en"
-
-    def get_title(self, obj):
-        return obj.title_en if self._is_en() else obj.title_tr
-
-    def get_description(self, obj):
-        return obj.description_en if self._is_en() else obj.description_tr
-
-
-class HomeProcessStepSerializer(serializers.ModelSerializer):
-    title = serializers.SerializerMethodField()
-    description = serializers.SerializerMethodField()
-
-    class Meta:
-        model = HomeProcessStep
-        fields = ("id", "title", "description", "sort_order")
-
-    def _is_en(self):
-        return getattr(self.context.get("request"), "LANGUAGE_CODE", "tr") == "en"
-
-    def get_title(self, obj):
-        return obj.title_en if self._is_en() else obj.title_tr
-
-    def get_description(self, obj):
-        return obj.description_en if self._is_en() else obj.description_tr
 
 
 def _absolute_media_url(request, file_field):
@@ -174,6 +136,8 @@ class HomeOperationalSerializer(serializers.Serializer):
 
 
 class HomePageSerializer(serializers.ModelSerializer):
+    hero_description = serializers.SerializerMethodField()
+    product_categories_description = serializers.SerializerMethodField()
     ticker_words = HomeTickerWordSerializer(many=True, read_only=True)
     brands = HomeBrandSerializer(many=True, read_only=True)
     activities = HomeActivitySerializer(many=True, read_only=True)
@@ -186,11 +150,20 @@ class HomePageSerializer(serializers.ModelSerializer):
     hero_image_mobile = serializers.SerializerMethodField()
     work_essentials_items = serializers.SerializerMethodField()
     production_insight_items = serializers.SerializerMethodField()
-    technical_performance_image = serializers.SerializerMethodField()
-    technical_performance_items = serializers.SerializerMethodField()
     corporate_workwear_personnel_image = serializers.SerializerMethodField()
     corporate_workwear_promo_image = serializers.SerializerMethodField()
-    process_steps = serializers.SerializerMethodField()
+    final_cta = serializers.SerializerMethodField()
+
+    def _localized_value(self, obj, field_name):
+        language = getattr(self.context.get("request"), "LANGUAGE_CODE", "tr")
+        suffix = "en" if language == "en" else "tr"
+        return getattr(obj, f"{field_name}_{suffix}", "") or ""
+
+    def get_hero_description(self, obj):
+        return self._localized_value(obj, "hero_description")
+
+    def get_product_categories_description(self, obj):
+        return self._localized_value(obj, "product_categories_description")
 
     class Meta:
         model = HomePage
@@ -212,26 +185,17 @@ class HomePageSerializer(serializers.ModelSerializer):
             "work_essentials_cta_text",
             "work_essentials_cta_link",
             "work_essentials_items",
-            # Teknik Performans
-            "technical_performance_eyebrow",
-            "technical_performance_title",
-            "technical_performance_description",
-            "technical_performance_image",
-            "technical_performance_cta_text",
-            "technical_performance_cta_link",
-            "technical_performance_items",
             # Kurumsal İş Giyimi
             "corporate_workwear_eyebrow", "corporate_workwear_title", "corporate_workwear_description",
             "corporate_workwear_personnel_title", "corporate_workwear_personnel_description", "corporate_workwear_personnel_image",
             "corporate_workwear_promo_title", "corporate_workwear_promo_description", "corporate_workwear_promo_image",
             "corporate_workwear_cta_text", "corporate_workwear_cta_link",
-            # Fikirden Teslimata
-            "process_eyebrow", "process_title", "process_description", "process_steps",
             # Üretim Bilgileri
             "production_insights_eyebrow",
             "production_insights_title",
             "production_insights_description",
             "production_insight_items",
+            "final_cta",
             # Ticker
             "ticker_words",
             # Markalar
@@ -283,22 +247,16 @@ class HomePageSerializer(serializers.ModelSerializer):
         items = obj.production_insight_items.filter(is_active=True).order_by("sort_order", "id")
         return ProductionInsightItemSerializer(items, many=True, context=self.context).data
 
-    def get_technical_performance_image(self, obj):
-        return _absolute_media_url(self.context.get("request"), obj.technical_performance_image)
-
-    def get_technical_performance_items(self, obj):
-        items = obj.technical_performance_items.filter(is_active=True).order_by("sort_order", "id")
-        return TechnicalPerformanceItemSerializer(items, many=True, context=self.context).data
-
     def get_corporate_workwear_personnel_image(self, obj):
         return _absolute_media_url(self.context.get("request"), obj.corporate_workwear_personnel_image)
 
     def get_corporate_workwear_promo_image(self, obj):
         return _absolute_media_url(self.context.get("request"), obj.corporate_workwear_promo_image)
 
-    def get_process_steps(self, obj):
-        items = obj.process_steps.filter(is_active=True).order_by("sort_order", "id")
-        return HomeProcessStepSerializer(items, many=True, context=self.context).data
-
     def get_video_image(self, obj):
         return _absolute_media_url(self.context.get("request"), obj.video_image)
+
+    def get_final_cta(self, obj):
+        language = getattr(self.context.get("request"), "LANGUAGE_CODE", "tr")
+        suffix = "en" if language == "en" else "tr"
+        return {"title": getattr(obj, f"final_cta_title_{suffix}"), "description": getattr(obj, f"final_cta_description_{suffix}"), "text": getattr(obj, f"final_cta_text_{suffix}"), "bottom_label": getattr(obj, f"final_cta_bottom_label_{suffix}"), "link": obj.final_cta_link}

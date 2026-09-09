@@ -80,6 +80,7 @@ class ContactPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactPage
         fields = [
+            "hero_title",
             # Harita
             "map_embed_url",
             # Neredeyiz kartı

@@ -13,10 +13,11 @@ def preview(field):
 @admin.register(ProjectsPageSettings)
 class ProjectsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
-        ("Türkçe Hero", {"fields": ("hero_eyebrow_tr", "hero_title_tr", "hero_description_tr")}),
-        ("İngilizce Hero", {"fields": ("hero_eyebrow_en", "hero_title_en", "hero_description_en")}),
-        ("Türkçe Alt CTA", {"fields": ("cta_eyebrow_tr", "cta_title_tr", "cta_description_tr", "cta_text_tr")}),
-        ("İngilizce Alt CTA", {"fields": ("cta_eyebrow_en", "cta_title_en", "cta_description_en", "cta_text_en")}),
+        ("Türkçe Hero", {"fields": ("hero_title_tr", "hero_description_tr")}),
+        ("İngilizce Hero", {"fields": ("hero_title_en", "hero_description_en")}),
+        ("Türkçe Alt CTA", {"fields": ("cta_title_tr", "cta_description_tr", "cta_text_tr")}),
+        ("İngilizce Alt CTA", {"fields": ("cta_title_en", "cta_description_en", "cta_text_en")}),
+        ("SEO", {"fields": (("seo_title_tr", "seo_title_en"), ("seo_description_tr", "seo_description_en"))}),
     )
 
 

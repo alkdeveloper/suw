@@ -28,6 +28,24 @@ function BackToTopIcon() {
   );
 }
 
+function InstagramIcon() {
+  return (
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+      <rect height="17" rx="4.5" stroke="currentColor" strokeWidth="1.7" width="17" x="3.5" y="3.5" />
+      <circle cx="12" cy="12" r="3.7" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="17.4" cy="6.7" fill="currentColor" r="1" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M6.2 8.1H3.3V20h2.9V8.1ZM4.75 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.7 13.2c0-3.6-1.9-5.3-4.5-5.3-2.1 0-3 1.1-3.5 1.9V8.1H9.8V20h2.9v-5.9c0-1.6.3-3.1 2.3-3.1 2 0 2 1.8 2 3.2V20h2.9l.8-6.8Z" />
+    </svg>
+  );
+}
+
 const footerContent = {
   tr: {
     tagline: "PROFESYONEL İŞ GİYİMİ",
@@ -200,15 +218,18 @@ export function SiteFooter({
             {socialLinks.length > 0 ? (
               <div className="site-footer__social-links">
                 {socialLinks.map((item) => (
-                  <Link
+                  <a
+                    aria-label={item.label}
                     className="site-footer__social-link"
                     href={item.href}
                     key={item.label}
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
-                    {item.label}
-                  </Link>
+                    {item.platform === "instagram" ? <InstagramIcon /> : null}
+                    {item.platform === "linkedin" ? <LinkedInIcon /> : null}
+                    <span>{item.label}</span>
+                  </a>
                 ))}
               </div>
             ) : null}

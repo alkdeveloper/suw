@@ -64,7 +64,6 @@ type HomeHeroSectionProps = {
 
 export function HomeHeroSection({
   className,
-  eyebrow,
   title,
   description,
   imageSrc,
@@ -79,15 +78,8 @@ export function HomeHeroSection({
     resolveCmsMediaUrl(imageSrc) ??
     resolvePublicAssetPath("/images/home-hero-production.png");
   const resolvedMobileImageSrc = resolveCmsMediaUrl(mobileImageSrc) ?? resolvedImageSrc;
-  const resolvedEyebrow =
-    eyebrow || "PROFESSIONAL WORKWEAR";
-
   const resolvedTitle =
     title || "BUILT FOR WORK.";
-
-  const resolvedDescription =
-    description ||
-    "Professional workwear designed for teams that demand performance, durability and a strong identity.";
 
   return (
     <section
@@ -115,24 +107,15 @@ export function HomeHeroSection({
 
       <div className="home-hero__inner">
         <div className="home-hero__content">
-          <div className="home-hero__eyebrow">
-            <span
-              aria-hidden="true"
-              className="home-hero__eyebrow-line"
-            />
-
-            <span>
-              {resolvedEyebrow}
-            </span>
-          </div>
-
           <h1 className="home-hero__title">
             {resolvedTitle}
           </h1>
 
-          <p className="home-hero__description">
-            {resolvedDescription}
-          </p>
+          {description ? (
+            <p className="home-hero__description">
+              {description}
+            </p>
+          ) : null}
 
           {(primaryCtaLabel || secondaryCtaLabel) && (
             <div className="home-hero__actions">

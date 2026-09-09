@@ -35,8 +35,8 @@ class ProductAdminForm(forms.ModelForm):
 @admin.register(ProductPageSettings)
 class ProductPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
-        ("Türkçe İçerik", {"fields": ("eyebrow_tr", "title_tr", "description_tr")} ),
-        ("İngilizce İçerik", {"fields": ("eyebrow_en", "title_en", "description_en")} ),
+        ("Türkçe İçerik", {"fields": ("title_tr", "description_tr")} ),
+        ("İngilizce İçerik", {"fields": ("title_en", "description_en")} ),
         ("Hero Görselleri", {"fields": ("hero_image", "hero_image_preview", "hero_image_mobile", "hero_image_mobile_preview")} ),
         ("Türkçe SEO", {"fields": ("seo_title_tr", "seo_description_tr")} ),
         ("İngilizce SEO", {"fields": ("seo_title_en", "seo_description_en")} ),
@@ -54,18 +54,20 @@ class ProductGroupAdmin(ModelAdmin):
     search_fields = ["name_tr", "name_en", "slug"]
     prepopulated_fields = {"slug": ("name_tr",)}
     ordering = ["sort_order"]
-    readonly_fields = ["image_preview", "hero_image_preview", "hero_image_mobile_preview"]
+    readonly_fields = ["image_preview", "image_mobile_preview", "hero_image_preview", "hero_image_mobile_preview"]
     fieldsets = (
         ("Temel Bilgiler", {"fields": ("name_tr", "name_en", "slug", "short_description_tr", "short_description_en")} ),
-        ("Kart Görseli", {"fields": ("image", "image_preview")} ),
-        ("Türkçe Hero", {"fields": ("hero_eyebrow_tr", "hero_title_tr", "hero_description_tr")} ),
-        ("İngilizce Hero", {"fields": ("hero_eyebrow_en", "hero_title_en", "hero_description_en")} ),
+        ("Kart Görselleri", {"fields": ("image", "image_preview", "image_mobile", "image_mobile_preview")} ),
+        ("Türkçe Hero", {"fields": ("hero_title_tr", "hero_description_tr")} ),
+        ("İngilizce Hero", {"fields": ("hero_title_en", "hero_description_en")} ),
         ("Hero Görselleri", {"fields": ("hero_image", "hero_image_preview", "hero_image_mobile", "hero_image_mobile_preview")} ),
         ("Yayın", {"fields": ("sort_order", "is_active", "show_on_home")} ),
     )
 
     def image_preview(self, obj):
         return preview(obj.image)
+
+    def image_mobile_preview(self, obj): return preview(obj.image_mobile)
 
     def hero_image_preview(self, obj): return preview(obj.hero_image)
     def hero_image_mobile_preview(self, obj): return preview(obj.hero_image_mobile)

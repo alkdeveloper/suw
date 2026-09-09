@@ -15,8 +15,8 @@ const fallbackItems: WorkEssentialItem[] = [
   { id: "fallback-4", image: "/images/mock/product-4.jpg", alt: "SUW softshell workwear", link: "" },
 ];
 const fallbackContent = {
-  tr: { eyebrow: "İŞİN TEMEL PARÇALARI", title: "PERFORMANS İÇİN GELİŞTİRİLDİ.", description: "Günlük çalışma temposunda hareket, dayanıklılık ve işlevsellik için geliştirilen temel iş giyim ürünleri.", cta: "ÜRÜNLERİ KEŞFET" },
-  en: { eyebrow: "WORK ESSENTIALS", title: "BUILT TO PERFORM.", description: "Essential workwear developed for daily performance, movement and durability.", cta: "EXPLORE PRODUCTS" },
+  tr: { eyebrow: "İŞİN TEMEL PARÇALARI", title: "PERFORMANS İÇİN GELİŞTİRİLDİ.", cta: "ÜRÜNLERİ KEŞFET" },
+  en: { eyebrow: "WORK ESSENTIALS", title: "BUILT TO PERFORM.", cta: "EXPLORE PRODUCTS" },
 };
 
 function isExternalLink(href: string) {
@@ -67,8 +67,8 @@ export function SuwFeaturedProductsSection({ eyebrow, title, description, ctaLab
     <section className="suw-featured-products">
       <div className="suw-featured-products__inner">
         <header className="suw-featured-products__heading">
-          <div><p className="suw-featured-products__eyebrow">{eyebrow || content.eyebrow}</p><h2 className="suw-featured-products__title">{title || content.title}</h2></div>
-          <p className="suw-featured-products__intro">{description || content.description}</p>
+          <div><h2 className="suw-featured-products__title">{title || content.title}</h2></div>
+          {description ? <p className="suw-featured-products__intro">{description}</p> : null}
         </header>
       </div>
       <div aria-label={eyebrow || content.eyebrow} className={`suw-featured-products__carousel${visibleItems.length === 1 ? " suw-featured-products__carousel--single" : ""}`} data-carousel={visibleItems.length > 1 ? "active" : "static"} onBlur={() => setIsPaused(false)} onClickCapture={(event) => { if (dragRef.current.moved) event.preventDefault(); }} onFocus={() => setIsPaused(true)} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onPointerCancel={handlePointerEnd} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={handlePointerEnd} ref={trackRef} role="region">

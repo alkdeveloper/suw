@@ -27,7 +27,6 @@ export function ProjectsSectorShowcase({ content, locale }: { content: ProjectsP
     </section>
     <section className="projects-sectors-cta">
       <div className="projects-sectors-cta__inner">
-        <p className="projects-sectors-cta__eyebrow">{content.cta_eyebrow}</p>
         <div className="projects-sectors-cta__grid">
           <h2>{content.cta_title}</h2>
           <div><p>{content.cta_description}</p><Link href={`/${locale}/contact`}><span>{content.cta_text}</span><span aria-hidden="true">↗</span></Link></div>

@@ -8,6 +8,7 @@ export type PaginatedResponse<T> = {
 export type ApiImage = string | null;
 
 export type HomePageResponse = {
+  final_cta?: { title: string; description: string; text: string; bottom_label: string; link: string };
   hero_title: string;
   hero_subtitle: string;
   hero_description: string;
@@ -28,18 +29,6 @@ export type HomePageResponse = {
     link: string;
     sort_order: number;
   }>;
-  technical_performance_eyebrow: string;
-  technical_performance_title: string;
-  technical_performance_description: string;
-  technical_performance_image: ApiImage;
-  technical_performance_cta_text: string;
-  technical_performance_cta_link: string;
-  technical_performance_items: Array<{
-    id: number;
-    title: string;
-    description: string;
-    sort_order: number;
-  }>;
   corporate_workwear_eyebrow: string;
   corporate_workwear_title: string;
   corporate_workwear_description: string;
@@ -51,10 +40,6 @@ export type HomePageResponse = {
   corporate_workwear_promo_image: ApiImage;
   corporate_workwear_cta_text: string;
   corporate_workwear_cta_link: string;
-  process_eyebrow: string;
-  process_title: string;
-  process_description: string;
-  process_steps: Array<{ id: number; title: string; description: string; sort_order: number }>;
   production_insights_eyebrow: string;
   production_insights_title: string;
   production_insights_description: string;
@@ -119,9 +104,6 @@ export type CorporatePageResponse = {
   about_label: string;
   about_description: string;
   about_image: ApiImage;
-  history_label: string;
-  history_title: string;
-  history_items: Array<{ id: number; year: string; description: string }>;
   vision_title: string;
   vision_description: string;
   mission_title: string;
@@ -145,9 +127,9 @@ export type AboutContentItem = { id: number; title: string; description: string 
 export type AboutPageContent = {
   hero: { eyebrow: string; title: string; description: string };
   group: { eyebrow: string; title: string; description: string; supporting_label: string; image: ApiImage; image_mobile: ApiImage };
+  video: { title: string; description: string; video: ApiImage; poster: ApiImage; is_active: boolean };
+  timeline: { title: string; description: string; items: Array<{ id: number; year: string; description: string }> };
   why: { eyebrow: string; title: string; description: string; items: AboutContentItem[] };
-  experience: { eyebrow: string; title: string; description: string; items: AboutContentItem[] };
-  timeline: { eyebrow: string; title: string; items: Array<{ id: number; year_or_period: string; title: string; description: string }> };
   cta: { eyebrow: string; title: string; description: string; text: string; link: string };
 };
 
@@ -244,6 +226,8 @@ export type ProjectSectorResponse = {
 };
 
 export type ProjectsPageResponse = {
+  seo_title?: string;
+  seo_description?: string;
   hero_eyebrow: string;
   hero_title: string;
   hero_description: string;
@@ -589,6 +573,7 @@ export type NewsDetailResponse = {
 };
 
 export type ContactPageResponse = {
+  hero_title?: string;
   map_embed_url: string;
   info_title: string;
   info_description: string;

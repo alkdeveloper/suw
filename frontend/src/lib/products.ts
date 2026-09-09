@@ -3,7 +3,7 @@ import type { SupportedLocale } from "@/src/lib/locale";
 
 export type ProductHeroContent = { eyebrow: string; title: string; description: string; hero_image: string | null; hero_image_mobile: string | null };
 export type ProductPageSettings = ProductHeroContent & { seo_title: string; seo_description: string };
-export type ProductGroup = { id: number; name: string; slug: string; image: string | null; short_description: string; url: string; hero_eyebrow: string; hero_title: string; hero_description: string; hero_image: string | null; hero_image_mobile: string | null };
+export type ProductGroup = { id: number; name: string; slug: string; image: string | null; image_mobile: string | null; short_description: string; url: string; hero_eyebrow: string; hero_title: string; hero_description: string; hero_image: string | null; hero_image_mobile: string | null };
 export type ProductCategory = { id: number; name: string; slug: string; image: string | null; description: string; header_image: string | null; seo_title: string; seo_description: string; groups: string[] };
 export type ProductSummary = { id: number; name: string; slug: string; product_code: string; main_image: string | null; short_description: string; category: ProductCategory; groups: ProductGroup[]; is_featured: boolean };
 export type ProductDetail = ProductSummary & { description: string; materials: string; features: string; colors: string; sizes: string; images: Array<{ image: string; alt: string; sort_order: number }> };
@@ -15,21 +15,21 @@ export const fallbackProductPage: Record<SupportedLocale, ProductPageSettings> =
 
 const groupCopy = {
   tr: [
-    ["summer", "YAZLIK", "Hafif ve nefes alan çalışma katmanları.", "/images/mock/topwear.jpg"],
-    ["winter", "KIŞLIK", "Soğuk ve zorlu koşullar için koruyucu katmanlar.", "/images/mock/outerwear.jpg"],
-    ["bags", "ÇANTA", "Ekipman ve günlük operasyon için dayanıklı taşıma çözümleri.", "/images/mock/workwear.jpg"],
-    ["accessories", "AKSESUAR", "İş giyimini tamamlayan işlevsel parçalar.", "/images/mock/accessories.jpg"],
+    ["summer", "YAZLIK", "", "/images/mock/topwear.jpg"],
+    ["winter", "KIŞLIK", "", "/images/mock/outerwear.jpg"],
+    ["bags", "ÇANTA", "", "/images/mock/workwear.jpg"],
+    ["accessories", "AKSESUAR", "", "/images/mock/accessories.jpg"],
   ],
   en: [
-    ["summer", "SUMMER", "Lightweight, breathable layers for work.", "/images/mock/topwear.jpg"],
-    ["winter", "WINTER", "Protective layers for cold and demanding conditions.", "/images/mock/outerwear.jpg"],
-    ["bags", "BAGS", "Durable carry solutions for equipment and daily operations.", "/images/mock/workwear.jpg"],
-    ["accessories", "ACCESSORIES", "Functional pieces that complete professional workwear.", "/images/mock/accessories.jpg"],
+    ["summer", "SUMMER", "", "/images/mock/topwear.jpg"],
+    ["winter", "WINTER", "", "/images/mock/outerwear.jpg"],
+    ["bags", "BAGS", "", "/images/mock/workwear.jpg"],
+    ["accessories", "ACCESSORIES", "", "/images/mock/accessories.jpg"],
   ],
 } as const;
 
 export function fallbackGroups(locale: SupportedLocale): ProductGroup[] {
-  return groupCopy[locale].map(([slug, name, short_description, image], index) => ({ id: index + 1, slug, name, short_description, image, url: `/products/${slug}/`, hero_eyebrow: locale === "tr" ? "ÜRÜN GRUBU" : "PRODUCT GROUP", hero_title: name, hero_description: short_description, hero_image: null, hero_image_mobile: null }));
+  return groupCopy[locale].map(([slug, name, short_description, image], index) => ({ id: index + 1, slug, name, short_description, image, image_mobile: null, url: `/products/${slug}/`, hero_eyebrow: locale === "tr" ? "ÜRÜN GRUBU" : "PRODUCT GROUP", hero_title: name, hero_description: short_description, hero_image: null, hero_image_mobile: null }));
 }
 
 const categoryDefinitions = [
@@ -58,7 +58,7 @@ export async function getProductGroups(locale: SupportedLocale, home = false) {
       return {
         ...group,
         image: group.image || local?.image || null,
-        short_description: group.short_description || local?.short_description || "",
+        short_description: group.short_description ?? "",
         hero_eyebrow: group.hero_eyebrow || local?.hero_eyebrow || "",
         hero_title: group.hero_title || local?.hero_title || group.name,
         hero_description: group.hero_description || local?.hero_description || group.short_description,

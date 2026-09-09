@@ -43,8 +43,8 @@ export function resolveCmsMediaUrl(value: string | null | undefined) {
 
       if (
         apiUrl &&
-        !isLocalHostname(apiUrl.hostname) &&
         isLocalHostname(mediaUrl.hostname) &&
+        mediaUrl.origin !== apiUrl.origin &&
         mediaUrl.pathname.startsWith("/media/")
       ) {
         return new URL(`${mediaUrl.pathname}${mediaUrl.search}${mediaUrl.hash}`, apiOrigin).toString();

@@ -49,6 +49,7 @@ async function getContactPage(
     return response.data;
   } catch {
     return {
+      hero_title: locale === "tr" ? "İŞ GİYİMİNİ\nKONUŞALIM." : "LET'S TALK\nWORKWEAR.",
       meta_title: locale === "tr" ? "İletişim" : "Contact",
       meta_description:
         locale === "tr"
@@ -108,11 +109,8 @@ export default async function ContactPage({
     <main>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>{hero.eyebrow}</p>
-
           <h1 className={styles.title}>
-            <span>{hero.titleLine1}</span>
-            <span>{hero.titleLine2}</span>
+            {(page.hero_title || `${hero.titleLine1}\n${hero.titleLine2}`).split(/\r?\n/).map((line) => <span key={line}>{line}</span>)}
           </h1>
         </div>
       </section>

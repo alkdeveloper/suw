@@ -83,6 +83,16 @@ class HomePage(SingletonModel, SEOModel):
     production_insights_title = models.CharField(max_length=250, blank=True, verbose_name=_("Üretim Bilgileri Başlık"))
     production_insights_description = models.TextField(blank=True, verbose_name=_("Üretim Bilgileri Açıklama"))
 
+    final_cta_title_tr = models.CharField(max_length=240, blank=True)
+    final_cta_title_en = models.CharField(max_length=240, blank=True)
+    final_cta_description_tr = models.TextField(blank=True)
+    final_cta_description_en = models.TextField(blank=True)
+    final_cta_text_tr = models.CharField(max_length=100, blank=True)
+    final_cta_text_en = models.CharField(max_length=100, blank=True)
+    final_cta_bottom_label_tr = models.CharField(max_length=120, blank=True)
+    final_cta_bottom_label_en = models.CharField(max_length=120, blank=True)
+    final_cta_link = models.CharField(max_length=300, blank=True, default="/contact")
+
     # Markalar bölümü
     brands_title = models.CharField(max_length=200, blank=True, verbose_name=_("Markalar Başlık"))
     brands_description = models.TextField(blank=True, verbose_name=_("Markalar Açıklama"))

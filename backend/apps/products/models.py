@@ -37,6 +37,8 @@ class ProductGroup(AutoSlugMixin, models.Model):
     name_en = models.CharField(max_length=120, verbose_name=_("İngilizce ad"))
     slug = models.SlugField(max_length=140, unique=True, blank=True)
     image = models.ImageField(upload_to=UniqueUploadTo("products/groups/"), validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])], blank=True)
+    image_mobile = models.ImageField(upload_to=UniqueUploadTo("products/groups/mobile/"), validators=product_image_validators, blank=True)
+    home_page = models.ForeignKey("home.HomePage", related_name="product_groups", on_delete=models.SET_NULL, blank=True, null=True, editable=False)
     short_description_tr = models.TextField(blank=True)
     short_description_en = models.TextField(blank=True)
     hero_eyebrow_tr = models.CharField(max_length=120, blank=True)

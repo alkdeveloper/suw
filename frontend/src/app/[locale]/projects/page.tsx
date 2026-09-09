@@ -66,10 +66,14 @@ export async function generateMetadata({
 }: ProjectsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const content = pageContent[locale];
+  let projects = getFallback(locale);
+  try {
+    projects = (await createAPI(locale).get<ProjectsPageResponse>("projects/")).data;
+  } catch {}
 
   return createLocalizedPageMetadata(locale, {
-    title: content.metaTitle,
-    description: content.metaDescription,
+    title: projects.seo_title || content.metaTitle,
+    description: projects.seo_description || content.metaDescription,
     path: "/projects",
   });
 }
@@ -89,8 +93,6 @@ export default async function ProjectsPage({
     <main>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>{projects.hero_eyebrow || content.eyebrow}</p>
-
           <h1 className={styles.title}>
             {(projects.hero_title || content.heroTitle).split(/\r?\n/).map((line) => <span className={styles.titleLine} key={line}>{line}</span>)}
           </h1>

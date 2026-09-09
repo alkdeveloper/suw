@@ -25,7 +25,6 @@ const fallbackContent = {
   tr: {
     eyebrow: "ÜRETİM BİLGİSİ",
     title: "İYİ İŞ GİYİMİ DETAYLARDA BAŞLAR.",
-    description: "Doğru kumaştan uygulama tekniğine, kalite kontrolden sevkiyata kadar her aşama ürünün performansını belirler. SUW üretim sürecinin temel bileşenlerini keşfedin.",
     showDetail: "detayı göster",
     showFront: "ön yüzü göster",
     items: [
@@ -40,7 +39,6 @@ const fallbackContent = {
   en: {
     eyebrow: "PRODUCTION INSIGHTS",
     title: "GREAT WORKWEAR STARTS WITH THE DETAILS.",
-    description: "From fabric selection and application techniques to quality control and delivery, every stage influences product performance. Explore the key components of the SUW production process.",
     showDetail: "show details",
     showFront: "show front",
     items: [
@@ -63,7 +61,7 @@ const fallbackImages = [
   "/images/mock/industry-hospitality.jpg",
 ];
 
-export function SuwProductionInsightsSection({ eyebrow, title, description, items = [], locale = "tr" }: Props) {
+export function SuwProductionInsightsSection({ title, description, items = [], locale = "tr" }: Props) {
   const [flippedId, setFlippedId] = useState<string | number | null>(null);
   const content = fallbackContent[locale];
   const fallbackItems: ProductionInsightItem[] = content.items.map((item, index) => ({
@@ -86,10 +84,9 @@ export function SuwProductionInsightsSection({ eyebrow, title, description, item
       <div className="suw-production-insights__inner">
         <header className="suw-production-insights__heading">
           <div>
-            <p className="suw-production-insights__eyebrow">{eyebrow || content.eyebrow}</p>
             <h2 className="suw-production-insights__title">{title || content.title}</h2>
           </div>
-          <p className="suw-production-insights__intro">{description || content.description}</p>
+          {description ? <p className="suw-production-insights__intro">{description}</p> : null}
         </header>
 
         <div className="suw-production-insights__grid">

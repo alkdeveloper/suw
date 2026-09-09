@@ -287,6 +287,7 @@ class SiteContactSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     change_form_show_cancel_button = True
     fieldsets = (
         ("İletişim Bilgileri", {"fields": ("address", "phone", "email", "latitude", "longitude")}),
+        ("Sosyal Medya", {"fields": ("instagram", "linkedin")}),
     )
 
     def change_view(self, request, object_id, form_url="", extra_context=None):

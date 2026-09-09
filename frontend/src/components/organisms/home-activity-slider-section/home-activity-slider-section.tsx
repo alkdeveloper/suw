@@ -4,6 +4,7 @@ import Link from "next/link";
 type HomeActivityItem = {
   id: string;
   imageSrc?: string;
+  mobileImageSrc?: string;
   label: string;
   imageAlt: string;
   description?: string;
@@ -19,7 +20,6 @@ type HomeActivitySliderSectionProps = {
 };
 
 export function HomeActivitySliderSection({
-  eyebrow,
   title,
   description,
   locale = "tr",
@@ -29,8 +29,6 @@ export function HomeActivitySliderSection({
     tr: {
       eyebrow: "ÜRÜN KATEGORİLERİ",
       title: "HER İŞ İÇİN TASARLANDI.",
-      intro:
-        "Performans, koruma ve günlük kullanım ihtiyaçları için geliştirilen profesyonel iş giyimi çözümlerini keşfedin.",
       mockItems: [
         {
           id: "mock-1",
@@ -61,8 +59,6 @@ export function HomeActivitySliderSection({
     en: {
       eyebrow: "PRODUCT CATEGORIES",
       title: "BUILT FOR EVERY JOB.",
-      intro:
-        "Explore professional workwear developed around performance, protection and everyday usability.",
       mockItems: [
         {
           id: "mock-1",
@@ -107,18 +103,16 @@ export function HomeActivitySliderSection({
       <div className="home-activity-slider__inner">
         <header className="home-activity-slider__heading">
           <div>
-            <p className="home-activity-slider__eyebrow">
-              {eyebrow || content.eyebrow}
-            </p>
-
             <h2 className="home-activity-slider__title">
               {title || content.title}
             </h2>
           </div>
 
-          <p className="home-activity-slider__intro">
-            {description || content.intro}
-          </p>
+          {description ? (
+            <p className="home-activity-slider__intro">
+              {description}
+            </p>
+          ) : null}
         </header>
 
         <div className="home-activity-slider__grid">
@@ -127,11 +121,10 @@ export function HomeActivitySliderSection({
               className={`home-activity-slider__card home-activity-slider__card--${index + 1}`}
               key={item.id}
             >
-              <img
-                alt={item.imageAlt}
-                className="home-activity-slider__image"
-                src={resolveAssetUrl(item.imageSrc)}
-              />
+              <picture>
+                {item.mobileImageSrc ? <source media="(max-width: 600px)" srcSet={resolveAssetUrl(item.mobileImageSrc)} /> : null}
+                <img alt={item.imageAlt} className="home-activity-slider__image" src={resolveAssetUrl(item.imageSrc)} />
+              </picture>
 
               <div
                 aria-hidden="true"

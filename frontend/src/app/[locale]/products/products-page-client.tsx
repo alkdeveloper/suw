@@ -62,7 +62,7 @@ export function ProductsPageClient({ locale, content, groups, categories }: Prod
         selectedCategory={selectedCategory}
       />
 
-      <SuwFinalCtaSection href={withLocalePath(locale, "/contact")} />
+      <SuwFinalCtaSection href={withLocalePath(locale, "/contact")} showEyebrow={false} />
     </main>
   );
 }

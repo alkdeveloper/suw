@@ -13,17 +13,14 @@ from .models import (
     WorkEssentialItem,
     HomeProductionInsightsSettings,
     ProductionInsightItem,
-    HomeTechnicalPerformanceSettings,
-    TechnicalPerformanceItem,
     HomeCorporateWorkwearSettings,
-    HomeProcessSettings,
-    HomeProcessStep,
     HomeTickerWord,
     HomeBrand,
     HomeActivity,
     HomeAboutFeature,
     HomeOperationalItem,
 )
+from apps.products.models import ProductGroup
 
 
 # Ana Sayfa (Singleton)
@@ -49,10 +46,8 @@ class HomeProductCategoriesSettingsAdminForm(forms.ModelForm):
     class Meta:
         model = HomeProductCategoriesSettings
         fields = (
-            "product_categories_eyebrow_tr",
             "product_categories_title_tr",
             "product_categories_description_tr",
-            "product_categories_eyebrow_en",
             "product_categories_title_en",
             "product_categories_description_en",
         )
@@ -70,11 +65,9 @@ class HomeWorkEssentialsSettingsAdminForm(forms.ModelForm):
     class Meta:
         model = HomeWorkEssentialsSettings
         fields = (
-            "work_essentials_eyebrow_tr",
             "work_essentials_title_tr",
             "work_essentials_description_tr",
             "work_essentials_cta_text_tr",
-            "work_essentials_eyebrow_en",
             "work_essentials_title_en",
             "work_essentials_description_en",
             "work_essentials_cta_text_en",
@@ -116,10 +109,8 @@ class HomeProductionInsightsSettingsAdminForm(forms.ModelForm):
     class Meta:
         model = HomeProductionInsightsSettings
         fields = (
-            "production_insights_eyebrow_tr",
             "production_insights_title_tr",
             "production_insights_description_tr",
-            "production_insights_eyebrow_en",
             "production_insights_title_en",
             "production_insights_description_en",
         )
@@ -133,28 +124,6 @@ class HomeProductionInsightsSettingsAdminForm(forms.ModelForm):
         }
 
 
-class HomeTechnicalPerformanceSettingsAdminForm(forms.ModelForm):
-    class Meta:
-        model = HomeTechnicalPerformanceSettings
-        fields = (
-            "technical_performance_eyebrow_tr", "technical_performance_title_tr", "technical_performance_description_tr", "technical_performance_cta_text_tr",
-            "technical_performance_eyebrow_en", "technical_performance_title_en", "technical_performance_description_en", "technical_performance_cta_text_en",
-            "technical_performance_image", "technical_performance_cta_link",
-        )
-        labels = {
-            "technical_performance_eyebrow_tr": "Eyebrow TR", "technical_performance_title_tr": "Başlık TR", "technical_performance_description_tr": "Açıklama TR", "technical_performance_cta_text_tr": "CTA Metni TR",
-            "technical_performance_eyebrow_en": "Eyebrow EN", "technical_performance_title_en": "Başlık EN", "technical_performance_description_en": "Açıklama EN", "technical_performance_cta_text_en": "CTA Metni EN",
-            "technical_performance_image": "Teknik Performans Görseli", "technical_performance_cta_link": "CTA Linki",
-        }
-
-
-class TechnicalPerformanceItemInline(TabularInline):
-    model = TechnicalPerformanceItem
-    extra = 0
-    fields = ("title_tr", "title_en", "description_tr", "description_en", "sort_order", "is_active")
-    ordering = ("sort_order", "id")
-
-
 class HomeCorporateWorkwearSettingsAdminForm(forms.ModelForm):
     class Meta:
         model = HomeCorporateWorkwearSettings
@@ -166,23 +135,6 @@ class HomeCorporateWorkwearSettingsAdminForm(forms.ModelForm):
             "corporate_workwear_cta_text_tr": "CTA Metni TR", "corporate_workwear_cta_text_en": "CTA Metni EN",
             "corporate_workwear_cta_link": "CTA Linki",
         }
-
-
-class HomeProcessSettingsAdminForm(forms.ModelForm):
-    class Meta:
-        model = HomeProcessSettings
-        fields = ("process_eyebrow_tr", "process_title_tr", "process_description_tr", "process_eyebrow_en", "process_title_en", "process_description_en")
-        labels = {
-            "process_eyebrow_tr": "Eyebrow TR", "process_title_tr": "Başlık TR", "process_description_tr": "Açıklama TR",
-            "process_eyebrow_en": "Eyebrow EN", "process_title_en": "Başlık EN", "process_description_en": "Açıklama EN",
-        }
-
-
-class HomeProcessStepInline(TabularInline):
-    model = HomeProcessStep
-    extra = 0
-    fields = ("title_tr", "title_en", "description_tr", "description_en", "sort_order", "is_active")
-    ordering = ("sort_order", "id")
 
 
 class ProductionInsightItemInline(TabularInline):
@@ -210,6 +162,28 @@ class ProductionInsightItemInline(TabularInline):
         return format_html('<img src="{}" style="width:72px;height:52px;object-fit:cover;border-radius:4px" />', obj.image.url)
 
 
+class HomeProductGroupInline(TabularInline):
+    model = ProductGroup
+    verbose_name = "Ürün Kategorisi Kartı"
+    verbose_name_plural = "Ürün Kategorisi Kartları"
+    extra = 0
+    fields = (
+        "name_tr", "name_en", "short_description_tr", "short_description_en",
+        "image", "image_preview", "image_mobile", "image_mobile_preview",
+        "slug", "show_on_home", "is_active", "sort_order",
+    )
+    readonly_fields = ("image_preview", "image_mobile_preview")
+    ordering = ("sort_order", "id")
+
+    @display(description="Desktop Önizleme")
+    def image_preview(self, obj):
+        return format_html('<img src="{}" style="width:72px;height:52px;object-fit:cover;border-radius:4px" />', obj.image.url) if obj and obj.image else "—"
+
+    @display(description="Mobil Önizleme")
+    def image_mobile_preview(self, obj):
+        return format_html('<img src="{}" style="width:52px;height:68px;object-fit:cover;border-radius:4px" />', obj.image_mobile.url) if obj and obj.image_mobile else "—"
+
+
 @admin.register(HomePage)
 class HomePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
     form = HomePageAdminForm
@@ -220,14 +194,14 @@ class HomePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
             "Türkçe Hero",
             {
                 "classes": ["tab"],
-                "fields": ("hero_subtitle_tr", "hero_title_tr", "hero_description_tr"),
+                "fields": ("hero_title_tr", "hero_description_tr"),
             },
         ),
         (
             "İngilizce Hero",
             {
                 "classes": ["tab"],
-                "fields": ("hero_subtitle_en", "hero_title_en", "hero_description_en"),
+                "fields": ("hero_title_en", "hero_description_en"),
             },
         ),
         (
@@ -244,6 +218,7 @@ class HomePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
                 "fields": (("meta_title_tr", "meta_title_en"), ("meta_description_tr", "meta_description_en")),
             },
         ),
+        ("Final CTA", {"classes": ["tab"], "fields": (("final_cta_title_tr", "final_cta_title_en"), ("final_cta_description_tr", "final_cta_description_en"), ("final_cta_text_tr", "final_cta_text_en"), ("final_cta_bottom_label_tr", "final_cta_bottom_label_en"), "final_cta_link")}),
     )
 
     def hero_image_preview(self, obj):
@@ -262,13 +237,13 @@ class HomePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
 @admin.register(HomeProductCategoriesSettings)
 class HomeProductCategoriesSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     form = HomeProductCategoriesSettingsAdminForm
+    inlines = (HomeProductGroupInline,)
     change_form_show_cancel_button = True
     fieldsets = (
         (
             "Türkçe İçerik",
             {
                 "fields": (
-                    "product_categories_eyebrow_tr",
                     "product_categories_title_tr",
                     "product_categories_description_tr",
                 ),
@@ -278,7 +253,6 @@ class HomeProductCategoriesSettingsAdmin(SingletonModelAdmin, ModelAdmin):
             "İngilizce İçerik",
             {
                 "fields": (
-                    "product_categories_eyebrow_en",
                     "product_categories_title_en",
                     "product_categories_description_en",
                 ),
@@ -299,8 +273,8 @@ class HomeWorkEssentialsSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     inlines = (WorkEssentialItemInline,)
     change_form_show_cancel_button = True
     fieldsets = (
-        ("Türkçe İçerik", {"fields": ("work_essentials_eyebrow_tr", "work_essentials_title_tr", "work_essentials_description_tr", "work_essentials_cta_text_tr")}),
-        ("İngilizce İçerik", {"fields": ("work_essentials_eyebrow_en", "work_essentials_title_en", "work_essentials_description_en", "work_essentials_cta_text_en")}),
+        ("Türkçe İçerik", {"fields": ("work_essentials_title_tr", "work_essentials_description_tr", "work_essentials_cta_text_tr")}),
+        ("İngilizce İçerik", {"fields": ("work_essentials_title_en", "work_essentials_description_en", "work_essentials_cta_text_en")}),
         ("CTA", {"fields": ("work_essentials_cta_link",)}),
     )
 
@@ -317,39 +291,13 @@ class HomeProductionInsightsSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     inlines = (ProductionInsightItemInline,)
     change_form_show_cancel_button = True
     fieldsets = (
-        ("Türkçe İçerik", {"fields": ("production_insights_eyebrow_tr", "production_insights_title_tr", "production_insights_description_tr")}),
-        ("İngilizce İçerik", {"fields": ("production_insights_eyebrow_en", "production_insights_title_en", "production_insights_description_en")}),
+        ("Türkçe İçerik", {"fields": ("production_insights_title_tr", "production_insights_description_tr")}),
+        ("İngilizce İçerik", {"fields": ("production_insights_title_en", "production_insights_description_en")}),
     )
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
         extra_context = extra_context or {}
         extra_context["title"] = "Üretim Bilgileri"
-        extra_context["subtitle"] = None
-        return super().change_view(request, object_id, form_url, extra_context)
-
-
-@admin.register(HomeTechnicalPerformanceSettings)
-class HomeTechnicalPerformanceSettingsAdmin(SingletonModelAdmin, ModelAdmin):
-    form = HomeTechnicalPerformanceSettingsAdminForm
-    inlines = (TechnicalPerformanceItemInline,)
-    change_form_show_cancel_button = True
-    readonly_fields = ("technical_performance_image_preview",)
-    fieldsets = (
-        ("Türkçe İçerik", {"fields": ("technical_performance_eyebrow_tr", "technical_performance_title_tr", "technical_performance_description_tr", "technical_performance_cta_text_tr")}),
-        ("İngilizce İçerik", {"fields": ("technical_performance_eyebrow_en", "technical_performance_title_en", "technical_performance_description_en", "technical_performance_cta_text_en")}),
-        ("Görsel", {"fields": ("technical_performance_image", "technical_performance_image_preview")}),
-        ("CTA", {"fields": ("technical_performance_cta_link",)}),
-    )
-
-    @display(description="Görsel Önizleme")
-    def technical_performance_image_preview(self, obj):
-        if not obj or not obj.technical_performance_image:
-            return "—"
-        return format_html('<img src="{}" style="width:180px;height:112px;object-fit:cover;border-radius:4px" />', obj.technical_performance_image.url)
-
-    def change_view(self, request, object_id, form_url="", extra_context=None):
-        extra_context = extra_context or {}
-        extra_context["title"] = "Teknik Performans"
         extra_context["subtitle"] = None
         return super().change_view(request, object_id, form_url, extra_context)
 
@@ -360,8 +308,8 @@ class HomeCorporateWorkwearSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     change_form_show_cancel_button = True
     readonly_fields = ("personnel_image_preview", "promo_image_preview")
     fieldsets = (
-        ("Section — Türkçe", {"fields": ("corporate_workwear_eyebrow_tr", "corporate_workwear_title_tr", "corporate_workwear_description_tr")}),
-        ("Section — İngilizce", {"fields": ("corporate_workwear_eyebrow_en", "corporate_workwear_title_en", "corporate_workwear_description_en")}),
+        ("Section — Türkçe", {"fields": ("corporate_workwear_title_tr", "corporate_workwear_description_tr")}),
+        ("Section — İngilizce", {"fields": ("corporate_workwear_title_en", "corporate_workwear_description_en")}),
         ("Personel Kıyafetleri — Türkçe", {"fields": ("corporate_workwear_personnel_title_tr", "corporate_workwear_personnel_description_tr")}),
         ("Personnel Workwear — English", {"fields": ("corporate_workwear_personnel_title_en", "corporate_workwear_personnel_description_en")}),
         ("Personel Kıyafetleri Görseli", {"fields": ("corporate_workwear_personnel_image", "personnel_image_preview")}),
@@ -382,23 +330,6 @@ class HomeCorporateWorkwearSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     def change_view(self, request, object_id, form_url="", extra_context=None):
         extra_context = extra_context or {}
         extra_context["title"] = "Kurumsal İş Giyimi"
-        extra_context["subtitle"] = None
-        return super().change_view(request, object_id, form_url, extra_context)
-
-
-@admin.register(HomeProcessSettings)
-class HomeProcessSettingsAdmin(SingletonModelAdmin, ModelAdmin):
-    form = HomeProcessSettingsAdminForm
-    inlines = (HomeProcessStepInline,)
-    change_form_show_cancel_button = True
-    fieldsets = (
-        ("Türkçe İçerik", {"fields": ("process_eyebrow_tr", "process_title_tr", "process_description_tr")}),
-        ("İngilizce İçerik", {"fields": ("process_eyebrow_en", "process_title_en", "process_description_en")}),
-    )
-
-    def change_view(self, request, object_id, form_url="", extra_context=None):
-        extra_context = extra_context or {}
-        extra_context["title"] = "Fikirden Teslimata"
         extra_context["subtitle"] = None
         return super().change_view(request, object_id, form_url, extra_context)
 

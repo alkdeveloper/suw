@@ -233,7 +233,6 @@ UNFOLD = {
                 "separator": True,
                 "items": [
                     {"title": "Kurumsal Sayfa", "icon": "domain",  "link": reverse_lazy("admin:corporate_corporatepage_changelist"),        "permission": is_superuser},
-                    {"title": "Tarihçe",        "icon": "history", "link": reverse_lazy("admin:corporate_corporatehistoryitem_changelist"), "permission": is_superuser},
                 ],
             },
             {
@@ -331,10 +330,8 @@ UNFOLD["SIDEBAR"]["navigation"] = [
             {"title": "Hero ve SEO", "icon": "home", "link": reverse_lazy("admin:home_homepage_changelist"), "permission": is_superuser},
             {"title": "Ürün Kategorileri Bölümü", "icon": "category", "link": reverse_lazy("admin:home_homeproductcategoriessettings_changelist"), "permission": is_superuser},
             {"title": "Katalog Vitrini", "icon": "view_carousel", "link": reverse_lazy("admin:home_homeworkessentialssettings_changelist"), "permission": is_superuser},
-            {"title": "Teknik Performans", "icon": "engineering", "link": reverse_lazy("admin:home_hometechnicalperformancesettings_changelist"), "permission": is_superuser},
             {"title": "Üretim Bilgileri", "icon": "precision_manufacturing", "link": reverse_lazy("admin:home_homeproductioninsightssettings_changelist"), "permission": is_superuser},
             {"title": "Kurumsal İş Giyimi", "icon": "checkroom", "link": reverse_lazy("admin:home_homecorporateworkwearsettings_changelist"), "permission": is_superuser},
-            {"title": "Fikirden Teslimata", "icon": "account_tree", "link": reverse_lazy("admin:home_homeprocesssettings_changelist"), "permission": is_superuser},
         ],
     },
     {
@@ -368,9 +365,9 @@ UNFOLD["SIDEBAR"]["navigation"] = [
         "separator": True,
         "items": [
             {"title": "Sayfa Ayarları", "icon": "info", "link": reverse_lazy("admin:corporate_corporatepage_changelist"), "permission": is_superuser},
+            {"title": "Üretim Videosu", "icon": "videocam", "link": reverse_lazy("admin:corporate_corporatevideosettings_changelist"), "permission": is_superuser},
+            {"title": "Kronoloji", "icon": "timeline", "link": reverse_lazy("admin:corporate_corporatehistoryitem_changelist"), "permission": is_superuser},
             {"title": "Neden SUW", "icon": "verified", "link": reverse_lazy("admin:corporate_whysuwitem_changelist"), "permission": is_superuser},
-            {"title": "ALK Group Deneyimi", "icon": "factory", "link": reverse_lazy("admin:corporate_groupexperienceitem_changelist"), "permission": is_superuser},
-            {"title": "Tarihçe", "icon": "timeline", "link": reverse_lazy("admin:corporate_corporatehistoryitem_changelist"), "permission": is_superuser},
         ],
     },
     {

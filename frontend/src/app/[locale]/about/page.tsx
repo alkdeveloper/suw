@@ -15,9 +15,84 @@ type AboutPageProps = {
 };
 
 function fallback(locale: SupportedLocale): AboutPageContent {
-  const tr=locale==="tr";
-  const items=(titles:string[],descriptions:string[])=>titles.map((title,id)=>({id:id+1,title,description:descriptions[id]}));
-  return {hero:{eyebrow:tr?"SUW HAKKINDA":"ABOUT SUW",title:tr?"DENEYİM ÜZERİNE\nKURULU.":"BUILT ON\nEXPERIENCE.",description:tr?"SUW, ALK Group'un tekstil ve üretim alanındaki köklü deneyimi üzerine kurulan profesyonel iş giyimi markasıdır.":"SUW is a professional workwear brand built on ALK Group's established textile and manufacturing expertise."},group:{eyebrow:tr?"ALK GROUP BÜNYESİNDE":"PART OF ALK GROUP",title:tr?"1978'DEN GELEN\nÜRETİM DENEYİMİ.":"MANUFACTURING EXPERIENCE\nSINCE 1978.",description:tr?"ALK Group'un tekstil üretimi, ürün geliştirme ve uluslararası operasyon deneyimi bugün SUW'ın kurumsal iş giyimi çözümlerinin temelini oluşturuyor.":"ALK Group's textile manufacturing, product development and international operations experience forms the foundation of SUW today.",supporting_label:tr?"ALK GROUP BÜNYESİNDE BİR MARKA":"A BRAND WITHIN ALK GROUP",image:null,image_mobile:null},why:{eyebrow:tr?"NEDEN SUW?":"WHY SUW?",title:tr?"İŞ GİYİMİNİ\nSADECE ÜRÜN OLARAK GÖRMÜYORUZ.":"WE SEE WORKWEAR AS\nMORE THAN A PRODUCT.",description:tr?"Tüm ihtiyaçları birlikte değerlendirerek uzun süreli kullanım için çözümler geliştiriyoruz.":"We consider every need together to develop solutions for long-term use.",items:items(tr?["KURUMSAL KİMLİK","KULLANIM ODAKLI TASARIM","ÜRETİM & KALİTE","SÜREKLİ DESTEK"]:["CORPORATE IDENTITY","USE-FOCUSED DESIGN","MANUFACTURING & QUALITY","CONTINUOUS SUPPORT"],Array(4).fill(tr?"Kurumsal ihtiyaçları bütüncül bir yaklaşımla değerlendiririz.":"We address corporate needs through an integrated approach."))},experience:{eyebrow:tr?"ALK GROUP DENEYİMİ":"ALK GROUP EXPERIENCE",title:tr?"BİR MARKADAN\nDAHA FAZLASI.":"MORE THAN\nA BRAND.",description:tr?"SUW, ALK Group'un tekstil alanındaki deneyiminden güç alır.":"SUW draws strength from ALK Group's textile expertise.",items:items(tr?["ÜRETİM & ÜRÜN GELİŞTİRME","ÖZEL ÜRETİM","TEDARİK & OPERASYON","ULUSLARARASI DENEYİM"]:["MANUFACTURING & PRODUCT DEVELOPMENT","CUSTOM MANUFACTURING","SUPPLY & OPERATIONS","INTERNATIONAL EXPERIENCE"],Array(4).fill(tr?"Üretim ve operasyon bilgisini projelere taşırız.":"We bring manufacturing and operations expertise to every project."))},timeline:{eyebrow:tr?"KISA TARİHÇE":"A BRIEF HISTORY",title:tr?"DENEYİMDEN\nUZMANLIĞA.":"FROM EXPERIENCE\nTO EXPERTISE.",items:["1978",tr?"2000'LER":"2000s",tr?"2010'LAR":"2010s","SUW"].map((year,id)=>({id:id+1,year_or_period:year,title:"",description:tr?["Tekstil üretim yolculuğunun başlangıcı.","Promosyon tekstili ve özel üretimde genişleme.","Uluslararası operasyon yapısının güçlenmesi.","Kurumsal iş giyimi deneyiminin ayrı bir marka altında yapılandırılması."][id]:["The textile manufacturing journey begins.","Expansion into promotional textiles and custom manufacturing.","International operations are strengthened.","Corporate workwear expertise is structured under a dedicated brand."][id]}))},cta:{eyebrow:"SUW",title:tr?"DENEYİMİ\nSAHAYA TAŞIYORUZ.":"BRINGING EXPERIENCE\nTO THE FIELD.",description:tr?"Üretim bilgisini, kurumsal kimliği ve günlük kullanım ihtiyaçlarını aynı ürün üzerinde buluşturuyoruz.":"We bring manufacturing knowledge, corporate identity and everyday needs together in each product.",text:tr?"PROJELERİ İNCELE":"VIEW PROJECTS",link:"/projects"}};
+  const tr = locale === "tr";
+  const items = (titles: string[], descriptions: string[]) => titles.map((title, id) => ({ id: id + 1, title, description: descriptions[id] }));
+  const whyTitles = tr
+    ? ["KALİTE VE MARKA", "TASARIM VE KONFOR", "GÜVENİLİR DESTEK", "GENİŞ ÜRÜN AĞI", "TESLİMAT VE HİZMET"]
+    : ["QUALITY AND BRAND", "DESIGN AND COMFORT", "RELIABLE SUPPORT", "BROAD PRODUCT NETWORK", "DELIVERY AND SERVICE"];
+  const whyDescriptions = tr
+    ? [
+        "SUW markamız ile, mevcut değerlerinize yenilerini ekleyerek markanızı daha da güçlendiririz.",
+        "Çalışanlarınızın konforunu ön planda tutarak, işlevsel ve şık kıyafetlerle kurumunuzun imajını zirveye taşırız.",
+        "İş ahlakına sadık kalarak, satış öncesi ve sonrasında güvenilir iletişim ve üstün destek hizmetiyle yanınızda oluruz.",
+        "Geniş ürün yelpazesi ve ulusal-uluslararası tedarik ağıyla, ihtiyaçlarınıza en uygun çözümleri sunarız.",
+        "Zamanında teslimat, yüksek kaliteli ürünler ve rekabetçi fiyatlarla mükemmel hizmet alırsınız.",
+      ]
+    : [
+        "With SUW, we strengthen your brand further by adding new value to what you already stand for.",
+        "By putting your employees’ comfort first, we elevate your corporate image with functional and stylish clothing.",
+        "Staying true to sound business ethics, we stand by you with reliable communication and outstanding support before and after every sale.",
+        "With a broad product range and a national and international supply network, we provide the solutions best suited to your needs.",
+        "You receive excellent service through on-time delivery, high-quality products and competitive pricing.",
+      ];
+
+  return {
+    hero: {
+      eyebrow: tr ? "SUW HAKKINDA" : "ABOUT SUW",
+      title: tr ? "DENEYİM ÜZERİNE\nKURULU." : "BUILT ON\nEXPERIENCE.",
+      description: tr ? "SUW, ALK Group'un tekstil ve üretim alanındaki köklü deneyimi üzerine kurulan profesyonel iş giyimi markasıdır." : "SUW is a professional workwear brand built on ALK Group's established textile and manufacturing expertise.",
+    },
+    group: {
+      eyebrow: tr ? "ALK GROUP BÜNYESİNDE" : "PART OF ALK GROUP",
+      title: tr ? "1978'DEN GELEN\nÜRETİM DENEYİMİ." : "MANUFACTURING EXPERIENCE\nSINCE 1978.",
+      description: tr ? "ALK Group'un tekstil üretimi, ürün geliştirme ve uluslararası operasyon deneyimi bugün SUW'ın kurumsal iş giyimi çözümlerinin temelini oluşturuyor." : "ALK Group's textile manufacturing, product development and international operations experience forms the foundation of SUW today.",
+      supporting_label: tr ? "ALK GROUP BÜNYESİNDE BİR MARKA" : "A BRAND WITHIN ALK GROUP",
+      image: null,
+      image_mobile: null,
+    },
+    video: {
+      title: tr ? "ÜRETİMİN ARKASINDAKİ DENEYİM." : "THE EXPERIENCE BEHIND PRODUCTION.",
+      description: tr
+        ? "SUW, 1978'den gelen ALK Group üretim deneyiminden güç alır. Ürün geliştirme, üretim, kalite kontrol ve tedarik süreçlerini aynı yapı içerisinde yöneterek kurumsal müşterilere uçtan uca çözümler sunar."
+        : "SUW draws strength from ALK Group's manufacturing experience dating back to 1978. By managing product development, production, quality control and supply processes within a single structure, we provide corporate clients with end-to-end solutions.",
+      video: null,
+      poster: null,
+      is_active: true,
+    },
+    timeline: {
+      title: tr ? "1978'DEN BUGÜNE." : "FROM 1978 TO TODAY.",
+      description: tr
+        ? "1978'de İstanbul'da başlayan yolculuğumuz, üretim, ürün geliştirme, tedarik ve uluslararası operasyon alanlarında büyüyerek bugün SUW'un arkasındaki deneyimi oluşturuyor."
+        : "Our journey began in Istanbul in 1978 and grew across manufacturing, product development, sourcing and international operations, creating the experience behind SUW today.",
+      items: (tr
+        ? [
+            ["1978", "Eminönü'nde küçük bir şapka mağazasıyla başlayan yolculuk, ALK Group'un tekstil alanındaki ilk adımını oluşturdu."],
+            ["1993", "Büyük ölçekli üretim yatırımlarıyla tekstil ve giyim aksesuarları alanındaki üretim kapasitesi önemli ölçüde büyüdü."],
+            ["2000", "ALKAN Tekstil Promosyonu ile promosyon tekstili alanına giriş yapıldı. Kurumsal firmalar, organizasyonlar ve farklı sektörlerin tekstil ihtiyaçlarına yönelik üretim ve tedarik yapısı geliştirildi."],
+            ["2010", "Tedarik yapısını güçlendirmek ve Asya pazarındaki gelişmeleri yakından takip etmek amacıyla Çin'de tedarik ofisi açıldı."],
+            ["2012", "ALK bünyesinde Nordbron markası hayata geçirildi ve grubun kendi markalarıyla uluslararası pazarlardaki büyümesi güçlendirildi."],
+            ["2015", "Almanya merkezli yapılanma ile ALK Group'un Avrupa operasyonları, lojistik ve uluslararası ticaret altyapısı güçlendirildi."],
+            ["2021", "Personel kıyafetleri ve profesyonel iş giyimi alanındaki deneyim SUW markası altında yeni bir yapıya dönüştürüldü. Kalite, işlevsellik ve zamanında teslimat yaklaşımı SUW'un temelini oluşturdu."],
+          ]
+        : [
+            ["1978", "The journey began with a small hat shop in Eminönü, marking ALK Group's first step into the textile industry."],
+            ["1993", "Major manufacturing investments significantly expanded production capacity in textiles and apparel accessories."],
+            ["2000", "ALKAN Tekstil Promosyonu marked the group's entry into promotional textiles, establishing a production and sourcing structure for corporate clients, organizations and diverse industries."],
+            ["2010", "A sourcing office was opened in China to strengthen the supply network and stay closely connected to developments across Asian markets."],
+            ["2012", "Nordbron was launched within ALK, accelerating the group's international growth through its own brands."],
+            ["2015", "A Germany-based organization strengthened ALK Group's European operations, logistics capabilities and international trade infrastructure."],
+            ["2021", "Expertise in staff uniforms and professional workwear evolved into a new structure under the SUW brand, founded on quality, functionality and reliable on-time delivery."],
+          ]).map(([year, description], index) => ({ id: index + 1, year, description })),
+    },
+    why: { eyebrow: tr ? "NEDEN SUW?" : "WHY SUW?", title: tr ? "NEDEN SUW?" : "WHY SUW?", description: "", items: items(whyTitles, whyDescriptions) },
+    cta: {
+      eyebrow: "SUW",
+      title: tr ? "DENEYİMİ\nSAHAYA TAŞIYORUZ." : "BRINGING EXPERIENCE\nTO THE FIELD.",
+      description: tr ? "Üretim bilgisini, kurumsal kimliği ve günlük kullanım ihtiyaçlarını aynı ürün üzerinde buluşturuyoruz." : "We bring manufacturing knowledge, corporate identity and everyday needs together in each product.",
+      text: tr ? "PROJELERİ İNCELE" : "VIEW PROJECTS",
+      link: "/projects",
+    },
+  };
 }
 
 function compactFallback(locale: SupportedLocale): AboutPageContent {
@@ -27,40 +102,6 @@ function compactFallback(locale: SupportedLocale): AboutPageContent {
   content.group.description = tr
     ? "SUW, temelleri 1978'de İstanbul'da atılan ALK Group'un tekstil üretimi, ürün geliştirme ve uluslararası operasyon deneyiminden güç alır."
     : "SUW draws strength from ALK Group's textile manufacturing, product development and international operations experience, established in Istanbul in 1978.";
-  content.why.description = "";
-  content.why.items = content.why.items.map((item, index) => ({
-    ...item,
-    description: (tr
-      ? [
-          "Marka kimliğini ekiplerin kullandığı ürünlere taşırız.",
-          "Çalışma ortamına ve günlük kullanım koşullarına göre çözümler geliştiririz.",
-          "Üretimden kalite kontrole tüm süreci birlikte yönetiriz.",
-          "Devam eden kurumsal ihtiyaçlara uzun vadeli çözümler sunarız.",
-        ]
-      : [
-          "We carry brand identity into the products teams use.",
-          "We develop solutions around working environments and daily use.",
-          "We manage the full process from manufacturing to quality control.",
-          "We provide long-term solutions for ongoing corporate needs.",
-        ])[index],
-  }));
-  content.experience.items = content.experience.items.map((item, index) => ({
-    ...item,
-    description: (tr
-      ? [
-          "Tekstil üretimi ve teknik ürün bilgisi.",
-          "Projeye göre özelleştirilebilir çözümler.",
-          "Entegre tedarik ve operasyon yönetimi.",
-          "Farklı pazarlardaki üretim ve lojistik tecrübesi.",
-        ]
-      : [
-          "Textile manufacturing and technical product expertise.",
-          "Solutions tailored to each project.",
-          "Integrated supply and operations management.",
-          "Manufacturing and logistics experience across different markets.",
-        ])[index],
-  }));
-
   return content;
 }
 
@@ -102,14 +143,15 @@ export default async function AboutPage({
   const { locale } = await params;
   const content = pageContent[locale];
   let about=compactFallback(locale);
-  try { const response=await createAPI(locale).get<CorporatePageResponse>("corporate/"); if(response.data.page) about=response.data.page; } catch {}
+  try {
+    const response=await createAPI(locale).get<CorporatePageResponse>("corporate/");
+    if(response.data.page) about={...response.data.page,video:response.data.page.video??about.video,timeline:response.data.page.timeline??about.timeline};
+  } catch {}
 
   return (
     <main>
       <section className={styles.hero} data-locale={locale}>
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>{about.hero.eyebrow||content.eyebrow}</p>
-
           <h1 className={styles.title}>
             {(about.hero.title||`${content.titleLine1}\n${content.titleLine2}`).split(/\r?\n/).map(line=><span key={line}>{line}</span>)}
           </h1>

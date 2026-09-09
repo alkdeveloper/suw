@@ -16,6 +16,7 @@ import {
 
 const LOCALE_PREFIXES = new Set(["tr", "en"]);
 const HIDDEN_PUBLIC_NAV_PATHS = new Set(["/industries", "/solutions"]);
+const OFFICIAL_SUW_INSTAGRAM_URL = "https://www.instagram.com/suwworkwear/";
 
 function stripLocalePrefix(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
@@ -175,12 +176,16 @@ export function AppShell({
     value: string;
   }>;
   const socialLinks = [
-    { href: siteSettings.instagram, label: siteSettings.footer_copy?.social_labels.instagram },
-    { href: siteSettings.linkedin, label: siteSettings.footer_copy?.social_labels.linkedin },
-    { href: siteSettings.facebook, label: siteSettings.footer_copy?.social_labels.facebook },
-    { href: siteSettings.twitter, label: siteSettings.footer_copy?.social_labels.x },
-    { href: siteSettings.youtube, label: siteSettings.footer_copy?.social_labels.youtube },
-  ].filter((item): item is { href: string; label: string } => Boolean(item.href && item.label));
+    {
+      href: siteSettings.instagram || OFFICIAL_SUW_INSTAGRAM_URL,
+      label: siteSettings.footer_copy?.social_labels.instagram || "Instagram",
+      platform: "instagram" as const,
+    },
+    { href: siteSettings.linkedin, label: siteSettings.footer_copy?.social_labels.linkedin, platform: "linkedin" as const },
+    { href: siteSettings.facebook, label: siteSettings.footer_copy?.social_labels.facebook, platform: "facebook" as const },
+    { href: siteSettings.twitter, label: siteSettings.footer_copy?.social_labels.x, platform: "x" as const },
+    { href: siteSettings.youtube, label: siteSettings.footer_copy?.social_labels.youtube, platform: "youtube" as const },
+  ].filter((item): item is { href: string; label: string; platform: "facebook" | "instagram" | "linkedin" | "x" | "youtube" } => Boolean(item.href && item.label));
   const logoSrc =
     resolveCmsMediaUrl(siteSettings.logo) ??
     resolvePublicAssetPath("/images/suw-logo-hero.png");

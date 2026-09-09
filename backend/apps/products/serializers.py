@@ -64,10 +64,11 @@ class ProductGroupSerializer(LocalizedSerializer):
     hero_description = serializers.SerializerMethodField()
     hero_image = serializers.SerializerMethodField()
     hero_image_mobile = serializers.SerializerMethodField()
+    image_mobile = serializers.SerializerMethodField()
 
     class Meta:
         model = ProductGroup
-        fields = ["id", "name", "slug", "image", "short_description", "url", "hero_eyebrow", "hero_title", "hero_description", "hero_image", "hero_image_mobile"]
+        fields = ["id", "name", "slug", "image", "image_mobile", "short_description", "url", "hero_eyebrow", "hero_title", "hero_description", "hero_image", "hero_image_mobile"]
 
     def get_short_description(self, obj):
         return localized(obj, "short_description", self.context.get("request"))
@@ -80,6 +81,7 @@ class ProductGroupSerializer(LocalizedSerializer):
     def get_hero_description(self, obj): return localized(obj, "hero_description", self.context.get("request"))
     def get_hero_image(self, obj): return image_url(obj, "hero_image", self.context.get("request"))
     def get_hero_image_mobile(self, obj): return image_url(obj, "hero_image_mobile", self.context.get("request"))
+    def get_image_mobile(self, obj): return image_url(obj, "image_mobile", self.context.get("request"))
 
 
 class ProductCategorySerializer(LocalizedSerializer):

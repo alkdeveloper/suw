@@ -126,10 +126,6 @@ export function SuwContactFormSection({
       <div className="suw-contact-form__inner">
         <div className="suw-contact-form__layout">
           <aside className="suw-contact-form__information">
-                  <p className="suw-contact-form__eyebrow">
-                        {copy?.eyebrow || fallbackCopy.eyebrow}
-                      </p>
-
                       <h2 className="suw-contact-form__title">
                         {copy?.title || fallbackCopy.title}
                       </h2>

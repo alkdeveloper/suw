@@ -15,14 +15,21 @@ class ContactPageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
 
     fieldsets = (
         (
-            "1 – Harita",
+            "1 – Hero",
+            {
+                "classes": ["tab"],
+                "fields": ("hero_title",),
+            },
+        ),
+        (
+            "2 – Harita",
             {
                 "classes": ["tab"],
                 "fields": ("map_embed_url",),
             },
         ),
         (
-            "2 – İletişim Bilgileri",
+            "3 – İletişim Bilgileri",
             {
                 "classes": ["tab"],
                 "fields": (
@@ -36,14 +43,12 @@ class ContactPageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
             },
         ),
         (
-            "3 – Form Ayarları",
+            "4 – Form Ayarları",
             {
                 "classes": ["tab"],
                 "fields": (
-                    "form_eyebrow",
                     "form_left_title",
                     "form_left_description",
-                    "form_right_eyebrow",
                     "form_right_title",
                     "form_title",
                     "kvkk_text",

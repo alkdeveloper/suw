@@ -16,6 +16,7 @@ export type FooterContactItem = {
 export type FooterSocialLink = {
   href: string;
   label: string;
+  platform?: "facebook" | "instagram" | "linkedin" | "x" | "youtube";
 };
 
 export type FooterCompactContact = {

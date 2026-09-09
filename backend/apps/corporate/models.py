@@ -43,6 +43,8 @@ class CorporatePage(SingletonModel, SEOModel):
     timeline_eyebrow_en = models.CharField(max_length=120, blank=True)
     timeline_title_tr = models.CharField(max_length=220, blank=True)
     timeline_title_en = models.CharField(max_length=220, blank=True)
+    timeline_description_tr = models.TextField(blank=True)
+    timeline_description_en = models.TextField(blank=True)
 
     final_cta_eyebrow_tr = models.CharField(max_length=120, blank=True)
     final_cta_eyebrow_en = models.CharField(max_length=120, blank=True)
@@ -99,6 +101,32 @@ class CorporatePage(SingletonModel, SEOModel):
 
     def __str__(self):
         return "Kurumsal Sayfa"
+
+
+class CorporateVideoSettings(SingletonModel):
+    title_tr = models.CharField(max_length=240, blank=True, default="ÜRETİMİN ARKASINDAKİ DENEYİM.", verbose_name="TR Başlık")
+    title_en = models.CharField(max_length=240, blank=True, default="THE EXPERIENCE BEHIND PRODUCTION.", verbose_name="EN Başlık")
+    description_tr = models.TextField(blank=True, default="SUW, 1978'den gelen ALK Group üretim deneyiminden güç alır. Ürün geliştirme, üretim, kalite kontrol ve tedarik süreçlerini aynı yapı içerisinde yöneterek kurumsal müşterilere uçtan uca çözümler sunar.", verbose_name="TR Açıklama")
+    description_en = models.TextField(blank=True, default="SUW draws strength from ALK Group's manufacturing experience dating back to 1978. By managing product development, production, quality control and supply processes within a single structure, we provide corporate clients with end-to-end solutions.", verbose_name="EN Açıklama")
+    video_file = models.FileField(
+        upload_to=UniqueUploadTo("corporate/video/"),
+        validators=[FileExtensionValidator(["mp4"])],
+        blank=True,
+        verbose_name="Video Dosyası (.mp4)",
+    )
+    poster_image = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/video/poster/"),
+        validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
+        blank=True,
+        verbose_name="Video Kapak Görseli",
+    )
+    is_active = models.BooleanField(default=True, verbose_name="Aktif")
+
+    class Meta:
+        verbose_name = "Üretim Videosu"
+
+    def __str__(self):
+        return "Üretim Videosu"
 
 
 class CorporateHistoryItem(SortableModel):

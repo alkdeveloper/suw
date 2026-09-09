@@ -5,6 +5,11 @@ import { useParams } from "next/navigation";
 
 type SuwFinalCtaSectionProps = {
   href?: string;
+  showEyebrow?: boolean;
+  title?: string;
+  description?: string;
+  buttonLabel?: string;
+  bottomLabel?: string;
 };
 
 const sectionContent = {
@@ -31,6 +36,11 @@ const sectionContent = {
 
 export function SuwFinalCtaSection({
   href = "/contact",
+  showEyebrow = true,
+  title,
+  description,
+  buttonLabel,
+  bottomLabel,
 }: SuwFinalCtaSectionProps) {
   const params = useParams();
   const locale = params?.locale === "en" ? "en" : "tr";
@@ -39,24 +49,22 @@ export function SuwFinalCtaSection({
   return (
     <section className="suw-final-cta">
       <div className="suw-final-cta__inner">
-        <p className="suw-final-cta__eyebrow">
-          {content.eyebrow}
-        </p>
+        {showEyebrow ? (
+          <p className="suw-final-cta__eyebrow">
+            {content.eyebrow}
+          </p>
+        ) : null}
 
         <div className="suw-final-cta__content">
-          <h2 className="suw-final-cta__title">
-            {content.titleLine1}
-            <br />
-            {content.titleLine2}
-          </h2>
+          <h2 className="suw-final-cta__title">{(title || `${content.titleLine1}\n${content.titleLine2}`).split(/\r?\n/).map((line, index) => <span key={`${line}-${index}`}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
 
           <div className="suw-final-cta__side">
             <p className="suw-final-cta__description">
-              {content.description}
+              {description || content.description}
             </p>
 
             <Link className="suw-final-cta__button" href={href}>
-              <span>{content.buttonLabel}</span>
+              <span>{buttonLabel || content.buttonLabel}</span>
               <span aria-hidden="true">↗</span>
             </Link>
           </div>
@@ -64,7 +72,7 @@ export function SuwFinalCtaSection({
 
         <div className="suw-final-cta__bottom">
           <span>SUW</span>
-          <span>{content.bottomLabel}</span>
+          <span>{bottomLabel || content.bottomLabel}</span>
         </div>
       </div>
     </section>

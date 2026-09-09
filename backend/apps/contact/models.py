@@ -8,6 +8,8 @@ from common.models import SEOModel
 
 class ContactPage(SingletonModel, SEOModel):
 
+    hero_title = models.CharField(max_length=220, blank=True, verbose_name=_("Hero Başlığı"))
+
     # Harita
     map_embed_url = models.URLField(max_length=500, blank=True, verbose_name=_("Google Maps Embed URL"))
 

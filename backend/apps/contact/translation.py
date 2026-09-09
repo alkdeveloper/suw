@@ -5,6 +5,7 @@ from .models import ContactPage, ContactMessage
 
 class ContactPageTranslation(TranslationOptions):
     fields = (
+        "hero_title",
         "info_title",
         "info_description",
         "address",
