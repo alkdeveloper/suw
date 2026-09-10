@@ -19,14 +19,6 @@ class ProjectsPageSettings(SingletonModel):
     hero_title_en = models.CharField(max_length=220, blank=True)
     hero_description_tr = models.TextField(blank=True)
     hero_description_en = models.TextField(blank=True)
-    cta_eyebrow_tr = models.CharField(max_length=120, blank=True)
-    cta_eyebrow_en = models.CharField(max_length=120, blank=True)
-    cta_title_tr = models.CharField(max_length=220, blank=True)
-    cta_title_en = models.CharField(max_length=220, blank=True)
-    cta_description_tr = models.TextField(blank=True)
-    cta_description_en = models.TextField(blank=True)
-    cta_text_tr = models.CharField(max_length=100, blank=True)
-    cta_text_en = models.CharField(max_length=100, blank=True)
 
     class Meta:
         verbose_name = "Projeler Sayfa Ayarları"

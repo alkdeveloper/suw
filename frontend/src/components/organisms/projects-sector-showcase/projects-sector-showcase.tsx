@@ -1,9 +1,5 @@
-import Link from "next/link";
-
 import type { ProjectsPageResponse } from "@/src/lib/api-types";
-import type { SupportedLocale } from "@/src/lib/locale";
-
-export function ProjectsSectorShowcase({ content, locale }: { content: ProjectsPageResponse; locale: SupportedLocale }) {
+export function ProjectsSectorShowcase({ content }: { content: ProjectsPageResponse }) {
   return <>
     <section className="projects-sectors">
       <div className="projects-sectors__inner">
@@ -18,19 +14,8 @@ export function ProjectsSectorShowcase({ content, locale }: { content: ProjectsP
             <div className="projects-sectors__meta"><span>{String(index + 1).padStart(2, "0")}</span><p>{project.title}</p></div>
             <h2>{project.headline}</h2>
             <p className="projects-sectors__description">{project.description}</p>
-            {project.product_groups.length ? <div className="projects-sectors__tags">
-              {project.product_groups.map((group) => <span key={group}>{group}</span>)}
-            </div> : null}
           </div>
         </article>)}
-      </div>
-    </section>
-    <section className="projects-sectors-cta">
-      <div className="projects-sectors-cta__inner">
-        <div className="projects-sectors-cta__grid">
-          <h2>{content.cta_title}</h2>
-          <div><p>{content.cta_description}</p><Link href={`/${locale}/contact`}><span>{content.cta_text}</span><span aria-hidden="true">↗</span></Link></div>
-        </div>
       </div>
     </section>
   </>;

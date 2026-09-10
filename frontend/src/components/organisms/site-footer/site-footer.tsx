@@ -48,13 +48,6 @@ function LinkedInIcon() {
 
 const footerContent = {
   tr: {
-    tagline: "PROFESYONEL İŞ GİYİMİ",
-    description:
-      "Performans, dayanıklılık ve güçlü kurumsal kimlik gerektiren ekipler için profesyonel iş giyimi çözümleri.",
-    navigationTitle: "KEŞFET",
-    contactTitle: "İLETİŞİM",
-    contactText:
-      "Ekibiniz ve projeniz için doğru iş giyimi çözümünü birlikte geliştirelim.",
     contactLink: "BİZE ULAŞIN",
     copyright: "© SUW. Tüm hakları saklıdır.",
     backToTop: "Yukarı dön",
@@ -63,23 +56,9 @@ const footerContent = {
       email: "E-POSTA",
       phone: "TELEFON",
     },
-    navigation: [
-      { label: "ANA SAYFA", href: "/" },
-      { label: "ÜRÜNLER", href: "/products" },
-      { label: "PROJELER", href: "/projects" },
-      { label: "HAKKIMIZDA", href: "/about" },
-      { label: "İLETİŞİM", href: "/contact" },
-    ],
   },
 
   en: {
-    tagline: "PROFESSIONAL WORKWEAR",
-    description:
-      "Professional workwear solutions for teams that demand performance, durability and a strong corporate identity.",
-    navigationTitle: "EXPLORE",
-    contactTitle: "CONTACT",
-    contactText:
-      "Let’s develop the right workwear solution for your team and project.",
     contactLink: "GET IN TOUCH",
     copyright: "© SUW. All rights reserved.",
     backToTop: "Back to top",
@@ -88,13 +67,6 @@ const footerContent = {
       email: "EMAIL",
       phone: "PHONE",
     },
-    navigation: [
-      { label: "HOME", href: "/" },
-      { label: "PRODUCTS", href: "/products" },
-      { label: "PROJECTS", href: "/projects" },
-      { label: "ABOUT", href: "/about" },
-      { label: "CONTACT", href: "/contact" },
-    ],
   },
 };
 
@@ -119,6 +91,9 @@ export function SiteFooter({
   const desktopMapUrl = compactContact?.address
     ? `https://www.google.com/maps/search/?api=1&query=${coordinates || encodedAddress}`
     : undefined;
+  const visibleSocialLinks = socialLinks.filter(
+    (item) => item.platform === "instagram" || item.platform === "linkedin",
+  );
 
   const handleAddressClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (!compactContact?.address) {
@@ -171,42 +146,6 @@ export function SiteFooter({
               />
             </Link>
 
-            <p className="site-footer__tagline">
-              {content.tagline}
-            </p>
-
-            <p className="site-footer__description">
-              {content.description}
-            </p>
-          </div>
-
-          <div className="site-footer__navigation">
-            <p className="site-footer__column-title">
-              {content.navigationTitle}
-            </p>
-
-            <nav className="site-footer__links">
-              {content.navigation.map((item) => (
-                <Link
-                  className="site-footer__link"
-                  href={withLocale(item.href)}
-                  key={item.href}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div className="site-footer__contact">
-            <p className="site-footer__column-title">
-              {content.contactTitle}
-            </p>
-
-            <p className="site-footer__contact-text">
-              {content.contactText}
-            </p>
-
             <Link
               className="site-footer__contact-link"
               href={withLocale("/contact")}
@@ -215,9 +154,9 @@ export function SiteFooter({
               <span aria-hidden="true">↗</span>
             </Link>
 
-            {socialLinks.length > 0 ? (
+            {visibleSocialLinks.length > 0 ? (
               <div className="site-footer__social-links">
-                {socialLinks.map((item) => (
+                {visibleSocialLinks.map((item) => (
                   <a
                     aria-label={item.label}
                     className="site-footer__social-link"
@@ -228,52 +167,40 @@ export function SiteFooter({
                   >
                     {item.platform === "instagram" ? <InstagramIcon /> : null}
                     {item.platform === "linkedin" ? <LinkedInIcon /> : null}
-                    <span>{item.label}</span>
                   </a>
                 ))}
               </div>
             ) : null}
           </div>
-        </div>
 
-        <div className="site-footer__info-row">
-          {compactContact?.address ? (
-            <div className="site-footer__info-item">
-              <p className="site-footer__info-label">{content.infoLabels.address}</p>
-              <p className="site-footer__info-value">
-                {desktopMapUrl ? (
-                  <a
-                    className="site-footer__info-value-link"
-                    href={desktopMapUrl}
-                    onClick={handleAddressClick}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {compactContact.address}
-                  </a>
-                ) : compactContact.address}
-              </p>
-            </div>
-          ) : null}
+          <div className="site-footer__info-row">
+            {compactContact?.address ? (
+              <div className="site-footer__info-item site-footer__info-item--address">
+                <p className="site-footer__info-label">{content.infoLabels.address}</p>
+                <p className="site-footer__info-value">
+                  {desktopMapUrl ? (
+                    <a className="site-footer__info-value-link" href={desktopMapUrl} onClick={handleAddressClick} rel="noopener noreferrer" target="_blank">
+                      {compactContact.address}
+                    </a>
+                  ) : compactContact.address}
+                </p>
+              </div>
+            ) : null}
 
-          {compactContact?.phone ? (
-            <div className="site-footer__info-item">
-              <p className="site-footer__info-label">{content.infoLabels.phone}</p>
-              <a className="site-footer__info-value" href={`tel:${compactContact.phone.replace(/[^+\d]/g, "")}`}>
-                {compactContact.phone}
-              </a>
-            </div>
-          ) : null}
+            {compactContact?.phone ? (
+              <div className="site-footer__info-item">
+                <p className="site-footer__info-label">{content.infoLabels.phone}</p>
+                <a className="site-footer__info-value" href={`tel:${compactContact.phone.replace(/[^+\d]/g, "")}`}>{compactContact.phone}</a>
+              </div>
+            ) : null}
 
-          {compactContact?.email ? (
-            <div className="site-footer__info-item">
-              <p className="site-footer__info-label">{content.infoLabels.email}</p>
-              <a className="site-footer__info-value" href={`mailto:${compactContact.email}`}>
-                {compactContact.email}
-              </a>
-            </div>
-          ) : null}
-
+            {compactContact?.email ? (
+              <div className="site-footer__info-item">
+                <p className="site-footer__info-label">{content.infoLabels.email}</p>
+                <a className="site-footer__info-value" href={`mailto:${compactContact.email}`}>{compactContact.email}</a>
+              </div>
+            ) : null}
+          </div>
         </div>
 
         <div className="site-footer__bottom">

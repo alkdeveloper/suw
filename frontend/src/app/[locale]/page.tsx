@@ -12,6 +12,7 @@ import { SuwProductionInsightsSection } from "@/src/components/organisms/suw-pro
 import { SuwCustomWorkwearSection } from "@/src/components/organisms/suw-custom-workwear-section";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { getProductGroups } from "@/src/lib/products";
+import { resolveFinalCtaHref } from "@/src/lib/final-cta";
 
 export function generateStaticParams() {
   return [
@@ -196,8 +197,7 @@ export default async function HomePage({ params }: HomePageProps) {
         bottomLabel={page.final_cta?.bottom_label}
         buttonLabel={page.final_cta?.text}
         description={page.final_cta?.description}
-        href={withLocalePath(locale, page.final_cta?.link || "/contact")}
-        showEyebrow={false}
+        href={resolveFinalCtaHref(locale, page.final_cta?.link || "")}
         title={page.final_cta?.title}
       />
     </main>

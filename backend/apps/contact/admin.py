@@ -22,56 +22,31 @@ class ContactPageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
             },
         ),
         (
-            "2 – Harita",
-            {
-                "classes": ["tab"],
-                "fields": ("map_embed_url",),
-            },
-        ),
-        (
-            "3 – İletişim Bilgileri",
-            {
-                "classes": ["tab"],
-                "fields": (
-                    "info_title",
-                    "info_description",
-                    "info_image",
-                    "phone",
-                    "email",
-                    "address",
-                ),
-            },
-        ),
-        (
-            "4 – Form Ayarları",
+            "2 – Proje Talebi",
             {
                 "classes": ["tab"],
                 "fields": (
                     "form_left_title",
                     "form_left_description",
-                    "form_right_title",
+                    "phone",
+                    "email",
+                    "address",
                     "form_title",
-                    "kvkk_text",
-
+                    "form_field_first_name",
+                    "form_field_last_name",
+                    "form_field_email",
+                    "form_field_phone",
+                    "form_field_subject",
+                    "form_field_message",
+                    "form_submit_label",
                 ),
             },
         ),
         (
-            "4 – Form Kopyası",
+            "3 – Harita",
             {
                 "classes": ["tab"],
-                "fields": (
-                    ("form_submit_label", "form_submitting_label"),
-                    "form_privacy_link_label",
-                    "form_feedback_success_message",
-                    "form_feedback_error_message",
-                    ("form_field_first_name", "form_placeholder_first_name"),
-                    ("form_field_last_name", "form_placeholder_last_name"),
-                    ("form_field_email", "form_placeholder_email"),
-                    ("form_field_phone", "form_placeholder_phone"),
-                    ("form_field_subject", "form_placeholder_subject"),
-                    ("form_field_message", "form_placeholder_message"),
-                ),
+                "fields": ("map_embed_url",),
             },
         ),
         (
@@ -92,18 +67,6 @@ class ContactPageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
             {
                 "classes": ["tab"],
                 "fields": ("gallery_images",),
-            },
-        ),
-        (
-            "7 – Aramıza Katılın CTA",
-            {
-                "classes": ["tab"],
-                "fields": (
-                    "join_label",
-                    "join_title",
-                    "join_description",
-                    ("join_button_text", "join_button_url"),
-                ),
             },
         ),
         (

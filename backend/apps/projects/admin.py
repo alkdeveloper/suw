@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.urls import reverse
 from django.utils.html import format_html
 from solo.admin import SingletonModelAdmin
 from unfold.admin import ModelAdmin
@@ -15,22 +16,21 @@ class ProjectsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ("Türkçe Hero", {"fields": ("hero_title_tr", "hero_description_tr")}),
         ("İngilizce Hero", {"fields": ("hero_title_en", "hero_description_en")}),
-        ("Türkçe Alt CTA", {"fields": ("cta_title_tr", "cta_description_tr", "cta_text_tr")}),
-        ("İngilizce Alt CTA", {"fields": ("cta_title_en", "cta_description_en", "cta_text_en")}),
         ("SEO", {"fields": (("seo_title_tr", "seo_title_en"), ("seo_description_tr", "seo_description_en"))}),
     )
 
 
 @admin.register(ProjectSector)
 class ProjectSectorAdmin(ModelAdmin):
-    list_display = ("image_preview", "title_tr", "title_en", "sort_order", "is_active")
+    list_display = ("image_preview", "title_tr", "title_en", "sort_order", "is_active", "edit_link")
+    list_display_links = ("title_tr",)
     list_editable = ("sort_order", "is_active")
     ordering = ("sort_order", "id")
     search_fields = ("title_tr", "title_en", "headline_tr", "headline_en")
     readonly_fields = ("image_preview", "image_mobile_preview")
     fieldsets = (
-        ("Türkçe İçerik", {"fields": ("title_tr", "headline_tr", "description_tr", "product_groups_tr")}),
-        ("İngilizce İçerik", {"fields": ("title_en", "headline_en", "description_en", "product_groups_en")}),
+        ("Türkçe İçerik", {"fields": ("title_tr", "headline_tr", "description_tr")}),
+        ("İngilizce İçerik", {"fields": ("title_en", "headline_en", "description_en")}),
         ("Görseller", {"fields": ("image", "image_preview", "image_mobile", "image_mobile_preview")}),
         ("Yayın", {"fields": ("sort_order", "is_active")}),
     )
@@ -40,3 +40,8 @@ class ProjectSectorAdmin(ModelAdmin):
 
     @admin.display(description="Mobil Görsel")
     def image_mobile_preview(self, obj): return preview(obj.image_mobile)
+
+    @admin.display(description="Düzenle")
+    def edit_link(self, obj):
+        url = reverse("admin:projects_projectsector_change", args=(obj.pk,))
+        return format_html('<a class="button" href="{}">Düzenle</a>', url)

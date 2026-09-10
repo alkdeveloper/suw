@@ -126,9 +126,9 @@ export function SuwContactFormSection({
       <div className="suw-contact-form__inner">
         <div className="suw-contact-form__layout">
           <aside className="suw-contact-form__information">
-                      <h2 className="suw-contact-form__title">
-                        {copy?.title || fallbackCopy.title}
-                      </h2>
+                  {copy?.title ? <h2 className="suw-contact-form__title">
+                    {copy.title}
+                  </h2> : null}
 
                   {infoDescription || copy?.description ? (
                    <p className="suw-contact-form__description">
@@ -162,13 +162,9 @@ export function SuwContactFormSection({
 
           <div className="suw-contact-form__content">
             <div className="suw-contact-form__form-heading">
-             <span>
-                {copy?.projectInquiryLabel || fallbackCopy.projectInquiryLabel}
-              </span>
+             {copy?.projectInquiryLabel ? <span>{copy.projectInquiryLabel}</span> : null}
 
-              <h3>
-                {copy?.projectTitle || fallbackCopy.projectTitle}
-              </h3>
+              {copy?.projectTitle ? <h3>{copy.projectTitle}</h3> : null}
             </div>
 
             <form
@@ -177,13 +173,10 @@ export function SuwContactFormSection({
             >
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.first_name || fallbackCopy.firstName}
+                  {copy?.fields?.first_name}
                 </span>
 
                 <input
-                  placeholder={
-                    copy?.placeholders?.first_name || ""
-                  }
                   required
                   type="text"
                   value={formState.firstName}
@@ -198,13 +191,10 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.last_name || fallbackCopy.lastName}
+                  {copy?.fields?.last_name}
                 </span>
 
                 <input
-                  placeholder={
-                    copy?.placeholders?.last_name || ""
-                  }
                   required
                   type="text"
                   value={formState.lastName}
@@ -219,13 +209,10 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.email || fallbackCopy.email}
+                  {copy?.fields?.email}
                 </span>
 
                 <input
-                  placeholder={
-                    copy?.placeholders?.email || ""
-                  }
                   required
                   type="email"
                   value={formState.email}
@@ -240,13 +227,10 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field">
                 <span>
-                  {copy?.fields?.phone || fallbackCopy.phone}
+                  {copy?.fields?.phone}
                 </span>
 
                 <input
-                  placeholder={
-                    copy?.placeholders?.phone || ""
-                  }
                   type="tel"
                   value={formState.phone}
                   onChange={(event) =>
@@ -260,13 +244,10 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field suw-contact-form__field--full">
                 <span>
-                  {copy?.fields?.subject || fallbackCopy.subject}
+                  {copy?.fields?.subject}
                 </span>
 
                 <input
-                  placeholder={
-                    copy?.placeholders?.subject || ""
-                  }
                   required
                   type="text"
                   value={formState.subject}
@@ -281,13 +262,10 @@ export function SuwContactFormSection({
 
               <label className="suw-contact-form__field suw-contact-form__field--full">
                 <span>
-                  {copy?.fields?.message || fallbackCopy.message}
+                  {copy?.fields?.message}
                 </span>
 
                 <textarea
-                  placeholder={
-                    copy?.placeholders?.message || ""
-                  }
                   required
                   rows={5}
                   value={formState.message}
@@ -334,8 +312,7 @@ export function SuwContactFormSection({
                     {status === "submitting"
                       ? copy?.submittingLabel ||
                         fallbackCopy.submitting
-                      : copy?.submitLabel ||
-                        fallbackCopy.submit}
+                      : copy?.submitLabel}
                   </span>
 
                   <span aria-hidden="true">↗</span>

@@ -1,7 +1,5 @@
-import Link from "next/link";
 import type { AboutPageContent } from "@/src/lib/api-types";
 import type { SupportedLocale } from "@/src/lib/locale";
-import { withLocalePath } from "@/src/lib/locale";
 import { AboutCompanyVideo } from "./about-company-video";
 
 const WhyIcon = ({ index }: { index: number }) => {
@@ -18,11 +16,21 @@ const WhyIcon = ({ index }: { index: number }) => {
 };
 
 export function AboutEditorialSections({ content, locale }: { content: AboutPageContent; locale: SupportedLocale }) {
+  void locale;
   return <>
-    <section className="about-editorial about-editorial--group"><div className="about-editorial__inner"><div className="about-editorial__group-media">{content.group.image ? <picture>{content.group.image_mobile ? <source media="(max-width:767px)" srcSet={content.group.image_mobile} /> : null}<img alt="" src={content.group.image} /></picture> : <div>SUW</div>}</div><div className="about-editorial__group-copy"><h2>{content.group.title}</h2><p>{content.group.description}</p><span>{content.group.supporting_label}</span></div></div></section>
-    <AboutCompanyVideo content={content.video} locale={locale} />
-    <section className="about-editorial about-editorial--timeline"><div className="about-editorial__inner"><header className="about-editorial__timeline-heading"><h2>{content.timeline.title}</h2><p>{content.timeline.description}</p></header><div className="about-editorial__timeline-list">{content.timeline.items.map((item,index)=><article className={index%2===0?"about-editorial__timeline-item--left":"about-editorial__timeline-item--right"} key={item.id} style={{gridRow:index+1}}><time>{item.year}</time><p>{item.description}</p></article>)}</div></div></section>
-    <section className="about-editorial about-editorial--why"><div className="about-editorial__inner"><header className="about-editorial__why-heading"><h2>{content.why.title}</h2><span aria-hidden="true" /></header><div className="about-editorial__items">{content.why.items.slice(0,5).map((item,index)=><article key={item.id}><WhyIcon index={index}/><p>{item.description}</p></article>)}</div></div></section>
-    <section className="about-editorial about-editorial--cta"><div className="about-editorial__inner"><div className="about-editorial__cta-grid"><h2>{content.cta.title}</h2><div><p>{content.cta.description}</p><Link href={withLocalePath(locale,content.cta.link||"/projects")}>{content.cta.text}<span>↗</span></Link></div></div></div></section>
+    <section className="about-editorial about-editorial--group">
+      <div className="about-editorial__inner">
+        <div className="about-editorial__group-media">
+          {content.group.image ? <img alt="" src={content.group.image} style={{ objectPosition: `center ${content.group.image_position}` }} /> : null}
+        </div>
+        <div className="about-editorial__group-copy">
+          {content.group.title ? <h2>{content.group.title}</h2> : null}
+          {content.group.description ? <p>{content.group.description}</p> : null}
+        </div>
+      </div>
+    </section>
+    <AboutCompanyVideo content={content.video} />
+    <section className="about-editorial about-editorial--timeline"><div className="about-editorial__inner">{content.timeline.title ? <header className="about-editorial__timeline-heading"><h2>{content.timeline.title}</h2></header> : null}<div className="about-editorial__timeline-list">{content.timeline.items.map((item,index)=><article className={index%2===0?"about-editorial__timeline-item--left":"about-editorial__timeline-item--right"} key={item.id} style={{gridRow:index+1}}><time>{item.year}</time><p>{item.description}</p></article>)}</div></div></section>
+    <section className="about-editorial about-editorial--why"><div className="about-editorial__inner"><header className="about-editorial__why-heading"><h2>{content.why.title}</h2></header><div className="about-editorial__items">{content.why.items.slice(0,5).map((item,index)=><article key={item.id}><WhyIcon index={index}/><p>{item.description}</p></article>)}</div></div></section>
   </>;
 }

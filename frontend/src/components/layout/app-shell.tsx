@@ -16,7 +16,6 @@ import {
 
 const LOCALE_PREFIXES = new Set(["tr", "en"]);
 const HIDDEN_PUBLIC_NAV_PATHS = new Set(["/industries", "/solutions"]);
-const OFFICIAL_SUW_INSTAGRAM_URL = "https://www.instagram.com/suwworkwear/";
 
 function stripLocalePrefix(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
@@ -177,7 +176,7 @@ export function AppShell({
   }>;
   const socialLinks = [
     {
-      href: siteSettings.instagram || OFFICIAL_SUW_INSTAGRAM_URL,
+      href: siteSettings.instagram,
       label: siteSettings.footer_copy?.social_labels.instagram || "Instagram",
       platform: "instagram" as const,
     },

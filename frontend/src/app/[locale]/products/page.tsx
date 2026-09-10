@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { getProductCategories, getProductGroups, getProductPageSettings } from "@/src/lib/products";
+import { getFinalCta } from "@/src/lib/final-cta";
 import { ProductsPageClient } from "./products-page-client";
 export function generateStaticParams() {
   return [
@@ -34,15 +35,16 @@ export default async function ProductsPage({
   params,
 }: ProductsPageProps) {
   const { locale } = await params;
-  const [content, groups, categories] = await Promise.all([
+  const [content, groups, categories, finalCta] = await Promise.all([
     getProductPageSettings(locale),
     getProductGroups(locale),
     getProductCategories(locale),
+    getFinalCta(locale),
   ]);
 
   return (
     <Suspense fallback={null}>
-      <ProductsPageClient categories={categories} content={content} groups={groups} locale={locale} />
+      <ProductsPageClient categories={categories} content={content} finalCta={finalCta} groups={groups} locale={locale} />
     </Suspense>
   );
 }

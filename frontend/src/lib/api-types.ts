@@ -124,9 +124,10 @@ export type CorporatePageResponse = {
 };
 
 export type AboutContentItem = { id: number; title: string; description: string };
-export type AboutPageContent = {
-  hero: { eyebrow: string; title: string; description: string };
-  group: { eyebrow: string; title: string; description: string; supporting_label: string; image: ApiImage; image_mobile: ApiImage };
+  export type AboutPageContent = {
+    hero: { eyebrow: string; title: string; description: string };
+    history_hero: { title: string; description: string; image: ApiImage; image_mobile: ApiImage };
+    group: { eyebrow: string; title: string; description: string; supporting_label: string; image: ApiImage; image_mobile: ApiImage; image_position: "top" | "center" | "bottom"; collage_image: ApiImage; collage_image_mobile: ApiImage };
   video: { title: string; description: string; video: ApiImage; poster: ApiImage; is_active: boolean };
   timeline: { title: string; description: string; items: Array<{ id: number; year: string; description: string }> };
   why: { eyebrow: string; title: string; description: string; items: AboutContentItem[] };
@@ -231,10 +232,6 @@ export type ProjectsPageResponse = {
   hero_eyebrow: string;
   hero_title: string;
   hero_description: string;
-  cta_eyebrow: string;
-  cta_title: string;
-  cta_description: string;
-  cta_text: string;
   sectors: ProjectSectorResponse[];
 };
 
@@ -582,6 +579,8 @@ export type ContactPageResponse = {
   email: string;
   address: string;
   form_title: string;
+  form_left_title: string;
+  form_left_description: string;
   kvkk_text: string;
   form_copy: {
     submit_label: string;

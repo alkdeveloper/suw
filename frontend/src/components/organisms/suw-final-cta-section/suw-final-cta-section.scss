@@ -52,6 +52,22 @@
   line-height: 1.55;
 }
 
+.suw-final-cta--stacked .suw-final-cta__content {
+  display: block;
+}
+
+.suw-final-cta--stacked .suw-final-cta__side {
+  margin-top: 34px;
+}
+
+.suw-final-cta--stacked .suw-final-cta__button {
+  margin-top: 0;
+}
+
+.suw-final-cta--stacked .suw-final-cta__description + .suw-final-cta__button {
+  margin-top: 28px;
+}
+
 .suw-final-cta__button {
   display: flex;
   width: 100%;

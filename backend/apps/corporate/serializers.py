@@ -67,7 +67,23 @@ class CorporatePageSerializer(serializers.ModelSerializer):
         video_settings = CorporateVideoSettings.get_solo()
         return {
             "hero": {"eyebrow": value("hero_eyebrow"), "title": value("hero_title"), "description": value("hero_description")},
-            "group": {"eyebrow": value("group_eyebrow"), "title": value("group_title"), "description": value("group_description"), "supporting_label": value("group_supporting_label"), "image": image(obj.group_image), "image_mobile": image(obj.group_image_mobile)},
+            "history_hero": {
+                "title": value("history_hero_title"),
+                "description": value("history_hero_description"),
+                "image": image(obj.history_hero_image),
+                "image_mobile": image(obj.history_hero_image_mobile) or image(obj.history_hero_image),
+            },
+            "group": {
+                "eyebrow": value("group_eyebrow"),
+                "title": value("group_title"),
+                "description": value("group_description"),
+                "supporting_label": value("group_supporting_label"),
+                "image": image(obj.group_image),
+                "image_mobile": image(obj.group_image_mobile),
+                "image_position": obj.group_image_position,
+                "collage_image": image(obj.archive_image_1),
+                "collage_image_mobile": image(obj.archive_image_2) or image(obj.archive_image_1),
+            },
             "video": {
                 "title": getattr(video_settings, f"title_{lang}"),
                 "description": getattr(video_settings, f"description_{lang}"),
@@ -77,13 +93,13 @@ class CorporatePageSerializer(serializers.ModelSerializer):
             },
             "timeline": {
                 "title": value("timeline_title"),
-                "description": value("timeline_description"),
+                "description": "",
                 "items": CorporateTimelineItemSerializer(
                     CorporateHistoryItem.objects.filter(is_active=True).order_by("sort_order", "id"),
                     many=True,
                     context=self.context,
                 ).data,
             },
-            "why": {"eyebrow": value("why_eyebrow"), "title": value("why_title"), "description": value("why_description"), "items": AboutItemSerializer(WhySuwItem.objects.filter(is_active=True).order_by("sort_order", "id"), many=True, context=self.context).data},
-            "cta": {"eyebrow": value("final_cta_eyebrow"), "title": value("final_cta_title"), "description": value("final_cta_description"), "text": value("final_cta_text"), "link": obj.final_cta_link},
+            "why": {"eyebrow": value("why_eyebrow"), "title": value("why_eyebrow"), "description": "", "items": AboutItemSerializer(WhySuwItem.objects.filter(is_active=True).order_by("sort_order", "id"), many=True, context=self.context).data},
+            "cta": {"eyebrow": "", "title": value("about_cta_title"), "description": value("about_cta_description"), "text": "", "link": ""},
         }

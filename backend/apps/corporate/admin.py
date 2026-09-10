@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.urls import reverse
 from django.utils.html import format_html
 from modeltranslation.admin import TabbedTranslationAdmin
 from unfold.admin import ModelAdmin
@@ -68,16 +69,15 @@ class CorporatePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin
     )
 
     fieldsets = (
-        ("Türkçe Hero", {"fields": ("hero_title_tr", "hero_description_tr")}),
-        ("İngilizce Hero", {"fields": ("hero_title_en", "hero_description_en")}),
-        ("ALK Group — Türkçe", {"fields": ("group_eyebrow_tr", "group_title_tr", "group_description_tr", "group_supporting_label_tr")}),
-        ("ALK Group — İngilizce", {"fields": ("group_eyebrow_en", "group_title_en", "group_description_en", "group_supporting_label_en")}),
-        ("ALK Group Görselleri", {"fields": ("group_image", "group_image_mobile")}),
-        ("Neden SUW — Türkçe", {"fields": ("why_title_tr", "why_description_tr")}),
-        ("Neden SUW — İngilizce", {"fields": ("why_title_en", "why_description_en")}),
-        ("Final CTA — Türkçe", {"fields": ("final_cta_title_tr", "final_cta_description_tr", "final_cta_text_tr")}),
-        ("Final CTA — İngilizce", {"fields": ("final_cta_title_en", "final_cta_description_en", "final_cta_text_en")}),
-        ("Final CTA Link", {"fields": ("final_cta_link",)}),
+        ("Tarihçe Hero — Türkçe", {"fields": ("history_hero_title_tr", "history_hero_description_tr")}),
+        ("History Hero — English", {"fields": ("history_hero_title_en", "history_hero_description_en")}),
+        ("Tarihçe Hero Görselleri", {"fields": ("history_hero_image", "history_hero_image_mobile")}),
+        ("İlk Section — Türkçe", {"fields": ("group_title_tr", "group_description_tr")}),
+        ("First Section — English", {"fields": ("group_title_en", "group_description_en")}),
+        ("İlk Section Görseli", {"fields": ("group_image", "group_image_position")}),
+        ("Kronoloji", {"fields": ("timeline_title_tr", "timeline_title_en")}),
+        ("Hakkımızda CTA — Türkçe", {"fields": ("about_cta_title_tr", "about_cta_description_tr")}),
+        ("Hakkımızda CTA — İngilizce", {"fields": ("about_cta_title_en", "about_cta_description_en")}),
     )
     readonly_fields = ()
 
@@ -99,8 +99,6 @@ class WhySuwItemAdmin(ModelAdmin):
 @admin.register(CorporateVideoSettings)
 class CorporateVideoSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
-        ("Türkçe İçerik", {"fields": ("title_tr", "description_tr")}),
-        ("İngilizce İçerik", {"fields": ("title_en", "description_en")}),
         ("Video", {"fields": ("video_file", "poster_image", "poster_preview", "is_active")}),
     )
     readonly_fields = ("poster_preview",)
@@ -117,7 +115,8 @@ class CorporateVideoSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 
 @admin.register(CorporateHistoryItem)
 class CorporateHistoryItemAdmin(OrderableMixin, ModelAdmin):
-    list_display = ("year", "description_tr", "sort_order", "is_active")
+    list_display = ("year", "description_tr", "sort_order", "is_active", "edit_link")
+    list_display_links = ("year", "description_tr")
     list_editable = ("sort_order", "is_active")
     ordering = ("sort_order", "id")
     fieldsets = (
@@ -126,3 +125,8 @@ class CorporateHistoryItemAdmin(OrderableMixin, ModelAdmin):
         ("İngilizce İçerik", {"fields": ("description_en",)}),
         ("Yayın", {"fields": ("sort_order", "is_active")}),
     )
+
+    @admin.display(description="Düzenle")
+    def edit_link(self, obj):
+        url = reverse("admin:corporate_corporatehistoryitem_change", args=(obj.pk,))
+        return format_html('<a class="button" href="{}">Düzenle</a>', url)

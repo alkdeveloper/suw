@@ -13,6 +13,34 @@ class CorporatePage(SingletonModel, SEOModel):
     hero_title_en = models.CharField(max_length=220, blank=True)
     hero_description_tr = models.TextField(blank=True)
     hero_description_en = models.TextField(blank=True)
+    history_hero_title_tr = models.CharField(max_length=220, blank=True, default="1978'DEN BU YANA", verbose_name="Tarihçe Hero Başlık TR")
+    history_hero_title_en = models.CharField(max_length=220, blank=True, default="SINCE 1978", verbose_name="History Hero Title EN")
+    history_hero_description_tr = models.TextField(
+        blank=True,
+        default="Şapka, bere, atkı ve eldiven üretimiyle temellerini attığımız tekstil yolculuğumuzu, bugün çok markalı ve uluslararası ölçekte faaliyet gösteren güçlü bir grup yapısıyla sürdürüyoruz.",
+        verbose_name="Tarihçe Hero Açıklama TR",
+    )
+    history_hero_description_en = models.TextField(
+        blank=True,
+        default="What began with the production of hats, beanies, scarves and gloves has grown into a strong, multi-brand group operating on an international scale.",
+        verbose_name="History Hero Description EN",
+    )
+    history_hero_image = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/history-hero/"),
+        validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
+        blank=True,
+        verbose_name="Tarihçe Hero Desktop Görsel",
+    )
+    history_hero_image_mobile = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/history-hero/mobile/"),
+        validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
+        blank=True,
+        verbose_name="Tarihçe Hero Mobile Görsel",
+    )
+    experience_number_tr = models.CharField(max_length=40, blank=True, default="50", verbose_name="Tecrübe Sayısı TR")
+    experience_label_tr = models.CharField(max_length=120, blank=True, default="YILLIK TECRÜBE", verbose_name="Tecrübe Etiketi TR")
+    experience_number_en = models.CharField(max_length=40, blank=True, default="50", verbose_name="Experience Number EN")
+    experience_label_en = models.CharField(max_length=120, blank=True, default="YEARS OF EXPERIENCE", verbose_name="Experience Label EN")
 
     group_eyebrow_tr = models.CharField(max_length=120, blank=True)
     group_eyebrow_en = models.CharField(max_length=120, blank=True)
@@ -22,39 +50,59 @@ class CorporatePage(SingletonModel, SEOModel):
     group_description_en = models.TextField(blank=True)
     group_supporting_label_tr = models.CharField(max_length=160, blank=True)
     group_supporting_label_en = models.CharField(max_length=160, blank=True)
-    group_image = models.ImageField(upload_to=UniqueUploadTo("corporate/group/"), blank=True)
+    group_image = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/group/"),
+        blank=True,
+        verbose_name="Görsel",
+        help_text="Önerilen görsel ölçüsü: 1200 x 1500 px (4:5 dikey)",
+    )
+    group_image_position = models.CharField(
+        max_length=10,
+        choices=(("top", "Üst"), ("center", "Orta"), ("bottom", "Alt")),
+        default="center",
+        verbose_name="Görsel Odak Noktası",
+    )
     group_image_mobile = models.ImageField(upload_to=UniqueUploadTo("corporate/group/mobile/"), blank=True)
+    archive_image_1 = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/archive/"),
+        validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
+        blank=True,
+        verbose_name="Desktop Kolaj Görseli",
+    )
+    archive_image_2 = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/archive/"),
+        validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
+        blank=True,
+        verbose_name="Mobile Kolaj Görseli (opsiyonel)",
+    )
+    archive_image_3 = models.ImageField(
+        upload_to=UniqueUploadTo("corporate/archive/"),
+        validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
+        blank=True,
+        verbose_name="Arşiv Görsel 3 (opsiyonel)",
+    )
 
     why_eyebrow_tr = models.CharField(max_length=120, blank=True)
     why_eyebrow_en = models.CharField(max_length=120, blank=True)
-    why_title_tr = models.CharField(max_length=240, blank=True)
-    why_title_en = models.CharField(max_length=240, blank=True)
-    why_description_tr = models.TextField(blank=True)
-    why_description_en = models.TextField(blank=True)
 
     experience_eyebrow_tr = models.CharField(max_length=120, blank=True)
     experience_eyebrow_en = models.CharField(max_length=120, blank=True)
     experience_title_tr = models.CharField(max_length=240, blank=True)
     experience_title_en = models.CharField(max_length=240, blank=True)
-    experience_description_tr = models.TextField(blank=True)
-    experience_description_en = models.TextField(blank=True)
+    experience_description_tr = models.TextField(blank=True, verbose_name="Tecrübe Açıklaması TR")
+    experience_description_en = models.TextField(blank=True, verbose_name="Experience Description EN")
 
     timeline_eyebrow_tr = models.CharField(max_length=120, blank=True)
     timeline_eyebrow_en = models.CharField(max_length=120, blank=True)
-    timeline_title_tr = models.CharField(max_length=220, blank=True)
-    timeline_title_en = models.CharField(max_length=220, blank=True)
+    timeline_title_tr = models.CharField(max_length=220, blank=True, default="HİKAYEMİZ", verbose_name="Kronoloji Başlığı TR")
+    timeline_title_en = models.CharField(max_length=220, blank=True, default="OUR STORY", verbose_name="Kronoloji Başlığı EN")
     timeline_description_tr = models.TextField(blank=True)
     timeline_description_en = models.TextField(blank=True)
 
-    final_cta_eyebrow_tr = models.CharField(max_length=120, blank=True)
-    final_cta_eyebrow_en = models.CharField(max_length=120, blank=True)
-    final_cta_title_tr = models.CharField(max_length=220, blank=True)
-    final_cta_title_en = models.CharField(max_length=220, blank=True)
-    final_cta_description_tr = models.TextField(blank=True)
-    final_cta_description_en = models.TextField(blank=True)
-    final_cta_text_tr = models.CharField(max_length=100, blank=True)
-    final_cta_text_en = models.CharField(max_length=100, blank=True)
-    final_cta_link = models.CharField(max_length=200, blank=True, default="/projects")
+    about_cta_title_tr = models.CharField(max_length=220, blank=True, verbose_name="CTA Başlık TR")
+    about_cta_title_en = models.CharField(max_length=220, blank=True, verbose_name="CTA Başlık EN")
+    about_cta_description_tr = models.TextField(blank=True, verbose_name="CTA Açıklama TR")
+    about_cta_description_en = models.TextField(blank=True, verbose_name="CTA Açıklama EN")
     # Hero bölümü
     hero_image = models.ImageField(
         upload_to=UniqueUploadTo("corporate/hero/"),

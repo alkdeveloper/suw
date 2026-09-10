@@ -6,9 +6,10 @@ import { useSearchParams } from "next/navigation";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { SuwProductsGridSection } from "@/src/components/organisms/suw-products-grid-section";
 import type { SupportedLocale } from "@/src/lib/locale";
-import { withLocalePath } from "@/src/lib/locale";
 import { getProducts } from "@/src/lib/products";
 import type { ProductCategory, ProductGroup, ProductPageSettings, ProductSummary } from "@/src/lib/products";
+import type { FinalCtaContent } from "@/src/lib/final-cta";
+import { resolveFinalCtaHref } from "@/src/lib/final-cta";
 
 import { ProductsHero } from "./products-hero";
 
@@ -17,9 +18,10 @@ type ProductsPageClientProps = {
   content: ProductPageSettings;
   groups: ProductGroup[];
   categories: ProductCategory[];
+  finalCta: FinalCtaContent;
 };
 
-export function ProductsPageClient({ locale, content, groups, categories }: ProductsPageClientProps) {
+export function ProductsPageClient({ locale, content, groups, categories, finalCta }: ProductsPageClientProps) {
   const searchParams = useSearchParams();
   const category = searchParams.get("category") ?? "";
   const [products, setProducts] = useState<ProductSummary[]>([]);
@@ -62,7 +64,7 @@ export function ProductsPageClient({ locale, content, groups, categories }: Prod
         selectedCategory={selectedCategory}
       />
 
-      <SuwFinalCtaSection href={withLocalePath(locale, "/contact")} showEyebrow={false} />
+      <SuwFinalCtaSection bottomLabel={finalCta.bottom_label} buttonLabel={finalCta.text} description={finalCta.description} href={resolveFinalCtaHref(locale, finalCta.link)} title={finalCta.title} />
     </main>
   );
 }

@@ -10,6 +10,8 @@ class ContactPageTranslation(TranslationOptions):
         "info_description",
         "address",
         "form_title",
+        "form_left_title",
+        "form_left_description",
         "kvkk_text",
         # Form copy
         "form_submit_label",

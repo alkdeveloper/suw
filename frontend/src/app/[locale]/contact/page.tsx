@@ -64,6 +64,8 @@ async function getContactPage(
         locale === "tr"
           ? "Bir proje başlatalım."
           : "Start a project.",
+      form_left_title: "",
+      form_left_description: "",
 
       info_title:
         locale === "tr"
@@ -86,7 +88,6 @@ export async function generateMetadata({
 }: ContactPageProps): Promise<Metadata> {
   const { locale } = await params;
   const page = await getContactPage(locale);
-
   return createLocalizedPageMetadata(locale, {
     title: resolveMetadataValue(page.meta_title, "Contact"),
     description: resolveMetadataValue(
@@ -120,27 +121,14 @@ export default async function ContactPage({
           copy={
             page.form_copy
               ? {
-                  eyebrow: locale === "tr" ? "İLETİŞİM" : "GET IN TOUCH",
-
-                    title:
-                      locale === "tr"
-                        ? "BİR PROJE BAŞLATALIM."
-                        : "START A PROJECT.",
-
-                    projectInquiryLabel:
-                      locale === "tr"
-                        ? "PROJE TALEBİ"
-                        : "PROJECT INQUIRY",
-
-                    projectTitle:
-                      locale === "tr"
-                        ? "İHTİYACINIZI BİZE ANLATIN."
-                        : "TELL US WHAT YOU NEED.",
+                  title: page.form_left_title,
+                  description: page.form_left_description,
+                  projectInquiryLabel: "",
+                  projectTitle: page.form_title,
 
                   feedbackErrorMessage: page.form_copy.feedback_error_message,
                   feedbackSuccessMessage: page.form_copy.feedback_success_message,
                   fields: page.form_copy.fields,
-                  placeholders: page.form_copy.placeholders,
                   privacyLinkLabel: page.form_copy.privacy_link_label,
                   submitLabel: page.form_copy.submit_label,
                   submittingLabel: page.form_copy.submitting_label,
@@ -149,7 +137,7 @@ export default async function ContactPage({
           }
                 email={page.email}
         formTitle={page.form_title}
-        infoDescription={page.info_description}
+        infoDescription={page.form_left_description}
         infoTitle={page.info_title}
         kvkkHref={withLocalePath(
           locale,

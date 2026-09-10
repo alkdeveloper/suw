@@ -7,6 +7,8 @@ import { createAPI } from "@/src/lib/api";
 import type { AboutPageContent, CorporatePageResponse } from "@/src/lib/api-types";
 
 import styles from "./about.module.scss";
+import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
+import { resolveFinalCtaHref } from "@/src/lib/final-cta";
 
 type AboutPageProps = {
   params: Promise<{
@@ -42,13 +44,17 @@ function fallback(locale: SupportedLocale): AboutPageContent {
       title: tr ? "DENEYİM ÜZERİNE\nKURULU." : "BUILT ON\nEXPERIENCE.",
       description: tr ? "SUW, ALK Group'un tekstil ve üretim alanındaki köklü deneyimi üzerine kurulan profesyonel iş giyimi markasıdır." : "SUW is a professional workwear brand built on ALK Group's established textile and manufacturing expertise.",
     },
+    history_hero: { title: "", description: "", image: null, image_mobile: null },
     group: {
       eyebrow: tr ? "ALK GROUP BÜNYESİNDE" : "PART OF ALK GROUP",
-      title: tr ? "1978'DEN GELEN\nÜRETİM DENEYİMİ." : "MANUFACTURING EXPERIENCE\nSINCE 1978.",
-      description: tr ? "ALK Group'un tekstil üretimi, ürün geliştirme ve uluslararası operasyon deneyimi bugün SUW'ın kurumsal iş giyimi çözümlerinin temelini oluşturuyor." : "ALK Group's textile manufacturing, product development and international operations experience forms the foundation of SUW today.",
+      title: "",
+      description: "",
       supporting_label: tr ? "ALK GROUP BÜNYESİNDE BİR MARKA" : "A BRAND WITHIN ALK GROUP",
       image: null,
       image_mobile: null,
+      image_position: "center",
+      collage_image: null,
+      collage_image_mobile: null,
     },
     video: {
       title: tr ? "ÜRETİMİN ARKASINDAKİ DENEYİM." : "THE EXPERIENCE BEHIND PRODUCTION.",
@@ -60,10 +66,8 @@ function fallback(locale: SupportedLocale): AboutPageContent {
       is_active: true,
     },
     timeline: {
-      title: tr ? "1978'DEN BUGÜNE." : "FROM 1978 TO TODAY.",
-      description: tr
-        ? "1978'de İstanbul'da başlayan yolculuğumuz, üretim, ürün geliştirme, tedarik ve uluslararası operasyon alanlarında büyüyerek bugün SUW'un arkasındaki deneyimi oluşturuyor."
-        : "Our journey began in Istanbul in 1978 and grew across manufacturing, product development, sourcing and international operations, creating the experience behind SUW today.",
+      title: "",
+      description: "",
       items: (tr
         ? [
             ["1978", "Eminönü'nde küçük bir şapka mağazasıyla başlayan yolculuk, ALK Group'un tekstil alanındaki ilk adımını oluşturdu."],
@@ -85,13 +89,7 @@ function fallback(locale: SupportedLocale): AboutPageContent {
           ]).map(([year, description], index) => ({ id: index + 1, year, description })),
     },
     why: { eyebrow: tr ? "NEDEN SUW?" : "WHY SUW?", title: tr ? "NEDEN SUW?" : "WHY SUW?", description: "", items: items(whyTitles, whyDescriptions) },
-    cta: {
-      eyebrow: "SUW",
-      title: tr ? "DENEYİMİ\nSAHAYA TAŞIYORUZ." : "BRINGING EXPERIENCE\nTO THE FIELD.",
-      description: tr ? "Üretim bilgisini, kurumsal kimliği ve günlük kullanım ihtiyaçlarını aynı ürün üzerinde buluşturuyoruz." : "We bring manufacturing knowledge, corporate identity and everyday needs together in each product.",
-      text: tr ? "PROJELERİ İNCELE" : "VIEW PROJECTS",
-      link: "/projects",
-    },
+    cta: { eyebrow: "", title: "", description: "", text: "", link: "" },
   };
 }
 
@@ -151,14 +149,20 @@ export default async function AboutPage({
   return (
     <main>
       <section className={styles.hero} data-locale={locale}>
+        {about.history_hero.image ? (
+          <picture className={styles.heroMedia}>
+            {about.history_hero.image_mobile ? <source media="(max-width: 640px)" srcSet={about.history_hero.image_mobile} /> : null}
+            <img src={about.history_hero.image} alt="" />
+          </picture>
+        ) : null}
+        {about.history_hero.image ? <div className={styles.heroOverlay} /> : null}
         <div className={styles.heroInner}>
-          <h1 className={styles.title}>
-            {(about.hero.title||`${content.titleLine1}\n${content.titleLine2}`).split(/\r?\n/).map(line=><span key={line}>{line}</span>)}
-          </h1>
-          <p className={styles.description}>{about.hero.description}</p>
+          {about.history_hero.title ? <h1 className={styles.title}>{about.history_hero.title}</h1> : null}
+          {about.history_hero.description ? <p className={styles.description}>{about.history_hero.description}</p> : null}
         </div>
       </section>
       <AboutEditorialSections content={about} locale={locale}/>
+      <SuwFinalCtaSection buttonLabel={locale === "tr" ? "PROJE BAŞLAT" : "START A PROJECT"} description={about.cta.description} href={resolveFinalCtaHref(locale, "/contact")} stacked title={about.cta.title} />
     </main>
   );
 }

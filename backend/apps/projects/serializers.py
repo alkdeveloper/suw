@@ -39,26 +39,18 @@ class ProjectsPageSerializer(serializers.ModelSerializer):
     hero_eyebrow = serializers.SerializerMethodField()
     hero_title = serializers.SerializerMethodField()
     hero_description = serializers.SerializerMethodField()
-    cta_eyebrow = serializers.SerializerMethodField()
-    cta_title = serializers.SerializerMethodField()
-    cta_description = serializers.SerializerMethodField()
-    cta_text = serializers.SerializerMethodField()
     seo_title = serializers.SerializerMethodField()
     seo_description = serializers.SerializerMethodField()
     sectors = serializers.SerializerMethodField()
 
     class Meta:
         model = ProjectsPageSettings
-        fields = ["hero_eyebrow", "hero_title", "hero_description", "cta_eyebrow", "cta_title", "cta_description", "cta_text", "seo_title", "seo_description", "sectors"]
+        fields = ["hero_eyebrow", "hero_title", "hero_description", "seo_title", "seo_description", "sectors"]
 
     def _localized(self, obj, field): return localized(obj, field, self.context.get("request"))
     def get_hero_eyebrow(self, obj): return self._localized(obj, "hero_eyebrow")
     def get_hero_title(self, obj): return self._localized(obj, "hero_title")
     def get_hero_description(self, obj): return self._localized(obj, "hero_description")
-    def get_cta_eyebrow(self, obj): return self._localized(obj, "cta_eyebrow")
-    def get_cta_title(self, obj): return self._localized(obj, "cta_title")
-    def get_cta_description(self, obj): return self._localized(obj, "cta_description")
-    def get_cta_text(self, obj): return self._localized(obj, "cta_text")
     def get_seo_title(self, obj): return self._localized(obj, "seo_title")
     def get_seo_description(self, obj): return self._localized(obj, "seo_description")
     def get_sectors(self, obj):
