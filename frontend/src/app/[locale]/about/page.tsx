@@ -9,6 +9,7 @@ import type { AboutPageContent, CorporatePageResponse } from "@/src/lib/api-type
 import styles from "./about.module.scss";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { resolveFinalCtaHref } from "@/src/lib/final-cta";
+import { staticCorporateSnapshot } from "@/src/lib/static-cms-snapshot";
 
 type AboutPageProps = {
   params: Promise<{
@@ -140,7 +141,7 @@ export default async function AboutPage({
 }: AboutPageProps) {
   const { locale } = await params;
   const content = pageContent[locale];
-  let about=compactFallback(locale);
+  let about=process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticCorporateSnapshot[locale] : compactFallback(locale);
   try {
     const response=await createAPI(locale).get<CorporatePageResponse>("corporate/");
     if(response.data.page) about={...response.data.page,video:response.data.page.video??about.video,timeline:response.data.page.timeline??about.timeline};

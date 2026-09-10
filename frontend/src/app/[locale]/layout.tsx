@@ -11,6 +11,7 @@ import {
   type SupportedLocale,
 } from "@/src/lib/locale";
 import { getOfflineSiteSettings } from "@/src/lib/site-settings-fallback";
+import { applyStaticSiteSettings } from "@/src/lib/static-cms-snapshot";
 export function generateStaticParams() {
   return [
     { locale: "tr" },
@@ -65,7 +66,10 @@ async function loadSiteSettings(
       );
     }
 
-    return getOfflineSiteSettings(locale);
+    const offline = getOfflineSiteSettings(locale);
+    return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true"
+      ? applyStaticSiteSettings(locale, offline)
+      : offline;
   }
 }
 

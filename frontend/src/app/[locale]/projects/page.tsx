@@ -7,6 +7,7 @@ import { createAPI } from "@/src/lib/api";
 import type { ProjectsPageResponse } from "@/src/lib/api-types";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { getFinalCta, resolveFinalCtaHref } from "@/src/lib/final-cta";
+import { staticProjectsSnapshot } from "@/src/lib/static-cms-snapshot";
 
 import styles from "./projects.module.scss";
 export function generateStaticParams() {
@@ -64,7 +65,7 @@ export async function generateMetadata({
 }: ProjectsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const content = pageContent[locale];
-  let projects = getFallback(locale);
+  let projects = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticProjectsSnapshot[locale] : getFallback(locale);
   try {
     projects = (await createAPI(locale).get<ProjectsPageResponse>("projects/")).data;
   } catch {}
@@ -80,7 +81,7 @@ export default async function ProjectsPage({
 }: ProjectsPageProps) {
   const { locale } = await params;
   const content = pageContent[locale];
-  let projects = getFallback(locale);
+  let projects = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticProjectsSnapshot[locale] : getFallback(locale);
   try {
     const response = await createAPI(locale).get<ProjectsPageResponse>("projects/");
     projects = response.data;

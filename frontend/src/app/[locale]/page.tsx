@@ -13,6 +13,7 @@ import { SuwCustomWorkwearSection } from "@/src/components/organisms/suw-custom-
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { getProductGroups } from "@/src/lib/products";
 import { resolveFinalCtaHref } from "@/src/lib/final-cta";
+import { staticHomeSnapshot } from "@/src/lib/static-cms-snapshot";
 
 export function generateStaticParams() {
   return [
@@ -103,6 +104,7 @@ async function getHomePage(
   } catch {
     return {
       ...fallback,
+      ...staticHomeSnapshot[locale],
 
       activities_label:
         locale === "tr"

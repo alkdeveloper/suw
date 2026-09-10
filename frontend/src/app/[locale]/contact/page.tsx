@@ -13,6 +13,7 @@ import {
 } from "@/src/lib/metadata";
 
 import styles from "./contact.module.scss";
+import { staticContactSnapshot } from "@/src/lib/static-cms-snapshot";
 
 export function generateStaticParams() {
   return [
@@ -48,7 +49,7 @@ async function getContactPage(
 
     return response.data;
   } catch {
-    return {
+    return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticContactSnapshot[locale] : {
       hero_title: locale === "tr" ? "İŞ GİYİMİNİ\nKONUŞALIM." : "LET'S TALK\nWORKWEAR.",
       meta_title: locale === "tr" ? "İletişim" : "Contact",
       meta_description:

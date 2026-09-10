@@ -9,22 +9,22 @@ export type ProductSummary = { id: number; name: string; slug: string; product_c
 export type ProductDetail = ProductSummary & { description: string; materials: string; features: string; colors: string; sizes: string; images: Array<{ image: string; alt: string; sort_order: number }> };
 
 export const fallbackProductPage: Record<SupportedLocale, ProductPageSettings> = {
-  tr: { eyebrow: "ÜRÜNLER", title: "İŞ İÇİN GELİŞTİRİLDİ.", description: "", hero_image: null, hero_image_mobile: null, seo_title: "Ürünler", seo_description: "SUW profesyonel iş giyimi ürünlerini keşfedin. Performans, dayanıklılık ve günlük kullanım için geliştirilen çözümler." },
-  en: { eyebrow: "PRODUCTS", title: "BUILT FOR THE JOB.", description: "", hero_image: null, hero_image_mobile: null, seo_title: "Products", seo_description: "Explore SUW professional workwear developed for performance, durability and everyday use." },
+  tr: { eyebrow: "", title: "ÜRÜNLERİMİZ", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
+  en: { eyebrow: "", title: "OUR PRODUCTS", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
 };
 
 const groupCopy = {
   tr: [
-    ["summer", "YAZLIK", "", "/images/mock/topwear.jpg"],
-    ["winter", "KIŞLIK", "", "/images/mock/outerwear.jpg"],
-    ["bags", "ÇANTA", "", "/images/mock/workwear.jpg"],
-    ["accessories", "AKSESUAR", "", "/images/mock/accessories.jpg"],
+    ["summer", "Yazlık", "", "/images/cms-snapshot/products/groups/292560aa9e454ae0821a241dfb99c099.png"],
+    ["winter", "Kışlık", "", "/images/cms-snapshot/products/groups/winter.jpg"],
+    ["bags", "Çanta", "", "/images/cms-snapshot/products/groups/bags.jpg"],
+    ["accessories", "Aksesuar", "", "/images/cms-snapshot/products/groups/accessories.jpg"],
   ],
   en: [
-    ["summer", "SUMMER", "", "/images/mock/topwear.jpg"],
-    ["winter", "WINTER", "", "/images/mock/outerwear.jpg"],
-    ["bags", "BAGS", "", "/images/mock/workwear.jpg"],
-    ["accessories", "ACCESSORIES", "", "/images/mock/accessories.jpg"],
+    ["summer", "Summer", "", "/images/cms-snapshot/products/groups/292560aa9e454ae0821a241dfb99c099.png"],
+    ["winter", "Winter", "", "/images/cms-snapshot/products/groups/winter.jpg"],
+    ["bags", "Bags", "", "/images/cms-snapshot/products/groups/bags.jpg"],
+    ["accessories", "Accessories", "", "/images/cms-snapshot/products/groups/accessories.jpg"],
   ],
 } as const;
 
