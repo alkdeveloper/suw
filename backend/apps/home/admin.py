@@ -214,8 +214,12 @@ class HomePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
         (
             "SEO",
             {
-                "classes": ["tab"],
-                "fields": (("meta_title_tr", "meta_title_en"), ("meta_description_tr", "meta_description_en")),
+                "fields": (
+                    "meta_title_tr",
+                    "meta_description_tr",
+                    "meta_title_en",
+                    "meta_description_en",
+                ),
             },
         ),
         ("Final CTA", {"classes": ["tab"], "fields": (("final_cta_title_tr", "final_cta_title_en"), ("final_cta_description_tr", "final_cta_description_en"), ("final_cta_text_tr", "final_cta_text_en"), ("final_cta_bottom_label_tr", "final_cta_bottom_label_en"), "final_cta_link")}),

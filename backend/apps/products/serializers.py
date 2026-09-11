@@ -132,7 +132,7 @@ class ProductSerializer(serializers.ModelSerializer):
     short_description = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
     category = ProductCategorySerializer(read_only=True)
-    groups = ProductGroupSerializer(many=True, read_only=True)
+    groups = serializers.SerializerMethodField()
     images = ProductImageSerializer(many=True, read_only=True)
     main_image = serializers.SerializerMethodField()
     materials = serializers.SerializerMethodField()
@@ -160,5 +160,6 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_features(self, obj): return localized(obj, "features", self.context.get("request"))
     def get_colors(self, obj): return localized(obj, "colors", self.context.get("request"))
     def get_sizes(self, obj): return localized(obj, "sizes", self.context.get("request"))
+    def get_groups(self, obj): return ProductGroupSerializer(obj.category.groups.all(), many=True, context=self.context).data
     def get_seo_title(self, obj): return localized(obj, "seo_title", self.context.get("request"))
     def get_seo_description(self, obj): return localized(obj, "seo_description", self.context.get("request"))

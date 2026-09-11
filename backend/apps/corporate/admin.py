@@ -1,15 +1,28 @@
+from django import forms
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
-from modeltranslation.admin import TabbedTranslationAdmin
 from unfold.admin import ModelAdmin
 from solo.admin import SingletonModelAdmin
 from common.admin import OrderableMixin
 from .models import CorporateHistoryItem, CorporatePage, CorporateVideoSettings, WhySuwItem
 
 
+class CorporatePageAdminForm(forms.ModelForm):
+    class Meta:
+        model = CorporatePage
+        fields = "__all__"
+        labels = {
+            "meta_title_tr": "SEO Başlık TR",
+            "meta_description_tr": "SEO Açıklama TR",
+            "meta_title_en": "SEO Başlık EN",
+            "meta_description_en": "SEO Açıklama EN",
+        }
+
+
 @admin.register(CorporatePage)
-class CorporatePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
+class CorporatePageAdmin(SingletonModelAdmin, ModelAdmin):
+    form = CorporatePageAdminForm
     change_form_show_cancel_button = True
     readonly_fields = ("join_button_url",)
 

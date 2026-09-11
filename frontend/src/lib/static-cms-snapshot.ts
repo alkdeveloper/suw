@@ -20,19 +20,83 @@ export const staticHomeSnapshot: Record<SupportedLocale, Partial<HomePageRespons
     hero_title: "GEÇMİŞİN İZLERİ İLE ZAMANIN İÇİNDEN GELECEĞE...", hero_subtitle: "", hero_description: "", hero_image: null, hero_image_mobile: null,
     product_categories_eyebrow: "", product_categories_title: "HER SEKTÖR İÇİN TASARLANDI", product_categories_description: "",
     work_essentials_eyebrow: "", work_essentials_title: "ÜRÜNLERİMİZİ YAKINDAN KEŞFEDİN", work_essentials_description: "", work_essentials_cta_text: "ÜRÜNLERİ KEŞFET", work_essentials_cta_link: "/products", work_essentials_items: homeItems,
-    corporate_workwear_eyebrow: "", corporate_workwear_title: "MARKANIZ,  KİMLİĞİNİZ", corporate_workwear_description: "", corporate_workwear_personnel_title: "", corporate_workwear_personnel_description: "", corporate_workwear_personnel_image: asset("home/corporate-workwear/0ff365bf30d6400cbe404a3a2dc8a673.jpg"), corporate_workwear_promo_title: "", corporate_workwear_promo_description: "", corporate_workwear_promo_image: null, corporate_workwear_cta_text: "", corporate_workwear_cta_link: "",
+    corporate_workwear_eyebrow: "", corporate_workwear_title: "MARKANIZ,  KİMLİĞİNİZ", corporate_workwear_description: "", corporate_workwear_personnel_title: "PERSONEL KIYAFETLERİ", corporate_workwear_personnel_description: "Çalışma ortamı, kullanım sıklığı ve kurumsal kimliğe göre geliştirilen personel kıyafetleri. Model, kumaş, renk, ölçü ve uygulama detayları ekiplerin ihtiyaçlarına göre planlanır.", corporate_workwear_personnel_image: asset("home/corporate-workwear/0ff365bf30d6400cbe404a3a2dc8a673.jpg"), corporate_workwear_promo_title: "PROMOSYON TEKSTİL ÜRÜNLERİ", corporate_workwear_promo_description: "Marka görünürlüğünü destekleyen tekstil ürünleri; logo, baskı, nakış, renk ve paketleme seçenekleriyle kurumsal kullanım, etkinlik ve promosyon projelerine özel hazırlanır.", corporate_workwear_promo_image: asset("home/corporate-workwear/16e2e0bc09114fa0baabe12c1c49878a.jpeg"), corporate_workwear_cta_text: "", corporate_workwear_cta_link: "",
     production_insights_eyebrow: "", production_insights_title: "SUW İLE FİKİRDEN TESLİMATA", production_insights_description: "", production_insight_items: [{ id: 1, image: asset("home/production-insights/55a09e0514cb4b5b85dd48d629bbfd63.png"), title: "KUMAŞ SEÇİMİ", short_description: "", detail_text: "", sort_order: 0 }],
-    final_cta: { title: "PROJENİZİ BİRLİKTE GELİŞTİRELİM", description: "Personelinizle ilgili projelerinizi, bayi ya da müşterilerinize yöönelik promosyon tekstil projelerinizi ekibimizle birlikte oluşturalım.", text: "PROJE BAŞLAT", bottom_label: "", link: "/contact" }, meta_title: "", meta_description: "",
+    final_cta: { title: "PROJENİZİ BİRLİKTE GELİŞTİRELİM", description: "Personelinizle ilgili projelerinizi, bayi ya da müşterilerinize yöönelik promosyon tekstil projelerinizi ekibimizle birlikte oluşturalım.", text: "PROJE BAŞLAT", bottom_label: "", link: "/contact" }, meta_title: "İş Giyimi ve Kurumsal İş Kıyafetleri | SUW", meta_description: "SUW, kurumsal iş giyimi, personel kıyafetleri ve özel üretim tekstil çözümleri sunar. Üretimden teslimata profesyonel iş giyimi çözümlerini keşfedin.",
   },
   en: {
     hero_title: "From within time, carrying the traces of the past into the future...", hero_subtitle: "PROFESSIONAL WORKWEAR", hero_description: "", hero_image: null, hero_image_mobile: null,
     product_categories_eyebrow: "", product_categories_title: "BUILT FOR EVERY JOB.", product_categories_description: "",
     work_essentials_eyebrow: "", work_essentials_title: "EXPLORE WORKWEAR IN DETAIL.", work_essentials_description: "", work_essentials_cta_text: "EXPLORE PRODUCTS", work_essentials_cta_link: "/products", work_essentials_items: homeItems,
-    corporate_workwear_eyebrow: "", corporate_workwear_title: "YOUR WORKWEAR, YOUR IDENTITY.", corporate_workwear_description: "", corporate_workwear_personnel_title: "", corporate_workwear_personnel_description: "", corporate_workwear_personnel_image: asset("home/corporate-workwear/0ff365bf30d6400cbe404a3a2dc8a673.jpg"), corporate_workwear_promo_title: "", corporate_workwear_promo_description: "", corporate_workwear_promo_image: null, corporate_workwear_cta_text: "", corporate_workwear_cta_link: "",
+    corporate_workwear_eyebrow: "", corporate_workwear_title: "YOUR BRAND, YOUR IDENTITY", corporate_workwear_description: "", corporate_workwear_personnel_title: "STAFF UNIFORMS", corporate_workwear_personnel_description: "Staff uniforms developed based on the work environment, frequency of use, and corporate identity. Styles, fabrics, colors, sizing, and application details are planned according to the teams' needs.", corporate_workwear_personnel_image: asset("home/corporate-workwear/0ff365bf30d6400cbe404a3a2dc8a673.jpg"), corporate_workwear_promo_title: "PROMOTIONAL TEXTILE PRODUCTS", corporate_workwear_promo_description: "Textile products designed to enhance brand visibility, tailored for corporate use, events, and promotional projects with customizable logo, print, embroidery, color, and packaging options.", corporate_workwear_promo_image: asset("home/corporate-workwear/16e2e0bc09114fa0baabe12c1c49878a.jpeg"), corporate_workwear_cta_text: "", corporate_workwear_cta_link: "",
     production_insights_eyebrow: "", production_insights_title: "GREAT WORKWEAR STARTS WITH THE DETAILS.", production_insights_description: "", production_insight_items: [{ id: 1, image: asset("home/production-insights/55a09e0514cb4b5b85dd48d629bbfd63.png"), title: "FABRIC SELECTION", short_description: "", detail_text: "", sort_order: 0 }],
-    final_cta: { title: "LET'S BUILD YOUR PROJECT", description: "Let us collaborate with your team to develop projects involving your staff, as well as promotional textile projects aimed at your dealers or customers.", text: "START A PROJECT", bottom_label: "", link: "/contact" }, meta_title: "", meta_description: "",
+    final_cta: { title: "LET'S BUILD YOUR PROJECT", description: "Let us collaborate with your team to develop projects involving your staff, as well as promotional textile projects aimed at your dealers or customers.", text: "START A PROJECT", bottom_label: "", link: "/contact" }, meta_title: "Corporate Workwear & Staff Uniforms | SUW", meta_description: "SUW provides corporate workwear, staff uniforms and custom textile solutions backed by textile manufacturing and product development experience since 1978.",
   },
 };
+
+const staticProductGroupRows = [
+  [1, "summer", "Yazlık", "Summer", "products/groups/292560aa9e454ae0821a241dfb99c099.png"],
+  [2, "winter", "Kışlık", "Winter", "products/groups/winter.jpg"],
+  [3, "bags", "Çanta", "Bags", "products/groups/bags.jpg"],
+  [4, "accessories", "Aksesuar", "Accessories", "products/groups/accessories.jpg"],
+] as const;
+
+export const staticProductPageSnapshot = {
+  tr: { eyebrow: "", title: "ÜRÜNLERİMİZ", description: "", hero_image: null, hero_image_mobile: null, seo_title: "İş Kıyafetleri ve Profesyonel Workwear Ürünleri | SUW", seo_description: "SUW iş kıyafetleri koleksiyonunda tişört, sweatshirt, yelek, mont, softshell, pantolon ve farklı sektörlere yönelik profesyonel workwear çözümlerini keşfedin." },
+  en: { eyebrow: "", title: "OUR PRODUCTS", description: "", hero_image: null, hero_image_mobile: null, seo_title: "Professional Workwear Products | SUW", seo_description: "Explore SUW professional workwear including T-shirts, sweatshirts, vests, jackets, softshells, trousers and clothing solutions developed for different industries." },
+};
+
+export const staticProductGroupsSnapshot = Object.fromEntries((['tr', 'en'] as SupportedLocale[]).map((locale) => [locale, staticProductGroupRows.map(([id, slug, tr, en, image]) => ({
+  id,
+  slug,
+  name: locale === "tr" ? tr : en,
+  image: asset(image),
+  image_mobile: null,
+  short_description: "",
+  url: `/products/${slug}/`,
+  hero_eyebrow: "",
+  hero_title: "",
+  hero_description: "",
+  hero_image: null,
+  hero_image_mobile: null,
+  seo_title: "",
+  seo_description: "",
+}))])) as unknown as Record<SupportedLocale, Array<Record<string, unknown>>>;
+
+const staticProductCategoryRows = [
+  [1, "t-shirt", "T-Shirt", "T-Shirt", ["summer"]],
+  [2, "sweatshirt", "Sweatshirt", "Sweatshirt", ["summer", "winter"]],
+  [3, "ceket", "Ceket", "Jacket", ["winter"]],
+  [4, "pantolon", "Pantolon", "Trousers", ["summer", "winter"]],
+  [5, "tulum", "Tulum", "Coveralls", []],
+  [6, "onluk", "Önlük", "Apron", []],
+  [7, "polar", "Polar", "Fleece", ["winter"]],
+  [8, "yelek", "Yelek", "Vest", ["summer", "winter"]],
+  [9, "mont-kaban", "Mont & Kaban", "Coats & Jackets", ["winter"]],
+  [10, "softshell", "Softshell", "Softshell", ["winter"]],
+  [11, "yagmurluk", "Yağmurluk", "Rainwear", ["winter"]],
+  [12, "gomlek", "Gömlek", "Shirt", ["summer"]],
+  [13, "sapka", "Şapka", "Cap", ["accessories"]],
+  [14, "bere", "Bere", "Beanie", ["accessories"]],
+  [15, "eldiven", "Eldiven", "Gloves", ["accessories"]],
+  [16, "promosyon-canta", "Promosyon Çanta", "Promotional Bag", ["bags"]],
+  [17, "takim-cantasi", "Takım Çantası", "Tool Bag", ["bags"]],
+  [18, "sportswear", "Sportswear", "Sportswear", ["summer"]],
+] as const;
+
+export const staticProductCategoriesSnapshot = Object.fromEntries((['tr', 'en'] as SupportedLocale[]).map((locale) => [locale, staticProductCategoryRows.map(([id, slug, tr, en, groups]) => ({
+  id,
+  slug,
+  name: locale === "tr" ? tr : en,
+  image: null,
+  description: "",
+  header_image: null,
+  seo_title: "",
+  seo_description: "",
+  groups: [...groups],
+}))])) as unknown as Record<SupportedLocale, Array<Record<string, unknown>>>;
+
+export const staticProductsSnapshot: Record<SupportedLocale, Array<Record<string, unknown>>> = { tr: [], en: [] };
 
 const timelineTr = [
   [1, "1978", "Eminönü'nde küçük bir şapka mağazasıyla başlayan yolculuk, ALK Group'un tekstil alanındaki ilk adımını oluşturdu."],
@@ -78,6 +142,11 @@ export const staticCorporateSnapshot: Record<SupportedLocale, CorporatePageRespo
   }];
 })) as Record<SupportedLocale, CorporatePageResponse["page"]>;
 
+export const staticCorporateMetadata: Record<SupportedLocale, { meta_title: string; meta_description: string }> = {
+  tr: { meta_title: "SUW Hakkında | 1978'den Gelen Tekstil Deneyimi", meta_description: "SUW, 1978'den gelen tekstil üretimi, ürün geliştirme ve uluslararası operasyon deneyimini profesyonel iş giyimi çözümlerine taşır." },
+  en: { meta_title: "About SUW | Textile Experience Since 1978", meta_description: "SUW brings textile manufacturing, product development and international operations experience dating back to 1978 into professional workwear solutions." },
+};
+
 const projectRows = {
   tr: [
     ["TARIM, HAYVANCILIK & TARIM TEKNOLOJİLERİ", "HER MEVSİMDE HER KOŞULDA YANINIZDA", "Sektörde kullanılan promosyon odaklı ya da personel kıyafeti projelerinize kalıcı çözümler üretiyoruz."],
@@ -98,14 +167,14 @@ const projectRows = {
 } as const;
 
 export const staticProjectsSnapshot: Record<SupportedLocale, ProjectsPageResponse> = Object.fromEntries((["tr", "en"] as SupportedLocale[]).map((locale) => [locale, {
-  hero_eyebrow: "", hero_title: locale === "tr" ? "SUW SAHADA" : "SUW IN THE FIELD", hero_description: "", seo_title: locale === "tr" ? "Projeler" : "Projects", seo_description: locale === "tr" ? "Kurumsal ekipler, saha operasyonları ve özel ihtiyaçlar için geliştirilen seçili SUW iş giyimi projelerini keşfedin." : "Explore selected SUW workwear projects developed for corporate teams, field operations and custom requirements.",
+  hero_eyebrow: "", hero_title: locale === "tr" ? "SUW SAHADA" : "SUW IN THE FIELD", hero_description: "", seo_title: locale === "tr" ? "Sektörlere Özel İş Giyimi Projeleri | SUW" : "Workwear Projects for Different Industries | SUW", seo_description: locale === "tr" ? "Endüstri, lojistik, inşaat, otomotiv, perakende ve kurumsal ekipler için geliştirilen SUW profesyonel iş giyimi projelerini inceleyin.Kurumsal ekipler, saha operasyonları ve özel ihtiyaçlar için geliştirilen seçili SUW iş giyimi projelerini keşfedin." : "Explore SUW professional workwear projects developed for industry, logistics, construction, automotive, retail and corporate teams.",
   sectors: projectRows[locale].map(([title, headline, description], index) => ({ id: index + 1, title, headline, description, product_groups: [], image: null, image_mobile: null })),
 }])) as unknown as Record<SupportedLocale, ProjectsPageResponse>;
 
 export const staticContactSnapshot: Record<SupportedLocale, ContactPageResponse> = Object.fromEntries((["tr", "en"] as SupportedLocale[]).map((locale) => {
   const tr = locale === "tr";
   return [locale, {
-    hero_title: tr ? "PROJENİZİ KONUŞALIM" : "LET'S TALKWORKWEAR.", map_embed_url: "", info_title: "SUW", info_description: tr ? "Profesyonel iş giyim çözümleri, özel ürün geliştirme ve kurumsal projeleriniz için bizimle iletişime geçin." : "Contact us for professional workwear solutions, custom product development and corporate projects.", info_image: null, phone: "444 10 47", email: "info@suw.com.tr", address: "Yenidoğan, Merve Mahallesi Akabe Cad. No:16/1  Sancaktepe - İstanbul\n34791", form_title: "Bize Anlatın", form_left_title: "BİR PROJE BAŞLATALIM", form_left_description: "Profesyonel iş kıyafeti, özel ürün geliştirme, promosyon tekstil projeleri ve kurumsal projeleriniz için bizimle iletişime geçin", kvkk_text: "",
+    hero_title: tr ? "PROJENİZİ KONUŞALIM" : "LET’S TALK ABOUT YOUR PROJECT", map_embed_url: "", info_title: "SUW", info_description: tr ? "Profesyonel iş giyim çözümleri, özel ürün geliştirme ve kurumsal projeleriniz için bizimle iletişime geçin." : "Contact us for professional workwear solutions, custom product development and corporate projects.", info_image: null, phone: "444 10 47", email: "info@suw.com.tr", address: "Yenidoğan, Merve Mahallesi Akabe Cad. No:16/1  Sancaktepe - İstanbul\n34791", form_title: tr ? "Bize Anlatın" : "Tell Us About Your Project", form_left_title: tr ? "BİR PROJE BAŞLATALIM" : "LET’S START A PROJECT", form_left_description: tr ? "Profesyonel iş kıyafeti, özel ürün geliştirme, promosyon tekstil projeleri ve kurumsal projeleriniz için bizimle iletişime geçin" : "Contact us for professional workwear, custom product development, promotional textile projects, and tailored corporate solutions.", kvkk_text: "",
     form_copy: { submit_label: tr ? "MESAJI GÖNDER" : "SEND MESSAGE", submitting_label: tr ? "GÖNDERİLİYOR..." : "SENDING...", privacy_link_label: tr ? "Gizlilik Bildirimi" : "Privacy Notice", feedback_success_message: tr ? "Mesajınız alındı. En kısa sürede sizinle iletişime geçeceğiz." : "Your message has been received. We'll get back to you as soon as possible.", feedback_error_message: tr ? "Bir sorun oluştu. Lütfen tekrar deneyin." : "Something went wrong. Please try again.", fields: tr ? { first_name: "Ad", last_name: "Soyad", email: "E-posta", phone: "Telefon", subject: "Konu", message: "Mesaj" } : { first_name: "FIRST NAME", last_name: "LAST NAME", email: "EMAIL", phone: "PHONE", subject: "SUBJECT", message: "MESSAGE" }, placeholders: { first_name: "", last_name: "", email: "", phone: "", subject: "", message: "" } },
     newsletter_title: "", newsletter_placeholder: "", newsletter_submit_aria_label: "", newsletter_success_message: "", newsletter_error_message: "", gallery_images: [], activities: [], join_label: tr ? "KARİYER" : "CAREER", join_title: tr ? "EKİBİMİZE KATILIN." : "JOIN OUR TEAM.", join_description: tr ? "Profesyonel çalışma ortamımızda bizimle birlikte gelişmek ve kariyer fırsatlarını keşfetmek için başvurun." : "Explore career opportunities and become part of our professional workwear team.", join_button_text: tr ? "AÇIK POZİSYONLAR" : "VIEW OPEN POSITIONS", join_button_url: "", meta_title: "", meta_description: "",
   }];

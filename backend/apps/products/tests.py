@@ -11,7 +11,6 @@ class ProductsApiTests(TestCase):
         self.group = ProductGroup.objects.get(slug="summer")
         self.category = ProductCategory.objects.get(slug="t-shirt")
         self.product = Product.objects.create(name_tr="İş Tişörtü", name_en="Work T-Shirt", slug="work-tshirt", product_code="SUW-001", category=self.category, sizes_tr="S\\nM\\nL", sizes_en="S\nM\nL", is_featured=True)
-        self.product.groups.add(self.group)
         self.client = APIClient()
 
     def test_localized_groups(self):
@@ -24,6 +23,7 @@ class ProductsApiTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data[0]["product_code"], "SUW-001")
         self.assertEqual(response.data[0]["sizes"], "S\\nM\\nL")
+        self.assertEqual(response.data[0]["groups"][0]["slug"], "summer")
 
     def test_product_page_settings_are_localized(self):
         settings = ProductPageSettings.get_solo()
@@ -57,4 +57,5 @@ class ProductsApiTests(TestCase):
         self.assertIsInstance(admin.site._registry[ProductPageSettings], ProductPageSettingsAdmin)
         self.assertIn(ProductImageInline, ProductAdmin.inlines)
         self.assertIn("product_code", ProductAdmin.search_fields)
-        self.assertIn("groups", ProductAdmin.list_filter)
+        self.assertIn("category__groups", ProductAdmin.list_filter)
+        self.assertNotIn("groups", ProductAdmin.fieldsets[0][1]["fields"])

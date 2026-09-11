@@ -1,5 +1,11 @@
 import { createAPI } from "@/src/lib/api";
 import type { SupportedLocale } from "@/src/lib/locale";
+import {
+  staticProductCategoriesSnapshot,
+  staticProductGroupsSnapshot,
+  staticProductPageSnapshot,
+  staticProductsSnapshot,
+} from "@/src/lib/static-cms-snapshot";
 
 export type ProductHeroContent = { eyebrow: string; title: string; description: string; hero_image: string | null; hero_image_mobile: string | null };
 export type ProductPageSettings = ProductHeroContent & { seo_title: string; seo_description: string };
@@ -8,45 +14,15 @@ export type ProductCategory = { id: number; name: string; slug: string; image: s
 export type ProductSummary = { id: number; name: string; slug: string; product_code: string; main_image: string | null; short_description: string; category: ProductCategory; groups: ProductGroup[]; is_featured: boolean; seo_title: string; seo_description: string };
 export type ProductDetail = ProductSummary & { description: string; materials: string; features: string; colors: string; sizes: string; images: Array<{ image: string; alt: string; sort_order: number }> };
 
-export const fallbackProductPage: Record<SupportedLocale, ProductPageSettings> = {
-  tr: { eyebrow: "", title: "", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
-  en: { eyebrow: "", title: "", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
-};
-
-const groupCopy = {
-  tr: [
-    ["summer", "Yazlık", "", "/images/cms-snapshot/products/groups/292560aa9e454ae0821a241dfb99c099.png"],
-    ["winter", "Kışlık", "", "/images/cms-snapshot/products/groups/winter.jpg"],
-    ["bags", "Çanta", "", "/images/cms-snapshot/products/groups/bags.jpg"],
-    ["accessories", "Aksesuar", "", "/images/cms-snapshot/products/groups/accessories.jpg"],
-  ],
-  en: [
-    ["summer", "Summer", "", "/images/cms-snapshot/products/groups/292560aa9e454ae0821a241dfb99c099.png"],
-    ["winter", "Winter", "", "/images/cms-snapshot/products/groups/winter.jpg"],
-    ["bags", "Bags", "", "/images/cms-snapshot/products/groups/bags.jpg"],
-    ["accessories", "Accessories", "", "/images/cms-snapshot/products/groups/accessories.jpg"],
-  ],
-} as const;
+export const fallbackProductPage = staticProductPageSnapshot as Record<SupportedLocale, ProductPageSettings>;
 
 export function fallbackGroups(locale: SupportedLocale): ProductGroup[] {
-  return groupCopy[locale].map(([slug, name, short_description, image], index) => ({ id: index + 1, slug, name, short_description, image, image_mobile: null, url: `/products/${slug}/`, hero_eyebrow: "", hero_title: "", hero_description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" }));
+  return staticProductGroupsSnapshot[locale] as ProductGroup[];
 }
 
-const categoryDefinitions = [
-  ["t-shirt", "T-Shirt", "T-Shirt", ["summer"]], ["sweatshirt", "Sweatshirt", "Sweatshirt", ["summer", "winter"]],
-  ["ceket", "Ceket", "Jacket", ["winter"]], ["pantolon", "Pantolon", "Trousers", ["summer", "winter"]],
-  ["tulum", "Tulum", "Coveralls", []], ["onluk", "Önlük", "Apron", []], ["polar", "Polar", "Fleece", ["winter"]],
-  ["yelek", "Yelek", "Vest", ["summer", "winter"]], ["mont-kaban", "Mont & Kaban", "Coats & Jackets", ["winter"]],
-  ["softshell", "Softshell", "Softshell", ["winter"]], ["yagmurluk", "Yağmurluk", "Rainwear", ["winter"]],
-  ["gomlek", "Gömlek", "Shirt", ["summer"]], ["sapka", "Şapka", "Cap", ["accessories"]], ["bere", "Bere", "Beanie", ["accessories"]],
-  ["eldiven", "Eldiven", "Gloves", ["accessories"]], ["promosyon-canta", "Promosyon Çanta", "Promotional Bag", ["bags"]],
-  ["takim-cantasi", "Takım Çantası", "Tool Bag", ["bags"]], ["sportswear", "Sportswear", "Sportswear", ["summer"]],
-] as const;
-
 export function fallbackCategories(locale: SupportedLocale, group?: string): ProductCategory[] {
-  return categoryDefinitions
-    .filter(([, , , groups]) => !group || (groups as readonly string[]).includes(group))
-    .map(([slug, tr, en, groups], index) => ({ id: index + 1, slug, name: locale === "tr" ? tr : en, image: `/images/mock/${group === "bags" ? "accessories" : group === "winter" ? "outerwear" : "topwear"}.jpg`, description: "", header_image: null, seo_title: "", seo_description: "", groups: [...groups] }));
+  const categories = staticProductCategoriesSnapshot[locale] as ProductCategory[];
+  return group ? categories.filter((category) => category.groups.includes(group)) : categories;
 }
 
 export async function getProductGroups(locale: SupportedLocale, home = false) {
@@ -86,7 +62,12 @@ export async function getProductCategories(locale: SupportedLocale, group?: stri
 }
 
 export async function getProducts(locale: SupportedLocale, query = "") {
-  try { return (await createAPI(locale).get<ProductSummary[]>(`products/products/${query ? `?${query}` : ""}`)).data; } catch { return []; }
+  try { return (await createAPI(locale).get<ProductSummary[]>(`products/products/${query ? `?${query}` : ""}`)).data; } catch {
+    const products = staticProductsSnapshot[locale] as ProductSummary[];
+    const category = new URLSearchParams(query).get("category");
+    const group = new URLSearchParams(query).get("group");
+    return products.filter((product) => (!category || product.category.slug === category) && (!group || product.category.groups.includes(group)));
+  }
 }
 
 export async function getProduct(locale: SupportedLocale, slug: string) {

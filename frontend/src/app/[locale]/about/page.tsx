@@ -9,7 +9,7 @@ import type { AboutPageContent, CorporatePageResponse } from "@/src/lib/api-type
 import styles from "./about.module.scss";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { resolveFinalCtaHref } from "@/src/lib/final-cta";
-import { staticCorporateSnapshot } from "@/src/lib/static-cms-snapshot";
+import { staticCorporateMetadata, staticCorporateSnapshot } from "@/src/lib/static-cms-snapshot";
 
 type AboutPageProps = {
   params: Promise<{
@@ -124,7 +124,11 @@ export async function generateMetadata({
   let description = "";
   let image: string | undefined;
 
-  if (process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK !== "true") {
+  if (process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true") {
+    title = staticCorporateMetadata[locale].meta_title;
+    description = staticCorporateMetadata[locale].meta_description;
+    image = staticCorporateSnapshot[locale].history_hero.image || undefined;
+  } else {
     try {
       const response = await createAPI(locale).get<CorporatePageResponse>("corporate/");
       title = response.data.meta_title || "";

@@ -52,9 +52,9 @@ class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        queryset = Product.objects.filter(is_active=True).select_related("category").prefetch_related("groups", "images", "category__groups")
+        queryset = Product.objects.filter(is_active=True).select_related("category").prefetch_related("images", "category__groups")
         if group := self.request.query_params.get("group"):
-            queryset = queryset.filter(groups__slug=group)
+            queryset = queryset.filter(category__groups__slug=group)
         if category := self.request.query_params.get("category"):
             queryset = queryset.filter(category__slug=category)
         if "featured" in self.request.query_params:
@@ -66,4 +66,4 @@ class ProductDetailView(generics.RetrieveAPIView):
     permission_classes = [AllowAny]
     serializer_class = ProductSerializer
     lookup_field = "slug"
-    queryset = Product.objects.filter(is_active=True).select_related("category").prefetch_related("groups", "images", "category__groups")
+    queryset = Product.objects.filter(is_active=True).select_related("category").prefetch_related("images", "category__groups")

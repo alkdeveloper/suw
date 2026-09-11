@@ -50,6 +50,7 @@ class ProductPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 @admin.register(ProductGroup)
 class ProductGroupAdmin(ModelAdmin):
     list_display = ["image_preview", "name_tr", "name_en", "slug", "is_active", "show_on_home", "sort_order"]
+    list_display_links = ["name_tr"]
     list_editable = ["is_active", "show_on_home", "sort_order"]
     search_fields = ["name_tr", "name_en", "slug"]
     prepopulated_fields = {"slug": ("name_tr",)}
@@ -77,6 +78,7 @@ class ProductGroupAdmin(ModelAdmin):
 @admin.register(ProductCategory)
 class ProductCategoryAdmin(ModelAdmin):
     list_display = ["image_preview", "name_tr", "name_en", "group_names", "is_active", "sort_order"]
+    list_display_links = ["name_tr"]
     list_editable = ["is_active", "sort_order"]
     list_filter = ["groups", "is_active"]
     search_fields = ["name_tr", "name_en", "slug"]
@@ -107,14 +109,13 @@ class ProductAdmin(ModelAdmin):
     inlines = [ProductImageInline]
     list_display = ["image_preview", "product_code", "name_tr", "category", "group_names", "is_active", "sort_order"]
     list_editable = ["is_active", "sort_order"]
-    list_filter = ["category", "groups", "is_active"]
+    list_filter = ["category", "category__groups", "is_active"]
     search_fields = ["name_tr", "name_en", "product_code"]
-    filter_horizontal = ["groups"]
     prepopulated_fields = {"slug": ("name_tr",)}
     ordering = ["sort_order"]
     readonly_fields = ["image_preview"]
     fieldsets = (
-        ("Temel Bilgiler", {"fields": ("product_code", "slug", "category", "groups")} ),
+        ("Temel Bilgiler", {"fields": ("product_code", "slug", "category")} ),
         ("Türkçe İçerik", {"fields": ("name_tr", "short_description_tr", "description_tr", "materials_tr", "features_tr", "sizes_tr")} ),
         ("İngilizce İçerik", {"fields": ("name_en", "short_description_en", "description_en", "materials_en", "features_en", "sizes_en")} ),
         ("Ana Görsel", {"fields": ("main_image", "image_preview")} ),
@@ -126,4 +127,4 @@ class ProductAdmin(ModelAdmin):
         return preview(obj.main_image)
 
     def group_names(self, obj):
-        return ", ".join(obj.groups.values_list("name_tr", flat=True)) or "—"
+        return ", ".join(obj.category.groups.values_list("name_tr", flat=True)) or "—"
