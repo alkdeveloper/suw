@@ -3,8 +3,8 @@ import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 
 export const SITE_NAME = "SUW";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.suw.com.tr";
-export const DEFAULT_OG_IMAGE = "/images/suw-logo-white.svg";
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://suw.com.tr").replace(/\/$/, "");
+export const DEFAULT_OG_IMAGE = "/images/suw-logo-hero.png";
 
 type CreatePageMetadataOptions = {
   title: string;
@@ -16,7 +16,8 @@ type CreatePageMetadataOptions = {
 };
 
 export function formatPageTitle(title: string) {
-  return title === SITE_NAME ? SITE_NAME : `${title} | ${SITE_NAME}`;
+  const value = title.trim();
+  return !value || value === SITE_NAME ? SITE_NAME : `${value} | ${SITE_NAME}`;
 }
 
 export function absoluteUrl(pathOrUrl: string) {
@@ -36,7 +37,7 @@ export function createPageMetadata({
   const imageUrl = absoluteUrl(image);
 
   return {
-    title: fullTitle,
+    title: { absolute: fullTitle },
     description,
     alternates: {
       canonical: canonicalUrl,
@@ -85,10 +86,22 @@ export function createLocalizedPageMetadata(
   locale: SupportedLocale,
   options: CreatePageMetadataOptions,
 ): Metadata {
-  return createPageMetadata({
+  const metadata = createPageMetadata({
     ...options,
     path: withLocalePath(locale, options.path),
   });
+  const tr = absoluteUrl(withLocalePath("tr", options.path));
+  const en = absoluteUrl(withLocalePath("en", options.path));
+
+  metadata.alternates = {
+    canonical: absoluteUrl(withLocalePath(locale, options.path)),
+    languages: { tr, en, "x-default": tr },
+  };
+  if (metadata.openGraph) {
+    metadata.openGraph.locale = locale === "tr" ? "tr_TR" : "en_US";
+    metadata.openGraph.alternateLocale = [locale === "tr" ? "en_US" : "tr_TR"];
+  }
+  return metadata;
 }
 
 export function resolveMetadataValue(value: string | null | undefined, fallback: string) {

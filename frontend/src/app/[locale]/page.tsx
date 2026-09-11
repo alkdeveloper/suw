@@ -7,7 +7,7 @@ import type { HomePageResponse } from "@/src/lib/api-types";
 import { createAPI } from "@/src/lib/api";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
-import { createLocalizedPageMetadata, resolveMetadataValue } from "@/src/lib/metadata";
+import { createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { SuwProductionInsightsSection } from "@/src/components/organisms/suw-production-insights-section";
 import { SuwCustomWorkwearSection } from "@/src/components/organisms/suw-custom-workwear-section";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
@@ -31,8 +31,8 @@ async function getHomePage(
   locale: SupportedLocale,
 ): Promise<HomePageResponse> {
   const fallback = {
-    meta_title: locale === "tr" ? "Anasayfa" : "Home",
-    meta_description: locale === "tr" ? "SUW profesyonel iş giyimi çözümleri." : "SUW professional workwear solutions.",
+    meta_title: "",
+    meta_description: "",
     hero_title: locale === "tr" ? "İŞ İÇİN TASARLANDI." : "BUILT FOR WORK.",
     hero_subtitle: locale === "tr" ? "PROFESYONEL İŞ GİYİMİ" : "PROFESSIONAL WORKWEAR",
     hero_description: "",
@@ -69,8 +69,8 @@ async function getHomePage(
 
     return {
       ...response.data,
-      meta_title: response.data.meta_title || fallback.meta_title,
-      meta_description: response.data.meta_description || fallback.meta_description,
+      meta_title: response.data.meta_title ?? "",
+      meta_description: response.data.meta_description ?? "",
       hero_title: response.data.hero_title || fallback.hero_title,
       hero_subtitle: response.data.hero_subtitle || fallback.hero_subtitle,
       hero_description: response.data.hero_description ?? "",
@@ -126,11 +126,8 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   const page = await getHomePage(locale);
 
   return createLocalizedPageMetadata(locale, {
-    title: resolveMetadataValue(page.meta_title, "Anasayfa"),
-    description: resolveMetadataValue(
-      page.meta_description,
-      "SUW profesyonel iş giyimi çözümlerini keşfedin.",
-    ),
+    title: page.meta_title || "",
+    description: page.meta_description || "",
     path: "/",
     image: page.hero_image ?? undefined,
   });

@@ -12,6 +12,7 @@ import {
 } from "@/src/lib/locale";
 import { getOfflineSiteSettings } from "@/src/lib/site-settings-fallback";
 import { applyStaticSiteSettings } from "@/src/lib/static-cms-snapshot";
+import { absoluteUrl, SITE_NAME, SITE_URL } from "@/src/lib/metadata";
 export function generateStaticParams() {
   return [
     { locale: "tr" },
@@ -99,6 +100,19 @@ export default async function LocaleLayout({
     process.env.NEXT_PUBLIC_GA_ID?.trim();
 
   const fontVar = "--font-krub";
+  const organization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: absoluteUrl(
+      (siteSettings.logo || "/images/suw-logo-hero.png").replace(/^\/suw(?=\/)/, ""),
+    ),
+    address: siteSettings.address ? { "@type": "PostalAddress", streetAddress: siteSettings.address } : undefined,
+    telephone: siteSettings.phone || undefined,
+    email: siteSettings.email || undefined,
+    sameAs: [siteSettings.instagram, siteSettings.linkedin].filter(Boolean),
+  };
 
   const overrideRules = ALL_FONT_VARS
     .filter((variable) => variable !== fontVar)
@@ -113,6 +127,10 @@ export default async function LocaleLayout({
       <style>
         {`body { --font-active: var(${fontVar}); ${overrideRules} }`}
       </style>
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, "\\u003c") }}
+        type="application/ld+json"
+      />
 
       <AppShell
         locale={locale}

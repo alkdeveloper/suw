@@ -65,10 +65,12 @@ class ProductGroupSerializer(LocalizedSerializer):
     hero_image = serializers.SerializerMethodField()
     hero_image_mobile = serializers.SerializerMethodField()
     image_mobile = serializers.SerializerMethodField()
+    seo_title = serializers.SerializerMethodField()
+    seo_description = serializers.SerializerMethodField()
 
     class Meta:
         model = ProductGroup
-        fields = ["id", "name", "slug", "image", "image_mobile", "short_description", "url", "hero_eyebrow", "hero_title", "hero_description", "hero_image", "hero_image_mobile"]
+        fields = ["id", "name", "slug", "image", "image_mobile", "short_description", "url", "hero_eyebrow", "hero_title", "hero_description", "hero_image", "hero_image_mobile", "seo_title", "seo_description"]
 
     def get_short_description(self, obj):
         return localized(obj, "short_description", self.context.get("request"))
@@ -82,6 +84,8 @@ class ProductGroupSerializer(LocalizedSerializer):
     def get_hero_image(self, obj): return image_url(obj, "hero_image", self.context.get("request"))
     def get_hero_image_mobile(self, obj): return image_url(obj, "hero_image_mobile", self.context.get("request"))
     def get_image_mobile(self, obj): return image_url(obj, "image_mobile", self.context.get("request"))
+    def get_seo_title(self, obj): return localized(obj, "seo_title", self.context.get("request"))
+    def get_seo_description(self, obj): return localized(obj, "seo_description", self.context.get("request"))
 
 
 class ProductCategorySerializer(LocalizedSerializer):
@@ -135,10 +139,12 @@ class ProductSerializer(serializers.ModelSerializer):
     features = serializers.SerializerMethodField()
     colors = serializers.SerializerMethodField()
     sizes = serializers.SerializerMethodField()
+    seo_title = serializers.SerializerMethodField()
+    seo_description = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
-        fields = ["id", "name", "slug", "product_code", "category", "groups", "short_description", "description", "main_image", "materials", "features", "colors", "sizes", "images", "is_featured"]
+        fields = ["id", "name", "slug", "product_code", "category", "groups", "short_description", "description", "main_image", "materials", "features", "colors", "sizes", "images", "is_featured", "seo_title", "seo_description"]
 
     def get_name(self, obj):
         return localized(obj, "name", self.context.get("request"))
@@ -154,3 +160,5 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_features(self, obj): return localized(obj, "features", self.context.get("request"))
     def get_colors(self, obj): return localized(obj, "colors", self.context.get("request"))
     def get_sizes(self, obj): return localized(obj, "sizes", self.context.get("request"))
+    def get_seo_title(self, obj): return localized(obj, "seo_title", self.context.get("request"))
+    def get_seo_description(self, obj): return localized(obj, "seo_description", self.context.get("request"))

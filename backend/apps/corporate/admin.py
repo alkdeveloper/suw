@@ -78,6 +78,7 @@ class CorporatePageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin
         ("Kronoloji", {"fields": ("timeline_title_tr", "timeline_title_en")}),
         ("Hakkımızda CTA — Türkçe", {"fields": ("about_cta_title_tr", "about_cta_description_tr")}),
         ("Hakkımızda CTA — İngilizce", {"fields": ("about_cta_title_en", "about_cta_description_en")}),
+        ("SEO", {"fields": (("meta_title_tr", "meta_title_en"), ("meta_description_tr", "meta_description_en"))}),
     )
     readonly_fields = ()
 

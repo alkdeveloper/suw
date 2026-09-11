@@ -28,6 +28,7 @@ export async function generateMetadata({
     title: content.seo_title,
     description: content.seo_description,
     path: "/products",
+    image: content.hero_image || undefined,
   });
 }
 

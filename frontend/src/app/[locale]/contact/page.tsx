@@ -9,7 +9,6 @@ import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import {
   createLocalizedPageMetadata,
-  resolveMetadataValue,
 } from "@/src/lib/metadata";
 
 import styles from "./contact.module.scss";
@@ -38,11 +37,8 @@ async function getContactPage(
   } catch {
     return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticContactSnapshot[locale] : {
       hero_title: "",
-      meta_title: locale === "tr" ? "İletişim" : "Contact",
-      meta_description:
-        locale === "tr"
-          ? "SUW profesyonel iş giyimi projeleri için bizimle iletişime geçin."
-          : "Contact SUW for professional workwear projects.",
+      meta_title: "",
+      meta_description: "",
 
       address: "",
       email: "",
@@ -77,11 +73,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const page = await getContactPage(locale);
   return createLocalizedPageMetadata(locale, {
-    title: resolveMetadataValue(page.meta_title, "Contact"),
-    description: resolveMetadataValue(
-      page.meta_description,
-      "Contact SUW for professional workwear, custom development and corporate workwear projects.",
-    ),
+    title: page.meta_title || "",
+    description: page.meta_description || "",
     path: "/contact",
     image: page.info_image ?? undefined,
   });

@@ -116,35 +116,28 @@ function emptyAbout(): AboutPageContent {
   };
 }
 
-const pageContent = {
-  tr: {
-    metaTitle: "Hakkımızda",
-    metaDescription:
-      "SUW'un profesyonel iş giyimi, üretim, kalite ve uzun vadeli proje geliştirme yaklaşımını keşfedin.",
-    eyebrow: "SUW HAKKINDA",
-    titleLine1: "DENEYİM ÜZERİNE",
-    titleLine2: "KURULU.",
-  },
-  en: {
-    metaTitle: "About",
-    metaDescription:
-      "Discover SUW's approach to professional workwear, production, quality and long-term project development.",
-    eyebrow: "ABOUT SUW",
-    titleLine1: "BUILT ON",
-    titleLine2: "EXPERIENCE.",
-  },
-};
-
 export async function generateMetadata({
   params,
 }: AboutPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const content = pageContent[locale];
+  let title = "";
+  let description = "";
+  let image: string | undefined;
+
+  if (process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK !== "true") {
+    try {
+      const response = await createAPI(locale).get<CorporatePageResponse>("corporate/");
+      title = response.data.meta_title || "";
+      description = response.data.meta_description || "";
+      image = response.data.page?.history_hero.image || undefined;
+    } catch {}
+  }
 
   return createLocalizedPageMetadata(locale, {
-    title: content.metaTitle,
-    description: content.metaDescription,
+    title,
+    description,
     path: "/about",
+    image,
   });
 }
 
@@ -152,7 +145,6 @@ export default async function AboutPage({
   params,
 }: AboutPageProps) {
   const { locale } = await params;
-  const content = pageContent[locale];
   let about=process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticCorporateSnapshot[locale] : emptyAbout();
   try {
     const response=await createAPI(locale).get<CorporatePageResponse>("corporate/");

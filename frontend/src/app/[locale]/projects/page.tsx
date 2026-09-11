@@ -22,25 +22,6 @@ type ProjectsPageProps = {
   }>;
 };
 
-const pageContent = {
-  tr: {
-    metaTitle: "Projeler",
-    metaDescription:
-      "Kurumsal ekipler, saha operasyonları ve özel ihtiyaçlar için geliştirilen seçili SUW iş giyimi projelerini keşfedin.",
-    eyebrow: "PROJELER",
-    heroTitle: "İŞ GİYİMİ\nSAHADA.",
-    heroDescription: "",
-  },
-  en: {
-    metaTitle: "Projects",
-    metaDescription:
-      "Explore selected SUW workwear projects developed for corporate teams, field operations and custom requirements.",
-    eyebrow: "PROJECTS",
-    heroTitle: "WORKWEAR\nIN ACTION.",
-    heroDescription: "",
-  },
-};
-
 const sectorFallback = [
   ["ENDÜSTRİ & ÜRETİM", "INDUSTRY & MANUFACTURING", "SAHADA DAYANIKLILIK,\nEKİPTE BÜTÜNLÜK.", "DURABILITY ON SITE,\nUNITY ACROSS THE TEAM."],
   ["LOJİSTİK & OPERASYON", "LOGISTICS & OPERATIONS", "HAREKET İÇİN TASARLANDI,\nOPERASYONA HAZIR.", "DESIGNED FOR MOVEMENT,\nREADY FOR OPERATIONS."],
@@ -64,14 +45,13 @@ export async function generateMetadata({
   params,
 }: ProjectsPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const content = pageContent[locale];
   let projects = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticProjectsSnapshot[locale] : getFallback(locale);
   try {
     projects = (await createAPI(locale).get<ProjectsPageResponse>("projects/")).data;
   } catch {}
   return createLocalizedPageMetadata(locale, {
-    title: projects.seo_title || content.metaTitle,
-    description: projects.seo_description || content.metaDescription,
+    title: projects.seo_title || "",
+    description: projects.seo_description || "",
     path: "/projects",
   });
 }
@@ -80,7 +60,6 @@ export default async function ProjectsPage({
   params,
 }: ProjectsPageProps) {
   const { locale } = await params;
-  const content = pageContent[locale];
   let projects = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticProjectsSnapshot[locale] : getFallback(locale);
   try {
     const response = await createAPI(locale).get<ProjectsPageResponse>("projects/");

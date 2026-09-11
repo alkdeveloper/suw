@@ -61,6 +61,7 @@ class ProductGroupAdmin(ModelAdmin):
         ("Türkçe Hero", {"fields": ("hero_title_tr", "hero_description_tr")} ),
         ("İngilizce Hero", {"fields": ("hero_title_en", "hero_description_en")} ),
         ("Hero Görselleri", {"fields": ("hero_image", "hero_image_preview", "hero_image_mobile", "hero_image_mobile_preview")} ),
+        ("SEO", {"fields": (("seo_title_tr", "seo_title_en"), ("seo_description_tr", "seo_description_en"))} ),
         ("Yayın", {"fields": ("sort_order", "is_active", "show_on_home")} ),
     )
 
@@ -117,6 +118,7 @@ class ProductAdmin(ModelAdmin):
         ("Türkçe İçerik", {"fields": ("name_tr", "short_description_tr", "description_tr", "materials_tr", "features_tr", "sizes_tr")} ),
         ("İngilizce İçerik", {"fields": ("name_en", "short_description_en", "description_en", "materials_en", "features_en", "sizes_en")} ),
         ("Ana Görsel", {"fields": ("main_image", "image_preview")} ),
+        ("SEO", {"fields": (("seo_title_tr", "seo_title_en"), ("seo_description_tr", "seo_description_en"))} ),
         ("Yayın", {"fields": ("sort_order", "is_active")} ),
     )
 
