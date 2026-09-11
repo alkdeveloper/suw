@@ -8,28 +8,22 @@ import { withLocalePath, type SupportedLocale } from "@/src/lib/locale";
 type WorkEssentialItem = { id: number | string; image: string | null; alt: string; link: string; sort_order?: number };
 type Props = { eyebrow?: string; title?: string; description?: string; ctaLabel?: string; ctaHref?: string; items?: WorkEssentialItem[]; locale?: SupportedLocale };
 
-const fallbackItems: WorkEssentialItem[] = [
-  { id: "fallback-1", image: "/images/mock/product-1.jpg", alt: "SUW workwear", link: "" },
-  { id: "fallback-2", image: "/images/mock/product-2.jpg", alt: "SUW work jacket", link: "" },
-  { id: "fallback-3", image: "/images/mock/product-3.jpg", alt: "SUW workwear essential", link: "" },
-  { id: "fallback-4", image: "/images/mock/product-4.jpg", alt: "SUW softshell workwear", link: "" },
-];
 const fallbackContent = {
-  tr: { eyebrow: "İŞİN TEMEL PARÇALARI", title: "PERFORMANS İÇİN GELİŞTİRİLDİ.", cta: "ÜRÜNLERİ KEŞFET" },
-  en: { eyebrow: "WORK ESSENTIALS", title: "BUILT TO PERFORM.", cta: "EXPLORE PRODUCTS" },
+  tr: { eyebrow: "Katalog vitrini" },
+  en: { eyebrow: "Catalogue showcase" },
 };
 
 function isExternalLink(href: string) {
   return /^(?:https?:)?\/\//.test(href) || href.startsWith("mailto:") || href.startsWith("tel:");
 }
 
-export function SuwFeaturedProductsSection({ eyebrow, title, description, ctaLabel, ctaHref = "/products", items = [], locale = "tr" }: Props) {
+export function SuwFeaturedProductsSection({ eyebrow, title, description, ctaLabel, ctaHref = "", items = [], locale = "tr" }: Props) {
   const content = fallbackContent[locale];
   const trackRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ active: false, moved: false, startX: 0, startScrollLeft: 0 });
   const [isPaused, setIsPaused] = useState(false);
   const sourceItems = items.filter((item) => Boolean(item.image));
-  const visibleItems = sourceItems.length > 0 ? sourceItems : fallbackItems;
+  const visibleItems = sourceItems;
   const carouselItems = useMemo(() => visibleItems.length > 1 ? [...visibleItems, ...visibleItems] : visibleItems, [visibleItems]);
 
   useEffect(() => {
@@ -63,11 +57,13 @@ export function SuwFeaturedProductsSection({ eyebrow, title, description, ctaLab
   };
   const resolveHref = (href: string) => isExternalLink(href) ? href : withLocalePath(locale, href || "/products");
 
+  if (!title && !description && visibleItems.length === 0 && !(ctaLabel && ctaHref)) return null;
+
   return (
     <section className="suw-featured-products">
       <div className="suw-featured-products__inner">
         <header className="suw-featured-products__heading">
-          <div><h2 className="suw-featured-products__title">{title || content.title}</h2></div>
+          {title ? <div><h2 className="suw-featured-products__title">{title}</h2></div> : null}
           {description ? <p className="suw-featured-products__intro">{description}</p> : null}
         </header>
       </div>
@@ -77,7 +73,7 @@ export function SuwFeaturedProductsSection({ eyebrow, title, description, ctaLab
           return <article className="suw-featured-products__card" key={`${item.id}-${index}`}>{item.link ? (isExternalLink(item.link) ? <a className="suw-featured-products__card-link" href={resolveHref(item.link)} rel="noreferrer" target="_blank">{image}</a> : <Link className="suw-featured-products__card-link" href={resolveHref(item.link)}>{image}</Link>) : image}</article>;
         })}
       </div>
-      <div className="suw-featured-products__inner suw-featured-products__cta-row"><Link className="suw-featured-products__cta" href={resolveHref(ctaHref)}><span>{ctaLabel || content.cta}</span><span aria-hidden="true">↗</span></Link></div>
+      {ctaLabel && ctaHref ? <div className="suw-featured-products__inner suw-featured-products__cta-row"><Link className="suw-featured-products__cta" href={resolveHref(ctaHref)}><span>{ctaLabel}</span><span aria-hidden="true">↗</span></Link></div> : null}
     </section>
   );
 }

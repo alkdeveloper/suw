@@ -27,19 +27,6 @@ type ContactPageProps = {
   }>;
 };
 
-const heroContent = {
-  tr: {
-    eyebrow: "İLETİŞİM",
-    titleLine1: "İŞ GİYİMİNİ",
-    titleLine2: "KONUŞALIM.",
-  },
-  en: {
-    eyebrow: "CONTACT",
-    titleLine1: "LET'S TALK",
-    titleLine2: "WORKWEAR.",
-  },
-};
-
 async function getContactPage(
   locale: SupportedLocale,
 ): Promise<ContactPageResponse> {
@@ -50,7 +37,7 @@ async function getContactPage(
     return response.data;
   } catch {
     return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticContactSnapshot[locale] : {
-      hero_title: locale === "tr" ? "İŞ GİYİMİNİ\nKONUŞALIM." : "LET'S TALK\nWORKWEAR.",
+      hero_title: "",
       meta_title: locale === "tr" ? "İletişim" : "Contact",
       meta_description:
         locale === "tr"
@@ -105,15 +92,13 @@ export default async function ContactPage({
 }: ContactPageProps) {
   const { locale } = await params;
   const page = await getContactPage(locale);
-  const hero = heroContent[locale];
-
   return (
     <main>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <h1 className={styles.title}>
-            {(page.hero_title || `${hero.titleLine1}\n${hero.titleLine2}`).split(/\r?\n/).map((line) => <span key={line}>{line}</span>)}
-          </h1>
+          {page.hero_title ? <h1 className={styles.title}>
+            {page.hero_title.split(/\r?\n/).map((line) => <span key={line}>{line}</span>)}
+          </h1> : null}
         </div>
       </section>
 

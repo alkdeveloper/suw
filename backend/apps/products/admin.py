@@ -104,9 +104,9 @@ class ProductCategoryAdmin(ModelAdmin):
 class ProductAdmin(ModelAdmin):
     form = ProductAdminForm
     inlines = [ProductImageInline]
-    list_display = ["image_preview", "product_code", "name_tr", "category", "group_names", "is_featured", "is_active", "sort_order"]
-    list_editable = ["is_featured", "is_active", "sort_order"]
-    list_filter = ["category", "groups", "is_active", "is_featured"]
+    list_display = ["image_preview", "product_code", "name_tr", "category", "group_names", "is_active", "sort_order"]
+    list_editable = ["is_active", "sort_order"]
+    list_filter = ["category", "groups", "is_active"]
     search_fields = ["name_tr", "name_en", "product_code"]
     filter_horizontal = ["groups"]
     prepopulated_fields = {"slug": ("name_tr",)}
@@ -114,10 +114,10 @@ class ProductAdmin(ModelAdmin):
     readonly_fields = ["image_preview"]
     fieldsets = (
         ("Temel Bilgiler", {"fields": ("product_code", "slug", "category", "groups")} ),
-        ("Türkçe İçerik", {"fields": ("name_tr", "short_description_tr", "description_tr", "materials_tr", "features_tr", "colors_tr", "sizes_tr")} ),
-        ("İngilizce İçerik", {"fields": ("name_en", "short_description_en", "description_en", "materials_en", "features_en", "colors_en", "sizes_en")} ),
+        ("Türkçe İçerik", {"fields": ("name_tr", "short_description_tr", "description_tr", "materials_tr", "features_tr", "sizes_tr")} ),
+        ("İngilizce İçerik", {"fields": ("name_en", "short_description_en", "description_en", "materials_en", "features_en", "sizes_en")} ),
         ("Ana Görsel", {"fields": ("main_image", "image_preview")} ),
-        ("Yayın", {"fields": ("sort_order", "is_active", "is_featured")} ),
+        ("Yayın", {"fields": ("sort_order", "is_active")} ),
     )
 
     def image_preview(self, obj):

@@ -9,8 +9,8 @@ export type ProductSummary = { id: number; name: string; slug: string; product_c
 export type ProductDetail = ProductSummary & { description: string; materials: string; features: string; colors: string; sizes: string; images: Array<{ image: string; alt: string; sort_order: number }> };
 
 export const fallbackProductPage: Record<SupportedLocale, ProductPageSettings> = {
-  tr: { eyebrow: "", title: "ÜRÜNLERİMİZ", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
-  en: { eyebrow: "", title: "OUR PRODUCTS", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
+  tr: { eyebrow: "", title: "", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
+  en: { eyebrow: "", title: "", description: "", hero_image: null, hero_image_mobile: null, seo_title: "", seo_description: "" },
 };
 
 const groupCopy = {
@@ -29,7 +29,7 @@ const groupCopy = {
 } as const;
 
 export function fallbackGroups(locale: SupportedLocale): ProductGroup[] {
-  return groupCopy[locale].map(([slug, name, short_description, image], index) => ({ id: index + 1, slug, name, short_description, image, image_mobile: null, url: `/products/${slug}/`, hero_eyebrow: locale === "tr" ? "ÜRÜN GRUBU" : "PRODUCT GROUP", hero_title: name, hero_description: short_description, hero_image: null, hero_image_mobile: null }));
+  return groupCopy[locale].map(([slug, name, short_description, image], index) => ({ id: index + 1, slug, name, short_description, image, image_mobile: null, url: `/products/${slug}/`, hero_eyebrow: "", hero_title: "", hero_description: "", hero_image: null, hero_image_mobile: null }));
 }
 
 const categoryDefinitions = [
@@ -59,9 +59,9 @@ export async function getProductGroups(locale: SupportedLocale, home = false) {
         ...group,
         image: group.image || local?.image || null,
         short_description: group.short_description ?? "",
-        hero_eyebrow: group.hero_eyebrow || local?.hero_eyebrow || "",
-        hero_title: group.hero_title || local?.hero_title || group.name,
-        hero_description: group.hero_description || local?.hero_description || group.short_description,
+        hero_eyebrow: group.hero_eyebrow ?? "",
+        hero_title: group.hero_title ?? "",
+        hero_description: group.hero_description ?? "",
         hero_image: group.hero_image || null,
         hero_image_mobile: group.hero_image_mobile || null,
       };
@@ -75,7 +75,7 @@ export async function getProductPageSettings(locale: SupportedLocale) {
   const fallback = fallbackProductPage[locale];
   try {
     const value = (await createAPI(locale).get<ProductPageSettings>("products/page/")).data;
-    return Object.fromEntries(Object.entries(fallback).map(([key, defaultValue]) => [key, value[key as keyof ProductPageSettings] || defaultValue])) as ProductPageSettings;
+    return Object.fromEntries(Object.entries(fallback).map(([key, defaultValue]) => [key, value[key as keyof ProductPageSettings] ?? defaultValue])) as ProductPageSettings;
   } catch {
     return fallback;
   }

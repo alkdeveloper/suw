@@ -37,9 +37,6 @@ export function SuwContactFormSection({
         message: "MESAJ",
         privacyNotice: "Gizlilik Bildirimi",
         submit: "MESAJI GÖNDER",
-        submitting: "GÖNDERİLİYOR...",
-        success: "Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.",
-        error: "Mesajınız gönderilemedi. Lütfen tekrar deneyin.",
       }
     : {
         eyebrow: "GET IN TOUCH",
@@ -55,9 +52,6 @@ export function SuwContactFormSection({
         message: "MESSAGE",
         privacyNotice: "Privacy Notice",
         submit: "SEND MESSAGE",
-        submitting: "SENDING...",
-        success: "Your message has been sent successfully. We will get back to you as soon as possible.",
-        error: "Your message could not be sent. Please try again.",
       };
 
   const [formState, setFormState] = useState({
@@ -101,7 +95,7 @@ export function SuwContactFormSection({
 
       setStatus("success");
 
-      setFeedbackMessage(fallbackCopy.success);
+      setFeedbackMessage(copy?.feedbackSuccessMessage ?? "");
 
       setFormState({
         firstName: "",
@@ -115,7 +109,7 @@ export function SuwContactFormSection({
     } catch (error) {
       console.error("Contact form submission failed", error);
       setStatus("error");
-      setFeedbackMessage(fallbackCopy.error);
+      setFeedbackMessage(copy?.feedbackErrorMessage ?? "");
     }
   }
 
@@ -310,8 +304,7 @@ export function SuwContactFormSection({
                 >
                   <span>
                     {status === "submitting"
-                      ? copy?.submittingLabel ||
-                        fallbackCopy.submitting
+                      ? copy?.submittingLabel
                       : copy?.submitLabel}
                   </span>
 

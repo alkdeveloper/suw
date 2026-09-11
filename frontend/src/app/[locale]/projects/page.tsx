@@ -54,7 +54,7 @@ function getFallback(locale: SupportedLocale): ProjectsPageResponse {
   const tr = locale === "tr";
   return {
     hero_eyebrow: tr ? "PROJELER" : "PROJECTS",
-    hero_title: tr ? "İŞ GİYİMİ\nSAHADA." : "WORKWEAR\nIN ACTION.",
+    hero_title: "",
     hero_description: "",
     sectors: sectorFallback.map((item, index) => ({ id: index + 1, title: item[tr ? 0 : 1], headline: item[tr ? 2 : 3], description: tr ? "Çalışma koşullarına, ekip ihtiyaçlarına ve kurumsal kimliğe göre geliştirilen profesyonel iş giyimi çözümleri." : "Professional workwear solutions developed around working conditions, team requirements and corporate identity.", product_groups: [], image: null, image_mobile: null })),
   };
@@ -93,7 +93,7 @@ export default async function ProjectsPage({
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <h1 className={styles.title}>
-            {(projects.hero_title || content.heroTitle).split(/\r?\n/).map((line) => <span className={styles.titleLine} key={line}>{line}</span>)}
+            {projects.hero_title.split(/\r?\n/).map((line) => <span className={styles.titleLine} key={line}>{line}</span>)}
           </h1>
           {projects.hero_description ? <p className={styles.description}>{projects.hero_description}</p> : null}
         </div>

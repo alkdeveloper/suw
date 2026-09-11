@@ -18,9 +18,9 @@ export function ProductsHero({ content }: { content: ProductHeroContent }) {
 
   return <section className={styles.hero} style={style}>
     <div className={styles.content}>
-      <h1 className={`suw-page-hero__title ${styles.title}`}>
+      {content.title ? <h1 className={`suw-page-hero__title ${styles.title}`}>
         {titleLines.map((line) => <span className={styles.titleLine} key={line}>{line}</span>)}
-      </h1>
+      </h1> : null}
       {content.description ? <p className={styles.description}>{content.description}</p> : null}
     </div>
   </section>;

@@ -49,7 +49,6 @@ function LinkedInIcon() {
 const footerContent = {
   tr: {
     contactLink: "BİZE ULAŞIN",
-    copyright: "© SUW. Tüm hakları saklıdır.",
     backToTop: "Yukarı dön",
     infoLabels: {
       address: "ADRES",
@@ -60,7 +59,6 @@ const footerContent = {
 
   en: {
     contactLink: "GET IN TOUCH",
-    copyright: "© SUW. All rights reserved.",
     backToTop: "Back to top",
     infoLabels: {
       address: "ADDRESS",
@@ -76,6 +74,7 @@ export function SiteFooter({
   localePrefix = "",
   logoSrc,
   backToTopAriaLabel,
+  copyrightText,
   compactContact,
   socialLinks = [],
 }: SiteFooterProps) {
@@ -204,9 +203,9 @@ export function SiteFooter({
         </div>
 
         <div className="site-footer__bottom">
-          <p className="site-footer__copyright">
-            {content.copyright}
-          </p>
+          {copyrightText ? <p className="site-footer__copyright">
+            {copyrightText}
+          </p> : null}
 
           <p className="site-footer__bottom-label">
             SUW / WORKWEAR

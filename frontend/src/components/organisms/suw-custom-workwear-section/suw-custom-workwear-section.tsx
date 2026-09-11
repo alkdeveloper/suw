@@ -87,22 +87,22 @@ type SuwCustomWorkwearSectionProps = {
   title: string;
 };
 
-const fallbackImages = ["/images/mock/custom-workwear.jpg", "/images/mock/workwear.jpg"];
-
 export function SuwCustomWorkwearSection({ ctaHref, ctaLabel, description, items, locale, title }: SuwCustomWorkwearSectionProps) {
   const resolvedCtaHref = ctaHref ? (/^(?:https?:)?\/\//.test(ctaHref) ? ctaHref : withLocalePath(locale, ctaHref)) : "";
+  const visibleItems = items.filter((item) => item.title || item.description || item.imageSrc);
+  if (!title && !description && visibleItems.length === 0 && !(ctaLabel && resolvedCtaHref)) return null;
   return (
     <section className="suw-custom-workwear">
       <div className="suw-custom-workwear__inner">
         <header className="suw-custom-workwear__intro">
-          <h2 className="suw-custom-workwear__title">{title}</h2>
+          {title ? <h2 className="suw-custom-workwear__title">{title}</h2> : null}
           {description ? <p className="suw-custom-workwear__description">{description}</p> : null}
         </header>
         <div className="suw-custom-workwear__cards">
-          {items.map((item, index) => (
+          {visibleItems.map((item) => (
             <article className="suw-custom-workwear__card" key={item.id}>
-              <div className="suw-custom-workwear__card-visual"><img alt={item.title} className="suw-custom-workwear__image" src={item.imageSrc || resolvePublicAssetPath(fallbackImages[index] || fallbackImages[0])} /></div>
-              <div className="suw-custom-workwear__card-content"><span className="suw-custom-workwear__number">{item.id}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></div>
+              {item.imageSrc ? <div className="suw-custom-workwear__card-visual"><img alt={item.title} className="suw-custom-workwear__image" src={item.imageSrc} /></div> : null}
+              <div className="suw-custom-workwear__card-content"><span className="suw-custom-workwear__number">{item.id}</span><div>{item.title ? <h3>{item.title}</h3> : null}{item.description ? <p>{item.description}</p> : null}</div></div>
             </article>
           ))}
         </div>

@@ -104,6 +104,18 @@ function compactFallback(locale: SupportedLocale): AboutPageContent {
   return content;
 }
 
+function emptyAbout(): AboutPageContent {
+  return {
+    hero: { eyebrow: "", title: "", description: "" },
+    history_hero: { title: "", description: "", image: null, image_mobile: null },
+    group: { eyebrow: "", title: "", description: "", supporting_label: "", image: null, image_mobile: null, image_position: "center", collage_image: null, collage_image_mobile: null },
+    video: { title: "", description: "", video: null, poster: null, is_active: false },
+    timeline: { title: "", description: "", items: [] },
+    why: { eyebrow: "", title: "", description: "", items: [] },
+    cta: { eyebrow: "", title: "", description: "", text: "", link: "" },
+  };
+}
+
 const pageContent = {
   tr: {
     metaTitle: "Hakkımızda",
@@ -141,7 +153,7 @@ export default async function AboutPage({
 }: AboutPageProps) {
   const { locale } = await params;
   const content = pageContent[locale];
-  let about=process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticCorporateSnapshot[locale] : compactFallback(locale);
+  let about=process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticCorporateSnapshot[locale] : emptyAbout();
   try {
     const response=await createAPI(locale).get<CorporatePageResponse>("corporate/");
     if(response.data.page) about={...response.data.page,video:response.data.page.video??about.video,timeline:response.data.page.timeline??about.timeline};

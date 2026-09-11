@@ -189,42 +189,17 @@ class SiteSettingsAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin)
 
     fieldsets = (
         (
-            "0 – Tema",
-            {
-                "classes": ["tab"],
-                "fields": ("font_family",),
-            },
-        ),
-        (
             "1 – Genel",
             {
                 "classes": ["tab"],
-                "fields": ("logo", "phone", "fax", "email", "address"),
-            },
-        ),
-        (
-            "2 – Footer",
-            {
-                "classes": ["tab"],
-                "fields": (
-                    "footer_title",
-                    "footer_newsletter_title",
-                    "footer_newsletter_placeholder",
-                    "footer_newsletter_consent_text",
-                    "footer_newsletter_consent_link_text",
-                    "footer_contact_title",
-                    "footer_navigation_title",
-                    "footer_social_title",
-                    "footer_address_label",
-                    "copyright_text",
-                ),
+                "fields": ("logo", "phone", "email", "address"),
             },
         ),
         (
             "3 – Sosyal Medya",
             {
                 "classes": ["tab"],
-                "fields": ("instagram", "linkedin", "facebook", "twitter", "youtube", "whatsapp"),
+                "fields": ("instagram", "linkedin"),
             },
         ),
         (
@@ -247,17 +222,7 @@ class SiteSettingsAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin)
                 "fields": (
                     "footer_home_aria_label",
                     "footer_back_to_top_aria_label",
-                    "footer_newsletter_submit_aria_label",
-                    "footer_newsletter_success_message",
-                    "footer_newsletter_error_message",
-                    (
-                        "footer_contact_label_phone",
-                        "footer_contact_label_fax",
-                        "footer_contact_label_email",
-                        "footer_contact_label_whatsapp",
-                    ),
                     ("footer_social_label_instagram", "footer_social_label_linkedin"),
-                    ("footer_social_label_facebook", "footer_social_label_x", "footer_social_label_youtube"),
                 ),
             },
         ),

@@ -50,26 +50,6 @@ class ContactPageAdmin(TabbedTranslationAdmin, SingletonModelAdmin, ModelAdmin):
             },
         ),
         (
-            "5 – Bülten",
-            {
-                "classes": ["tab"],
-                "fields": (
-                    "newsletter_title",
-                    "newsletter_placeholder",
-                    "newsletter_submit_aria_label",
-                    "newsletter_success_message",
-                    "newsletter_error_message",
-                ),
-            },
-        ),
-        (
-            "6 – Galeri",
-            {
-                "classes": ["tab"],
-                "fields": ("gallery_images",),
-            },
-        ),
-        (
             "8 – SEO",
             {
                 "classes": ["tab"],
