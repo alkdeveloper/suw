@@ -8,13 +8,14 @@ import { getProduct, getProductCategories, getProductGroups, getProducts } from 
 import { absoluteUrl, createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { ProductsHero } from "../products-hero";
 
-const groupSlugs = ["summer", "winter", "bags", "accessories"];
-
 export async function generateStaticParams() {
   const locales = ["tr", "en"] as SupportedLocale[];
   const params = await Promise.all(locales.map(async (locale) => {
-    const products = await getProducts(locale);
-    return [...groupSlugs, ...products.map((product) => product.slug)]
+    const [groups, products] = await Promise.all([
+      getProductGroups(locale),
+      getProducts(locale),
+    ]);
+    return [...groups.map((group) => group.slug), ...products.map((product) => product.slug)]
       .filter((slug, index, values) => values.indexOf(slug) === index)
       .map((slug) => ({ locale, slug }));
   }));
@@ -52,7 +53,7 @@ export default async function ProductRoute({ params }: { params: Promise<{ local
   if (group) {
     const categories = await getProductCategories(locale, slug);
     return <main>
-      <ProductsHero content={{ eyebrow: group.hero_eyebrow, title: group.hero_title, description: group.hero_description, hero_image: group.hero_image, hero_image_mobile: group.hero_image_mobile }} />
+      <ProductsHero content={{ eyebrow: group.hero_eyebrow, title: group.name, description: group.hero_description, hero_image: group.hero_image, hero_image_mobile: group.hero_image_mobile }} />
       <SuwProductsGridSection activeGroup={slug} categories={categories} groups={groups} locale={locale} mode="categories" />
     </main>;
   }

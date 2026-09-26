@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { resolveAssetUrl } from "@/src/lib/assets";
 import Link from "next/link";
 
@@ -91,12 +93,11 @@ export function HomeActivitySliderSection({
   const content = sectionContent[locale];
   const sourceItems = items.length > 0 ? items : content.mockItems;
 
-  const visibleItems = sourceItems
-    .filter(
-      (item): item is HomeActivityItem & { imageSrc: string } =>
-        Boolean(item.imageSrc),
-    )
-    .slice(0, 4);
+  const visibleItems = sourceItems;
+
+  const gridStyle = {
+    "--home-activity-columns": Math.min(visibleItems.length, 5),
+  } as CSSProperties;
 
   return (
     <section className="home-activity-slider">
@@ -115,16 +116,18 @@ export function HomeActivitySliderSection({
           ) : null}
         </header>
 
-        <div className="home-activity-slider__grid">
+        <div className="home-activity-slider__grid" style={gridStyle}>
           {visibleItems.map((item, index) => (
             <article
               className={`home-activity-slider__card home-activity-slider__card--${index + 1}`}
               key={item.id}
             >
-              <picture>
-                {item.mobileImageSrc ? <source media="(max-width: 600px)" srcSet={resolveAssetUrl(item.mobileImageSrc)} /> : null}
-                <img alt={item.imageAlt} className="home-activity-slider__image" src={resolveAssetUrl(item.imageSrc)} />
-              </picture>
+              {item.imageSrc ? (
+                <picture>
+                  {item.mobileImageSrc ? <source media="(max-width: 600px)" srcSet={resolveAssetUrl(item.mobileImageSrc)} /> : null}
+                  <img alt={item.imageAlt} className="home-activity-slider__image" src={resolveAssetUrl(item.imageSrc)} />
+                </picture>
+              ) : null}
 
               <div
                 aria-hidden="true"

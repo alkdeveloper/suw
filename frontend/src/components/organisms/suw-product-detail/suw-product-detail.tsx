@@ -43,6 +43,7 @@ export function SuwProductDetail({ locale, product }: { locale: SupportedLocale;
         <h1 className={styles.name}>{product.name}</h1>
         <div className={styles.code}><span>{copy.productCode}</span><strong>{product.product_code}</strong></div>
         {product.short_description ? <p className={styles.short}>{product.short_description}</p> : null}
+        {product.description ? <p className={styles.description}>{product.description}</p> : null}
         {(sizes.length || materials.length || features.length) ? <dl className={styles.facts}>
           {materials.length ? <div className={styles.fact}><dt>{copy.materials}</dt><dd>{materials.join(" ")}</dd></div> : null}
           {features.length ? <div className={styles.fact}><dt>{copy.features}</dt><dd><ul className={styles.featureList}>{features.map((feature) => <li key={feature}>{feature}</li>)}</ul></dd></div> : null}
@@ -51,9 +52,8 @@ export function SuwProductDetail({ locale, product }: { locale: SupportedLocale;
         <Link className={styles.cta} href={withLocalePath(locale, "/contact")}>{copy.cta}<span aria-hidden="true">↗</span></Link>
       </div>
     </section>
-    {(product.description || product.features || product.images.length > 0) ? <section className={styles.details}>
+    {(product.features || product.images.length > 0) ? <section className={styles.details}>
       <div className={styles.detailsInner}>
-        {product.description ? <article className={styles.detailBlock}><h2>{copy.description}</h2><p>{product.description}</p></article> : null}
         {features.length ? <article className={styles.detailBlock}><h2>{copy.technical}</h2><ul className={styles.featureList}>{features.map((feature) => <li key={feature}>{feature}</li>)}</ul></article> : null}
         {product.images.length > 0 ? <div className={styles.gallery}><h2>{copy.gallery}</h2><div className={styles.galleryGrid}>{product.images.map((item, index) => <img alt={item.alt || `${product.name} ${index + 1}`} key={`${item.image}-${index}`} src={resolveAssetUrl(item.image)} />)}</div></div> : null}
       </div>

@@ -3,6 +3,7 @@ import type { SupportedLocale } from "@/src/lib/locale";
 import {
   staticProductCategoriesSnapshot,
   staticProductGroupsSnapshot,
+  staticHomeProductGroupsSnapshot,
   staticProductPageSnapshot,
   staticProductsSnapshot,
 } from "@/src/lib/static-cms-snapshot";
@@ -26,11 +27,13 @@ export function fallbackCategories(locale: SupportedLocale, group?: string): Pro
 }
 
 export async function getProductGroups(locale: SupportedLocale, home = false) {
-  const fallback = fallbackGroups(locale);
+  const fallback = (home
+    ? staticHomeProductGroupsSnapshot[locale]
+    : staticProductGroupsSnapshot[locale]) as ProductGroup[];
   try {
     const groups = (await createAPI(locale).get<ProductGroup[]>(`products/groups/${home ? "?home=true" : ""}`)).data;
     return groups.map((group) => {
-      const local = fallback.find((item) => item.slug === group.slug);
+      const local = home ? undefined : fallback.find((item) => item.slug === group.slug);
       return {
         ...group,
         image: group.image || local?.image || null,
@@ -71,5 +74,7 @@ export async function getProducts(locale: SupportedLocale, query = "") {
 }
 
 export async function getProduct(locale: SupportedLocale, slug: string) {
-  try { return (await createAPI(locale).get<ProductDetail>(`products/products/${slug}/`)).data; } catch { return null; }
+  try { return (await createAPI(locale).get<ProductDetail>(`products/products/${slug}/`)).data; } catch {
+    return (staticProductsSnapshot[locale] as ProductDetail[]).find((product) => product.slug === slug) ?? null;
+  }
 }

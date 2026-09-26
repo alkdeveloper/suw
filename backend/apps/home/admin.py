@@ -43,6 +43,14 @@ class HomePageAdminForm(forms.ModelForm):
 
 
 class HomeProductCategoriesSettingsAdminForm(forms.ModelForm):
+    homepage_product_groups = forms.ModelMultipleChoiceField(
+        queryset=ProductGroup.objects.all().order_by("sort_order", "id"),
+        required=False,
+        label="Ana Sayfada Gösterilecek Ürün Grupları",
+        help_text="Yalnız burada seçilen aktif gruplar ana sayfadaki kart alanında gösterilir.",
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = HomeProductCategoriesSettings
         fields = (
@@ -50,6 +58,7 @@ class HomeProductCategoriesSettingsAdminForm(forms.ModelForm):
             "product_categories_description_tr",
             "product_categories_title_en",
             "product_categories_description_en",
+            "homepage_product_groups",
         )
         labels = {
             "product_categories_eyebrow_tr": "Eyebrow TR",
@@ -59,6 +68,11 @@ class HomeProductCategoriesSettingsAdminForm(forms.ModelForm):
             "product_categories_title_en": "Başlık EN",
             "product_categories_description_en": "Açıklama EN",
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pk:
+            self.fields["homepage_product_groups"].initial = self.instance.product_groups.all()
 
 
 class HomeWorkEssentialsSettingsAdminForm(forms.ModelForm):
@@ -170,10 +184,14 @@ class HomeProductGroupInline(TabularInline):
     fields = (
         "name_tr", "name_en", "short_description_tr", "short_description_en",
         "image", "image_preview", "image_mobile", "image_mobile_preview",
-        "slug", "show_on_home", "is_active", "sort_order",
+        "slug", "is_active", "sort_order",
     )
     readonly_fields = ("image_preview", "image_mobile_preview")
     ordering = ("sort_order", "id")
+    can_delete = False
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
     @display(description="Desktop Önizleme")
     def image_preview(self, obj):
@@ -262,7 +280,20 @@ class HomeProductCategoriesSettingsAdmin(SingletonModelAdmin, ModelAdmin):
                 ),
             },
         ),
+        (
+            "Ana Sayfa Kartları",
+            {
+                "fields": ("homepage_product_groups",),
+            },
+        ),
     )
+
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
+        selected = form.cleaned_data.get("homepage_product_groups", ProductGroup.objects.none())
+        selected_ids = list(selected.values_list("pk", flat=True))
+        ProductGroup.objects.filter(home_page=form.instance).exclude(pk__in=selected_ids).update(home_page=None)
+        ProductGroup.objects.filter(pk__in=selected_ids).update(home_page=form.instance)
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
         extra_context = extra_context or {}

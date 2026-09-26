@@ -18,6 +18,8 @@ export function SuwContactFormSection({
   phone,
   email,
   address,
+  mapSrc,
+  mapTitle,
   formTitle,
   kvkkText,
   kvkkHref = LEGAL_PAGE_PATHS.candidatePrivacyNotice,
@@ -152,6 +154,23 @@ export function SuwContactFormSection({
                 </div>
               ) : null}
             </div>
+
+            {mapSrc && mapTitle ? (
+              <section
+                aria-labelledby="contact-location-title"
+                className="suw-contact-form__location"
+              >
+                <h2 id="contact-location-title">{mapTitle}</h2>
+                <div className="suw-contact-form__map-frame">
+                  <iframe
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src={mapSrc}
+                    title={mapTitle}
+                  />
+                </div>
+              </section>
+            ) : null}
           </aside>
 
           <div className="suw-contact-form__content">
@@ -329,6 +348,7 @@ export function SuwContactFormSection({
               ) : null}
             </form>
           </div>
+
         </div>
       </div>
     </section>

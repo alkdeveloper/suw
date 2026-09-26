@@ -8,6 +8,8 @@ export type ContactFormSectionProps = {
   phone?: string;
   email?: string;
   address?: string;
+  mapSrc?: string;
+  mapTitle?: string;
 
   formTitle?: string;
 

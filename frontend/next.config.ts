@@ -31,6 +31,11 @@ const nextConfig: NextConfig = {
         hostname: "cdn.alk.com.tr",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "d2yobq6ugd5avs.cloudfront.net",
+        pathname: "/media/**",
+      },
     ],
   },
 

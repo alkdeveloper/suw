@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { SuwContactFormSection } from "@/src/components/organisms/suw-contact-form-section";
-import { ContactMapHero } from "@/src/components/organisms/contact-map-hero";
-import type { ContactPageResponse } from "@/src/lib/api-types";
+import type { ContactPageResponse, SiteSettingsResponse } from "@/src/lib/api-types";
 import { createAPI } from "@/src/lib/api";
 import { LEGAL_PAGE_PATHS } from "@/src/lib/legal";
 import type { SupportedLocale } from "@/src/lib/locale";
@@ -10,9 +9,10 @@ import { withLocalePath } from "@/src/lib/locale";
 import {
   createLocalizedPageMetadata,
 } from "@/src/lib/metadata";
+import { getOfflineSiteSettings } from "@/src/lib/site-settings-fallback";
 
 import styles from "./contact.module.scss";
-import { staticContactSnapshot } from "@/src/lib/static-cms-snapshot";
+import { applyStaticSiteSettings, staticContactSnapshot } from "@/src/lib/static-cms-snapshot";
 
 export function generateStaticParams() {
   return [
@@ -84,7 +84,11 @@ export default async function ContactPage({
   params,
 }: ContactPageProps) {
   const { locale } = await params;
-  const page = await getContactPage(locale);
+  const [page, siteLocation] = await Promise.all([
+    getContactPage(locale),
+    getSiteLocation(locale),
+  ]);
+  const mapSrc = createMapEmbedUrl(siteLocation);
   return (
     <main>
       <section className={styles.hero}>
@@ -124,14 +128,47 @@ export default async function ContactPage({
         )}
         kvkkText={page.kvkk_text}
         locale={locale}
+        mapSrc={mapSrc}
+        mapTitle={locale === "tr" ? "KONUMUMUZ" : "OUR LOCATION"}
         phone={page.phone}
         
       />
 
-      <ContactMapHero
-        src={page.map_embed_url || undefined}
-        title={page.info_title}
-      />
     </main>
   );
+}
+
+async function getSiteLocation(locale: SupportedLocale) {
+  try {
+    const { data } = await createAPI(locale).get<SiteSettingsResponse>(
+      "core/settings/",
+    );
+
+    return {
+      address: data.address,
+      latitude: data.latitude,
+      longitude: data.longitude,
+    };
+  } catch {
+    return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true"
+      ? applyStaticSiteSettings(locale, getOfflineSiteSettings(locale))
+      : null;
+  }
+}
+
+function createMapEmbedUrl(
+  location: Awaited<ReturnType<typeof getSiteLocation>>,
+) {
+  if (!location) {
+    return undefined;
+  }
+
+  const query =
+    location.latitude && location.longitude
+      ? `${location.latitude},${location.longitude}`
+      : location.address?.trim();
+
+  return query
+    ? `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`
+    : undefined;
 }

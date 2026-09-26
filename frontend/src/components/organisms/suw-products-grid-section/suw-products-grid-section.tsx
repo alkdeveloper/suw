@@ -77,7 +77,11 @@ export function SuwProductsGridSection({ locale, groups, products = [], categori
                 <Link className="suw-products-grid__card-link" href={href}>
                   <div className="suw-products-grid__image-wrap">
                     {image
-                      ? <img alt={card.name} className="suw-products-grid__image" src={resolveAssetUrl(image)} />
+                      ? <img
+                          alt={card.name}
+                          className={isCategory ? "suw-products-grid__image" : "suw-products-grid__image suw-products-grid__image--product"}
+                          src={resolveAssetUrl(image)}
+                        />
                       : <span aria-hidden="true" className="suw-products-grid__image-placeholder" />}
                     <span className="suw-products-grid__product-number">{String(index + 1).padStart(2, "0")}</span>
                     <span className="suw-products-grid__view">{copy.view} ↗</span>

@@ -20,6 +20,7 @@ jobs:
 
     env:
       NEXT_PUBLIC_FORCE_LOCAL_FALLBACK: "true"
+      NEXT_PUBLIC_MEDIA_URL: "https://d2yobq6ugd5avs.cloudfront.net"
 
     defaults:
       run:

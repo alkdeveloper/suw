@@ -187,6 +187,14 @@
   transition: transform 0.55s ease;
 }
 
+.suw-products-grid__image--product {
+  width: 88%;
+  height: 88%;
+  margin: 6%;
+  object-fit: contain;
+  object-position: center;
+}
+
 .suw-products-grid__product-number {
   position: absolute;
   top: 16px;

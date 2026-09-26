@@ -26,7 +26,7 @@ class GroupListView(generics.ListAPIView):
     def get_queryset(self):
         queryset = ProductGroup.objects.filter(is_active=True)
         if as_bool(self.request.query_params.get("home")):
-            queryset = queryset.filter(show_on_home=True)
+            queryset = queryset.filter(home_page__isnull=False)
         return queryset
 
 
