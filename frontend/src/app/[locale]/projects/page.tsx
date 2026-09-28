@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { ProjectsSectorShowcase } from "@/src/components/organisms/projects-sector-showcase";
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import type { ProjectsPageResponse } from "@/src/lib/api-types";
 import { SuwFinalCtaSection } from "@/src/components/organisms/suw-final-cta-section";
 import { getFinalCta, resolveFinalCtaHref } from "@/src/lib/final-cta";
@@ -48,7 +48,7 @@ export async function generateMetadata({
   let projects = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticProjectsSnapshot[locale] : getFallback(locale);
   try {
     projects = (await createAPI(locale).get<ProjectsPageResponse>("projects/")).data;
-  } catch {}
+  } catch (error) { enforceRemoteApi(error); }
   return createLocalizedPageMetadata(locale, {
     title: projects.seo_title || "",
     description: projects.seo_description || "",
@@ -64,7 +64,7 @@ export default async function ProjectsPage({
   try {
     const response = await createAPI(locale).get<ProjectsPageResponse>("projects/");
     projects = response.data;
-  } catch {}
+  } catch (error) { enforceRemoteApi(error); }
   const finalCta = await getFinalCta(locale);
 
   return (

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { AppShell } from "@/src/components/layout";
 import type { SiteSettingsResponse } from "@/src/lib/api-types";
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import {
   isSupportedLocale,
   type SupportedLocale,
@@ -60,6 +60,7 @@ async function loadSiteSettings(
 
     return data;
   } catch (error) {
+    enforceRemoteApi(error);
     if (process.env.NODE_ENV === "development") {
       console.warn(
         "[locale layout] core/settings/ failed, using offline shell",

@@ -9,6 +9,7 @@ dump-alk_db-*.sql
 backend/.env
 backend/.env.*
 !backend/.env.example
+!backend/.env.production.example
 frontend/.env
 frontend/.env.local
 frontend/.env.development.local

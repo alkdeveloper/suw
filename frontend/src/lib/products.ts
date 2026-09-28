@@ -1,4 +1,4 @@
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import type { SupportedLocale } from "@/src/lib/locale";
 import {
   staticProductCategoriesSnapshot,
@@ -45,7 +45,8 @@ export async function getProductGroups(locale: SupportedLocale, home = false) {
         hero_image_mobile: group.hero_image_mobile || null,
       };
     });
-  } catch {
+  } catch (error) {
+    enforceRemoteApi(error);
     return fallback;
   }
 }
@@ -55,17 +56,19 @@ export async function getProductPageSettings(locale: SupportedLocale) {
   try {
     const value = (await createAPI(locale).get<ProductPageSettings>("products/page/")).data;
     return Object.fromEntries(Object.entries(fallback).map(([key, defaultValue]) => [key, value[key as keyof ProductPageSettings] ?? defaultValue])) as ProductPageSettings;
-  } catch {
+  } catch (error) {
+    enforceRemoteApi(error);
     return fallback;
   }
 }
 
 export async function getProductCategories(locale: SupportedLocale, group?: string) {
-  try { return (await createAPI(locale).get<ProductCategory[]>(`products/categories/${group ? `?group=${group}` : ""}`)).data; } catch { return fallbackCategories(locale, group); }
+  try { return (await createAPI(locale).get<ProductCategory[]>(`products/categories/${group ? `?group=${group}` : ""}`)).data; } catch (error) { enforceRemoteApi(error); return fallbackCategories(locale, group); }
 }
 
 export async function getProducts(locale: SupportedLocale, query = "") {
-  try { return (await createAPI(locale).get<ProductSummary[]>(`products/products/${query ? `?${query}` : ""}`)).data; } catch {
+  try { return (await createAPI(locale).get<ProductSummary[]>(`products/products/${query ? `?${query}` : ""}`)).data; } catch (error) {
+    enforceRemoteApi(error);
     const products = staticProductsSnapshot[locale] as ProductSummary[];
     const category = new URLSearchParams(query).get("category");
     const group = new URLSearchParams(query).get("group");
@@ -74,7 +77,8 @@ export async function getProducts(locale: SupportedLocale, query = "") {
 }
 
 export async function getProduct(locale: SupportedLocale, slug: string) {
-  try { return (await createAPI(locale).get<ProductDetail>(`products/products/${slug}/`)).data; } catch {
+  try { return (await createAPI(locale).get<ProductDetail>(`products/products/${slug}/`)).data; } catch (error) {
+    enforceRemoteApi(error);
     return (staticProductsSnapshot[locale] as ProductDetail[]).find((product) => product.slug === slug) ?? null;
   }
 }

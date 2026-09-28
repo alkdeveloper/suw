@@ -19,7 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      NEXT_PUBLIC_FORCE_LOCAL_FALLBACK: "true"
+      NEXT_PUBLIC_FORCE_LOCAL_FALLBACK: "false"
+      NEXT_PUBLIC_API_URL: "https://cms.suw.com.tr/api/"
+      API_INTERNAL_URL: "https://cms.suw.com.tr/api/"
+      REQUIRE_REMOTE_API: "true"
       NEXT_PUBLIC_MEDIA_URL: "https://d2yobq6ugd5avs.cloudfront.net"
 
     defaults:

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { SuwContactFormSection } from "@/src/components/organisms/suw-contact-form-section";
 import type { ContactPageResponse, SiteSettingsResponse } from "@/src/lib/api-types";
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import { LEGAL_PAGE_PATHS } from "@/src/lib/legal";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
@@ -34,7 +34,8 @@ async function getContactPage(
       await createAPI(locale).get<ContactPageResponse>("contact/");
 
     return response.data;
-  } catch {
+  } catch (error) {
+    enforceRemoteApi(error);
     return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true" ? staticContactSnapshot[locale] : {
       hero_title: "",
       meta_title: "",
@@ -149,7 +150,8 @@ async function getSiteLocation(locale: SupportedLocale) {
       latitude: data.latitude,
       longitude: data.longitude,
     };
-  } catch {
+  } catch (error) {
+    enforceRemoteApi(error);
     return process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true"
       ? applyStaticSiteSettings(locale, getOfflineSiteSettings(locale))
       : null;

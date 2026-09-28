@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { createLocalizedPageMetadata } from "@/src/lib/metadata";
 import { AboutEditorialSections } from "@/src/components/organisms/about-editorial-sections";
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import type { AboutPageContent, CorporatePageResponse } from "@/src/lib/api-types";
 
 import styles from "./about.module.scss";
@@ -134,7 +134,7 @@ export async function generateMetadata({
       title = response.data.meta_title || "";
       description = response.data.meta_description || "";
       image = response.data.page?.history_hero.image || undefined;
-    } catch {}
+    } catch (error) { enforceRemoteApi(error); }
   }
 
   return createLocalizedPageMetadata(locale, {
@@ -153,7 +153,7 @@ export default async function AboutPage({
   try {
     const response=await createAPI(locale).get<CorporatePageResponse>("corporate/");
     if(response.data.page) about={...response.data.page,video:response.data.page.video??about.video,timeline:response.data.page.timeline??about.timeline};
-  } catch {}
+  } catch (error) { enforceRemoteApi(error); }
 
   return (
     <main>

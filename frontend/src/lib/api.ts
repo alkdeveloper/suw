@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { resolveCmsMediaUrls } from "@/src/lib/assets";
 
 const forceLocalFallback = process.env.NEXT_PUBLIC_FORCE_LOCAL_FALLBACK === "true";
+const requireRemoteApi = process.env.REQUIRE_REMOTE_API === "true";
 const clientApiBaseUrl =
   process.env.NEXT_PUBLIC_API_URL ??
   (forceLocalFallback ? "/api/" : "http://localhost:8000/api/");
@@ -145,6 +146,12 @@ export function createAPI(locale = "en", config?: AxiosRequestConfig): AxiosInst
   serverLog("createAPI: instance ready");
 
   return instance;
+}
+
+export function enforceRemoteApi(error: unknown): void {
+  if (requireRemoteApi) {
+    throw error instanceof Error ? error : new Error(String(error));
+  }
 }
 
 export function getApiErrorMessage(error: unknown, fallback: string) {

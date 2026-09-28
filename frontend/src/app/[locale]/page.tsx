@@ -4,7 +4,7 @@ import { SuwFeaturedProductsSection } from "@/src/components/organisms/suw-featu
 import { HomeActivitySliderSection } from "@/src/components/organisms/home-activity-slider-section";
 import { HomeHeroSection } from "@/src/components/organisms/home-hero-section";
 import type { HomePageResponse } from "@/src/lib/api-types";
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import { createLocalizedPageMetadata } from "@/src/lib/metadata";
@@ -101,7 +101,8 @@ async function getHomePage(
       production_insights_description: response.data.production_insights_description ?? "",
       production_insight_items: response.data.production_insight_items || fallback.production_insight_items,
     };
-  } catch {
+  } catch (error) {
+    enforceRemoteApi(error);
     return {
       ...fallback,
       ...staticHomeSnapshot[locale],

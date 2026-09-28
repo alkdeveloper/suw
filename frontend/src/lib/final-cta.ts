@@ -1,5 +1,5 @@
 import type { HomePageResponse } from "@/src/lib/api-types";
-import { createAPI } from "@/src/lib/api";
+import { createAPI, enforceRemoteApi } from "@/src/lib/api";
 import type { SupportedLocale } from "@/src/lib/locale";
 import { withLocalePath } from "@/src/lib/locale";
 import { staticHomeSnapshot } from "@/src/lib/static-cms-snapshot";
@@ -21,7 +21,8 @@ export async function getFinalCta(locale: SupportedLocale): Promise<FinalCtaCont
   try {
     const response = await createAPI(locale).get<HomePageResponse>("home/");
     return response.data.final_cta ?? emptyFinalCta;
-  } catch {
+  } catch (error) {
+    enforceRemoteApi(error);
     return emptyFinalCta;
   }
 }
