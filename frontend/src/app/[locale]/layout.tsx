@@ -13,6 +13,7 @@ import {
 import { getOfflineSiteSettings } from "@/src/lib/site-settings-fallback";
 import { applyStaticSiteSettings } from "@/src/lib/static-cms-snapshot";
 import { absoluteUrl, SITE_NAME, SITE_URL } from "@/src/lib/metadata";
+import { stripPublicBasePath } from "@/src/lib/assets";
 export function generateStaticParams() {
   return [
     { locale: "tr" },
@@ -107,7 +108,7 @@ export default async function LocaleLayout({
     name: SITE_NAME,
     url: SITE_URL,
     logo: absoluteUrl(
-      (siteSettings.logo || "/images/suw-logo-hero.png").replace(/^\/suw(?=\/)/, ""),
+      stripPublicBasePath(siteSettings.logo || "/images/suw-logo-hero.png"),
     ),
     address: siteSettings.address ? { "@type": "PostalAddress", streetAddress: siteSettings.address } : undefined,
     telephone: siteSettings.phone || undefined,

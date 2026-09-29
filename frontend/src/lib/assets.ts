@@ -14,7 +14,10 @@ function getPublicApiOrigin() {
 }
 
 function isLocalHostname(hostname: string) {
-  return hostname === "localhost" || hostname === "127.0.0.1";
+  return (
+    process.env.NODE_ENV !== "production" &&
+    (hostname === "localhost" || hostname === "127.0.0.1")
+  );
 }
 
 export function resolvePublicAssetPath(path: string) {
@@ -27,6 +30,16 @@ export function resolvePublicAssetPath(path: string) {
   }
 
   return `${publicBasePath}${path}`;
+}
+
+export function stripPublicBasePath(path: string) {
+  if (!publicBasePath || path === publicBasePath) {
+    return path === publicBasePath ? "/" : path;
+  }
+
+  return path.startsWith(`${publicBasePath}/`)
+    ? path.slice(publicBasePath.length)
+    : path;
 }
 
 export function resolveCmsMediaUrl(value: string | null | undefined) {
@@ -74,7 +87,8 @@ export function resolveCmsMediaUrls<T>(value: T): T {
     if (
       value.startsWith("/media/") ||
       value.startsWith("media/") ||
-      /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/media\//i.test(value)
+      (process.env.NODE_ENV !== "production" &&
+        /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/media\//i.test(value))
     ) {
       return resolveCmsMediaUrl(value) as T;
     }

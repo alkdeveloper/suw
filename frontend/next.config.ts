@@ -1,13 +1,18 @@
 import type { NextConfig } from "next";
 
-const isGithubPages = process.env.GITHUB_ACTIONS === "true";
-const basePath = isGithubPages ? "/suw" : "";
+const isStaticExport =
+  process.env.GITHUB_ACTIONS === "true" ||
+  Object.prototype.hasOwnProperty.call(process.env, "PAGES_BASE_PATH");
+const configuredBasePath = (process.env.PAGES_BASE_PATH ?? "").trim();
+const basePath = configuredBasePath
+  ? `/${configuredBasePath.replace(/^\/+|\/+$/g, "")}`
+  : "";
 
 const nextConfig: NextConfig = {
-  output: isGithubPages ? "export" : "standalone",
+  output: isStaticExport ? "export" : "standalone",
 
   images: {
-    unoptimized: isGithubPages,
+    unoptimized: isStaticExport,
     remotePatterns: [
       {
         protocol: "http",
@@ -44,7 +49,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
-  trailingSlash: isGithubPages,
+  trailingSlash: isStaticExport,
 };
 
 export default nextConfig;
