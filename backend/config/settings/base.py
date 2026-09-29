@@ -401,6 +401,10 @@ MODELTRANSLATION_LANGUAGES = ("tr", "en")
 
 # İletişim formu bildirim e-postası — gelen mesajların iletileceği adres
 CONTACT_NOTIFICATION_EMAIL = env("CONTACT_NOTIFICATION_EMAIL", default="")
+MICROSOFT_TENANT_ID = env("MICROSOFT_TENANT_ID", default="")
+MICROSOFT_CLIENT_ID = env("MICROSOFT_CLIENT_ID", default="")
+MICROSOFT_CLIENT_SECRET = env("MICROSOFT_CLIENT_SECRET", default="")
+MICROSOFT_GRAPH_SENDER = env("MICROSOFT_GRAPH_SENDER", default="")
 
 # GitHub Pages publish integration. The token is optional so local development
 # and management commands can start without GitHub credentials.
