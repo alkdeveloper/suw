@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PAGES_BASE_PATH: "/suw"
+      PAGES_BASE_PATH: ""
       NEXT_PUBLIC_FORCE_LOCAL_FALLBACK: "false"
       NEXT_PUBLIC_API_URL: "https://cms.suw.com.tr/api/"
       API_INTERNAL_URL: "https://cms.suw.com.tr/api/"
