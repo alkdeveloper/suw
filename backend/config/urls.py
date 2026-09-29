@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.http import JsonResponse
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from apps.core.admin_views import publish_site
 
 
 def health_check(request):
@@ -39,6 +40,11 @@ def api_root(request):
 urlpatterns = [
     path("api/health/", health_check, name="health-check"),
     path("", api_root, name="api-root"),
+    path(
+        "admin/site-publish/",
+        admin.site.admin_view(publish_site),
+        name="admin-site-publish",
+    ),
     path("admin/", admin.site.urls),
 
     # API

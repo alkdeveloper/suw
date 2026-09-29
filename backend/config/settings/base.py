@@ -402,6 +402,13 @@ MODELTRANSLATION_LANGUAGES = ("tr", "en")
 # İletişim formu bildirim e-postası — gelen mesajların iletileceği adres
 CONTACT_NOTIFICATION_EMAIL = env("CONTACT_NOTIFICATION_EMAIL", default="")
 
+# GitHub Pages publish integration. The token is optional so local development
+# and management commands can start without GitHub credentials.
+GITHUB_PUBLISH_TOKEN = env("GITHUB_PUBLISH_TOKEN", default="")
+GITHUB_PUBLISH_REPO = env("GITHUB_PUBLISH_REPO", default="alkdeveloper/suw")
+GITHUB_PUBLISH_WORKFLOW = env("GITHUB_PUBLISH_WORKFLOW", default="nextjs.yml")
+GITHUB_PUBLISH_REF = env("GITHUB_PUBLISH_REF", default="main")
+
 # Loglama — uygulama logları (apps.*) konsola/stdout'a yazılır.
 LOGGING = {
     "version": 1,

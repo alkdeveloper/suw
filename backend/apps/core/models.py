@@ -42,6 +42,12 @@ class SiteSettings(SingletonModel, SEOModel):
         null=True,
         verbose_name=_("Boylam"),
     )
+    last_publish_requested_at = models.DateTimeField(
+        blank=True,
+        null=True,
+        editable=False,
+        verbose_name=_("Son yayın isteği"),
+    )
 
     # Global footer üstü iletişim / konum bölümü
     contact_section_eyebrow = models.CharField(max_length=100, blank=True, verbose_name=_("İletişim Bölümü Eyebrow"))

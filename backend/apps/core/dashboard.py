@@ -1,5 +1,7 @@
 """SUW odaklı admin dashboard verileri."""
 
+from django.urls import reverse
+
 
 def dashboard_callback(request, context):
     from apps.contact.models import ContactMessage
@@ -30,4 +32,6 @@ def dashboard_callback(request, context):
         for message in unread_queryset[:5]
     ]
     context["unread_message_count"] = unread_messages
+    if request.user.is_superuser:
+        context["site_publish_url"] = reverse("admin-site-publish")
     return context
