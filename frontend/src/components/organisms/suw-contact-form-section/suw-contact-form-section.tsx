@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { TrackedPhoneLink } from "@/src/components/atoms/tracked-phone-link";
 import { createAPI } from "@/src/lib/api";
 import { cn } from "@/src/lib/cn";
 import { LEGAL_PAGE_PATHS } from "@/src/lib/legal";
@@ -136,7 +137,7 @@ export function SuwContactFormSection({
               {phone ? (
                 <div className="suw-contact-form__detail">
                   <span>{fallbackCopy.phone}</span>
-                  <p>{phone}</p>
+                  <TrackedPhoneLink href={`tel:${phone.replace(/[^+\d]/g, "")}`}>{phone}</TrackedPhoneLink>
                 </div>
               ) : null}
 

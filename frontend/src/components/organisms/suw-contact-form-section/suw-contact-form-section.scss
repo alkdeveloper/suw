@@ -70,10 +70,13 @@
     letter-spacing: 0.12em;
   }
 
-  p {
+  p,
+  a {
+    color: inherit;
     margin: 0;
     font-size: 14px;
     line-height: 1.55;
+    text-decoration: none;
   }
 }
 

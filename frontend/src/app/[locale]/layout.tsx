@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { notFound } from "next/navigation";
 
+import { GoogleTag } from "@/src/components/google-tag";
 import { AppShell } from "@/src/components/layout";
 import type { SiteSettingsResponse } from "@/src/lib/api-types";
 import { createAPI, enforceRemoteApi } from "@/src/lib/api";
@@ -141,7 +141,7 @@ export default async function LocaleLayout({
         {children}
       </AppShell>
 
-      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+      <GoogleTag googleAnalyticsId={gaId} />
     </>
   );
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/src/components/atoms/container";
+import { TrackedPhoneLink } from "@/src/components/atoms/tracked-phone-link";
 import { cn } from "@/src/lib/cn";
 import { resolvePublicAssetPath } from "@/src/lib/assets";
 import { DEFAULT_LOCALE } from "@/src/lib/locale";
@@ -189,7 +190,7 @@ export function SiteFooter({
             {compactContact?.phone ? (
               <div className="site-footer__info-item">
                 <p className="site-footer__info-label">{content.infoLabels.phone}</p>
-                <a className="site-footer__info-value" href={`tel:${compactContact.phone.replace(/[^+\d]/g, "")}`}>{compactContact.phone}</a>
+                <TrackedPhoneLink className="site-footer__info-value" href={`tel:${compactContact.phone.replace(/[^+\d]/g, "")}`}>{compactContact.phone}</TrackedPhoneLink>
               </div>
             ) : null}
 
