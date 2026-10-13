@@ -38,7 +38,7 @@ export function ContactFormSection({
   address,
   formTitle,
   kvkkText,
-  kvkkHref = LEGAL_PAGE_PATHS.candidatePrivacyNotice,
+  kvkkHref = LEGAL_PAGE_PATHS.contactPrivacyNotice,
 }: ContactFormSectionProps) {
   const [formState, setFormState] = useState({
     firstName: "",

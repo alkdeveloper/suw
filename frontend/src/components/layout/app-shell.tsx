@@ -127,7 +127,7 @@ export function AppShell({
   const headerSource = visibleHeaderNav.map((item) => ({
     href: item.url,
     isExternal: item.is_external,
-    label: item.label,
+    label: locale === "tr" ? item.label.toLocaleUpperCase("tr-TR") : item.label,
   }));
   const items = headerSource.map((item) => ({
     ...item,

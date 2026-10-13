@@ -353,6 +353,13 @@ UNFOLD["SIDEBAR"]["navigation"] = [
         ],
     },
     {
+        "title": "KVKK ve Yasal Metinler",
+        "separator": True,
+        "items": [
+            {"title": "Yasal Sayfalar", "icon": "policy", "link": reverse_lazy("admin:legal_legalpage_changelist"), "permission": is_superuser},
+        ],
+    },
+    {
         "title": "Projeler",
         "separator": True,
         "items": [

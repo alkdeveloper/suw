@@ -33,6 +33,10 @@ export async function getLegalPage(
         tr: "Aday Aydınlatma Metni",
         en: "Candidate Privacy Notice",
       },
+      contactPrivacyNotice: {
+        tr: "İletişim Formu Aydınlatma Metni",
+        en: "Contact Form Privacy Notice",
+      },
       disclosureAndConsent: {
         tr: "Aydınlatma ve Açık Rıza",
         en: "Disclosure and Consent",

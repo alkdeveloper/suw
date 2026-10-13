@@ -125,7 +125,7 @@ export default async function ContactPage({
         infoTitle={page.info_title}
         kvkkHref={withLocalePath(
           locale,
-          LEGAL_PAGE_PATHS.candidatePrivacyNotice,
+          LEGAL_PAGE_PATHS.contactPrivacyNotice,
         )}
         kvkkText={page.kvkk_text}
         locale={locale}

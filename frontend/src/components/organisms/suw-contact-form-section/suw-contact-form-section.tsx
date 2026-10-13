@@ -23,7 +23,7 @@ export function SuwContactFormSection({
   mapTitle,
   formTitle,
   kvkkText,
-  kvkkHref = LEGAL_PAGE_PATHS.candidatePrivacyNotice,
+  kvkkHref = LEGAL_PAGE_PATHS.contactPrivacyNotice,
 }: ContactFormSectionProps) {
   const fallbackCopy = locale === "tr"
     ? {
@@ -38,7 +38,7 @@ export function SuwContactFormSection({
         lastName: "SOYAD",
         subject: "KONU",
         message: "MESAJ",
-        privacyNotice: "Gizlilik Bildirimi",
+        privacyNotice: "KVKK Aydınlatma Metni",
         submit: "MESAJI GÖNDER",
       }
     : {
